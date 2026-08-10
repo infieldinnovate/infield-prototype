@@ -606,4 +606,3 @@ export const servicesPreview: ServiceCardProps[] = [
     color: "#10b981",
   },
 ];
- 

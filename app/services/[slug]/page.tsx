@@ -142,7 +142,6 @@ export default function ServiceDetailPage({ params }: PageProps) {
             <Breadcrumbs
               items={[
                 { label: "Home", href: "/" },
-                { label: "Services", href: "/services" },
                 { label: service.shortName },
               ]}
             />

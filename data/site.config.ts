@@ -68,7 +68,6 @@ export const siteConfig = {
 
 export const navItems = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
@@ -84,7 +83,6 @@ export const footerLinks = {
     { label: "Solar", href: "/services/solar" },
     { label: "Irrigation", href: "/services/irrigation" },
     { label: "Borehole", href: "/services/borehole" },
-    { label: "All Services", href: "/services" },
   ],
   company: [
     { label: "About Us", href: "/about" },

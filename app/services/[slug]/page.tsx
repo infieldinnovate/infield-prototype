@@ -7,10 +7,11 @@ import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { TestimonialCard } from "@/components/cards/TestimonialCard";
+import { CTA } from "@/components/ui/CTA";
 import { services, getServiceBySlug, getServiceSlugs } from "@/data/services";
 import { siteConfig } from "@/data/site.config";
-import { getFeaturedTestimonials } from "@/data/testimonials";
+import { industries } from "@/data/industries";
+import { processSteps } from "@/data/process";
 import { buildServiceSchema, buildFAQSchema } from "@/lib/structured-data";
 import {
   ArrowRight,
@@ -18,15 +19,16 @@ import {
   Clock,
   DollarSign,
   Shield,
-  Star,
-  TrendingUp,
   Users,
   Leaf,
   Award,
+  TrendingUp,
+  type LucideIcon,
 } from "lucide-react";
 import styles from "./[slug].module.scss";
 import { getProjectsByService } from "@/data/projectStats";
 import ProjectGallery from "./ProjectGallery";
+import ServiceInfographic from "./ServiceInfographic";
 
 interface PageProps {
   params: { slug: string };
@@ -59,14 +61,13 @@ export default function ServiceDetailPage({ params }: PageProps) {
   if (!service) notFound();
 
   const projects = getProjectsByService(service.slug);
-  const serviceTestimonials = getFeaturedTestimonials(3);
   const Icon =
     (Icons[service.icon as keyof typeof Icons] as React.ComponentType<{
       size?: number;
       strokeWidth?: number;
     }>) || Icons.Zap;
 
-  const benefits = [
+  const whyInfield = [
     {
       icon: TrendingUp,
       title: "Proven Results",
@@ -103,6 +104,20 @@ export default function ServiceDetailPage({ params }: PageProps) {
         "Energy-efficient solutions that reduce costs and environmental impact.",
     },
   ];
+
+  const relevantIndustries = industries.filter((ind) =>
+    ind.services.some((s) =>
+      s.toLowerCase().includes(service.shortName.toLowerCase().split(" ")[0])
+    )
+  );
+  const displayIndustries =
+    relevantIndustries.length >= 3 ? relevantIndustries : industries.slice(0, 6);
+
+  const renderIndustryIcon = (iconName: string) => {
+    const Icon =
+      (Icons[iconName as keyof typeof Icons] as LucideIcon) || Icons.Building2;
+    return <Icon size={24} strokeWidth={1.8} />;
+  };
 
   const jsonLd = [
     buildServiceSchema({
@@ -167,6 +182,17 @@ export default function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Animated Infographic */}
+      <section className={styles.infographicSection}>
+        <div className={styles.container}>
+          <ServiceInfographic
+            steps={service.infographic}
+            title={service.infographicTitle}
+            subtitle={service.infographicSubtitle}
+          />
+        </div>
+      </section>
+
       {/* Quick Info Bar */}
       <section className={styles.infoBar}>
         <div className={styles.container}>
@@ -198,16 +224,90 @@ export default function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* What We Offer */}
       <section className={styles.section}>
         <div className={styles.container}>
           <SectionHeading
-            eyebrow="Why Choose Us"
-            title={`Benefits of Our ${service.shortName} Services`}
+            eyebrow="What We Offer"
+            title={`${service.shortName} Services We Provide`}
+            description="Comprehensive solutions tailored to your specific needs."
+          />
+          <div className={styles.featuresGrid}>
+            {service.features.map((feature, i) => (
+              <ScrollReveal key={feature.title} delay={(i % 3) * 100}>
+                <div className={styles.featureCard}>
+                  <div className={styles.featureCheck}>
+                    <Check size={20} />
+                  </div>
+                  <h3 className={styles.featureTitle}>{feature.title}</h3>
+                  <p className={styles.featureDescription}>
+                    {feature.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who We Serve */}
+      <section className={styles.industriesSection}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="Who We Serve"
+            title="Industries We Support"
+            description={`Our ${service.shortName.toLowerCase()} solutions serve a wide range of sectors.`}
+          />
+          <div className={styles.industriesGrid}>
+            {displayIndustries.map((industry, i) => (
+              <ScrollReveal key={industry.id} delay={(i % 3) * 100}>
+                <div className={styles.industryCard}>
+                  <div className={styles.industryIcon}>
+                    {renderIndustryIcon(industry.icon)}
+                  </div>
+                  <h3 className={styles.industryName}>{industry.name}</h3>
+                  <p className={styles.industryDescription}>
+                    {industry.description}
+                  </p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Process */}
+      <section className={styles.processSection}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="Our Process"
+            title="How We Deliver Your Project"
+            description="From initial contact to project completion, we make it easy."
+          />
+          <div className={styles.processGrid}>
+            {(service.process.length > 0 ? service.process : processSteps.slice(0, 5)).map(
+              (step) => (
+                <div key={step.step} className={styles.processStep}>
+                  <div className={styles.processNumber}>{step.step}</div>
+                  <h3 className={styles.processTitle}>{step.title}</h3>
+                  <p className={styles.processDescription}>{step.description}</p>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Infield */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="Why Infield"
+            title={`Why Choose Our ${service.shortName} Services`}
             description="What sets us apart and why customers trust us with their projects."
           />
           <div className={styles.featuresGrid}>
-            {benefits.map((benefit, i) => (
+            {whyInfield.map((benefit, i) => (
               <ScrollReveal key={benefit.title} delay={(i % 3) * 100}>
                 <div className={styles.featureCard}>
                   <div className={styles.featureCheck}>
@@ -224,70 +324,14 @@ export default function ServiceDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Features */}
-      <section className={styles.section}>
+      {/* CTA */}
+      <section className={styles.ctaSection}>
         <div className={styles.container}>
-          <SectionHeading
-            eyebrow="What's Included"
-            title={`${service.shortName} Services We Offer`}
-            description="Comprehensive solutions tailored to your specific needs."
-          />
-          <div className={styles.featuresGrid}>
-            {service.features.map((feature) => (
-              <div key={feature.title} className={styles.featureCard}>
-                <div className={styles.featureCheck}>
-                  <Check size={20} />
-                </div>
-                <h3 className={styles.featureTitle}>{feature.title}</h3>
-                <p className={styles.featureDescription}>
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
+          <CTA />
         </div>
       </section>
 
-      {/* Process */}
-      <section className={styles.processSection}>
-        <div className={styles.container}>
-          <SectionHeading
-            eyebrow="How It Works"
-            title="Our Simple Process"
-            description="From initial contact to project completion, we make it easy."
-          />
-          <div className={styles.processGrid}>
-            {service.process.map((step) => (
-              <div key={step.step} className={styles.processStep}>
-                <div className={styles.processNumber}>{step.step}</div>
-                <h3 className={styles.processTitle}>{step.title}</h3>
-                <p className={styles.processDescription}>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Services */}
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <SectionHeading
-            eyebrow="Popular Requests"
-            title="Common Services We Handle"
-            centered={false}
-          />
-          <ul className={styles.popularList}>
-            {service.popularServices.map((item) => (
-              <li key={item} className={styles.popularItem}>
-                <Check size={18} className={styles.popularCheck} />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Related Projects */}
+      {/* Projects */}
       {projects.length > 0 && (
         <section className={styles.projectsSection}>
           <div className={styles.container}>
@@ -301,23 +345,7 @@ export default function ServiceDetailPage({ params }: PageProps) {
         </section>
       )}
 
-      {/* Customer Testimonials */}
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <SectionHeading
-            eyebrow="Customer Stories"
-            title="What Our Customers Say"
-            description="Real reviews from clients who trusted us with their projects."
-          />
-          <div className={styles.projectsGrid}>
-            {serviceTestimonials.map((testimonial) => (
-              <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Service FAQs */}
+      {/* FAQs */}
       <section className={styles.section}>
         <div className={styles.container}>
           <SectionHeading

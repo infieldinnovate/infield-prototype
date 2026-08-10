@@ -138,10 +138,16 @@
   font: inherit;
   color: inherit;
   padding: 6px 0;
+  transition: color 0.22s ease;
 
-  &:hover {
+  &:hover,
+  &.triggerOpen {
     color: #1e40af;
   }
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
 }
 
 .servicesChevron {
@@ -164,16 +170,31 @@
   border-bottom: 1px solid $color-border;
   box-shadow: $shadow-xl;
   padding: $space-6 $space-8;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
   z-index: $z-dropdown;
+  position: absolute;
+}
 
-  .servicesDropdown:hover & {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+.closeButton {
+  position: absolute;
+  top: $space-3;
+  right: $space-4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-full;
+  border: 1px solid $color-border;
+  background: $color-gray-50;
+  color: $color-gray-600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: $color-primary;
+    color: $color-white;
+    border-color: $color-primary;
+    transform: rotate(90deg);
   }
 }
 
@@ -254,6 +275,11 @@
   font-weight: $fw-bold;
   color: $color-gray-800;
   margin: 0;
+  transition: color var(--transition-fast);
+
+  .serviceCard:hover & {
+    color: $color-primary;
+  }
 }
 
 .subServicesList {
@@ -269,10 +295,13 @@
   font-size: $fs-xs;
   color: $color-gray-500;
   line-height: 1.4;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
+  position: relative;
+  padding-left: 0;
 
   .serviceCard:hover & {
-    color: $color-gray-700;
+    color: $color-primary-700;
+    padding-left: 6px;
   }
 }
 

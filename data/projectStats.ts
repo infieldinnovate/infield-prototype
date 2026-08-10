@@ -96,7 +96,7 @@ export const projects: Project[] = [
   {
     id: "elgeyo-borehole",
     title: "Commercial Borehole Water Supply",
-    category: "borehole",
+    category: "boreholes",
     county: "Elgeyo Marakwet",
     completionDate: "January 2026",
     featured: false,
@@ -193,7 +193,7 @@ export const projects: Project[] = [
   {
     id: "garissa-solar-pumping",
     title: "Solar Water Pumping for Livestock Ranch",
-    category: "solar-pumping",
+    category: "solar",
     county: "Garissa",
     completionDate: "November 2025",
     featured: false,
@@ -428,7 +428,7 @@ export const projects: Project[] = [
   {
     id: "kirinyaga-irrigation-borehole",
     title: "Agricultural Borehole Water System",
-    category: "borehole",
+    category: "boreholes",
     county: "Kirinyaga",
     completionDate: "May 2025",
     featured: false,

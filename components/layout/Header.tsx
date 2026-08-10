@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -23,12 +23,18 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import styles from "./Header.module.scss";
 import { cn } from "@/lib/utils";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
+import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const pathname = usePathname() || "/";
   const { scrolled } = useScrollDirection();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useLockBodyScroll(isServicesOpen);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -42,10 +48,48 @@ const Header = () => {
   const isServiceActive = () =>
     navServices.some((s) => pathname.startsWith(s.href));
 
+  // Close dropdown on route change
+  useEffect(() => {
+    setIsServicesOpen(false);
+  }, [pathname]);
+
+  // Close on Escape key
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsServicesOpen(false);
+    };
+    if (isServicesOpen) {
+      document.addEventListener("keydown", handleEsc);
+      return () => document.removeEventListener("keydown", handleEsc);
+    }
+  }, [isServicesOpen]);
+
   const renderServiceIcon = (iconName: string) => {
     const Icon =
       (Icons[iconName as keyof typeof Icons] as LucideIcon) || Icons.Wrench;
     return <Icon size={20} strokeWidth={1.8} />;
+  };
+
+  const handleServicesClick = () => {
+    setIsServicesOpen((prev) => !prev);
+  };
+
+  const closeDropdown = () => {
+    setIsServicesOpen(false);
+  };
+
+  const handleMouseEnter = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setIsServicesOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimer.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 200);
   };
 
   return (
@@ -95,56 +139,90 @@ const Header = () => {
             })}
 
           {/* Services Dropdown */}
-          <div className={styles.servicesDropdown}>
+          <div
+            className={styles.servicesDropdown}
+            ref={dropdownRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <button
               className={`${styles.navLink} ${styles.servicesTrigger} ${
                 isServiceActive() ? styles.active : ""
-              }`}
+              } ${isServicesOpen ? styles.triggerOpen : ""}`}
               aria-haspopup="true"
-              aria-expanded="false"
+              aria-expanded={isServicesOpen}
               type="button"
+              onClick={handleServicesClick}
             >
               Services
-              <ChevronDown size={16} className={styles.servicesChevron} />
+              <ChevronDown
+                size={16}
+                className={cn(
+                  styles.servicesChevron,
+                  isServicesOpen && styles.chevronOpen
+                )}
+              />
             </button>
 
-            <div className={styles.servicesMenu}>
-              <div className={styles.servicesGrid}>
-                {navServices.map((service) => {
-                  const active = pathname.startsWith(service.href);
-                  return (
-                    <Link
-                      key={service.id}
-                      href={service.href}
-                      className={`${styles.serviceCard} ${
-                        active ? styles.serviceCardActive : ""
-                      }`}
-                    >
-                      <div className={styles.serviceCardHeader}>
-                        <div className={styles.serviceIconWrap}>
-                          {renderServiceIcon(service.icon)}
-                        </div>
-                        <span className={styles.serviceNumber}>
-                          {service.number}
-                        </span>
-                      </div>
-                      <h3 className={styles.serviceTitle}>{service.label}</h3>
-                      <ul className={styles.subServicesList}>
-                        {service.subServices.map((sub) => (
-                          <li key={sub} className={styles.subServiceItem}>
-                            {sub}
-                          </li>
-                        ))}
-                      </ul>
-                      <span className={styles.serviceLink}>
-                        View {service.label}
-                        <ArrowRight size={14} />
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
+            <AnimatePresence>
+              {isServicesOpen && (
+                <motion.div
+                  className={styles.servicesMenu}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  <button
+                    className={styles.closeButton}
+                    onClick={closeDropdown}
+                    aria-label="Close services menu"
+                    type="button"
+                  >
+                    <X size={22} />
+                  </button>
+
+                  <div className={styles.servicesGrid}>
+                    {navServices.map((service) => {
+                      const active = pathname.startsWith(service.href);
+                      return (
+                        <Link
+                          key={service.id}
+                          href={service.href}
+                          className={`${styles.serviceCard} ${
+                            active ? styles.serviceCardActive : ""
+                          }`}
+                          onClick={closeDropdown}
+                        >
+                          <div className={styles.serviceCardHeader}>
+                            <div className={styles.serviceIconWrap}>
+                              {renderServiceIcon(service.icon)}
+                            </div>
+                            <span className={styles.serviceNumber}>
+                              {service.number}
+                            </span>
+                          </div>
+                          <h3 className={styles.serviceTitle}>
+                            {service.label}
+                          </h3>
+                          <ul className={styles.subServicesList}>
+                            {service.subServices.map((sub) => (
+                              <li key={sub} className={styles.subServiceItem}>
+                                {sub}
+                              </li>
+                            ))}
+                          </ul>
+                          <span className={styles.serviceLink}>
+                            View {service.label}
+                            <ArrowRight size={14} />
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 

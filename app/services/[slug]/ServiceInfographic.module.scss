@@ -1,0 +1,133 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.infographic {
+  @include flex-column;
+  gap: $space-8;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  @include flex-column;
+  gap: $space-2;
+}
+
+.eyebrow {
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-secondary;
+}
+
+.title {
+  @include heading-3;
+  color: $color-gray-800;
+}
+
+.subtitle {
+  font-size: $fs-sm;
+  color: $color-text-muted;
+  line-height: $lh-relaxed;
+}
+
+.flow {
+  @include flex-column;
+  align-items: stretch;
+  gap: $space-2;
+
+  @include breakpoint-up("md") {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: $space-1;
+  }
+}
+
+.step {
+  @include flex-center;
+  gap: $space-1;
+
+  @include breakpoint-up("md") {
+    flex-direction: row;
+  }
+}
+
+.stepCard {
+  @include flex-column;
+  align-items: center;
+  text-align: center;
+  gap: $space-3;
+  padding: $space-5 $space-4;
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-sm;
+  transition: all $transition-base;
+  min-width: 140px;
+  flex: 1;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-3px);
+    border-color: $color-primary-200;
+  }
+
+  @include breakpoint-up("md") {
+    min-width: 160px;
+    max-width: 200px;
+  }
+}
+
+.stepIcon {
+  @include flex-center;
+  width: 56px;
+  height: 56px;
+  border-radius: $radius-full;
+  background: linear-gradient(
+    135deg,
+    $color-primary-50,
+    $color-secondary-50
+  );
+  color: $color-primary;
+  flex-shrink: 0;
+  transition: all $transition-base;
+
+  .stepCard:hover & {
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    color: $color-white;
+    transform: scale(1.05);
+  }
+}
+
+.stepContent {
+  @include flex-column;
+  gap: $space-1;
+}
+
+.stepLabel {
+  font-size: $fs-sm;
+  font-weight: $fw-bold;
+  color: $color-gray-800;
+  margin: 0;
+}
+
+.stepDescription {
+  font-size: $fs-xs;
+  color: $color-text-muted;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.arrow {
+  @include flex-center;
+  color: $color-primary;
+  flex-shrink: 0;
+  transform: rotate(90deg);
+
+  @include breakpoint-up("md") {
+    transform: rotate(0deg);
+  }
+}

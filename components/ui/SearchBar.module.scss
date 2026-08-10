@@ -1,0 +1,61 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.searchBar {
+  @include flex-center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+
+  &:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px var(--color-primary-100), var(--shadow-lg);
+  }
+}
+
+.icon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: var(--fs-base);
+  color: var(--color-text);
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-text-light);
+  }
+
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
+}
+
+.clearButton {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-full);
+  transition: background var(--transition-fast), color var(--transition-fast);
+  flex-shrink: 0;
+
+  &:hover {
+    background: var(--color-gray-100);
+    color: var(--color-text);
+  }
+
+  @include focus-visible;
+}

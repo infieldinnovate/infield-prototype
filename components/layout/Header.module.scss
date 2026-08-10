@@ -1,0 +1,248 @@
+// components\Header\Header.module.scss
+
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  height: var(--header-height);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-base);
+
+  &.scrolled {
+    height: var(--header-height-scrolled);
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom-color: var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 50px;
+  padding: 0 20px;
+  padding-right: 50px;
+  background-color: rgb(255, 255, 255);
+  height: 80px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoImage {
+  height: 60px;
+  width: auto;
+}
+
+/* ---------- Desktop nav ---------- */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1rem;
+
+  @media (max-width: 1045px) {
+    display: none;
+  }
+}
+
+.navLink {
+  color: #374151;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.22s ease;
+  position: relative;
+  padding: 6px 0;
+
+  &:hover {
+    color: #1e40af;
+  }
+
+  /* baseline underline animation */
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -6px;
+    left: 50%;
+    background: #1e40af;
+    transition: all 0.22s ease;
+    border-radius: 2px;
+  }
+
+  &:hover:after {
+    width: 100%;
+    left: 0;
+  }
+
+  /* focus for keyboard users */
+  &:focus {
+    outline: none;
+    // box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
+    border-radius: 4px;
+  }
+}
+
+/* Active state for desktop */
+.active {
+  color: #940b0b !important; /* stronger active color */
+}
+
+.navLink.active:after {
+  width: 100%;
+  left: 0;
+  height: 3px;
+  bottom: -6px;
+}
+
+/* ---------- Quote/CTA ---------- */
+.quoteButton {
+  background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(30, 64, 175, 0.3);
+  }
+}
+
+/* ---------- Mobile ---------- */
+.mobileMenuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: #374151;
+  cursor: pointer;
+
+  @media (max-width: 1045px) {
+    display: block;
+  }
+}
+
+.mobileMenu {
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  overflow: hidden;
+
+  @media (min-width: 1045px) {
+    display: none;
+  }
+}
+
+.mobileMenuContent {
+  padding: 20px;
+}
+
+/* mobile link baseline */
+.mobileNavLink {
+  display: block;
+  color: #374151;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 15px 0;
+  border-bottom: 1px solid #f3f4f6;
+  transition: color 0.22s ease;
+  position: relative;
+
+  &:hover {
+    color: #1e40af;
+  }
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+/* Active state for mobile */
+.mobileNavLink.active {
+  color: #0b5394;
+  font-weight: 600;
+}
+
+/* optional small indicator for mobile active item */
+.mobileNavLink.active:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  background: #1e40af;
+  border-radius: 50%;
+}
+
+/* mobile CTA */
+.mobileQuoteButton {
+  display: block;
+  background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2);
+  }
+}
+
+// Actions
+.actions {
+  @include flex-center;
+  gap: var(--space-4);
+
+  @include breakpoint-down("lg") {
+    display: none;
+  }
+}
+
+.phoneLink {
+  @include flex-center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}

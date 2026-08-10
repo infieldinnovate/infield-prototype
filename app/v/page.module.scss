@@ -1,0 +1,657 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+$primary: $color-project-primary;
+$primary-dark: $color-project-primary-dark;
+$primary-light: $color-project-primary-light;
+$accent: $color-project-accent;
+$accent-dark: $color-project-accent-dark;
+$foreground: $color-project-foreground;
+$muted: $color-project-muted;
+$muted-foreground: $color-project-muted-foreground;
+$border: $color-project-border;
+$white: $color-white;
+$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+$radius: 0.75rem;
+$radius-lg: 1rem;
+$transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Status colors
+$verified-green: $color-verified;
+$verified-green-light: $color-verified-light;
+$suspended-orange: $color-suspended;
+$suspended-orange-light: $color-suspended-light;
+$expired-yellow: $color-expired;
+$expired-yellow-light: $color-expired-light;
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    hsl(160 30% 97%) 0%,
+    hsl(160 20% 95%) 100%
+  );
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 4rem 1.5rem 2rem;
+  color: $white;
+  background: linear-gradient(
+    135deg,
+    hsl(160 84% 27%) 0%,
+    hsl(160 70% 22%) 50%,
+    hsl(160 60% 18%) 100%
+  );
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(
+        circle at 20% 50%,
+        rgba(255, 255, 255, 0.08) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 80%,
+        rgba(255, 255, 255, 0.05) 0%,
+        transparent 40%
+      );
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.heroIcon {
+  width: 72px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: $white;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Main content */
+.main {
+  flex: 1;
+  padding: 2rem 1.5rem 4rem;
+  max-width: 680px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Card */
+.card {
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  border: 1px solid $border;
+  overflow: hidden;
+}
+
+/* Input section */
+.inputSection {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inputLabel {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $muted-foreground;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inputWrap {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.input {
+  flex: 1;
+  min-width: 200px;
+  padding: 1rem 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: $foreground;
+  border: 2px solid $border;
+  border-radius: $radius;
+  background: $muted;
+  transition: all $transition;
+  outline: none;
+  text-transform: uppercase;
+
+  &::placeholder {
+    color: $muted-foreground;
+    font-weight: 500;
+    text-transform: none;
+  }
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba(hsl(160 84% 27%), 0.15);
+    background: $white;
+  }
+}
+
+.inputError {
+  border-color: hsl(0 84% 60%);
+  background: hsl(0 84% 97%);
+}
+
+.verifyBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.75rem;
+  background: $primary;
+  color: $white;
+  border: none;
+  border-radius: $radius;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all $transition;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: $primary-dark;
+    transform: translateY(-1px);
+    box-shadow: $shadow-md;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+/* Error message */
+.errorMsg {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: hsl(0 84% 97%);
+  border: 1px solid hsl(0 84% 85%);
+  border-radius: $radius;
+  color: hsl(0 84% 50%);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* QR Section */
+.qrSection {
+  border-top: 1px solid $border;
+  padding: 1.5rem 2rem;
+  background: $muted;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.qrLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $muted-foreground;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.qrBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: $white;
+  color: $foreground;
+  border: 2px solid $border;
+  border-radius: $radius;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition;
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+    transform: translateY(-1px);
+  }
+}
+
+/* QR Scanner overlay */
+.qrOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.qrOverlayContent {
+  position: relative;
+  background: $white;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: $shadow-lg;
+}
+
+.qrOverlayHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid $border;
+}
+
+.qrOverlayTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $foreground;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qrCloseBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: $muted;
+  color: $foreground;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all $transition;
+
+  &:hover {
+    background: hsl(0 84% 95%);
+    color: hsl(0 84% 60%);
+  }
+}
+
+.qrScannerWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: hsl(0 0% 10%);
+  overflow: hidden;
+}
+
+/* QR state messages */
+.qrStateMsg {
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  color: $muted-foreground;
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+.qrStateIcon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: $muted;
+  color: $muted-foreground;
+}
+
+.qrErrorIcon {
+  background: hsl(0 84% 95%);
+  color: hsl(0 84% 60%);
+}
+
+// ============================================
+// VERIFICATION RESULT STYLES
+// ============================================
+
+.resultCard {
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+  border: 1px solid $border;
+  overflow: hidden;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Header with status
+.resultHeader {
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.resultHeaderVerified {
+  background: linear-gradient(135deg, $verified-green-light 0%, $white 100%);
+  border-bottom: 1px solid hsl(142 71% 85%);
+}
+
+.resultHeaderSuspended {
+  background: linear-gradient(135deg, $suspended-orange-light 0%, $white 100%);
+  border-bottom: 1px solid hsl(25 95% 85%);
+}
+
+.resultHeaderExpired {
+  background: linear-gradient(135deg, $expired-yellow-light 0%, $white 100%);
+  border-bottom: 1px solid hsl(48 96% 85%);
+}
+
+.resultHeaderNotFound {
+  background: linear-gradient(135deg, hsl(0 84% 97%) 0%, $white 100%);
+  border-bottom: 1px solid hsl(0 84% 90%);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.statusBadgeVerified {
+  background: $verified-green;
+  color: $white;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.statusBadgeSuspended {
+  background: $suspended-orange;
+  color: $white;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.statusBadgeExpired {
+  background: $expired-yellow;
+  color: $foreground;
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3);
+}
+
+.statusBadgeNotFound {
+  background: hsl(0 84% 60%);
+  color: $white;
+}
+
+// Photo section
+.resultPhotoWrap {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 2rem 0;
+}
+
+.resultPhoto {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid $white;
+  box-shadow: $shadow-lg;
+  background: #bbfffe;
+}
+
+.resultPhotoPlaceholder {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #bbfffe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $muted-foreground;
+  border: 4px solid $white;
+  box-shadow: $shadow-lg;
+}
+
+// Body
+.resultBody {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// Employee info
+.resultName {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: $foreground;
+  text-align: center;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.resultDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.detailRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background: $muted;
+  border-radius: $radius;
+  border-left: 3px solid $primary;
+}
+
+.detailRowLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $muted-foreground;
+}
+
+.detailRowValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $foreground;
+}
+
+.detailRowCode {
+  font-family: "SF Mono", "Menlo", monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: $primary;
+  font-weight: 800;
+}
+
+// Not found
+.notFound {
+  padding: 3rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.notFoundIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: hsl(0 84% 95%);
+  color: hsl(0 84% 60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notFoundTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: hsl(0 84% 50%);
+  margin: 0;
+}
+
+.notFoundText {
+  font-size: 1rem;
+  color: $muted-foreground;
+  line-height: 1.5;
+  max-width: 400px;
+  margin: 0;
+}
+
+// Back button
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: $muted;
+  color: $foreground;
+  border: none;
+  border-radius: $radius;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all $transition;
+
+  &:hover {
+    background: $border;
+    transform: translateY(-1px);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1rem 2rem;
+  }
+
+  .main {
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .inputSection {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .inputWrap {
+    flex-direction: column;
+  }
+
+  .input {
+    font-size: 1rem;
+  }
+
+  .verifyBtn {
+    width: 100%;
+  }
+
+  .resultHeader {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .resultBody {
+    padding: 1.5rem;
+  }
+
+  .resultDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .resultPhoto {
+    width: 120px;
+    height: 120px;
+  }
+
+  .qrOverlay {
+    padding: 0;
+  }
+
+  .qrOverlayContent {
+    border-radius: 0;
+    max-width: 100%;
+    height: 100%;
+  }
+}

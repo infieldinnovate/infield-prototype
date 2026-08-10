@@ -1,0 +1,91 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.timeline {
+  @include flex-column;
+  gap: 0;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.step {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+
+  @include breakpoint-down('sm') {
+    gap: var(--space-4);
+  }
+}
+
+.stepLeft {
+  @include flex-column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.stepNumber {
+  @include flex-center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-extrabold);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  flex-shrink: 0;
+  z-index: var(--z-base);
+  position: relative;
+
+  @include breakpoint-down('sm') {
+    width: 40px;
+    height: 40px;
+    font-size: var(--fs-base);
+  }
+}
+
+.connector {
+  width: 2px;
+  flex-grow: 1;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-secondary-50));
+  min-height: 60px;
+  margin: var(--space-2) 0;
+  border-radius: var(--radius-full);
+}
+
+.stepContent {
+  @include card;
+  @include flex-column;
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+  flex-grow: 1;
+  transition: all var(--transition-base);
+
+  &:hover {
+    border-color: var(--color-primary-200);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(4px);
+  }
+}
+
+.stepIcon {
+  @include flex-center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  color: var(--color-primary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+}
+
+.stepTitle {
+  @include heading-4;
+  margin-bottom: var(--space-2);
+}
+
+.stepDescription {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+}

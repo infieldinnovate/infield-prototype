@@ -1,0 +1,317 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.container {
+  @include container;
+}
+
+.hero {
+  @include section;
+  background: var(--color-gray-50);
+  padding-top: var(--space-8);
+}
+
+.section {
+  @include section;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+
+  @include breakpoint-up('lg') {
+    grid-template-columns: 1fr 1.5fr;
+    gap: var(--space-16);
+  }
+}
+
+// Info
+.info {
+  @include flex-column;
+  gap: var(--space-6);
+}
+
+.infoTitle {
+  @include heading-3;
+}
+
+.infoDescription {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+}
+
+.infoList {
+  @include flex-column;
+  gap: var(--space-4);
+}
+
+.infoItem {
+  @include flex-center;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.infoIcon {
+  @include flex-center;
+  width: 48px;
+  height: 48px;
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.infoContent {
+  @include flex-column;
+  gap: var(--space-1);
+}
+
+.infoLabel {
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-light);
+  font-weight: var(--fw-semibold);
+}
+
+.infoValue {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-medium);
+  color: var(--color-gray-900);
+}
+
+// Hours
+.hoursCard {
+  @include card;
+  padding: var(--space-6);
+  margin-top: var(--space-4);
+}
+
+.hoursHeader {
+  @include flex-center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+
+  svg {
+    color: var(--color-primary);
+  }
+}
+
+.hoursTitle {
+  @include heading-4;
+}
+
+.hoursList {
+  @include flex-column;
+  gap: var(--space-3);
+}
+
+.hoursItem {
+  @include flex-between;
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.hoursDay {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-gray-700);
+}
+
+.hoursTime {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+// Form
+.formWrapper {
+  @include card;
+  padding: var(--space-8);
+}
+
+.formHeader {
+  @include flex-column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+
+  svg {
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+}
+
+.formTitle {
+  @include heading-3;
+}
+
+.formDescription {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}
+
+// Emergency
+.emergencyCard {
+  @include card;
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--color-error-light), var(--color-warning-light));
+  border-color: rgba(220, 38, 38, 0.2);
+}
+
+.emergencyHeader {
+  @include flex-center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+
+  svg {
+    color: var(--color-error);
+  }
+}
+
+.emergencyTitle {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-error);
+}
+
+.emergencyDesc {
+  font-size: var(--fs-sm);
+  color: var(--color-gray-700);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-3);
+}
+
+.emergencyPhone {
+  @include flex-center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-error);
+  color: var(--color-white);
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-md);
+  width: fit-content;
+  font-size: var(--fs-base);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+  }
+}
+
+// Enquiry Types
+.enquiryTypes {
+  @include flex-column;
+  gap: var(--space-4);
+}
+
+.enquiryTitle {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+}
+
+.enquiryList {
+  @include flex-column;
+  gap: var(--space-3);
+}
+
+.enquiryItem {
+  @include flex-center;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: var(--space-4);
+  background: var(--color-gray-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    border-color: var(--color-primary-200);
+    background: var(--color-primary-50);
+  }
+}
+
+.enquiryIcon {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-white);
+  color: var(--color-primary);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-xs);
+}
+
+.enquiryLabel {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+}
+
+.enquiryDesc {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+}
+
+// Map
+.mapSection {
+  margin-top: var(--space-16);
+  padding-top: var(--space-12);
+  border-top: 1px solid var(--color-border);
+}
+
+.mapTitle {
+  @include heading-3;
+  margin-bottom: var(--space-2);
+}
+
+.mapDesc {
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+}
+
+.mapIframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mapOverlay {
+  position: absolute;
+  bottom: var(--space-4);
+  right: var(--space-4);
+  @include flex-center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-white);
+  color: var(--color-primary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+}

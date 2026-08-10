@@ -1,0 +1,477 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+$primary: $color-project-primary;
+$primary-dark: $color-project-primary-dark;
+$accent: $color-project-accent;
+$foreground: $color-project-foreground;
+$muted: $color-project-muted;
+$muted-foreground: $color-project-muted-foreground;
+$border: $color-project-border;
+$white: #fff;
+
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+
+$radius: 0.75rem;
+$radius-lg: 1rem;
+
+$transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+/* Overlay */
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 1rem;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+/* Container */
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  overflow: hidden;
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-lg;
+}
+
+/* Close Button */
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  color: $white;
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+
+  transition: all $transition;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+    transform: rotate(90deg);
+  }
+}
+
+/* Hero */
+
+.modalHero {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.modalHeroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalHeroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
+}
+
+.modalHeroInfo {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+
+  padding: 2rem;
+  color: $white;
+}
+
+.modalCategory {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0.85rem;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  color: $white;
+  background: $primary;
+  border-radius: 999px;
+}
+
+.modalTitle {
+  margin: 0 0 0.5rem;
+
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.modalMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.modalMetaItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* Body */
+
+.modalBody {
+  padding: 2rem;
+}
+
+.modalSection {
+  margin-bottom: 2.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.modalSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  margin: 0 0 1rem;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $foreground;
+}
+
+.modalText {
+  margin: 0;
+
+  font-size: 1rem;
+  line-height: 1.7;
+  color: $muted-foreground;
+}
+
+/* Gallery */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.galleryItem {
+  position: relative;
+  overflow: hidden;
+
+  aspect-ratio: 4 / 3;
+  cursor: pointer;
+  border-radius: $radius;
+
+  &:hover .galleryImage {
+    transform: scale(1.08);
+  }
+
+  &:hover .galleryCaption {
+    opacity: 1;
+  }
+}
+
+.galleryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.galleryCaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  padding: 0.75rem;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $white;
+
+  opacity: 0;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+
+  transition: opacity $transition;
+}
+
+.galleryPhase {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  padding: 0.2rem 0.5rem;
+
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  color: $white;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 999px;
+}
+
+/* Details */
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.detailItem {
+  padding: 1rem 1.25rem;
+
+  background: $muted;
+  border-left: 3px solid $primary;
+  border-radius: $radius;
+}
+
+.detailLabel {
+  margin-bottom: 0.25rem;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  color: $muted-foreground;
+}
+
+.detailValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $foreground;
+}
+
+/* Results */
+
+.resultsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.resultItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+
+  padding: 1rem;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+
+  color: $foreground;
+  background: rgba(hsl(160 84% 27%), 0.05);
+  border-radius: $radius;
+}
+
+.resultCheck {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 24px;
+  height: 24px;
+
+  color: $white;
+  background: $primary;
+  border-radius: 50%;
+}
+
+/* Services */
+
+.serviceTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.serviceTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  padding: 0.5rem 1rem;
+
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  color: $foreground;
+  background: $muted;
+
+  border: 1px solid $border;
+  border-radius: 999px;
+}
+
+/* Video */
+
+.videoWrapper {
+  position: relative;
+
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  background: #000;
+  border-radius: 12px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.videoLink {
+  display: inline-flex;
+  align-items: center;
+  color: $primary;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    color: $primary-dark;
+  }
+}
+
+/* Testimonial */
+
+.testimonial {
+  padding: 2rem;
+
+  background: linear-gradient(
+    135deg,
+    rgba(hsl(160 84% 27%), 0.08),
+    rgba(hsl(45 93% 47%), 0.05)
+  );
+
+  border-left: 4px solid $primary;
+  border-radius: $radius-lg;
+}
+
+.testimonialQuote {
+  position: relative;
+
+  margin: 0 0 1.5rem;
+
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.7;
+
+  color: $foreground;
+
+  &::before {
+    content: "\201C";
+    position: absolute;
+    top: -1.5rem;
+    left: -0.5rem;
+
+    font-family: Georgia, serif;
+    font-size: 4rem;
+    line-height: 1;
+
+    color: $primary;
+    opacity: 0.2;
+  }
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.testimonialAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  color: $white;
+  background: $primary;
+  border-radius: 50%;
+}
+
+.testimonialName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: $foreground;
+}
+
+.testimonialRole {
+  font-size: 0.85rem;
+  color: $muted-foreground;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .modalBody {
+    padding: 1.5rem;
+  }
+
+  .modalHero {
+    height: 220px;
+  }
+
+  .modalHeroInfo {
+    padding: 1.5rem;
+  }
+
+  .modalTitle {
+    font-size: 1.35rem;
+  }
+}

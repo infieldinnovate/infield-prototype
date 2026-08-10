@@ -1,0 +1,123 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.card {
+  @include card;
+  @include flex-column;
+  padding: var(--space-8);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-base);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-base);
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+.primary {
+  &::before {
+    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  }
+  .iconWrapper {
+    background: var(--color-primary-50);
+    color: var(--color-primary);
+  }
+  .action {
+    color: var(--color-primary);
+  }
+}
+
+.secondary {
+  &::before {
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-light));
+  }
+  .iconWrapper {
+    background: var(--color-secondary-50);
+    color: var(--color-secondary);
+  }
+  .action {
+    color: var(--color-secondary);
+  }
+}
+
+.success {
+  &::before {
+    background: linear-gradient(90deg, var(--color-success), #4ade80);
+  }
+  .iconWrapper {
+    background: var(--color-success-light);
+    color: var(--color-success);
+  }
+  .action {
+    color: var(--color-success);
+  }
+}
+
+.accent {
+  &::before {
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+  }
+  .iconWrapper {
+    background: #fef3c7;
+    color: var(--color-accent-dark);
+  }
+  .action {
+    color: var(--color-accent-dark);
+  }
+}
+
+.iconWrapper {
+  @include flex-center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+  transition: transform var(--transition-base);
+
+  .card:hover & {
+    transform: scale(1.08);
+  }
+}
+
+.title {
+  @include heading-4;
+  margin-bottom: var(--space-3);
+}
+
+.description {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-6);
+  flex-grow: 1;
+}
+
+.action {
+  @include flex-center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  transition: gap var(--transition-fast);
+
+  .card:hover & {
+    gap: var(--space-3);
+  }
+}

@@ -1,0 +1,131 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.section {
+  padding: var(--space-16) 0;
+  background: var(--color-gray-50);
+}
+
+.container {
+  @include container;
+}
+
+.eyebrow {
+  text-align: center;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.title {
+  text-align: center;
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+
+  @include breakpoint-down('sm') {
+    font-size: var(--fs-2xl);
+  }
+}
+
+.description {
+  text-align: center;
+  font-size: var(--fs-base);
+  color: var(--color-text-muted);
+  max-width: 560px;
+  margin: 0 auto var(--space-10);
+  line-height: var(--lh-relaxed);
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.track {
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: var(--space-2) 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.brandCard {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  height: 88px;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-base);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+    border-color: var(--color-primary-200);
+  }
+}
+
+.brandName {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-gray-700);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.navBtn {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+
+  &:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  @include focus-visible;
+
+  @include breakpoint-down('sm') {
+    display: none;
+  }
+}
+
+.navLeft {
+  order: -1;
+}
+
+.navRight {
+  order: 1;
+}

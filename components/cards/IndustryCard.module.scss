@@ -1,0 +1,107 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.card {
+  @include card;
+  @include flex-column;
+  padding: var(--space-8);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  @include card-hover;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background: linear-gradient(180deg, transparent, var(--color-primary-50));
+    transition: height var(--transition-base);
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    height: 100%;
+  }
+}
+
+.iconWrapper {
+  @include flex-center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: var(--z-base);
+
+  .card:hover & {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-white);
+    transform: scale(1.05);
+  }
+}
+
+.title {
+  @include heading-4;
+  margin-bottom: var(--space-3);
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.description {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.services {
+  @include flex-column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.serviceItem {
+  font-size: var(--fs-sm);
+  color: var(--color-gray-700);
+  padding-left: var(--space-4);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--color-secondary);
+    border-radius: 50%;
+  }
+}
+
+.link {
+  @include flex-center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  margin-top: auto;
+  transition: gap var(--transition-fast);
+  position: relative;
+  z-index: var(--z-base);
+
+  &:hover {
+    gap: var(--space-3);
+    color: var(--color-primary-dark);
+  }
+}

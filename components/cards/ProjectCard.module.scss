@@ -1,0 +1,197 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+$primary: $color-project-primary;
+$primary-dark: $color-project-primary-dark;
+$accent: $color-project-accent;
+$foreground: $color-project-foreground;
+$muted-foreground: $color-project-muted-foreground;
+$border: $color-project-border;
+$white: $color-white;
+
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+
+$radius: 0.75rem;
+$radius-lg: 1rem;
+
+$transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+.projectCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+
+  transition: all $transition;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: $shadow-lg;
+
+    .cardImage {
+      transform: scale(1.05);
+    }
+
+    .cardOverlay {
+      opacity: 1;
+    }
+
+    .cardBtn {
+      gap: 0.75rem;
+    }
+  }
+}
+
+.gridCard {
+  @extend .projectCard;
+
+  .cardImageWrap {
+    height: 200px;
+  }
+}
+
+.cardImageWrap {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+
+  .cardImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .cardOverlay {
+    position: absolute;
+    inset: 0;
+
+    opacity: 0.6;
+    transition: opacity $transition;
+
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+  }
+
+  .cardBadge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: $primary;
+    color: $white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .cardFeaturedTag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $accent;
+    color: $white;
+    padding: 4px;
+  }
+}
+
+.imageContainer {
+  height: 200px;
+  position: relative;
+}
+
+.cardBody {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  padding: 1.5rem;
+
+  .cardLocation {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+
+    color: $muted-foreground;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .cardResults {
+    margin-top: auto;
+    padding-top: 0.75rem;
+
+    border-top: 1px solid $border;
+
+    .cardResultList {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin: 0;
+
+      .cardResultItem {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 5px;
+        color: $muted-foreground;
+        font-size: 0.88rem;
+        line-height: 1.45;
+        background-color: rgb(241, 241, 241);
+        padding: 5px 10px;
+        border-radius: 50px;
+
+        &::marker {
+          color: $primary;
+        }
+
+        .cardResultIcon {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  .cardBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.7rem 1.25rem;
+
+    border: none;
+    border-radius: $radius;
+
+    background: $primary;
+    color: $white;
+
+    cursor: pointer;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    transition: all $transition;
+
+    &:hover {
+      background: $primary-dark;
+    }
+  }
+}

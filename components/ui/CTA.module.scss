@@ -1,0 +1,80 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.cta {
+  @include section;
+  background: linear-gradient(135deg, var(--color-primary-900), var(--color-primary-700));
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(45, 212, 191, 0.15), transparent 70%);
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59, 158, 230, 0.15), transparent 70%);
+    border-radius: 50%;
+  }
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.content {
+  max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.title {
+  @include heading-2;
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+}
+
+.description {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-relaxed);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--space-8);
+}
+
+.actions {
+  @include flex-center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.phoneCta {
+  @include flex-center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--color-white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--color-white);
+  }
+}

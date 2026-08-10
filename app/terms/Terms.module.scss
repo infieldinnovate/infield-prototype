@@ -1,0 +1,49 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+.terms {
+  padding: 80px 20px;
+  background: $color-white;
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .title {
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: $color-slate-900;
+  }
+
+  .updated {
+    color: $color-gray-500;
+    margin-bottom: 30px;
+  }
+
+  .section {
+    margin-bottom: 30px;
+
+    .sectionTitle {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: $color-slate-900;
+    }
+
+    .text {
+      line-height: 1.7;
+      color: $color-slate-700;
+      margin-bottom: 12px;
+    }
+
+    .list {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .listItem {
+      margin-bottom: 6px;
+      color: $color-slate-700;
+    }
+  }
+}

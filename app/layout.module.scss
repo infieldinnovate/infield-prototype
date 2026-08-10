@@ -1,0 +1,12 @@
+@use '../styles/abstracts/variables' as *;
+@use '../styles/abstracts/mixins' as *;
+
+.body {
+  min-height: 100vh;
+  @include flex-column;
+}
+
+.main {
+  flex-grow: 1;
+  padding-top: var(--header-height);
+}

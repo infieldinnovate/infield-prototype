@@ -85,7 +85,6 @@
     color: #1e40af;
   }
 
-  /* baseline underline animation */
   &:after {
     content: "";
     position: absolute;
@@ -103,17 +102,14 @@
     left: 0;
   }
 
-  /* focus for keyboard users */
   &:focus {
     outline: none;
-    // box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.12);
     border-radius: 4px;
   }
 }
 
-/* Active state for desktop */
 .active {
-  color: #940b0b !important; /* stronger active color */
+  color: #940b0b !important;
 }
 
 .navLink.active:after {
@@ -121,6 +117,181 @@
   left: 0;
   height: 3px;
   bottom: -6px;
+}
+
+/* ---------- Services Dropdown ---------- */
+.servicesDropdown {
+  position: static;
+
+  @media (max-width: 1045px) {
+    display: none;
+  }
+}
+
+.servicesTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  padding: 6px 0;
+
+  &:hover {
+    color: #1e40af;
+  }
+}
+
+.servicesChevron {
+  transition: transform var(--transition-fast);
+
+  .servicesDropdown:hover & {
+    transform: rotate(180deg);
+  }
+}
+
+.servicesMenu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  background: $color-white;
+  border-bottom: 1px solid $color-border;
+  box-shadow: $shadow-xl;
+  padding: $space-6 $space-8;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  z-index: $z-dropdown;
+
+  .servicesDropdown:hover & {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $space-3;
+
+  @media (max-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-4;
+  border-radius: $radius-lg;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  min-width: 0;
+
+  &:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 108, 189, 0.04),
+      rgba(13, 148, 136, 0.04)
+    );
+    border-color: $color-primary-200;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &.serviceCardActive {
+    border-color: $color-primary;
+    background: $color-primary-50;
+  }
+}
+
+.serviceCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.serviceIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: $radius-md;
+  background: linear-gradient(135deg, $color-primary-50, $color-secondary-50);
+  color: $color-primary;
+  transition: all var(--transition-fast);
+
+  .serviceCard:hover & {
+    background: linear-gradient(135deg, $color-primary, $color-secondary);
+    color: $color-white;
+  }
+}
+
+.serviceNumber {
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  color: $color-gray-400;
+  letter-spacing: 0.05em;
+}
+
+.serviceTitle {
+  font-size: $fs-sm;
+  font-weight: $fw-bold;
+  color: $color-gray-800;
+  margin: 0;
+}
+
+.subServicesList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.subServiceItem {
+  font-size: $fs-xs;
+  color: $color-gray-500;
+  line-height: 1.4;
+  transition: color var(--transition-fast);
+
+  .serviceCard:hover & {
+    color: $color-gray-700;
+  }
+}
+
+.serviceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: $fs-xs;
+  font-weight: $fw-semibold;
+  color: $color-primary;
+  margin-top: $space-1;
+
+  svg {
+    transition: transform var(--transition-fast);
+  }
+
+  .serviceCard:hover & svg {
+    transform: translateX(3px);
+  }
 }
 
 /* ---------- Quote/CTA ---------- */
@@ -167,7 +338,6 @@
   padding: 20px;
 }
 
-/* mobile link baseline */
 .mobileNavLink {
   display: block;
   color: #374151;
@@ -187,13 +357,11 @@
   }
 }
 
-/* Active state for mobile */
 .mobileNavLink.active {
   color: #0b5394;
   font-weight: 600;
 }
 
-/* optional small indicator for mobile active item */
 .mobileNavLink.active:after {
   content: "";
   position: absolute;
@@ -206,7 +374,96 @@
   border-radius: 50%;
 }
 
-/* mobile CTA */
+/* ---------- Mobile Services Accordion ---------- */
+.mobileServicesSection {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.mobileServicesToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 0;
+  color: #374151;
+  font-weight: 500;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.22s ease;
+
+  &:hover {
+    color: #1e40af;
+  }
+
+  &.active {
+    color: #0b5394;
+    font-weight: 600;
+  }
+}
+
+.mobileChevronOpen {
+  transform: rotate(180deg);
+}
+
+.mobileServicesList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mobileServiceLink {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: 12px $space-4;
+  color: $color-gray-600;
+  text-decoration: none;
+  font-size: $fs-sm;
+  font-weight: $fw-medium;
+  border-radius: $radius-md;
+  transition: all var(--transition-fast);
+
+  &:hover {
+    background: $color-primary-50;
+    color: $color-primary;
+  }
+
+  &.active {
+    color: $color-primary;
+    background: $color-primary-50;
+    font-weight: $fw-semibold;
+  }
+
+  svg:last-child {
+    margin-left: auto;
+    color: $color-gray-400;
+  }
+}
+
+.mobileServiceIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: $radius-md;
+  background: $color-gray-100;
+  color: $color-primary;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+
+  .mobileServiceLink:hover & {
+    background: $color-primary;
+    color: $color-white;
+  }
+}
+
+.mobileServiceName {
+  flex: 1;
+}
+
 .mobileQuoteButton {
   display: block;
   background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
@@ -225,7 +482,7 @@
   }
 }
 
-// Actions
+/* ---------- Actions ---------- */
 .actions {
   @include flex-center;
   gap: var(--space-4);

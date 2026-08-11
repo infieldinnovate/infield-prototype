@@ -1,39 +1,53 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import * as Icons from "lucide-react";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { FAQAccordion } from "@/components/ui/FAQAccordion";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { LinkButton } from "@/components/ui/LinkButton";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { CTA } from "@/components/ui/CTA";
-import { services, getServiceBySlug, getServiceSlugs } from "@/data/services";
-import { siteConfig } from "@/data/site.config";
-import { industries } from "@/data/industries";
-import { processSteps } from "@/data/process";
-import { buildServiceSchema, buildFAQSchema } from "@/lib/structured-data";
 import {
+  ArrowDownRight,
   ArrowRight,
   Check,
-  Clock,
-  DollarSign,
-  Shield,
-  Users,
+  ChevronRight,
+  Clock3,
   Leaf,
-  TrendingUp,
+  MapPin,
   Phone,
+  ShieldCheck,
   Sparkles,
+  TrendingUp,
+  Users,
   type LucideIcon,
 } from "lucide-react";
-import styles from "./[slug].module.scss";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { CTA } from "@/components/ui/CTA";
+import { FAQAccordion } from "@/components/ui/FAQAccordion";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
+import { LinkButton } from "@/components/ui/LinkButton";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TestimonialCard } from "@/components/cards/TestimonialCard";
+import { industries } from "@/data/industries";
+import { caseStudies } from "@/data/caseStudies";
+import { navServices } from "@/data/navServices";
 import { getProjectsByService } from "@/data/projectStats";
+import { services, getServiceBySlug, getServiceSlugs } from "@/data/services";
+import { testimonials } from "@/data/testimonials";
+import { siteConfig } from "@/data/site.config";
+import { buildFAQSchema, buildServiceSchema } from "@/lib/structured-data";
 import ProjectGallery from "./ProjectGallery";
 import ServiceInfographic from "./ServiceInfographic";
+import styles from "./[slug].module.scss";
 
 interface PageProps {
   params: { slug: string };
 }
+
+const serviceAliases: Record<string, string> = {
+  boreholes: "borehole",
+  "water-storage": "water storage",
+  "water-harvesting": "water harvesting",
+};
+
+const normalize = (value: string) => value.toLowerCase().replace(/[-_]/g, " ");
 
 export function generateStaticParams() {
   return getServiceSlugs().map((slug) => ({ slug }));
@@ -46,9 +60,7 @@ export function generateMetadata({ params }: PageProps): Metadata {
   return {
     title: service.name,
     description: service.description,
-    alternates: {
-      canonical: `/services/${service.slug}`,
-    },
+    alternates: { canonical: `/services/${service.slug}` },
     openGraph: {
       title: `${service.name} | ${siteConfig.name}`,
       description: service.description,
@@ -61,67 +73,30 @@ export default function ServiceDetailPage({ params }: PageProps) {
   const service = getServiceBySlug(params.slug);
   if (!service) notFound();
 
-  const projects = getProjectsByService(service.slug);
-  const Icon =
-    (Icons[service.icon as keyof typeof Icons] as React.ComponentType<{
-      size?: number;
-      strokeWidth?: number;
-    }>) || Icons.Zap;
-
-  const whyInfield = [
-    {
-      icon: TrendingUp,
-      title: "Proven Results",
-      description: `Our ${service.shortName.toLowerCase()} solutions deliver measurable, long-lasting outcomes.`,
-    },
-    {
-      icon: Shield,
-      title: "Quality Guaranteed",
-      description:
-        "All work is backed by our workmanship warranty and quality assurance.",
-    },
-    {
-      icon: Clock,
-      title: "Fast Response",
-      description:
-        "Same-day service available for urgent needs and emergencies.",
-    },
-    {
-      icon: Users,
-      title: "Expert Team",
-      description:
-        "Certified, experienced technicians who treat your property with respect.",
-    },
-    {
-      icon: DollarSign,
-      title: "Transparent Pricing",
-      description:
-        "Clear, upfront quotes with no hidden fees or surprise charges.",
-    },
-    {
-      icon: Leaf,
-      title: "Sustainable Focus",
-      description:
-        "Energy-efficient solutions that reduce costs and environmental impact.",
-    },
-  ];
-
-  const relevantIndustries = industries.filter((ind) =>
-    ind.services.some((s) =>
-      s.toLowerCase().includes(service.shortName.toLowerCase().split(" ")[0]),
+  const serviceKey = serviceAliases[service.slug] ?? service.slug;
+  const ServiceIcon =
+    (Icons[service.icon as keyof typeof Icons] as LucideIcon) ?? Icons.Wrench;
+  const relatedProjects = getProjectsByService(service.slug);
+  const relatedCaseStudies = caseStudies.filter(
+    (study) => normalize(study.serviceSlug) === normalize(serviceKey),
+  );
+  const relatedTestimonials = testimonials.filter(
+    (testimonial) => normalize(testimonial.service) === normalize(service.shortName),
+  );
+  const displayTestimonials =
+    relatedTestimonials.length > 0 ? relatedTestimonials.slice(0, 3) : testimonials.slice(0, 2);
+  const displayCaseStudies = relatedCaseStudies.length > 0 ? relatedCaseStudies : caseStudies.slice(0, 2);
+  const servedIndustries = industries.filter((industry) =>
+    industry.services.some((name) =>
+      service.features.some((feature) => normalize(name).includes(normalize(feature.title).split(" ")[0])),
     ),
   );
-  const displayIndustries =
-    relevantIndustries.length >= 3
-      ? relevantIndustries
-      : industries.slice(0, 6);
-
-  const renderIndustryIcon = (iconName: string) => {
-    const Icon =
-      (Icons[iconName as keyof typeof Icons] as LucideIcon) || Icons.Building2;
-    return <Icon size={22} strokeWidth={1.8} />;
-  };
-
+  const displayIndustries = servedIndustries.length >= 3 ? servedIndustries.slice(0, 6) : industries.slice(0, 6);
+  const faqItems = service.faqs.map((faq, index) => ({
+    ...faq,
+    id: `${service.slug}-faq-${index}`,
+    category: "General" as const,
+  }));
   const jsonLd = [
     buildServiceSchema({
       name: service.name,
@@ -132,301 +107,157 @@ export default function ServiceDetailPage({ params }: PageProps) {
     buildFAQSchema(service.faqs),
   ];
 
+  const proofPoints = [
+    { value: service.startingPrice, label: "Typical project entry point" },
+    { value: "2-year", label: "Workmanship assurance" },
+    { value: "Same day", label: "Response available" },
+  ];
+
+  const reasons: { icon: LucideIcon; title: string; description: string }[] = [
+    {
+      icon: ShieldCheck,
+      title: "Built to last",
+      description: "We specify dependable materials and document the work for long-term performance.",
+    },
+    {
+      icon: Users,
+      title: "One accountable team",
+      description: "Design, installation, testing, and handover stay coordinated from start to finish.",
+    },
+    {
+      icon: TrendingUp,
+      title: "Measured outcomes",
+      description: "Every recommendation is connected to reliability, efficiency, or operating savings.",
+    },
+    {
+      icon: Leaf,
+      title: "Responsible by design",
+      description: "We look for practical ways to reduce waste, energy use, and operating costs.",
+    },
+  ];
+
+  const renderIcon = (iconName: string, size = 24) => {
+    const Icon = (Icons[iconName as keyof typeof Icons] as LucideIcon) ?? Icons.Building2;
+    return <Icon size={size} strokeWidth={1.8} />;
+  };
+
   return (
-    <>
-      {jsonLd.map((schema, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-        />
+    <main>
+      {jsonLd.map((schema, index) => (
+        <script key={index} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
 
-      {/* Hero */}
       <section className={styles.hero}>
-        <div className={styles.heroBg}>
-          <ImageWithFallback
-            src={service.image}
-            alt={service.name}
-            fill
-            priority
-            sizes="100vw"
-            className={styles.heroImage}
-          />
+        <div className={styles.heroImageWrap}>
+          <ImageWithFallback src={service.image} alt={service.name} fill priority sizes="100vw" className={styles.heroImage} />
           <div className={styles.heroOverlay} />
         </div>
         <div className={styles.container}>
           <div className={styles.heroContent}>
-            <Breadcrumbs
-              items={[
-                { label: "Home", href: "/" },
-                { label: service.shortName },
-              ]}
-            />
-            <div className={styles.heroBadge}>
-              <Sparkles size={16} />
-              <span>{service.tagline}</span>
-            </div>
-            <div className={styles.heroIcon}>
-              <Icon size={36} strokeWidth={1.8} />
-            </div>
-            <h1 className={styles.heroTitle}>{service.name}</h1>
-            <p className={styles.heroDescription}>{service.longDescription}</p>
-            <div className={styles.heroActions}>
-              <LinkButton
-                href="/quote"
-                size="lg"
-                rightIcon={<ArrowRight size={20} />}
-              >
-                Get a Free Quote
-              </LinkButton>
-              <a href={siteConfig.phoneHref} className={styles.heroPhone}>
-                <Phone size={18} />
-                <span>{siteConfig.phone}</span>
-              </a>
+            <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Services", href: "/services" }, { label: service.shortName }]} />
+            <div className={styles.heroLayout}>
+              <div className={styles.heroCopy}>
+                <div className={styles.eyebrowLight}><Sparkles size={15} /> Integrated infrastructure, delivered properly</div>
+                <div className={styles.heroIcon}><ServiceIcon size={30} strokeWidth={1.7} /></div>
+                <p className={styles.heroKicker}>{service.tagline}</p>
+                <h1>{service.name}</h1>
+                <p className={styles.heroDescription}>{service.description}</p>
+                <div className={styles.heroActions}>
+                  <LinkButton href="/quote" size="lg" rightIcon={<ArrowRight size={19} />}>Plan your project</LinkButton>
+                  <a href={siteConfig.phoneHref} className={styles.phoneLink}><Phone size={18} /> {siteConfig.phone}</a>
+                </div>
+              </div>
+              <aside className={styles.heroPanel}>
+                <span className={styles.panelLabel}>The problem we solve</span>
+                <p>{service.longDescription}</p>
+                <Link href="#results" className={styles.panelLink}>See the approach <ArrowDownRight size={17} /></Link>
+              </aside>
             </div>
           </div>
         </div>
-        <div className={styles.heroCurve} />
+        <div className={styles.heroBottomLine} />
       </section>
 
-      {/* Infographic */}
-      <section className={styles.infographicSection}>
+      <nav className={styles.serviceNav} aria-label="Service navigation">
         <div className={styles.container}>
-          <ServiceInfographic
-            steps={service.infographic}
-            title={service.infographicTitle}
-            subtitle={service.infographicSubtitle}
-          />
+          <div className={styles.serviceNavInner}>
+            <span className={styles.serviceNavLabel}>Explore services</span>
+            <div className={styles.serviceNavLinks}>
+              {navServices.map((item) => (
+                <Link key={item.id} href={item.href} className={item.slug === service.slug ? styles.serviceNavActive : undefined}>
+                  <span>{item.number}</span>{item.label}<ChevronRight size={14} />
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
-      </section>
+      </nav>
 
-      {/* Quick Info Bar */}
-      <section className={styles.infoBar}>
+      <section className={styles.proofBar} id="results">
         <div className={styles.container}>
-          <div className={styles.infoGrid}>
-            <div className={styles.infoItem}>
-              <div className={styles.infoIcon}>
-                <DollarSign size={22} />
-              </div>
-              <div className={styles.infoText}>
-                <span className={styles.infoLabel}>Starting Price</span>
-                <span className={styles.infoValue}>
-                  {service.startingPrice}
-                </span>
-              </div>
-            </div>
-            <div className={styles.infoDivider} />
-            <div className={styles.infoItem}>
-              <div className={styles.infoIcon}>
-                <Shield size={22} />
-              </div>
-              <div className={styles.infoText}>
-                <span className={styles.infoLabel}>Warranty</span>
-                <span className={styles.infoValue}>2-Year Workmanship</span>
-              </div>
-            </div>
-            <div className={styles.infoDivider} />
-            <div className={styles.infoItem}>
-              <div className={styles.infoIcon}>
-                <Clock size={22} />
-              </div>
-              <div className={styles.infoText}>
-                <span className={styles.infoLabel}>Response Time</span>
-                <span className={styles.infoValue}>Same Day Available</span>
-              </div>
-            </div>
+          <div className={styles.proofGrid}>
+            {proofPoints.map((point) => <div key={point.label} className={styles.proofItem}><strong>{point.value}</strong><span>{point.label}</span></div>)}
           </div>
         </div>
       </section>
 
-      {/* What We Offer */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <SectionHeading
-            eyebrow="What We Offer"
-            title={`${service.shortName} Services We Provide`}
-            description="Comprehensive solutions tailored to your specific needs."
-          />
-          <div className={styles.featuresGrid}>
-            {service.features.map((feature, i) => (
-              <ScrollReveal key={feature.title} delay={(i % 3) * 100}>
-                <div className={styles.featureCard}>
-                  <div className={styles.featureNumber}>
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div className={styles.featureBody}>
-                    <h3 className={styles.featureTitle}>{feature.title}</h3>
-                    <p className={styles.featureDescription}>
-                      {feature.description}
-                    </p>
-                  </div>
-                  <div className={styles.featureCheck}>
-                    <Check size={18} />
-                  </div>
-                </div>
+          <div className={styles.splitHeading}>
+            <SectionHeading eyebrow="Our approach" title="A connected system, not a collection of parts." description="Good infrastructure works as one. We design each service around the wider needs of your property, people, and operation." centered={false} />
+            <div className={styles.headingNote}><Clock3 size={20} /><span>Clear scope. Documented work. No unnecessary complexity.</span></div>
+          </div>
+          <ServiceInfographic steps={service.infographic} title={service.infographicTitle} subtitle={service.infographicSubtitle} />
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.surfaceSection}`}>
+        <div className={styles.container}>
+          <SectionHeading eyebrow="What we offer" title={`${service.shortName} capabilities`} description="From the first assessment to the final handover, our scope is built around practical outcomes." centered={false} />
+          <div className={styles.offerGrid}>
+            {service.features.map((feature, index) => (
+              <ScrollReveal key={feature.title} delay={(index % 3) * 70}>
+                <article className={styles.offerCard}><span className={styles.offerIndex}>{String(index + 1).padStart(2, "0")}</span><div><h3>{feature.title}</h3><p>{feature.description}</p></div><Check className={styles.offerCheck} size={18} /></article>
               </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Who We Serve */}
-      <section className={styles.industriesSection}>
-        <div className={styles.container}>
-          <SectionHeading
-            eyebrow="Who We Serve"
-            title="Industries We Support"
-            description={`Our ${service.shortName.toLowerCase()} solutions serve a wide range of sectors.`}
-          />
-          <div className={styles.industriesGrid}>
-            {displayIndustries.map((industry, i) => (
-              <ScrollReveal key={industry.id} delay={(i % 3) * 100}>
-                <div className={styles.industryCard}>
-                  <div className={styles.industryIcon}>
-                    {renderIndustryIcon(industry.icon)}
-                  </div>
-                  <h3 className={styles.industryName}>{industry.name}</h3>
-                  <p className={styles.industryDescription}>
-                    {industry.description}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Process */}
-      <section className={styles.processSection}>
-        <div className={styles.container}>
-          <SectionHeading
-            eyebrow="Our Process"
-            title="How We Deliver Your Project"
-            description="From initial contact to project completion, we make it easy."
-          />
-          <div className={styles.processTimeline}>
-            {(service.process.length > 0
-              ? service.process
-              : processSteps.slice(0, 5)
-            ).map((step, i) => (
-              <div key={step.step} className={styles.processItem}>
-                <div className={styles.processMarker}>
-                  <span className={styles.processNumber}>{step.step}</span>
-                  {i <
-                    (service.process.length > 0
-                      ? service.process.length
-                      : processSteps.slice(0, 5).length) -
-                      1 && <div className={styles.processLine} />}
-                </div>
-                <div className={styles.processContent}>
-                  <h3 className={styles.processTitle}>{step.title}</h3>
-                  <p className={styles.processDescription}>
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Why Infield */}
-      <section className={styles.whySection}>
-        <div className={styles.container}>
-          <SectionHeading
-            eyebrow="Why Infield"
-            title={`Why Choose Our ${service.shortName} Services`}
-            description="What sets us apart and why customers trust us with their projects."
-          />
-          <div className={styles.whyGrid}>
-            {whyInfield.map((benefit, i) => (
-              <ScrollReveal key={benefit.title} delay={(i % 3) * 100}>
-                <div className={styles.whyCard}>
-                  <div className={styles.whyIcon}>
-                    <benefit.icon size={22} />
-                  </div>
-                  <h3 className={styles.whyTitle}>{benefit.title}</h3>
-                  <p className={styles.whyDescription}>{benefit.description}</p>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className={styles.ctaSection}>
-        <div className={styles.container}>
-          <CTA />
-        </div>
-      </section>
-
-      {/* Projects */}
-      {projects.length > 0 && (
-        <section className={styles.projectsSection}>
-          <div className={styles.container}>
-            <SectionHeading
-              eyebrow="Recent Work"
-              title={`${service.shortName} Projects`}
-              description="See examples of our work in this service category."
-            />
-            <ProjectGallery projects={projects} />
-          </div>
-        </section>
-      )}
-
-      {/* FAQs */}
       <section className={styles.section}>
-        <div className={styles.containerNarrow}>
-          <SectionHeading
-            eyebrow="FAQ"
-            title={`${service.shortName} Questions & Answers`}
-            description="Common questions about this service."
-          />
-          <FAQAccordion
-            faqs={service.faqs.map((f, i) => ({
-              ...f,
-              id: `sf-${i}`,
-              category: "General" as const,
-            }))}
-          />
-        </div>
-      </section>
-
-      {/* Other Services */}
-      <section className={styles.otherServices}>
         <div className={styles.container}>
-          <SectionHeading
-            eyebrow="More Services"
-            title="Explore Our Other Services"
-          />
-          <div className={styles.otherGrid}>
-            {services
-              .filter((s) => s.slug !== service.slug)
-              .map((s) => {
-                const OtherIcon =
-                  (Icons[s.icon as keyof typeof Icons] as React.ComponentType<{
-                    size?: number;
-                  }>) || Icons.Zap;
-                return (
-                  <LinkButton
-                    key={s.slug}
-                    href={`/services/${s.slug}`}
-                    variant="ghost"
-                    className={styles.otherLink}
-                  >
-                    <span className={styles.otherIcon}>
-                      <OtherIcon size={20} />
-                    </span>
-                    <span className={styles.otherName}>{s.shortName}</span>
-                    <ArrowRight size={16} className={styles.otherArrow} />
-                  </LinkButton>
-                );
-              })}
+          <div className={styles.editorialGrid}>
+            <div className={styles.editorialLead}><span className={styles.eyebrow}>Who we serve</span><h2>Designed for the way your operation actually works.</h2><p>Our work spans homes, farms, institutions, and commercial sites. The solution changes with the context; the standard does not.</p><LinkButton href="/contact" variant="outline" rightIcon={<ArrowRight size={17} />}>Talk to an advisor</LinkButton></div>
+            <div className={styles.industryGrid}>{displayIndustries.map((industry, index) => <ScrollReveal key={industry.id} delay={(index % 3) * 60}><Link href={`/services/${industry.serviceSlug}`} className={styles.industryCard}><div className={styles.industryIcon}>{renderIcon(industry.icon)}</div><h3>{industry.name}</h3><p>{industry.description}</p><ArrowRight size={17} className={styles.cardArrow} /></Link></ScrollReveal>)}</div>
           </div>
         </div>
       </section>
-    </>
+
+      <section className={`${styles.section} ${styles.darkSection}`}>
+        <div className={styles.container}>
+          <SectionHeading themeColor="light" eyebrow="Our process" title="A calm, accountable way to deliver complex work." description="You always know what happens next, who owns it, and what success looks like." centered={false} />
+          <div className={styles.processGrid}>{service.process.map((step, index) => <ScrollReveal key={step.step} delay={(index % 3) * 70}><div className={styles.processCard}><span>0{step.step}</span><h3>{step.title}</h3><p>{step.description}</p></div></ScrollReveal>)}</div>
+        </div>
+      </section>
+
+      {relatedProjects.length > 0 && <section className={`${styles.section} ${styles.surfaceSection}`}><div className={styles.container}><SectionHeading eyebrow="Case-study proof" title="Work that performs in the real world." description="Explore completed projects, the challenges behind them, and the results delivered." centered={false} /><ProjectGallery projects={relatedProjects} /></div></section>}
+
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <SectionHeading eyebrow="Why Infield" title="Technical confidence, without the corporate distance." description="We combine engineering discipline with a straightforward, human way of working." centered={false} />
+          <div className={styles.reasonGrid}>{reasons.map((reason, index) => <ScrollReveal key={reason.title} delay={index * 70}><article className={styles.reasonCard}><reason.icon size={25} /><h3>{reason.title}</h3><p>{reason.description}</p></article></ScrollReveal>)}</div>
+        </div>
+      </section>
+
+      {displayCaseStudies.length > 0 && <section className={`${styles.section} ${styles.caseStudySection}`}><div className={styles.container}><SectionHeading eyebrow="Proven results" title={`${service.shortName} in practice`} description="A closer look at the decisions and outcomes behind selected work." centered={false} /><div className={styles.caseStudyGrid}>{displayCaseStudies.map((study, index) => <ScrollReveal key={study.id} delay={index * 80}><article className={styles.caseStudyCard}><div className={styles.caseStudyImage}><ImageWithFallback src={study.image} alt={study.title} fill sizes="(max-width: 768px) 100vw, 50vw" /><span>{study.service}</span></div><div className={styles.caseStudyBody}><div className={styles.caseStudyMeta}><MapPin size={14} /> {study.location}</div><h3>{study.title}</h3><p>{study.challenge}</p><div className={styles.metrics}>{study.metrics.map((metric) => <div key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></div>)}</div></div></article></ScrollReveal>)}</div></div></section>}
+
+      <section className={styles.ctaSection}><div className={styles.container}><CTA title={`Ready to make your ${service.shortName.toLowerCase()} system work harder?`} description="Tell us what you are trying to achieve. We will help you understand the right scope, options, and next step." /></div></section>
+
+      {displayTestimonials.length > 0 && <section className={`${styles.section} ${styles.surfaceSection}`}><div className={styles.container}><SectionHeading eyebrow="Client perspective" title="What the work feels like on the other side." description="Professional delivery is measured by the experience as well as the finished system." centered={false} /><div className={styles.testimonialGrid}>{displayTestimonials.map((testimonial) => <TestimonialCard key={testimonial.id} testimonial={testimonial} />)}</div></div></section>}
+
+      <section className={styles.section}><div className={styles.containerNarrow}><SectionHeading eyebrow="Questions" title="Before you get started" description="Straight answers to the questions we hear most often." /><FAQAccordion faqs={faqItems} /></div></section>
+
+      <section className={styles.otherServices}><div className={styles.container}><div className={styles.otherServicesHead}><span className={styles.eyebrow}>Continue exploring</span><h2>One partner for connected infrastructure.</h2></div><div className={styles.otherServicesGrid}>{services.filter((item) => item.slug !== service.slug).map((item) => <Link key={item.slug} href={`/services/${item.slug}`} className={styles.otherServiceLink}><span>{item.shortName}</span><ArrowRight size={17} /></Link>)}</div></div></section>
+    </main>
   );
 }

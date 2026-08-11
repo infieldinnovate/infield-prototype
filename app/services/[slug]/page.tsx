@@ -21,8 +21,9 @@ import {
   Shield,
   Users,
   Leaf,
-  Award,
   TrendingUp,
+  Phone,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import styles from "./[slug].module.scss";
@@ -116,7 +117,7 @@ export default function ServiceDetailPage({ params }: PageProps) {
   const renderIndustryIcon = (iconName: string) => {
     const Icon =
       (Icons[iconName as keyof typeof Icons] as LucideIcon) || Icons.Building2;
-    return <Icon size={24} strokeWidth={1.8} />;
+    return <Icon size={22} strokeWidth={1.8} />;
   };
 
   const jsonLd = [
@@ -160,10 +161,13 @@ export default function ServiceDetailPage({ params }: PageProps) {
                 { label: service.shortName },
               ]}
             />
-            <div className={styles.heroIcon}>
-              <Icon size={40} strokeWidth={1.8} />
+            <div className={styles.heroBadge}>
+              <Sparkles size={16} />
+              <span>{service.tagline}</span>
             </div>
-            <span className={styles.heroEyebrow}>{service.tagline}</span>
+            <div className={styles.heroIcon}>
+              <Icon size={36} strokeWidth={1.8} />
+            </div>
             <h1 className={styles.heroTitle}>{service.name}</h1>
             <p className={styles.heroDescription}>{service.longDescription}</p>
             <div className={styles.heroActions}>
@@ -172,17 +176,19 @@ export default function ServiceDetailPage({ params }: PageProps) {
                 size="lg"
                 rightIcon={<ArrowRight size={20} />}
               >
-                Get a Quote
+                Get a Free Quote
               </LinkButton>
-              <LinkButton href="/contact" variant="outline" size="lg">
-                Ask a Question
-              </LinkButton>
+              <a href={siteConfig.phoneHref} className={styles.heroPhone}>
+                <Phone size={18} />
+                <span>{siteConfig.phone}</span>
+              </a>
             </div>
           </div>
         </div>
+        <div className={styles.heroCurve} />
       </section>
 
-      {/* Animated Infographic */}
+      {/* Infographic */}
       <section className={styles.infographicSection}>
         <div className={styles.container}>
           <ServiceInfographic
@@ -198,24 +204,30 @@ export default function ServiceDetailPage({ params }: PageProps) {
         <div className={styles.container}>
           <div className={styles.infoGrid}>
             <div className={styles.infoItem}>
-              <DollarSign size={24} />
-              <div>
+              <div className={styles.infoIcon}>
+                <DollarSign size={22} />
+              </div>
+              <div className={styles.infoText}>
                 <span className={styles.infoLabel}>Starting Price</span>
-                <span className={styles.infoValue}>
-                  {service.startingPrice}
-                </span>
+                <span className={styles.infoValue}>{service.startingPrice}</span>
               </div>
             </div>
+            <div className={styles.infoDivider} />
             <div className={styles.infoItem}>
-              <Shield size={24} />
-              <div>
+              <div className={styles.infoIcon}>
+                <Shield size={22} />
+              </div>
+              <div className={styles.infoText}>
                 <span className={styles.infoLabel}>Warranty</span>
                 <span className={styles.infoValue}>2-Year Workmanship</span>
               </div>
             </div>
+            <div className={styles.infoDivider} />
             <div className={styles.infoItem}>
-              <Clock size={24} />
-              <div>
+              <div className={styles.infoIcon}>
+                <Clock size={22} />
+              </div>
+              <div className={styles.infoText}>
                 <span className={styles.infoLabel}>Response Time</span>
                 <span className={styles.infoValue}>Same Day Available</span>
               </div>
@@ -236,13 +248,18 @@ export default function ServiceDetailPage({ params }: PageProps) {
             {service.features.map((feature, i) => (
               <ScrollReveal key={feature.title} delay={(i % 3) * 100}>
                 <div className={styles.featureCard}>
-                  <div className={styles.featureCheck}>
-                    <Check size={20} />
+                  <div className={styles.featureNumber}>
+                    {String(i + 1).padStart(2, "0")}
                   </div>
-                  <h3 className={styles.featureTitle}>{feature.title}</h3>
-                  <p className={styles.featureDescription}>
-                    {feature.description}
-                  </p>
+                  <div className={styles.featureBody}>
+                    <h3 className={styles.featureTitle}>{feature.title}</h3>
+                    <p className={styles.featureDescription}>
+                      {feature.description}
+                    </p>
+                  </div>
+                  <div className={styles.featureCheck}>
+                    <Check size={18} />
+                  </div>
                 </div>
               </ScrollReveal>
             ))}
@@ -284,37 +301,47 @@ export default function ServiceDetailPage({ params }: PageProps) {
             title="How We Deliver Your Project"
             description="From initial contact to project completion, we make it easy."
           />
-          <div className={styles.processGrid}>
-            {(service.process.length > 0 ? service.process : processSteps.slice(0, 5)).map(
-              (step) => (
-                <div key={step.step} className={styles.processStep}>
-                  <div className={styles.processNumber}>{step.step}</div>
+          <div className={styles.processTimeline}>
+            {(service.process.length > 0
+              ? service.process
+              : processSteps.slice(0, 5)
+            ).map((step, i) => (
+              <div key={step.step} className={styles.processItem}>
+                <div className={styles.processMarker}>
+                  <span className={styles.processNumber}>{step.step}</span>
+                  {i <
+                    (service.process.length > 0
+                      ? service.process.length
+                      : processSteps.slice(0, 5).length) -
+                      1 && <div className={styles.processLine} />}
+                </div>
+                <div className={styles.processContent}>
                   <h3 className={styles.processTitle}>{step.title}</h3>
                   <p className={styles.processDescription}>{step.description}</p>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Why Infield */}
-      <section className={styles.section}>
+      <section className={styles.whySection}>
         <div className={styles.container}>
           <SectionHeading
             eyebrow="Why Infield"
             title={`Why Choose Our ${service.shortName} Services`}
             description="What sets us apart and why customers trust us with their projects."
           />
-          <div className={styles.featuresGrid}>
+          <div className={styles.whyGrid}>
             {whyInfield.map((benefit, i) => (
               <ScrollReveal key={benefit.title} delay={(i % 3) * 100}>
-                <div className={styles.featureCard}>
-                  <div className={styles.featureCheck}>
-                    <benefit.icon size={20} />
+                <div className={styles.whyCard}>
+                  <div className={styles.whyIcon}>
+                    <benefit.icon size={22} />
                   </div>
-                  <h3 className={styles.featureTitle}>{benefit.title}</h3>
-                  <p className={styles.featureDescription}>
+                  <h3 className={styles.whyTitle}>{benefit.title}</h3>
+                  <p className={styles.whyDescription}>
                     {benefit.description}
                   </p>
                 </div>
@@ -347,7 +374,7 @@ export default function ServiceDetailPage({ params }: PageProps) {
 
       {/* FAQs */}
       <section className={styles.section}>
-        <div className={styles.container}>
+        <div className={styles.containerNarrow}>
           <SectionHeading
             eyebrow="FAQ"
             title={`${service.shortName} Questions & Answers`}
@@ -385,9 +412,11 @@ export default function ServiceDetailPage({ params }: PageProps) {
                     variant="ghost"
                     className={styles.otherLink}
                   >
-                    <OtherIcon size={24} />
-                    <span>{s.shortName}</span>
-                    <ArrowRight size={16} />
+                    <span className={styles.otherIcon}>
+                      <OtherIcon size={20} />
+                    </span>
+                    <span className={styles.otherName}>{s.shortName}</span>
+                    <ArrowRight size={16} className={styles.otherArrow} />
                   </LinkButton>
                 );
               })}

@@ -108,11 +108,13 @@ export default function ServiceDetailPage({ params }: PageProps) {
 
   const relevantIndustries = industries.filter((ind) =>
     ind.services.some((s) =>
-      s.toLowerCase().includes(service.shortName.toLowerCase().split(" ")[0])
-    )
+      s.toLowerCase().includes(service.shortName.toLowerCase().split(" ")[0]),
+    ),
   );
   const displayIndustries =
-    relevantIndustries.length >= 3 ? relevantIndustries : industries.slice(0, 6);
+    relevantIndustries.length >= 3
+      ? relevantIndustries
+      : industries.slice(0, 6);
 
   const renderIndustryIcon = (iconName: string) => {
     const Icon =
@@ -209,7 +211,9 @@ export default function ServiceDetailPage({ params }: PageProps) {
               </div>
               <div className={styles.infoText}>
                 <span className={styles.infoLabel}>Starting Price</span>
-                <span className={styles.infoValue}>{service.startingPrice}</span>
+                <span className={styles.infoValue}>
+                  {service.startingPrice}
+                </span>
               </div>
             </div>
             <div className={styles.infoDivider} />
@@ -317,7 +321,9 @@ export default function ServiceDetailPage({ params }: PageProps) {
                 </div>
                 <div className={styles.processContent}>
                   <h3 className={styles.processTitle}>{step.title}</h3>
-                  <p className={styles.processDescription}>{step.description}</p>
+                  <p className={styles.processDescription}>
+                    {step.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -341,9 +347,7 @@ export default function ServiceDetailPage({ params }: PageProps) {
                     <benefit.icon size={22} />
                   </div>
                   <h3 className={styles.whyTitle}>{benefit.title}</h3>
-                  <p className={styles.whyDescription}>
-                    {benefit.description}
-                  </p>
+                  <p className={styles.whyDescription}>{benefit.description}</p>
                 </div>
               </ScrollReveal>
             ))}

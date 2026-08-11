@@ -1,0 +1,171 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.page { overflow: hidden; background: $color-white; color: $color-slate-900; }
+.container { @include container; }
+.hero { position: relative; padding: calc(var(--header-height) + var(--space-12)) 0 var(--space-12); background: #f5f8f9; overflow: hidden; }
+.heroBackdrop { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 80% 18%, rgba(14, 165, 163, .14), transparent 32%), linear-gradient(130deg, rgba(255,255,255,.98), rgba(235,247,247,.78)); }
+.heroGrid { position: relative; z-index: 1; display: grid; gap: var(--space-10); align-items: center; }
+.heroCopy { max-width: 640px; }
+.backLink, .textLink, .panelLink, .ctaContact { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: $fw-semibold; }
+.backLink { margin-bottom: var(--space-8); color: $color-slate-600; font-size: $fs-sm; }
+.backLink:hover, .textLink:hover, .panelLink:hover { color: $color-primary; }
+.eyebrow { display: flex; align-items: center; gap: var(--space-2); color: $color-secondary-dark; font-size: $fs-xs; font-weight: $fw-bold; letter-spacing: .16em; text-transform: uppercase; }
+.eyebrow span { width: 26px; height: 2px; background: $color-accent; }
+.hero h1 { max-width: 720px; margin: var(--space-4) 0; color: $color-slate-900; font-size: clamp(2.7rem, 7vw, 5.7rem); font-weight: $fw-extrabold; letter-spacing: -.055em; line-height: .98; }
+.heroLead { max-width: 550px; margin-bottom: var(--space-4); color: $color-primary-dark; font-size: clamp($fs-xl, 2.5vw, 1.65rem); font-weight: $fw-medium; line-height: 1.25; }
+.heroDescription { max-width: 600px; font-size: $fs-lg; line-height: $lh-relaxed; }
+.heroActions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); margin-top: var(--space-8); }
+.textLink { color: $color-slate-800; font-size: $fs-sm; }
+.heroMeta { display: flex; flex-wrap: wrap; gap: var(--space-5); margin-top: var(--space-8); color: $color-slate-600; font-size: $fs-xs; }
+.heroMeta span { display: inline-flex; align-items: center; gap: var(--space-2); }
+.heroMeta svg { color: $color-secondary; }
+.heroVisual { position: relative; min-height: 370px; }
+.heroImageFrame { position: absolute; inset: 0 var(--space-4) var(--space-8) 0; overflow: hidden; border-radius: 4px 48px 4px 48px; background: $color-slate-800; box-shadow: 0 30px 70px rgba(15, 48, 89, .18); }
+.heroImage { object-fit: cover; }
+.imageShade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3, 22, 36, .05), rgba(3, 22, 36, .78)); }
+.visualLabel { position: absolute; right: var(--space-5); bottom: var(--space-5); left: var(--space-5); display: flex; align-items: center; gap: var(--space-3); color: $color-white; }
+.visualLabel span:last-child { display: grid; gap: 2px; font-size: $fs-lg; font-weight: $fw-semibold; }
+.visualLabel small { color: rgba(255,255,255,.72); font-size: $fs-xs; font-weight: $fw-medium; letter-spacing: .08em; text-transform: uppercase; }
+.visualIcon, .floatingIcon { display: grid; place-items: center; width: 44px; height: 44px; color: $color-slate-900; background: $color-accent-light; border-radius: 50%; }
+.floatingCard { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; gap: var(--space-3); max-width: 260px; padding: var(--space-4); color: $color-slate-900; background: rgba(255,255,255,.94); border: 1px solid rgba(255,255,255,.8); box-shadow: $shadow-xl; backdrop-filter: blur(16px); }
+.floatingIcon { width: 32px; height: 32px; flex: 0 0 auto; color: $color-white; background: $color-secondary; }
+.floatingCard span:last-child { display: grid; gap: 3px; font-size: $fs-sm; }
+.floatingCard small { color: $color-slate-600; font-size: $fs-xs; }
+.visualIndex { position: absolute; top: var(--space-3); right: 0; color: $color-primary-dark; font-size: $fs-xl; font-weight: $fw-bold; letter-spacing: -.04em; }
+.visualIndex span { color: $color-gray-500; font-size: $fs-xs; font-weight: $fw-medium; letter-spacing: .08em; }
+.heroRule { position: absolute; right: 0; bottom: 0; left: 0; height: 4px; background: linear-gradient(90deg, $color-primary, $color-secondary, $color-accent); }
+.statStrip { padding: var(--space-8) 0; background: $color-slate-900; color: $color-white; }
+.statGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-4); }
+.stat { display: grid; gap: var(--space-1); padding-left: var(--space-4); border-left: 1px solid rgba(255,255,255,.22); }
+.stat strong { color: $color-white; font-size: clamp($fs-2xl, 4vw, $fs-4xl); line-height: 1; letter-spacing: -.04em; }
+.stat span { color: rgba(255,255,255,.62); font-size: $fs-xs; letter-spacing: .07em; text-transform: uppercase; }
+.section, .insightSection, .testimonialSection, .relatedSection { @include section; }
+.sectionIntro, .relatedHeader, .testimonialHeader { display: grid; gap: var(--space-5); margin-bottom: var(--space-10); }
+.sectionIntro h2, .relatedHeader h2, .testimonialHeader h2, .insightCopy h2, .ctaContent h2 { max-width: 700px; margin-top: var(--space-3); color: $color-slate-900; font-size: clamp(2rem, 5vw, $fs-5xl); letter-spacing: -.045em; line-height: 1.04; }
+.sectionIntro > p, .relatedHeader > p { max-width: 440px; font-size: $fs-lg; line-height: $lh-relaxed; }
+.serviceLayout { display: grid; gap: var(--space-6); }
+.serviceList { display: grid; gap: var(--space-2); }
+.serviceItem { @include button-reset; display: grid; grid-template-columns: 30px 38px 1fr 20px; align-items: center; gap: var(--space-3); width: 100%; padding: var(--space-4); color: $color-slate-700; text-align: left; border: 1px solid $color-gray-200; border-radius: 2px; transition: all $transition-base; }
+.serviceItem:hover, .serviceItemActive { color: $color-white; background: $color-primary-dark; border-color: $color-primary-dark; box-shadow: $shadow-md; transform: translateX(4px); }
+.serviceItemNumber { align-self: start; padding-top: 3px; color: $color-secondary; font-family: $font-mono; font-size: $fs-xs; font-weight: $fw-bold; }
+.serviceItemActive .serviceItemNumber { color: $color-accent-light; }
+.serviceItemIcon { display: grid; place-items: center; width: 38px; height: 38px; color: $color-primary; background: $color-primary-50; border-radius: 50%; }
+.serviceItemActive .serviceItemIcon { color: $color-primary-dark; background: $color-accent-light; }
+.serviceItemText { display: grid; gap: 4px; min-width: 0; }
+.serviceItemText strong { font-size: $fs-base; }
+.serviceItemText small { overflow: hidden; color: $color-gray-500; font-size: $fs-xs; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.serviceItemActive .serviceItemText small { color: rgba(255,255,255,.68); }
+.serviceItemArrow { color: $color-gray-400; transition: transform $transition-fast; }
+.serviceItem:hover .serviceItemArrow, .serviceItemActive .serviceItemArrow { color: $color-accent-light; transform: translate(2px, -2px); }
+.servicePanel { min-height: 100%; padding: var(--space-6); color: $color-white; background: linear-gradient(140deg, $color-slate-900, #0d4050); box-shadow: $shadow-xl; }
+.panelTopline { display: flex; justify-content: space-between; gap: var(--space-4); color: $color-accent-light; font-family: $font-mono; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.servicePanel h3 { margin: var(--space-10) 0 var(--space-3); color: $color-white; font-size: clamp(1.8rem, 4vw, $fs-3xl); letter-spacing: -.035em; }
+.servicePanel > p { max-width: 620px; color: rgba(255,255,255,.72); line-height: $lh-relaxed; }
+.featureGrid { display: grid; gap: var(--space-4); margin: var(--space-8) 0; }
+.feature { display: flex; gap: var(--space-3); }
+.feature > svg { flex: 0 0 auto; margin-top: 3px; color: $color-secondary-light; }
+.feature span { display: grid; gap: 3px; }
+.feature strong { color: $color-white; font-size: $fs-sm; }
+.feature small { color: rgba(255,255,255,.6); font-size: $fs-xs; line-height: 1.45; }
+.panelLink { color: $color-accent-light; font-size: $fs-sm; }
+.processSection, .relatedSection { background: $color-gray-50; }
+.processTrack { position: relative; display: grid; gap: var(--space-8); }
+.trackLine { position: absolute; top: 20px; bottom: 20px; left: 20px; width: 1px; background: linear-gradient($color-secondary, $color-accent); }
+.processStep { position: relative; display: grid; grid-template-columns: 42px 1fr; gap: var(--space-5); align-items: start; }
+.processMarker { display: grid; place-items: center; width: 42px; height: 42px; color: $color-white; background: $color-primary-dark; border: 4px solid $color-gray-50; border-radius: 50%; font-family: $font-mono; font-size: 10px; font-weight: $fw-bold; box-shadow: 0 0 0 1px $color-primary-dark; z-index: 1; }
+.processStep h3 { margin: var(--space-1) 0 var(--space-2); color: $color-slate-900; font-size: $fs-xl; }
+.processStep p { max-width: 500px; line-height: $lh-relaxed; }
+.insightSection { background: #eff8f7; }
+.insightGrid { display: grid; gap: var(--space-10); align-items: center; }
+.insightCopy > p { max-width: 500px; margin: var(--space-5) 0; font-size: $fs-lg; line-height: $lh-relaxed; }
+.checkList { display: grid; gap: var(--space-3); margin-bottom: var(--space-8); }
+.checkList li { display: flex; align-items: center; gap: var(--space-3); color: $color-slate-800; font-size: $fs-sm; font-weight: $fw-semibold; }
+.checkList svg { color: $color-secondary; }
+.infographic { padding: var(--space-5); background: $color-white; border: 1px solid $color-secondary-100; box-shadow: $shadow-xl; }
+.infographicHeader, .diagramFooter { display: flex; justify-content: space-between; gap: var(--space-4); color: $color-gray-500; font-family: $font-mono; font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
+.infographicHeader span:last-child, .diagramFooter { color: $color-secondary-dark; }
+.infographicHeader span:last-child { display: inline-flex; align-items: center; gap: 5px; }
+.diagram { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8) var(--space-4); padding: var(--space-10) 0; }
+.diagramStep { position: relative; display: grid; justify-items: center; gap: var(--space-2); text-align: center; }
+.diagramOrb { display: grid; place-items: center; width: 58px; height: 58px; color: $color-primary; background: $color-primary-50; border: 1px solid $color-primary-100; border-radius: 50%; }
+.diagramNumber { color: $color-secondary; font-family: $font-mono; font-size: 10px; }
+.diagramStep strong { color: $color-slate-900; font-size: $fs-sm; }
+.diagramStep small { max-width: 130px; color: $color-gray-500; font-size: $fs-xs; line-height: 1.4; }
+.diagramArrow { position: absolute; top: 25px; right: -14px; color: $color-accent-dark; }
+.diagramStep:nth-child(2) .diagramArrow { display: none; }
+.diagramFooter { justify-content: flex-start; align-items: center; gap: var(--space-2); padding-top: var(--space-4); border-top: 1px solid $color-gray-200; line-height: 1.5; }
+.testimonialSection { background: $color-slate-900; }
+.testimonialHeader h2, .testimonialHeader .eyebrow { color: $color-white; }
+.testimonialHeader .eyebrow span { background: $color-accent; }
+.testimonialHeader h2 { margin-bottom: 0; }
+.testimonialControls { display: flex; align-items: center; gap: var(--space-3); color: rgba(255,255,255,.58); font-family: $font-mono; font-size: 11px; }
+.testimonialControls button { @include button-reset; display: grid; place-items: center; width: 38px; height: 38px; color: $color-white; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; transition: all $transition-fast; }
+.testimonialControls button:hover { color: $color-slate-900; background: $color-accent-light; border-color: $color-accent-light; }
+.testimonial { position: relative; padding: var(--space-8); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); }
+.quoteIcon { margin-bottom: var(--space-4); color: $color-accent-light; opacity: .85; }
+.testimonial blockquote { max-width: 880px; margin-bottom: var(--space-8); color: $color-white; font-size: clamp($fs-xl, 3vw, $fs-3xl); font-weight: $fw-medium; letter-spacing: -.025em; line-height: 1.25; }
+.testimonialPerson { display: flex; align-items: center; gap: var(--space-3); }
+.avatar { width: 52px; height: 52px; overflow: hidden; border-radius: 50%; object-fit: cover; }
+.testimonialPerson > span:not(.rating) { display: grid; gap: 3px; }
+.testimonialPerson strong { color: $color-white; font-size: $fs-sm; }
+.testimonialPerson small { color: rgba(255,255,255,.56); font-size: $fs-xs; }
+.rating { display: flex; gap: 3px; margin-left: auto; color: $color-accent-light; }
+.relatedHeader { align-items: end; }
+.relatedHeader h2 { margin-bottom: 0; }
+.relatedGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+.relatedCard { position: relative; display: grid; gap: var(--space-3); min-height: 200px; padding: var(--space-5); color: $color-slate-900; background: $color-white; border: 1px solid $color-gray-200; transition: all $transition-base; }
+.relatedCard:hover { color: $color-white; background: $color-primary-dark; border-color: $color-primary-dark; transform: translateY(-5px); box-shadow: $shadow-lg; }
+.relatedIcon { display: grid; place-items: center; width: 42px; height: 42px; color: $color-primary; background: $color-primary-50; border-radius: 50%; }
+.relatedCard:hover .relatedIcon { color: $color-primary-dark; background: $color-accent-light; }
+.relatedNumber { position: absolute; top: var(--space-5); right: var(--space-5); color: $color-gray-400; font-family: $font-mono; font-size: 11px; }
+.relatedCard h3 { margin-top: var(--space-3); font-size: $fs-lg; }
+.relatedCard p { color: $color-gray-500; font-size: $fs-sm; line-height: 1.45; }
+.relatedCard:hover p { color: rgba(255,255,255,.7); }
+.relatedArrow { position: absolute; right: var(--space-5); bottom: var(--space-5); color: $color-secondary; }
+.relatedCard:hover .relatedArrow { color: $color-accent-light; }
+.ctaSection { padding: var(--space-12) 0; background: $color-gray-50; }
+.ctaPanel { position: relative; display: grid; gap: var(--space-8); overflow: hidden; padding: var(--space-8); color: $color-white; background: $color-primary-dark; }
+.ctaGlow { position: absolute; top: -80px; right: -30px; width: 280px; height: 280px; background: radial-gradient(circle, rgba(45,212,191,.42), transparent 66%); }
+.ctaContent, .ctaAside { position: relative; z-index: 1; }
+.ctaContent h2, .ctaContent .eyebrow { color: $color-white; }
+.ctaContent h2 { max-width: 550px; margin-bottom: var(--space-4); }
+.ctaContent p { max-width: 520px; color: rgba(255,255,255,.72); font-size: $fs-lg; line-height: $lh-relaxed; }
+.ctaActions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-5); margin-top: var(--space-8); }
+.ctaContact { color: $color-white; font-size: $fs-sm; }
+.ctaContact:hover { color: $color-accent-light; }
+.ctaAside { display: grid; align-content: end; gap: var(--space-2); padding-top: var(--space-8); border-top: 1px solid rgba(255,255,255,.22); }
+.ctaAside span { color: $color-accent-light; font-family: $font-mono; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.ctaAside strong { color: $color-white; font-size: $fs-2xl; }
+.ctaAside svg { color: $color-accent-light; }
+
+@include breakpoint-up("md") {
+  .hero { padding: calc(var(--header-height) + var(--space-16)) 0 var(--space-16); }
+  .heroGrid, .insightGrid { grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: var(--space-12); }
+  .heroVisual { min-height: 510px; }
+  .statGrid { grid-template-columns: repeat(4, 1fr); }
+  .sectionIntro, .relatedHeader, .testimonialHeader { grid-template-columns: 1.1fr .9fr; align-items: end; }
+  .serviceLayout { grid-template-columns: minmax(290px, .82fr) minmax(0, 1.18fr); align-items: stretch; }
+  .servicePanel { padding: var(--space-10); }
+  .featureGrid { grid-template-columns: repeat(2, 1fr); }
+  .processTrack { grid-template-columns: repeat(4, 1fr); gap: var(--space-5); }
+  .trackLine { top: 20px; right: 10%; bottom: auto; left: 10%; width: auto; height: 1px; background: linear-gradient(90deg, $color-secondary, $color-accent); }
+  .processStep { display: block; }
+  .processStep > div:last-child { padding-top: var(--space-5); padding-right: var(--space-3); }
+  .diagram { grid-template-columns: repeat(4, 1fr); gap: 0; }
+  .diagramStep:nth-child(2) .diagramArrow { display: block; }
+  .diagramStep:last-child .diagramArrow { display: none; }
+  .relatedGrid { grid-template-columns: repeat(4, 1fr); }
+  .ctaPanel { grid-template-columns: 1fr 260px; padding: var(--space-12); }
+  .ctaAside { padding-top: 0; padding-left: var(--space-8); border-top: 0; border-left: 1px solid rgba(255,255,255,.22); }
+}
+
+@include breakpoint-up("lg") {
+  .heroGrid { gap: var(--space-16); }
+  .heroVisual { min-height: 580px; }
+  .testimonial { padding: var(--space-12); }
+}
+
+@include reduced-motion {
+  .serviceItem, .relatedCard, .testimonialControls button { transition: none; }
+}

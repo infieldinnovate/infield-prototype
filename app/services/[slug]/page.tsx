@@ -34,7 +34,6 @@ import { testimonials } from "@/data/testimonials";
 import { siteConfig } from "@/data/site.config";
 import { buildFAQSchema, buildServiceSchema } from "@/lib/structured-data";
 import ProjectGallery from "./ProjectGallery";
-import ServiceInfographic from "./ServiceInfographic";
 import styles from "./[slug].module.scss";
 
 interface PageProps {
@@ -207,7 +206,6 @@ export default function ServiceDetailPage({ params }: PageProps) {
             <SectionHeading eyebrow="Our approach" title="A connected system, not a collection of parts." description="Good infrastructure works as one. We design each service around the wider needs of your property, people, and operation." centered={false} />
             <div className={styles.headingNote}><Clock3 size={20} /><span>Clear scope. Documented work. No unnecessary complexity.</span></div>
           </div>
-          <ServiceInfographic steps={service.infographic} title={service.infographicTitle} subtitle={service.infographicSubtitle} />
         </div>
       </section>
 

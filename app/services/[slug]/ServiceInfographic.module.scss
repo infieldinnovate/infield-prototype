@@ -1,181 +1,19 @@
-@use "../../../styles/abstracts/variables" as *;
-@use "../../../styles/abstracts/mixins" as *;
+@use '../../../styles/abstracts/variables' as *;
+@use '../../../styles/abstracts/mixins' as *;
 
-.infographic {
-  @include flex-column;
-  gap: $space-10;
-  width: 100%;
-}
-
-.header {
-  text-align: center;
-  @include flex-column;
-  gap: $space-2;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.eyebrow {
-  display: inline-block;
-  font-size: $fs-xs;
-  font-weight: $fw-bold;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: $color-secondary;
-}
-
-.title {
-  @include heading-3;
-  color: $color-gray-800;
-  margin: 0;
-}
-
-.subtitle {
-  font-size: $fs-base;
-  color: $color-text-muted;
-  line-height: $lh-relaxed;
-  margin: 0;
-}
-
-.flowContainer {
-  position: relative;
-  width: 100%;
-}
-
-.connector {
-  display: none;
-
-  @include breakpoint-up("lg") {
-    display: block;
-    position: absolute;
-    top: 28px;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background: repeating-linear-gradient(
-      to right,
-      $color-primary-200 0,
-      $color-primary-200 6px,
-      transparent 6px,
-      transparent 12px
-    );
-    z-index: 0;
-  }
-}
-
-.flow {
-  @include flex-column;
-  gap: $space-3;
-
-  @include breakpoint-up("lg") {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 0;
-    position: relative;
-    z-index: 1;
-  }
-}
-
-.step {
-  @include flex-column;
-  align-items: center;
-  position: relative;
-  flex: 1;
-
-  @include breakpoint-up("lg") {
-    max-width: 200px;
-  }
-}
-
-.stepNumber {
-  @include flex-center;
-  width: 32px;
-  height: 32px;
-  border-radius: $radius-full;
-  background: $color-primary;
-  color: $color-white;
-  font-size: $fs-xs;
-  font-weight: $fw-bold;
-  margin-bottom: $space-3;
-  z-index: 2;
-  box-shadow: 0 0 0 4px $color-white, $shadow-sm;
-  flex-shrink: 0;
-}
-
-.stepCard {
-  @include flex-column;
-  align-items: center;
-  text-align: center;
-  gap: $space-2;
-  padding: $space-5 $space-4;
-  background: $color-white;
-  border: 1px solid $color-border;
-  border-radius: $radius-lg;
-  box-shadow: $shadow-sm;
-  transition: all $transition-base;
-  width: 100%;
-
-  &:hover {
-    box-shadow: $shadow-lg;
-    transform: translateY(-4px);
-    border-color: $color-primary-200;
-  }
-}
-
-.stepIcon {
-  @include flex-center;
-  width: 48px;
-  height: 48px;
-  border-radius: $radius-lg;
-  background: linear-gradient(
-    135deg,
-    $color-primary-50,
-    $color-secondary-50
-  );
-  color: $color-primary;
-  flex-shrink: 0;
-  transition: all $transition-base;
-
-  .stepCard:hover & {
-    background: linear-gradient(135deg, $color-primary, $color-secondary);
-    color: $color-white;
-    transform: scale(1.08);
-  }
-}
-
-.stepLabel {
-  font-size: $fs-sm;
-  font-weight: $fw-bold;
-  color: $color-gray-800;
-  margin: 0;
-  transition: color $transition-fast;
-
-  .stepCard:hover & {
-    color: $color-primary;
-  }
-}
-
-.stepDescription {
-  font-size: $fs-xs;
-  color: $color-text-muted;
-  line-height: 1.45;
-  margin: 0;
-}
-
-.arrow {
-  @include flex-center;
-  color: $color-primary-200;
-  margin: $space-2 0;
-  flex-shrink: 0;
-
-  @include breakpoint-up("lg") {
-    position: absolute;
-    top: 18px;
-    right: -14px;
-    margin: 0;
-    background: $color-white;
-    border-radius: $radius-full;
-    padding: 2px;
-  }
-}
+.infographic { padding: $space-8; border: 1px solid $color-border; background: linear-gradient(135deg, $color-gray-50, $color-white); border-radius: $radius-2xl; }
+.infographicHeading { max-width: 620px; margin-bottom: $space-8; }
+.infographicHeading > span { color: $color-secondary; font-size: $fs-xs; font-weight: $fw-bold; letter-spacing: .12em; text-transform: uppercase; }
+.infographicHeading h3 { @include heading-3; margin: $space-2 0; color: $color-gray-800; }
+.infographicHeading p { margin: 0; color: $color-text-muted; line-height: $lh-relaxed; }
+.flow { display: grid; gap: $space-4; }
+.flowStep { position: relative; min-height: 176px; padding: $space-5; border: 1px solid $color-border; border-radius: $radius-lg; background: $color-white; box-shadow: $shadow-sm; transition: transform $transition-base, border-color $transition-base, box-shadow $transition-base; }
+.flowStep:hover { transform: translateY(-4px); border-color: $color-primary-200; box-shadow: $shadow-lg; }
+.stepTop { display: flex; align-items: center; justify-content: space-between; gap: $space-3; margin-bottom: $space-5; }
+.stepTop > span { color: $color-primary-600; font: $fw-bold $fs-sm $font-mono; }
+.stepIcon { @include flex-center; width: 48px; height: 48px; border-radius: $radius-lg; color: $color-primary; background: linear-gradient(135deg, $color-primary-50, $color-secondary-50); }
+.flowStep h4 { margin: 0 0 $space-2; color: $color-gray-800; font-size: $fs-base; }
+.flowStep p { margin: 0; color: $color-text-muted; font-size: $fs-sm; line-height: $lh-relaxed; }
+.connector { display: none; }
+@include breakpoint-up('md') { .infographic { padding: $space-10; } .flow { grid-template-columns: repeat(2, 1fr); } }
+@include breakpoint-up('lg') { .flow { grid-template-columns: repeat(4, 1fr); gap: $space-5; } .connector { display: block; position: absolute; top: 30px; right: -14px; color: $color-secondary; z-index: 2; background: $color-gray-50; } }

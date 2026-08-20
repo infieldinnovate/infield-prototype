@@ -1,5 +1,5 @@
-@use '../../styles/abstracts/variables' as *;
-@use '../../styles/abstracts/mixins' as *;
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
 
 .container {
   @include container;
@@ -37,7 +37,11 @@
   left: -5%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(13, 148, 136, 0.08), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(13, 148, 136, 0.08),
+    transparent 70%
+  );
   border-radius: 50%;
   animation: float 25s ease-in-out infinite reverse;
 }
@@ -50,7 +54,11 @@
     linear-gradient(90deg, rgba(15, 108, 189, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 30%,
+    transparent 70%
+  );
 }
 
 .heroContent {
@@ -81,7 +89,11 @@
 }
 
 .heroAccent {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -95,7 +107,7 @@
   max-width: 640px;
   margin-inline: auto;
 
-  @include breakpoint-down('sm') {
+  @include breakpoint-down("sm") {
     font-size: var(--fs-base);
   }
 }
@@ -235,7 +247,7 @@
   grid-template-columns: 1fr;
   gap: var(--space-6);
 
-  @include breakpoint-up('lg') {
+  @include breakpoint-up("lg") {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
   }
@@ -265,7 +277,11 @@
   }
 
   &.categoryChipActive {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
     color: var(--color-white);
     border-color: transparent;
     box-shadow: var(--shadow-md);
@@ -285,87 +301,4 @@
 
 .industriesGrid {
   @include responsive-grid(1, 2, 3, var(--space-6));
-}
-
-// Bottom CTA
-.bottomCta {
-  position: relative;
-  padding: var(--space-20) 0;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--color-primary-900), var(--color-primary-700));
-}
-
-.bottomCtaBg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.bottomCtaOrb1 {
-  position: absolute;
-  top: -30%;
-  right: -10%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(45, 212, 191, 0.15), transparent 70%);
-  border-radius: 50%;
-}
-
-.bottomCtaOrb2 {
-  position: absolute;
-  bottom: -30%;
-  left: -10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(59, 158, 230, 0.15), transparent 70%);
-  border-radius: 50%;
-}
-
-.bottomCtaContent {
-  position: relative;
-  z-index: var(--z-base);
-  max-width: 680px;
-  margin-inline: auto;
-  text-align: center;
-}
-
-.bottomCtaTitle {
-  @include heading-2;
-  color: var(--color-white);
-  margin-bottom: var(--space-4);
-}
-
-.bottomCtaDescription {
-  font-size: var(--fs-lg);
-  line-height: var(--lh-relaxed);
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: var(--space-8);
-}
-
-.bottomCtaActions {
-  @include flex-center;
-  gap: var(--space-4);
-  flex-wrap: wrap;
-}
-
-.whatsappBtn {
-  @include flex-center;
-  gap: var(--space-2);
-  padding: var(--space-4) var(--space-8);
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-semibold);
-  color: var(--color-white);
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.5);
-    color: var(--color-white);
-  }
-
-  @include focus-visible;
 }

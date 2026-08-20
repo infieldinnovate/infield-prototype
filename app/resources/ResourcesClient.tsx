@@ -338,59 +338,6 @@ export default function ResourcesPage() {
           </div>
         </section>
       )}
-
-      {/* Bottom CTA */}
-      {!searchQuery.trim() && (
-        <section className={styles.bottomCta}>
-          <div className={styles.bottomCtaBg}>
-            <div className={styles.bottomCtaOrb1} />
-            <div className={styles.bottomCtaOrb2} />
-          </div>
-          <div className={styles.container}>
-            <motion.div
-              className={styles.bottomCtaContent}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className={styles.bottomCtaTitle}>
-                Ready to Start Your Project?
-              </h2>
-              <p className={styles.bottomCtaDescription}>
-                Get in touch with our team today. We&apos;re here to help with
-                expert advice, free quotes, and professional service.
-              </p>
-              <div className={styles.bottomCtaActions}>
-                <LinkButton
-                  href="/quote"
-                  size="lg"
-                  rightIcon={<ArrowRight size={20} />}
-                >
-                  Request a Quote
-                </LinkButton>
-                <LinkButton
-                  href="/contact"
-                  variant="outline"
-                  size="lg"
-                  leftIcon={<FileText size={18} />}
-                >
-                  Book a Site Visit
-                </LinkButton>
-                <a
-                  href={`https://wa.me/${siteConfig.whatsapp.replace(/[^0-9]/g, "")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.whatsappBtn}
-                >
-                  <Phone size={18} />
-                  Talk on WhatsApp
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      )}
     </>
   );
 }

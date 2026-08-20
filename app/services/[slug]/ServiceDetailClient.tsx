@@ -18,6 +18,7 @@ import {
   CircleDot,
   Clock3,
   CloudRain,
+  Database,
   Drill,
   Droplets,
   ExternalLink,
@@ -94,7 +95,7 @@ const integratedStages = [
   { id: "source", label: "Water source", kicker: "01", icon: Drill, description: "Find and secure the water beneath or around your site.", services: ["Borehole drilling", "Water harvesting"] },
   { id: "power", label: "Solar energy", kicker: "02", icon: Sun, description: "Use clean, dependable power to move and manage it.", services: ["Solar energy", "Electrical"] },
   { id: "storage", label: "Storage", kicker: "03", icon: Database, description: "Hold supply where it is available, ready for demand.", services: ["Water storage", "Water harvesting"] },
-  { id: "delivery", label: "Irrigation", kicker: "04", icon: Droplets, description: "Deliver the right amount to the right place.", services: ["Irrigation", "Plumbing"] },
+  { id: "delivery", label: "Pumping", kicker: "04", icon: Droplets, description: "Move water and power to where they are needed, efficiently.", services: ["Irrigation", "Plumbing"] },
   { id: "result", label: "Productive land", kicker: "05", icon: Sprout, description: "Turn reliable infrastructure into a stronger operation.", services: ["Irrigation", "Solar energy"] },
 ];
 
@@ -162,10 +163,10 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
               <p className={styles.heroDescription}>{service.longDescription}</p>
               <div className={styles.heroActions}>
                 <LinkButton href="/quote" size="lg" rightIcon={<ArrowUpRight size={18} />}>
-                  Get started
+                  Get a Free Assessment
                 </LinkButton>
                 <a className={styles.textLink} href="#services">
-                  Explore our approach <ArrowRight size={17} />
+                  Explore Our Services <ArrowRight size={17} />
                 </a>
               </div>
               <div className={styles.heroMeta}>
@@ -202,11 +203,11 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     const StageIcon = stage.icon;
                     return (
                       <div className={styles.heroSystemItem} key={stage.id}>
-                        <motion.div className={styles.heroSystemNode} initial={{ opacity: 0, scale: .8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .45 + index * .12 }}>
+                        <motion.div className={styles.heroSystemNode} initial={{ opacity: 0, scale: .8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .45 + index * .12, duration: .5, ease: "easeOut" }}>
                           <StageIcon size={17} />
                         </motion.div>
                         <span><small>{stage.kicker}</small>{stage.label}</span>
-                        {index < integratedStages.length - 1 && <motion.span className={styles.heroSystemLine} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: .8 + index * .14, duration: .7 }} />}
+                        {index < integratedStages.length - 1 && <motion.span className={styles.heroSystemLine} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: .8 + index * .14, duration: .7, ease: "easeOut" }} />}
                       </div>
                     );
                   })}
@@ -306,7 +307,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     </div>
                   ))}
                 </div>
-                <Link href={`/quote?service=${selectedService.slug}`} className={styles.panelLink}>Discuss this service <ArrowUpRight size={17} /></Link>
+                <Link href={`/quote?service=${selectedService.slug}`} className={styles.panelLink}>Get a Free Assessment <ArrowUpRight size={17} /></Link>
               </motion.div>
             </AnimatePresence>
           </div>

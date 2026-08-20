@@ -67,6 +67,7 @@ const employees: Employee[] = [
 
 // SHARED LOOKUP — Only this function changes when migrating to a database
 export function lookupEmployee(verificationCode: string): LookupResult {
+  // Case-insensitive match so users can type codes in any case
   const employee = employees.find(
     (e) => e.verificationCode.toUpperCase() === verificationCode.toUpperCase(),
   );

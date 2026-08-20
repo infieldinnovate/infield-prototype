@@ -10,6 +10,7 @@ import type { SubmissionResult } from "@/types/submission";
 export type { SubmissionResult };
 
 function generateReferenceId(prefix: string): string {
+  // Timestamp + random suffix gives a unique, human-readable reference per submission
   const timestamp = Date.now().toString(36).toUpperCase();
   const random = Math.random().toString(36).slice(2, 6).toUpperCase();
   return `${prefix}-${timestamp}-${random}`;
@@ -18,6 +19,7 @@ function generateReferenceId(prefix: string): string {
 export async function submitContactForm(
   data: ContactFormData,
 ): Promise<SubmissionResult> {
+  // Simulated network latency — replace with real API call when backend is wired
   await new Promise((resolve) => setTimeout(resolve, FORM_SUBMISSION_DELAY));
 
   return {
@@ -30,6 +32,7 @@ export async function submitContactForm(
 export async function submitQuoteForm(
   data: QuoteFullData,
 ): Promise<SubmissionResult> {
+  // Simulated network latency — replace with real API call when backend is wired
   await new Promise((resolve) => setTimeout(resolve, FORM_SUBMISSION_DELAY));
 
   return {

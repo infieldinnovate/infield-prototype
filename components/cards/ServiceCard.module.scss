@@ -9,6 +9,7 @@
   position: relative;
   overflow: hidden;
   @include card-hover;
+  // justify-content: space-between;
 
   &::before {
     content: "";

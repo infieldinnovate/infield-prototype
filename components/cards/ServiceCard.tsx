@@ -11,6 +11,10 @@ import {
   Zap,
   Sprout,
   Lightbulb,
+  Sparkles,
+  Drill,
+  Database,
+  CloudRain,
   type LucideIcon,
 } from "lucide-react";
 import styles from "./ServiceCard.module.scss";
@@ -19,9 +23,9 @@ import { SectionHeading } from "../ui/SectionHeading";
 export interface ServiceCardProps {
   id: string;
   title: string;
-  description: string;
+  // description: string;
   image: string;
-  icon: LucideIcon;
+  icon: string;
   features: string[];
   color: string;
 }
@@ -29,12 +33,28 @@ export interface ServiceCardProps {
 export const ServiceCard = ({
   id,
   title,
-  description,
+  // description,
   image,
-  icon: Icon,
+  icon,
   features,
   color,
 }: ServiceCardProps) => {
+  const iconMap: Record<string, LucideIcon> = {
+    Sun: Sun,
+    Droplets: Droplets,
+    Zap: Zap,
+    Sprout: Sprout,
+    Lightbulb: Lightbulb,
+    Drill: Drill,
+    Database: Database,
+    CloudRain: CloudRain,
+  };
+
+  function getIcon(name: string): LucideIcon {
+    return iconMap[name] || Sparkles;
+  }
+  const Icon = getIcon(icon);
+
   return (
     <motion.article
       className={styles.serviceCard}
@@ -45,7 +65,12 @@ export const ServiceCard = ({
       whileHover={{ y: -10 }}
     >
       <div className={styles.imageWrapper}>
-        <ImageWithFallback src={image} alt={title} fill className={styles.serviceImage} />
+        <ImageWithFallback
+          src={image}
+          alt={title}
+          fill
+          className={styles.serviceImage}
+        />
 
         <div className={styles.imageOverlay}>
           <div

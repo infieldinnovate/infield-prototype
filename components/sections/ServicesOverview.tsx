@@ -3,20 +3,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Sun,
-  Droplets,
-  Zap,
-  Sprout,
-  ArrowRight,
-  CircleCheck as CheckCircle,
-  Lightbulb,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import styles from "./ServicesOverview.module.scss";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCard } from "../cards/ServiceCard";
-import { servicesPreview } from "@/data/services";
+import { services } from "@/data/services";
 
 const ServicesOverview = () => {
   return (
@@ -28,8 +20,16 @@ const ServicesOverview = () => {
           description="From electrical and plumbing to solar, irrigation, and borehole drilling, we deliver professional services you can trust."
         />
         <div className={styles.servicesGrid}>
-          {servicesPreview.map((service, index) => (
-            <ServiceCard key={service.id} {...service} />
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              id={service.slug}
+              title={service.name}
+              image={service.image}
+              icon={service.icon}
+              features={service.features.map((feature) => feature.title)}
+              color={service.color}
+            />
           ))}
         </div>
 

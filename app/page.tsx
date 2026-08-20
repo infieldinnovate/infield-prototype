@@ -47,29 +47,6 @@ export const metadata: Metadata = {
   },
 };
 
-const whyChooseUs = [
-  {
-    title: "Licensed & Insured",
-    description:
-      "All our technicians are fully certified, insured, and background-checked for your peace of mind.",
-  },
-  {
-    title: "Upfront Pricing",
-    description:
-      "Transparent, no-surprise quotes. You approve the price before any work begins.",
-  },
-  {
-    title: "Quality Guarantee",
-    description:
-      "We stand behind our work with a 2-year workmanship warranty on all services.",
-  },
-  {
-    title: "24/7 Emergency Service",
-    description:
-      "Plumbing or electrical emergency? We are available around the clock to help.",
-  },
-];
-
 export default function HomePage() {
   const generalFAQs = faqs.slice(0, 6);
 

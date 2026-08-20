@@ -4,33 +4,53 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  ArrowDown,
   ArrowDownRight,
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
+  BatteryCharging,
+  Building2,
   Check,
   CheckCircle2,
   ChevronLeft,
   ChevronRight,
   CircleDot,
   Clock3,
+  CloudRain,
+  Drill,
   Droplets,
   ExternalLink,
+  Factory,
   Gauge,
+  HandHeart,
+  Home,
+  Landmark,
   Lightbulb,
   Mail,
   MapPin,
   Phone,
   Quote,
+  Search,
+  Settings2,
   ShieldCheck,
   Sparkles,
+  Sprout,
   Star,
+  Sun,
+  Users,
+  Wheat,
+  Wrench,
   type LucideIcon,
 } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { getServiceBySlug, services, type Service } from "@/data/services";
-import { siteConfig, stats } from "@/data/site.config";
+import { caseStudies } from "@/data/caseStudies";
+import { faqs } from "@/data/faqs";
+import { industries } from "@/data/industries";
+import { impactStats } from "@/data/projectStats";
+import { siteConfig } from "@/data/site.config";
 import { testimonials } from "@/data/testimonials";
 import styles from "./page.module.scss";
 
@@ -58,11 +78,38 @@ const iconMap: Record<string, LucideIcon> = {
   Zap: Gauge,
 };
 
+const audienceIcons: Record<string, LucideIcon> = {
+  Residential: Home,
+  Commercial: Building2,
+  Schools: Users,
+  Hospitals: ShieldCheck,
+  Hotels: Sparkles,
+  Farms: Sprout,
+  Government: Landmark,
+  NGOs: HandHeart,
+  Manufacturing: Factory,
+};
+
+const integratedStages = [
+  { id: "source", label: "Water source", kicker: "01", icon: Drill, description: "Find and secure the water beneath or around your site.", services: ["Borehole drilling", "Water harvesting"] },
+  { id: "power", label: "Solar energy", kicker: "02", icon: Sun, description: "Use clean, dependable power to move and manage it.", services: ["Solar energy", "Electrical"] },
+  { id: "storage", label: "Storage", kicker: "03", icon: Database, description: "Hold supply where it is available, ready for demand.", services: ["Water storage", "Water harvesting"] },
+  { id: "delivery", label: "Irrigation", kicker: "04", icon: Droplets, description: "Deliver the right amount to the right place.", services: ["Irrigation", "Plumbing"] },
+  { id: "result", label: "Productive land", kicker: "05", icon: Sprout, description: "Turn reliable infrastructure into a stronger operation.", services: ["Irrigation", "Solar energy"] },
+];
+
 const processSteps = [
-  { number: "01", title: "Discover", description: "We listen, inspect the site and understand the result you need." },
-  { number: "02", title: "Plan", description: "Our specialists turn your brief into a clear, buildable solution." },
-  { number: "03", title: "Build", description: "Certified teams install with care, precision and minimal disruption." },
-  { number: "04", title: "Launch & Grow", description: "We test, hand over and stay close for maintenance and improvements." },
+  { number: "01", title: "Assess", description: "We inspect the site, listen carefully and define the real need." },
+  { number: "02", title: "Design", description: "Our specialists connect the right technologies into one workable plan." },
+  { number: "03", title: "Implement", description: "Certified teams install with care, precision and minimal disruption." },
+  { number: "04", title: "Commission", description: "We test every part, explain the system and hand it over properly." },
+  { number: "05", title: "Support", description: "We stay close with maintenance, improvements and practical advice." },
+];
+
+const problemPoints = [
+  { number: "01", title: "Unreliable supply", description: "Power cuts, dry seasons and municipal interruptions make planning fragile." },
+  { number: "02", title: "Disconnected fixes", description: "A pump without storage, or storage without a dependable source, only moves the problem." },
+  { number: "03", title: "Waste at the edges", description: "Poor sizing and inefficient delivery turn scarce water and energy into avoidable cost." },
 ];
 
 const serviceStats = [
@@ -78,8 +125,10 @@ function getIcon(name: string): LucideIcon {
 
 export default function ServiceDetailClient({ service }: ServiceDetailClientProps) {
   const [selectedServiceSlug, setSelectedServiceSlug] = useState(service.slug);
+  const [selectedStageId, setSelectedStageId] = useState("source");
   const [testimonialIndex, setTestimonialIndex] = useState(0);
   const selectedService = getServiceBySlug(selectedServiceSlug) || service;
+  const activeStage = integratedStages.find((stage) => stage.id === selectedStageId) || integratedStages[0];
   const activeTestimonial = testimonials[testimonialIndex % testimonials.length];
   const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 4);
   const heroIcon = getIcon(service.icon);
@@ -146,6 +195,23 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   <span><small>Specialist service</small>{service.shortName}</span>
                 </div>
               </div>
+              <div className={styles.heroSystem} aria-label="Integrated solution system">
+                <div className={styles.heroSystemHeader}><span>Connected system</span><span><CircleDot size={11} /> Designed as one</span></div>
+                <div className={styles.heroSystemFlow}>
+                  {integratedStages.map((stage, index) => {
+                    const StageIcon = stage.icon;
+                    return (
+                      <div className={styles.heroSystemItem} key={stage.id}>
+                        <motion.div className={styles.heroSystemNode} initial={{ opacity: 0, scale: .8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .45 + index * .12 }}>
+                          <StageIcon size={17} />
+                        </motion.div>
+                        <span><small>{stage.kicker}</small>{stage.label}</span>
+                        {index < integratedStages.length - 1 && <motion.span className={styles.heroSystemLine} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: .8 + index * .14, duration: .7 }} />}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
               <div className={styles.floatingCard}>
                 <span className={styles.floatingIcon}><Check size={16} /></span>
                 <span><strong>Built for your brief</strong><small>From first survey to final handover</small></span>
@@ -155,6 +221,16 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
           </div>
         </div>
         <div className={styles.heroRule} />
+      </section>
+
+      <section className={styles.problemSection}>
+        <div className={styles.container}>
+          <div className={styles.problemGrid}>
+            <div className={styles.problemHeading}><div className={styles.eyebrow}><span /> The problem we solve</div><h2>Infrastructure rarely fails in isolation.</h2></div>
+            <div className={styles.problemBody}><p>When water is unreliable, energy becomes expensive. When energy is unstable, pumping and production suffer. The right answer is rarely one product on its own — it is a system that understands how each part affects the next.</p><span className={styles.problemNote}><ArrowDownRight size={17} /> From source to outcome</span></div>
+          </div>
+          <div className={styles.problemPoints}>{problemPoints.map((point, index) => <motion.div key={point.number} className={styles.problemPoint} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .1 }}><span>{point.number}</span><div><h3>{point.title}</h3><p>{point.description}</p></div></motion.div>)}</div>
+        </div>
       </section>
 
       <section className={styles.statStrip} aria-label="Company statistics">
@@ -234,6 +310,16 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
               </motion.div>
             </AnimatePresence>
           </div>
+        </div>
+      </section>
+
+      <section className={styles.integrationSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionIntro}><div><div className={styles.eyebrow}><span /> Integrated solutions</div><h2>Every stage strengthens the next.</h2></div><p>Explore the chain that turns individual services into a complete, useful outcome. Select a stage to see what it needs and what it unlocks.</p></div>
+          <div className={styles.integrationFlow} role="tablist" aria-label="Integrated solution stages">
+            {integratedStages.map((stage, index) => { const StageIcon = stage.icon; const isActive = stage.id === activeStage.id; return <button type="button" role="tab" aria-selected={isActive} className={`${styles.integrationStage} ${isActive ? styles.integrationStageActive : ""}`} key={stage.id} onClick={() => setSelectedStageId(stage.id)}><span className={styles.integrationStageNumber}>{stage.kicker}</span><span className={styles.integrationStageIcon}><StageIcon size={20} /></span><strong>{stage.label}</strong>{index < integratedStages.length - 1 && <ArrowRight className={styles.integrationStageArrow} size={17} />}</button>; })}
+          </div>
+          <AnimatePresence mode="wait"><motion.div key={activeStage.id} className={styles.integrationDetail} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .24 }}><div><span className={styles.detailKicker}>Stage {activeStage.kicker}</span><h3>{activeStage.label}</h3><p>{activeStage.description}</p></div><div className={styles.detailServices}><span>Relevant services</span><div>{activeStage.services.map((item) => <span key={item}><Check size={14} /> {item}</span>)}</div></div><ArrowDownRight className={styles.integrationDetailArrow} size={28} /></motion.div></AnimatePresence>
         </div>
       </section>
 

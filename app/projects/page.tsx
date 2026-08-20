@@ -81,7 +81,7 @@ export default function ProjectsPage() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <ImageWithFallback
-          src="projects/3467b787b566bu.jpg"
+          src="/projects/3467b787b566bu.jpg"
           alt="Solar installation"
           className={styles.heroBg}
           width={1280}

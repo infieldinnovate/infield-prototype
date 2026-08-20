@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useRef, useEffect, useState } from 'react';
-import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import { googleReviews, reviewSummary } from '@/data/reviews';
-import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
-import styles from './GoogleReviews.module.scss';
+import { useRef, useEffect, useState } from "react";
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { googleReviews, reviewSummary } from "@/data/reviews";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
+import styles from "./GoogleReviews.module.scss";
 
 export function GoogleReviews() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -22,19 +22,23 @@ export function GoogleReviews() {
     updateScrollState();
     const el = trackRef.current;
     if (!el) return;
-    el.addEventListener('scroll', updateScrollState, { passive: true });
-    window.addEventListener('resize', updateScrollState);
+    el.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
     return () => {
-      el.removeEventListener('scroll', updateScrollState);
-      window.removeEventListener('resize', updateScrollState);
+      el.removeEventListener("scroll", updateScrollState);
+      window.removeEventListener("resize", updateScrollState);
     };
   }, []);
 
-  const scroll = (dir: 'left' | 'right') => {
+  const scroll = (dir: "left" | "right") => {
     const el = trackRef.current;
     if (!el) return;
-    const cardWidth = el.querySelector('[data-card]')?.getBoundingClientRect().width ?? 320;
-    el.scrollBy({ left: dir === 'left' ? -(cardWidth + 24) : cardWidth + 24, behavior: 'smooth' });
+    const cardWidth =
+      el.querySelector("[data-card]")?.getBoundingClientRect().width ?? 320;
+    el.scrollBy({
+      left: dir === "left" ? -(cardWidth + 24) : cardWidth + 24,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -43,17 +47,25 @@ export function GoogleReviews() {
         <div className={styles.header}>
           <div>
             <p className={styles.eyebrow}>Customer Voices</p>
-            <h2 id="reviews-heading" className={styles.title}>Google Reviews</h2>
+            <h2 id="reviews-heading" className={styles.title}>
+              Google Reviews
+            </h2>
           </div>
           <div className={styles.summary}>
             <div className={styles.ratingWrap}>
-              <span className={styles.ratingValue}>{reviewSummary.averageRating}</span>
+              <span className={styles.ratingValue}>
+                {reviewSummary.averageRating}
+              </span>
               <div className={styles.stars}>
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
                     size={18}
-                    className={i < Math.round(reviewSummary.averageRating) ? styles.starFilled : styles.starEmpty}
+                    className={
+                      i < Math.round(reviewSummary.averageRating)
+                        ? styles.starFilled
+                        : styles.starEmpty
+                    }
                   />
                 ))}
               </div>
@@ -68,7 +80,7 @@ export function GoogleReviews() {
           <button
             type="button"
             className={`${styles.navBtn} ${styles.navLeft}`}
-            onClick={() => scroll('left')}
+            onClick={() => scroll("left")}
             disabled={!canScrollLeft}
             aria-label="Previous reviews"
           >
@@ -77,14 +89,21 @@ export function GoogleReviews() {
 
           <div className={styles.track} ref={trackRef} role="list">
             {googleReviews.map((review) => (
-              <article key={review.id} className={styles.card} data-card role="listitem">
+              <article
+                key={review.id}
+                className={styles.card}
+                data-card
+                role="listitem"
+              >
                 <Quote className={styles.quoteIcon} size={28} />
                 <div className={styles.stars}>
                   {Array.from({ length: 5 }).map((_, i) => (
                     <Star
                       key={i}
                       size={16}
-                      className={i < review.rating ? styles.starFilled : styles.starEmpty}
+                      className={
+                        i < review.rating ? styles.starFilled : styles.starEmpty
+                      }
                     />
                   ))}
                 </div>
@@ -101,7 +120,9 @@ export function GoogleReviews() {
                   </div>
                   <div className={styles.authorInfo}>
                     <span className={styles.authorName}>{review.author}</span>
-                    <span className={styles.authorMeta}>{review.service} · {review.source}</span>
+                    <span className={styles.authorMeta}>
+                      {review.service} · {review.source}
+                    </span>
                   </div>
                 </div>
               </article>
@@ -111,7 +132,7 @@ export function GoogleReviews() {
           <button
             type="button"
             className={`${styles.navBtn} ${styles.navRight}`}
-            onClick={() => scroll('right')}
+            onClick={() => scroll("right")}
             disabled={!canScrollRight}
             aria-label="Next reviews"
           >

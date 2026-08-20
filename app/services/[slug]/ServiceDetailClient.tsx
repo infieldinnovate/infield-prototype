@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import {
   ArrowDown,
   ArrowDownRight,
@@ -48,12 +53,13 @@ import {
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { getServiceBySlug, services, type Service } from "@/data/services";
-import { caseStudies } from "@/data/caseStudies";
 import { industries } from "@/data/industries";
-import { impactStats, projects } from "@/data/projectStats";
+import { projects } from "@/data/projectStats";
+import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import { siteConfig } from "@/data/site.config";
 import { testimonials } from "@/data/testimonials";
 import { faqs } from "@/data/faqs";
+import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import styles from "./page.module.scss";
 
 interface ServiceDetailClientProps {
@@ -93,53 +99,158 @@ const audienceIcons: Record<string, LucideIcon> = {
 };
 
 const integratedStages = [
-  { id: "source", label: "Water source", kicker: "01", icon: Drill, description: "Find and secure the water beneath or around your site.", services: ["Borehole drilling", "Water harvesting"] },
-  { id: "power", label: "Solar energy", kicker: "02", icon: Sun, description: "Use clean, dependable power to move and manage it.", services: ["Solar energy", "Electrical"] },
-  { id: "storage", label: "Storage", kicker: "03", icon: Database, description: "Hold supply where it is available, ready for demand.", services: ["Water storage", "Water harvesting"] },
-  { id: "delivery", label: "Pumping", kicker: "04", icon: Droplets, description: "Move water and power to where they are needed, efficiently.", services: ["Irrigation", "Plumbing"] },
-  { id: "result", label: "Productive land", kicker: "05", icon: Sprout, description: "Turn reliable infrastructure into a stronger operation.", services: ["Irrigation", "Solar energy"] },
+  {
+    id: "source",
+    label: "Water source",
+    kicker: "01",
+    icon: Drill,
+    description: "Find and secure the water beneath or around your site.",
+    services: ["Borehole drilling", "Water harvesting"],
+  },
+  {
+    id: "power",
+    label: "Solar energy",
+    kicker: "02",
+    icon: Sun,
+    description: "Use clean, dependable power to move and manage it.",
+    services: ["Solar energy", "Electrical"],
+  },
+  {
+    id: "storage",
+    label: "Storage",
+    kicker: "03",
+    icon: Database,
+    description: "Hold supply where it is available, ready for demand.",
+    services: ["Water storage", "Water harvesting"],
+  },
+  {
+    id: "delivery",
+    label: "Pumping",
+    kicker: "04",
+    icon: Droplets,
+    description: "Move water and power to where they are needed, efficiently.",
+    services: ["Irrigation", "Plumbing"],
+  },
+  {
+    id: "result",
+    label: "Productive land",
+    kicker: "05",
+    icon: Sprout,
+    description: "Turn reliable infrastructure into a stronger operation.",
+    services: ["Irrigation", "Solar energy"],
+  },
 ];
 
 const processSteps = [
-  { number: "01", title: "Assess", description: "We inspect the site, listen carefully and define the real need." },
-  { number: "02", title: "Design", description: "Our specialists connect the right technologies into one workable plan." },
-  { number: "03", title: "Implement", description: "Certified teams install with care, precision and minimal disruption." },
-  { number: "04", title: "Commission", description: "We test every part, explain the system and hand it over properly." },
-  { number: "05", title: "Support", description: "We stay close with maintenance, improvements and practical advice." },
+  {
+    number: "01",
+    title: "Assess",
+    description:
+      "We inspect the site, listen carefully and define the real need.",
+  },
+  {
+    number: "02",
+    title: "Design",
+    description:
+      "Our specialists connect the right technologies into one workable plan.",
+  },
+  {
+    number: "03",
+    title: "Implement",
+    description:
+      "Certified teams install with care, precision and minimal disruption.",
+  },
+  {
+    number: "04",
+    title: "Commission",
+    description:
+      "We test every part, explain the system and hand it over properly.",
+  },
+  {
+    number: "05",
+    title: "Support",
+    description:
+      "We stay close with maintenance, improvements and practical advice.",
+  },
 ];
 
 const problemPoints = [
-  { number: "01", title: "Unreliable supply", description: "Power cuts, dry seasons and municipal interruptions make planning fragile." },
-  { number: "02", title: "Disconnected fixes", description: "A pump without storage, or storage without a dependable source, only moves the problem." },
-  { number: "03", title: "Waste at the edges", description: "Poor sizing and inefficient delivery turn scarce water and energy into avoidable cost." },
-];
-
-const serviceStats = [
-  { value: "4,200+", label: "Projects delivered" },
-  { value: "98%", label: "Client satisfaction" },
-  { value: "15+", label: "Years experience" },
-  { value: "8", label: "Counties served" },
+  {
+    number: "01",
+    title: "Unreliable supply",
+    description:
+      "Power cuts, dry seasons and municipal interruptions make planning fragile.",
+  },
+  {
+    number: "02",
+    title: "Disconnected fixes",
+    description:
+      "A pump without storage, or storage without a dependable source, only moves the problem.",
+  },
+  {
+    number: "03",
+    title: "Waste at the edges",
+    description:
+      "Poor sizing and inefficient delivery turn scarce water and energy into avoidable cost.",
+  },
 ];
 
 const whyInfieldItems = [
-  { icon: Settings2, title: "Integrated solutions", description: "We connect water, energy and infrastructure into one coherent system — no gaps, no finger-pointing." },
-  { icon: ShieldCheck, title: "Quality engineering", description: "Certified technicians, premium materials and workmanship that meets real-world conditions, not just specs." },
-  { icon: Wrench, title: "Reliable implementation", description: "Clear timelines, clean sites and minimal disruption. We do what we said we would, when we said we would." },
-  { icon: Clock3, title: "Long-term support", description: "Maintenance, monitoring and practical advice that keeps your system performing for years, not weeks." },
-  { icon: Users, title: "Customer-focused", description: "We listen first. Your brief, your site and your constraints shape the solution — not a catalogue." },
-  { icon: Sprout, title: "Sustainable by design", description: "Solar pumping, water harvesting and efficient delivery that lower cost and environmental impact together." },
+  {
+    icon: Settings2,
+    title: "Integrated solutions",
+    description:
+      "We connect water, energy and infrastructure into one coherent system — no gaps, no finger-pointing.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Quality engineering",
+    description:
+      "Certified technicians, premium materials and workmanship that meets real-world conditions, not just specs.",
+  },
+  {
+    icon: Wrench,
+    title: "Reliable implementation",
+    description:
+      "Clear timelines, clean sites and minimal disruption. We do what we said we would, when we said we would.",
+  },
+  {
+    icon: Clock3,
+    title: "Long-term support",
+    description:
+      "Maintenance, monitoring and practical advice that keeps your system performing for years, not weeks.",
+  },
+  {
+    icon: Users,
+    title: "Customer-focused",
+    description:
+      "We listen first. Your brief, your site and your constraints shape the solution — not a catalogue.",
+  },
+  {
+    icon: Sprout,
+    title: "Sustainable by design",
+    description:
+      "Solar pumping, water harvesting and efficient delivery that lower cost and environmental impact together.",
+  },
 ];
 
 const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 const supportingProjects = projects.filter((p) => !p.featured).slice(0, 4);
-const serviceFaqs = faqs.filter((f) => ["g1", "g2", "g3", "g4", "g5", "g6", "g7"].includes(f.id));
+const serviceFaqs = faqs.filter((f) =>
+  ["g1", "g2", "g3", "g4", "g5", "g6", "g7"].includes(f.id),
+);
 
 function useCountUp(target: number, inView: boolean, duration = 1600): number {
   const [value, setValue] = useState(0);
   useEffect(() => {
     if (!inView) return;
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) { setValue(target); return; }
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (prefersReduced) {
+      setValue(target);
+      return;
+    }
     const start = performance.now();
     let raf: number;
     const tick = (now: number) => {
@@ -154,24 +265,55 @@ function useCountUp(target: number, inView: boolean, duration = 1600): number {
   return value;
 }
 
-function CountUpStat({ stat, index }: { stat: { key: string; label: string; value: string; icon: string }; index: number }) {
+function CountUpStat({
+  stat,
+  index,
+}: {
+  stat: { key: string; label: string; value: string; icon: string };
+  index: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } }, { threshold: 0.3 });
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setInView(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.3 },
+    );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
   const numericMatch = stat.value.match(/^([\d,.]+)/);
-  const numericPart = numericMatch ? parseFloat(numericMatch[1].replace(/,/g, "")) : 0;
+  const numericPart = numericMatch
+    ? parseFloat(numericMatch[1].replace(/,/g, ""))
+    : 0;
   const suffix = numericMatch ? stat.value.slice(numericMatch[1].length) : "";
   const animated = useCountUp(numericPart, inView);
-  const display = numericPart >= 1000 ? Math.round(animated).toLocaleString() : Number.isInteger(numericPart) ? Math.round(animated).toString() : animated.toFixed(1);
+  const display =
+    numericPart >= 1000
+      ? Math.round(animated).toLocaleString()
+      : Number.isInteger(numericPart)
+        ? Math.round(animated).toString()
+        : animated.toFixed(1);
   return (
-    <motion.div ref={ref} className={styles.resultStat} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}>
-      <strong>{display}{suffix}</strong>
+    <motion.div
+      ref={ref}
+      className={styles.resultStat}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.08 }}
+    >
+      <strong>
+        {display}
+        {suffix}
+      </strong>
       <span>{stat.label}</span>
     </motion.div>
   );
@@ -181,24 +323,37 @@ function getIcon(name: string): LucideIcon {
   return iconMap[name] || Sparkles;
 }
 
-export default function ServiceDetailClient({ service }: ServiceDetailClientProps) {
+export default function ServiceDetailClient({
+  service,
+}: ServiceDetailClientProps) {
   const [selectedServiceSlug, setSelectedServiceSlug] = useState(service.slug);
   const [selectedStageId, setSelectedStageId] = useState("source");
   const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const [openFaqId, setOpenFaqId] = useState<string | null>(serviceFaqs[0]?.id ?? null);
+  const [openFaqId, setOpenFaqId] = useState<string | null>(
+    serviceFaqs[0]?.id ?? null,
+  );
   const processTrackRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: processTrackRef, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: processTrackRef,
+    offset: ["start end", "end start"],
+  });
   const trackScale = useTransform(scrollYProgress, [0.15, 0.85], [0, 1]);
   const selectedService = getServiceBySlug(selectedServiceSlug) || service;
-  const activeStage = integratedStages.find((stage) => stage.id === selectedStageId) || integratedStages[0];
-  const activeTestimonial = testimonials[testimonialIndex % testimonials.length];
-  const relatedServices = services.filter((item) => item.slug !== service.slug).slice(0, 4);
+  const activeStage =
+    integratedStages.find((stage) => stage.id === selectedStageId) ||
+    integratedStages[0];
+  const activeTestimonial =
+    testimonials[testimonialIndex % testimonials.length];
+  const relatedServices = services
+    .filter((item) => item.slug !== service.slug)
+    .slice(0, 4);
   const heroIcon = getIcon(service.icon);
   const HeroIcon = heroIcon;
 
   const changeTestimonial = (direction: number) => {
-    setTestimonialIndex((current) =>
-      (current + direction + testimonials.length) % testimonials.length,
+    setTestimonialIndex(
+      (current) =>
+        (current + direction + testimonials.length) % testimonials.length,
     );
   };
 
@@ -218,12 +373,20 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 <ArrowLeft size={16} />
                 All services
               </Link>
-              <div className={styles.eyebrow}><span /> What we do</div>
+              <div className={styles.eyebrow}>
+                <span /> What we do
+              </div>
               <h1>{service.name}</h1>
               <p className={styles.heroLead}>{service.tagline}</p>
-              <p className={styles.heroDescription}>{service.longDescription}</p>
+              <p className={styles.heroDescription}>
+                {service.longDescription}
+              </p>
               <div className={styles.heroActions}>
-                <LinkButton href="/quote" size="lg" rightIcon={<ArrowUpRight size={18} />}>
+                <LinkButton
+                  href="/quote"
+                  size="lg"
+                  rightIcon={<ArrowUpRight size={18} />}
+                >
                   Get a Free Assessment
                 </LinkButton>
                 <a className={styles.textLink} href="#services">
@@ -231,8 +394,12 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 </a>
               </div>
               <div className={styles.heroMeta}>
-                <span><ShieldCheck size={16} /> Certified workmanship</span>
-                <span><Clock3 size={16} /> Clear project timelines</span>
+                <span>
+                  <ShieldCheck size={16} /> Certified workmanship
+                </span>
+                <span>
+                  <Clock3 size={16} /> Clear project timelines
+                </span>
               </div>
             </motion.div>
 
@@ -253,32 +420,76 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 />
                 <div className={styles.imageShade} />
                 <div className={styles.visualLabel}>
-                  <span className={styles.visualIcon}><HeroIcon size={19} /></span>
-                  <span><small>Specialist service</small>{service.shortName}</span>
+                  <span className={styles.visualIcon}>
+                    <HeroIcon size={19} />
+                  </span>
+                  <span>
+                    <small>Specialist service</small>
+                    {service.shortName}
+                  </span>
                 </div>
               </div>
-              <div className={styles.heroSystem} aria-label="Integrated solution system">
-                <div className={styles.heroSystemHeader}><span>Connected system</span><span><CircleDot size={11} /> Designed as one</span></div>
+              <div
+                className={styles.heroSystem}
+                aria-label="Integrated solution system"
+              >
+                <div className={styles.heroSystemHeader}>
+                  <span>Connected system</span>
+                  <span>
+                    <CircleDot size={11} /> Designed as one
+                  </span>
+                </div>
                 <div className={styles.heroSystemFlow}>
                   {integratedStages.map((stage, index) => {
                     const StageIcon = stage.icon;
                     return (
                       <div className={styles.heroSystemItem} key={stage.id}>
-                        <motion.div className={styles.heroSystemNode} initial={{ opacity: 0, scale: .8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .45 + index * .12, duration: .5, ease: "easeOut" }}>
+                        <motion.div
+                          className={styles.heroSystemNode}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            delay: 0.45 + index * 0.12,
+                            duration: 0.5,
+                            ease: "easeOut",
+                          }}
+                        >
                           <StageIcon size={17} />
                         </motion.div>
-                        <span><small>{stage.kicker}</small>{stage.label}</span>
-                        {index < integratedStages.length - 1 && <motion.span className={styles.heroSystemLine} initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: .8 + index * .14, duration: .7, ease: "easeOut" }} />}
+                        <span>
+                          <small>{stage.kicker}</small>
+                          {stage.label}
+                        </span>
+                        {index < integratedStages.length - 1 && (
+                          <motion.span
+                            className={styles.heroSystemLine}
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{
+                              delay: 0.8 + index * 0.14,
+                              duration: 0.7,
+                              ease: "easeOut",
+                            }}
+                          />
+                        )}
                       </div>
                     );
                   })}
                 </div>
               </div>
               <div className={styles.floatingCard}>
-                <span className={styles.floatingIcon}><Check size={16} /></span>
-                <span><strong>Built for your brief</strong><small>From first survey to final handover</small></span>
+                <span className={styles.floatingIcon}>
+                  <Check size={16} />
+                </span>
+                <span>
+                  <strong>Built for your brief</strong>
+                  <small>From first survey to final handover</small>
+                </span>
               </div>
-              <div className={styles.visualIndex}>0{services.findIndex((item) => item.slug === service.slug) + 1}<span>/ 07</span></div>
+              <div className={styles.visualIndex}>
+                0{services.findIndex((item) => item.slug === service.slug) + 1}
+                <span>/ 07</span>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -288,44 +499,71 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
       <section className={styles.problemSection}>
         <div className={styles.container}>
           <div className={styles.problemGrid}>
-            <div className={styles.problemHeading}><div className={styles.eyebrow}><span /> The problem we solve</div><h2>Infrastructure rarely fails in isolation.</h2></div>
-            <div className={styles.problemBody}><p>When water is unreliable, energy becomes expensive. When energy is unstable, pumping and production suffer. The right answer is rarely one product on its own — it is a system that understands how each part affects the next.</p><span className={styles.problemNote}><ArrowDownRight size={17} /> From source to outcome</span></div>
+            <div className={styles.problemHeading}>
+              <div className={styles.eyebrow}>
+                <span /> The problem we solve
+              </div>
+              <h2>Infrastructure rarely fails in isolation.</h2>
+            </div>
+            <div className={styles.problemBody}>
+              <p>
+                When water is unreliable, energy becomes expensive. When energy
+                is unstable, pumping and production suffer. The right answer is
+                rarely one product on its own — it is a system that understands
+                how each part affects the next.
+              </p>
+              <span className={styles.problemNote}>
+                <ArrowDownRight size={17} /> From source to outcome
+              </span>
+            </div>
           </div>
-          <div className={styles.problemPoints}>{problemPoints.map((point, index) => <motion.div key={point.number} className={styles.problemPoint} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .1 }}><span>{point.number}</span><div><h3>{point.title}</h3><p>{point.description}</p></div></motion.div>)}</div>
-        </div>
-      </section>
-
-      <section className={styles.statStrip} aria-label="Company statistics">
-        <div className={styles.container}>
-          <div className={styles.statGrid}>
-            {serviceStats.map((stat, index) => (
+          <div className={styles.problemPoints}>
+            {problemPoints.map((point, index) => (
               <motion.div
-                key={stat.label}
-                className={styles.stat}
-                initial={{ opacity: 0, y: 12 }}
+                key={point.number}
+                className={styles.problemPoint}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
+                transition={{ delay: index * 0.1 }}
               >
-                <strong>{stat.value}</strong><span>{stat.label}</span>
+                <span>{point.number}</span>
+                <div>
+                  <h3>{point.title}</h3>
+                  <p>{point.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+      <section className={styles.statStrip} aria-label="Company statistics">
+        <AnimatedStats />
+      </section>
+
       <section className={styles.section} id="services">
         <div className={styles.container}>
           <div className={styles.sectionIntro}>
             <div>
-              <div className={styles.eyebrow}><span /> Our capabilities</div>
+              <div className={styles.eyebrow}>
+                <span /> Our capabilities
+              </div>
               <h2>One partner for the details that matter.</h2>
             </div>
-            <p>Every service is delivered with the same disciplined approach: thoughtful design, quality materials and a finish that performs in the real world.</p>
+            <p>
+              Every service is delivered with the same disciplined approach:
+              thoughtful design, quality materials and a finish that performs in
+              the real world.
+            </p>
           </div>
 
           <div className={styles.serviceLayout}>
-            <div className={styles.serviceList} role="tablist" aria-label="Explore services">
+            <div
+              className={styles.serviceList}
+              role="tablist"
+              aria-label="Explore services"
+            >
               {services.map((item, index) => {
                 const Icon = getIcon(item.icon);
                 const isActive = item.slug === selectedServiceSlug;
@@ -338,10 +576,20 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     className={`${styles.serviceItem} ${isActive ? styles.serviceItemActive : ""}`}
                     onClick={() => setSelectedServiceSlug(item.slug)}
                   >
-                    <span className={styles.serviceItemNumber}>0{index + 1}</span>
-                    <span className={styles.serviceItemIcon}><Icon size={20} /></span>
-                    <span className={styles.serviceItemText}><strong>{item.shortName}</strong><small>{item.tagline}</small></span>
-                    <ArrowUpRight className={styles.serviceItemArrow} size={19} />
+                    <span className={styles.serviceItemNumber}>
+                      0{index + 1}
+                    </span>
+                    <span className={styles.serviceItemIcon}>
+                      <Icon size={20} />
+                    </span>
+                    <span className={styles.serviceItemText}>
+                      <strong>{item.shortName}</strong>
+                      <small>{item.tagline}</small>
+                    </span>
+                    <ArrowUpRight
+                      className={styles.serviceItemArrow}
+                      size={19}
+                    />
                   </button>
                 );
               })}
@@ -357,18 +605,29 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 transition={{ duration: 0.25 }}
                 role="tabpanel"
               >
-                <div className={styles.panelTopline}><span>Selected service</span><span>{selectedService.startingPrice} starting point</span></div>
+                <div className={styles.panelTopline}>
+                  <span>Selected service</span>
+                  <span>{selectedService.startingPrice} starting point</span>
+                </div>
                 <h3>{selectedService.name}</h3>
                 <p>{selectedService.description}</p>
                 <div className={styles.featureGrid}>
                   {selectedService.features.slice(0, 6).map((feature) => (
                     <div className={styles.feature} key={feature.title}>
                       <CheckCircle2 size={17} />
-                      <span><strong>{feature.title}</strong><small>{feature.description}</small></span>
+                      <span>
+                        <strong>{feature.title}</strong>
+                        <small>{feature.description}</small>
+                      </span>
                     </div>
                   ))}
                 </div>
-                <Link href={`/quote?service=${selectedService.slug}`} className={styles.panelLink}>Get a Free Assessment <ArrowUpRight size={17} /></Link>
+                <Link
+                  href={`/quote?service=${selectedService.slug}`}
+                  className={styles.panelLink}
+                >
+                  Get a Free Assessment <ArrowUpRight size={17} />
+                </Link>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -377,11 +636,85 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
 
       <section className={styles.integrationSection}>
         <div className={styles.container}>
-          <div className={styles.sectionIntro}><div><div className={styles.eyebrow}><span /> Integrated solutions</div><h2>Every stage strengthens the next.</h2></div><p>Explore the chain that turns individual services into a complete, useful outcome. Select a stage to see what it needs and what it unlocks.</p></div>
-          <div className={styles.integrationFlow} role="tablist" aria-label="Integrated solution stages">
-            {integratedStages.map((stage, index) => { const StageIcon = stage.icon; const isActive = stage.id === activeStage.id; return <button type="button" role="tab" aria-selected={isActive} className={`${styles.integrationStage} ${isActive ? styles.integrationStageActive : ""}`} key={stage.id} onClick={() => setSelectedStageId(stage.id)}><span className={styles.integrationStageNumber}>{stage.kicker}</span><span className={styles.integrationStageIcon}><StageIcon size={20} /></span><strong>{stage.label}</strong>{index < integratedStages.length - 1 && <ArrowRight className={styles.integrationStageArrow} size={17} />}</button>; })}
+          <div className={styles.sectionIntro}>
+            <div>
+              <div className={styles.eyebrow}>
+                <span /> Integrated solutions
+              </div>
+              <h2>Every stage strengthens the next.</h2>
+            </div>
+            <p>
+              Explore the chain that turns individual services into a complete,
+              useful outcome. Select a stage to see what it needs and what it
+              unlocks.
+            </p>
           </div>
-          <AnimatePresence mode="wait"><motion.div key={activeStage.id} className={styles.integrationDetail} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .24 }}><div><span className={styles.detailKicker}>Stage {activeStage.kicker}</span><h3>{activeStage.label}</h3><p>{activeStage.description}</p></div><div className={styles.detailServices}><span>Relevant services</span><div>{activeStage.services.map((item) => <span key={item}><Check size={14} /> {item}</span>)}</div></div><ArrowDownRight className={styles.integrationDetailArrow} size={28} /></motion.div></AnimatePresence>
+          <div
+            className={styles.integrationFlow}
+            role="tablist"
+            aria-label="Integrated solution stages"
+          >
+            {integratedStages.map((stage, index) => {
+              const StageIcon = stage.icon;
+              const isActive = stage.id === activeStage.id;
+              return (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`${styles.integrationStage} ${isActive ? styles.integrationStageActive : ""}`}
+                  key={stage.id}
+                  onClick={() => setSelectedStageId(stage.id)}
+                >
+                  <span className={styles.integrationStageNumber}>
+                    {stage.kicker}
+                  </span>
+                  <span className={styles.integrationStageIcon}>
+                    <StageIcon size={20} />
+                  </span>
+                  <strong>{stage.label}</strong>
+                  {index < integratedStages.length - 1 && (
+                    <ArrowRight
+                      className={styles.integrationStageArrow}
+                      size={17}
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStage.id}
+              className={styles.integrationDetail}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.24 }}
+            >
+              <div>
+                <span className={styles.detailKicker}>
+                  Stage {activeStage.kicker}
+                </span>
+                <h3>{activeStage.label}</h3>
+                <p>{activeStage.description}</p>
+              </div>
+              <div className={styles.detailServices}>
+                <span>Relevant services</span>
+                <div>
+                  {activeStage.services.map((item) => (
+                    <span key={item}>
+                      <Check size={14} /> {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <ArrowDownRight
+                className={styles.integrationDetailArrow}
+                size={28}
+              />
+            </motion.div>
+          </AnimatePresence>
         </div>
       </section>
 
@@ -390,10 +723,15 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
         <div className={styles.container}>
           <div className={styles.sectionIntro}>
             <div>
-              <div className={styles.eyebrow}><span /> Who we serve</div>
+              <div className={styles.eyebrow}>
+                <span /> Who we serve
+              </div>
               <h2>Built for the way you work.</h2>
             </div>
-            <p>From a single home to a multi-site operation, we tailor every system to the demands of your sector.</p>
+            <p>
+              From a single home to a multi-site operation, we tailor every
+              system to the demands of your sector.
+            </p>
           </div>
           <div className={styles.audienceGrid}>
             {industries.map((industry, index) => {
@@ -415,7 +753,9 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   <p className={styles.audienceDesc}>{industry.description}</p>
                   <ul className={styles.audienceServices}>
                     {industry.services.slice(0, 3).map((s) => (
-                      <li key={s}><Check size={12} /> {s}</li>
+                      <li key={s}>
+                        <Check size={12} /> {s}
+                      </li>
                     ))}
                   </ul>
                 </motion.div>
@@ -430,10 +770,15 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
         <div className={styles.container}>
           <div className={styles.sectionIntro}>
             <div>
-              <div className={styles.eyebrow}><span /> Proven results</div>
+              <div className={styles.eyebrow}>
+                <span /> Proven results
+              </div>
               <h2>Real projects. Real outcomes.</h2>
             </div>
-            <p>Every installation is designed around a specific challenge. Here is what that looks like in practice.</p>
+            <p>
+              Every installation is designed around a specific challenge. Here
+              is what that looks like in practice.
+            </p>
           </div>
 
           <div className={styles.caseStudiesLayout}>
@@ -448,7 +793,10 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
               >
                 <div className={styles.caseStudyImage}>
                   <ImageWithFallback
-                    src={project.gallery[0]?.url || "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1200"}
+                    src={
+                      project.gallery[0]?.url ||
+                      "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                    }
                     alt={project.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 60vw"
@@ -456,8 +804,12 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   />
                   <div className={styles.caseStudyImageOverlay} />
                   <div className={styles.caseStudyMeta}>
-                    <span className={styles.caseStudyCategory}>{project.category}</span>
-                    <span className={styles.caseStudyLocation}><MapPin size={12} /> {project.county}</span>
+                    <span className={styles.caseStudyCategory}>
+                      {project.category}
+                    </span>
+                    <span className={styles.caseStudyLocation}>
+                      <MapPin size={12} /> {project.county}
+                    </span>
                   </div>
                 </div>
                 <div className={styles.caseStudyBody}>
@@ -472,10 +824,14 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                   </div>
                   <div className={styles.caseStudyResults}>
                     {project.results.slice(0, 3).map((r) => (
-                      <span key={r} className={styles.caseStudyResult}><CheckCircle2 size={14} /> {r}</span>
+                      <span key={r} className={styles.caseStudyResult}>
+                        <CheckCircle2 size={14} /> {r}
+                      </span>
                     ))}
                   </div>
-                  <Link href="/projects" className={styles.caseStudyLink}>View Case Study <ArrowUpRight size={16} /></Link>
+                  <Link href="/projects" className={styles.caseStudyLink}>
+                    View Case Study <ArrowUpRight size={16} />
+                  </Link>
                 </div>
               </motion.article>
             ))}
@@ -494,13 +850,18 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 >
                   <div className={styles.supportingImage}>
                     <ImageWithFallback
-                      src={project.gallery[0]?.url || "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=600"}
+                      src={
+                        project.gallery[0]?.url ||
+                        "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      }
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 25vw"
                       className={styles.supportingImg}
                     />
-                    <span className={styles.supportingCategory}>{project.category}</span>
+                    <span className={styles.supportingCategory}>
+                      {project.category}
+                    </span>
                   </div>
                   <div className={styles.supportingBody}>
                     <h4>{project.title}</h4>
@@ -512,7 +873,13 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
           )}
 
           <div className={styles.caseStudiesCta}>
-            <LinkButton href="/projects" variant="outline" rightIcon={<ArrowRight size={18} />}>See All Projects</LinkButton>
+            <LinkButton
+              href="/projects"
+              variant="outline"
+              rightIcon={<ArrowRight size={18} />}
+            >
+              See All Projects
+            </LinkButton>
           </div>
         </div>
       </section>
@@ -521,13 +888,18 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
       <section className={styles.resultsSection}>
         <div className={styles.container}>
           <div className={styles.resultsIntro}>
-            <div className={styles.eyebrow}><span /> Measurable impact</div>
+            <div className={styles.eyebrow}>
+              <span /> Measurable impact
+            </div>
             <h2>Numbers that mean something.</h2>
-            <p>A decade of engineering across Kenya, tracked in outcomes that matter to the people who rely on our work.</p>
+            <p>
+              A decade of engineering across Kenya, tracked in outcomes that
+              matter to the people who rely on our work.
+            </p>
           </div>
           <div className={styles.resultsGrid}>
-            {impactStats.map((stat, index) => (
-              <CountUpStat key={stat.key} stat={stat} index={index} />
+            {Object.entries(COMMON_IMPACT_STATS).map(([key, stat], index) => (
+              <CountUpStat key={key} stat={{ ...stat, key }} index={index} />
             ))}
           </div>
         </div>
@@ -538,10 +910,21 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
         <div className={styles.container}>
           <div className={styles.whyGrid}>
             <div className={styles.whyCopy}>
-              <div className={styles.eyebrow}><span /> Why Infield</div>
+              <div className={styles.eyebrow}>
+                <span /> Why Infield
+              </div>
               <h2>Engineering that holds together.</h2>
-              <p>We do not sell products. We design, build and maintain systems that keep working long after installation day.</p>
-              <LinkButton href="/quote" size="lg" rightIcon={<ArrowUpRight size={18} />}>Get a Free Assessment</LinkButton>
+              <p>
+                We do not sell products. We design, build and maintain systems
+                that keep working long after installation day.
+              </p>
+              <LinkButton
+                href="/quote"
+                size="lg"
+                rightIcon={<ArrowUpRight size={18} />}
+              >
+                Get a Free Assessment
+              </LinkButton>
             </div>
             <div className={styles.whyItems}>
               {whyInfieldItems.map((item, index) => {
@@ -555,7 +938,9 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     viewport={{ once: true, margin: "-30px" }}
                     transition={{ duration: 0.4, delay: index * 0.07 }}
                   >
-                    <div className={styles.whyIconWrap}><Icon size={22} strokeWidth={1.8} /></div>
+                    <div className={styles.whyIconWrap}>
+                      <Icon size={22} strokeWidth={1.8} />
+                    </div>
                     <div>
                       <h3>{item.title}</h3>
                       <p>{item.description}</p>
@@ -572,15 +957,28 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
         <div className={styles.container}>
           <div className={styles.sectionIntro}>
             <div>
-              <div className={styles.eyebrow}><span /> How we work</div>
+              <div className={styles.eyebrow}>
+                <span /> How we work
+              </div>
               <h2>A clearer path from idea to impact.</h2>
             </div>
-            <p>No hand-offs into the unknown. You get a considered plan, direct communication and a team accountable for the outcome.</p>
+            <p>
+              No hand-offs into the unknown. You get a considered plan, direct
+              communication and a team accountable for the outcome.
+            </p>
           </div>
           <div className={styles.processTrack} ref={processTrackRef}>
             <div className={styles.trackLine} aria-hidden="true" />
-            <motion.div className={`${styles.trackProgress} ${styles.trackProgressV}`} style={{ scaleY: trackScale }} aria-hidden="true" />
-            <motion.div className={`${styles.trackProgress} ${styles.trackProgressH}`} style={{ scaleX: trackScale }} aria-hidden="true" />
+            <motion.div
+              className={`${styles.trackProgress} ${styles.trackProgressV}`}
+              style={{ scaleY: trackScale }}
+              aria-hidden="true"
+            />
+            <motion.div
+              className={`${styles.trackProgress} ${styles.trackProgressH}`}
+              style={{ scaleX: trackScale }}
+              aria-hidden="true"
+            />
             {processSteps.map((step, index) => (
               <motion.div
                 className={styles.processStep}
@@ -591,7 +989,10 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                 transition={{ delay: index * 0.1 }}
               >
                 <div className={styles.processMarker}>{step.number}</div>
-                <div><h3>{step.title}</h3><p>{step.description}</p></div>
+                <div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -602,33 +1003,66 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
         <div className={styles.container}>
           <div className={styles.insightGrid}>
             <div className={styles.insightCopy}>
-              <div className={styles.eyebrow}><span /> Designed around performance</div>
+              <div className={styles.eyebrow}>
+                <span /> Designed around performance
+              </div>
               <h2>Good engineering should feel simple.</h2>
-              <p>We make complex infrastructure easier to understand, easier to maintain and better suited to the way your property actually works.</p>
+              <p>
+                We make complex infrastructure easier to understand, easier to
+                maintain and better suited to the way your property actually
+                works.
+              </p>
               <ul className={styles.checkList}>
-                <li><CheckCircle2 size={18} /> Straightforward recommendations</li>
-                <li><CheckCircle2 size={18} /> Quality-led installation</li>
-                <li><CheckCircle2 size={18} /> Practical aftercare and support</li>
+                <li>
+                  <CheckCircle2 size={18} /> Straightforward recommendations
+                </li>
+                <li>
+                  <CheckCircle2 size={18} /> Quality-led installation
+                </li>
+                <li>
+                  <CheckCircle2 size={18} /> Practical aftercare and support
+                </li>
               </ul>
-              <LinkButton href="/contact" variant="outline" rightIcon={<ArrowRight size={17} />}>Talk to an expert</LinkButton>
+              <LinkButton
+                href="/contact"
+                variant="outline"
+                rightIcon={<ArrowRight size={17} />}
+              >
+                Talk to an expert
+              </LinkButton>
             </div>
             <div className={styles.infographic}>
-              <div className={styles.infographicHeader}><span>System view</span><span><CircleDot size={13} /> Live project logic</span></div>
+              <div className={styles.infographicHeader}>
+                <span>System view</span>
+                <span>
+                  <CircleDot size={13} /> Live project logic
+                </span>
+              </div>
               <div className={styles.diagram}>
                 {service.infographic.map((step, index) => {
                   const Icon = getIcon(step.icon);
                   return (
                     <div className={styles.diagramStep} key={step.label}>
-                      <div className={styles.diagramOrb}><Icon size={23} /></div>
+                      <div className={styles.diagramOrb}>
+                        <Icon size={23} />
+                      </div>
                       <span className={styles.diagramNumber}>0{index + 1}</span>
                       <strong>{step.label}</strong>
                       <small>{step.description}</small>
-                      {index < service.infographic.length - 1 && <ArrowRight className={styles.diagramArrow} size={18} aria-hidden="true" />}
+                      {index < service.infographic.length - 1 && (
+                        <ArrowRight
+                          className={styles.diagramArrow}
+                          size={18}
+                          aria-hidden="true"
+                        />
+                      )}
                     </div>
                   );
                 })}
               </div>
-              <div className={styles.diagramFooter}><Lightbulb size={17} /> {service.infographicSubtitle}</div>
+              <div className={styles.diagramFooter}>
+                <Lightbulb size={17} /> {service.infographicSubtitle}
+              </div>
             </div>
           </div>
         </div>
@@ -636,12 +1070,67 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
 
       <section className={styles.testimonialSection}>
         <div className={styles.container}>
-          <div className={styles.testimonialHeader}><div><div className={styles.eyebrow}><span /> Client perspective</div><h2>Work that earns trust.</h2></div><div className={styles.testimonialControls}><button type="button" onClick={() => changeTestimonial(-1)} aria-label="Previous testimonial"><ChevronLeft size={19} /></button><span>{String(testimonialIndex + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}</span><button type="button" onClick={() => changeTestimonial(1)} aria-label="Next testimonial"><ChevronRight size={19} /></button></div></div>
+          <div className={styles.testimonialHeader}>
+            <div>
+              <div className={styles.eyebrow}>
+                <span /> Client perspective
+              </div>
+              <h2>Work that earns trust.</h2>
+            </div>
+            <div className={styles.testimonialControls}>
+              <button
+                type="button"
+                onClick={() => changeTestimonial(-1)}
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeft size={19} />
+              </button>
+              <span>
+                {String(testimonialIndex + 1).padStart(2, "0")} /{" "}
+                {String(testimonials.length).padStart(2, "0")}
+              </span>
+              <button
+                type="button"
+                onClick={() => changeTestimonial(1)}
+                aria-label="Next testimonial"
+              >
+                <ChevronRight size={19} />
+              </button>
+            </div>
+          </div>
           <AnimatePresence mode="wait">
-            <motion.div key={activeTestimonial.id} className={styles.testimonial} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }}>
+            <motion.div
+              key={activeTestimonial.id}
+              className={styles.testimonial}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
+            >
               <Quote className={styles.quoteIcon} size={28} />
               <blockquote>“{activeTestimonial.content}”</blockquote>
-              <div className={styles.testimonialPerson}><ImageWithFallback src={activeTestimonial.avatar} alt={activeTestimonial.name} width={52} height={52} className={styles.avatar} /><span><strong>{activeTestimonial.name}</strong><small>{activeTestimonial.role}, {activeTestimonial.company}</small></span><span className={styles.rating}>{Array.from({ length: activeTestimonial.rating }).map((_, index) => <Star key={index} size={15} fill="currentColor" />)}</span></div>
+              <div className={styles.testimonialPerson}>
+                <ImageWithFallback
+                  src={activeTestimonial.avatar}
+                  alt={activeTestimonial.name}
+                  width={52}
+                  height={52}
+                  className={styles.avatar}
+                />
+                <span>
+                  <strong>{activeTestimonial.name}</strong>
+                  <small>
+                    {activeTestimonial.role}, {activeTestimonial.company}
+                  </small>
+                </span>
+                <span className={styles.rating}>
+                  {Array.from({ length: activeTestimonial.rating }).map(
+                    (_, index) => (
+                      <Star key={index} size={15} fill="currentColor" />
+                    ),
+                  )}
+                </span>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -649,8 +1138,39 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
 
       <section className={styles.relatedSection}>
         <div className={styles.container}>
-          <div className={styles.relatedHeader}><div><div className={styles.eyebrow}><span /> More from Infield</div><h2>One challenge rarely stands alone.</h2></div><Link href="/services" className={styles.textLink}>View all services <ArrowRight size={17} /></Link></div>
-          <div className={styles.relatedGrid}>{relatedServices.map((item) => { const Icon = getIcon(item.icon); return <Link href={`/services/${item.slug}`} className={styles.relatedCard} key={item.slug}><span className={styles.relatedIcon}><Icon size={21} /></span><span className={styles.relatedNumber}>{String(services.indexOf(item) + 1).padStart(2, "0")}</span><h3>{item.shortName}</h3><p>{item.tagline}</p><ArrowUpRight className={styles.relatedArrow} size={18} /></Link>; })}</div>
+          <div className={styles.relatedHeader}>
+            <div>
+              <div className={styles.eyebrow}>
+                <span /> More from Infield
+              </div>
+              <h2>One challenge rarely stands alone.</h2>
+            </div>
+            <Link href="/services" className={styles.textLink}>
+              View all services <ArrowRight size={17} />
+            </Link>
+          </div>
+          <div className={styles.relatedGrid}>
+            {relatedServices.map((item) => {
+              const Icon = getIcon(item.icon);
+              return (
+                <Link
+                  href={`/services/${item.slug}`}
+                  className={styles.relatedCard}
+                  key={item.slug}
+                >
+                  <span className={styles.relatedIcon}>
+                    <Icon size={21} />
+                  </span>
+                  <span className={styles.relatedNumber}>
+                    {String(services.indexOf(item) + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{item.shortName}</h3>
+                  <p>{item.tagline}</p>
+                  <ArrowUpRight className={styles.relatedArrow} size={18} />
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -658,16 +1178,24 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
         <div className={styles.container}>
           <div className={styles.sectionIntro}>
             <div>
-              <div className={styles.eyebrow}><span /> Questions &amp; answers</div>
+              <div className={styles.eyebrow}>
+                <span /> Questions &amp; answers
+              </div>
               <h2>Everything you need to know.</h2>
             </div>
-            <p>Clear answers to the questions we hear most — about how we work, what we deliver, and how to get started.</p>
+            <p>
+              Clear answers to the questions we hear most — about how we work,
+              what we deliver, and how to get started.
+            </p>
           </div>
           <div className={styles.faqList}>
             {serviceFaqs.map((faq) => {
               const isOpen = openFaqId === faq.id;
               return (
-                <div key={faq.id} className={`${styles.faqItem} ${isOpen ? styles.faqItemOpen : ""}`}>
+                <div
+                  key={faq.id}
+                  className={`${styles.faqItem} ${isOpen ? styles.faqItemOpen : ""}`}
+                >
                   <button
                     type="button"
                     className={styles.faqQuestion}
@@ -676,7 +1204,10 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
                     aria-controls={`faq-content-${faq.id}`}
                   >
                     <span>{faq.question}</span>
-                    <ChevronDown size={20} className={`${styles.faqChevron} ${isOpen ? styles.faqChevronOpen : ""}`} />
+                    <ChevronDown
+                      size={20}
+                      className={`${styles.faqChevron} ${isOpen ? styles.faqChevronOpen : ""}`}
+                    />
                   </button>
                   <AnimatePresence initial={false}>
                     {isOpen && (
@@ -701,7 +1232,39 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
       </section>
 
       <section className={styles.ctaSection}>
-        <div className={styles.container}><div className={styles.ctaPanel}><div className={styles.ctaGlow} /><div className={styles.ctaContent}><div className={styles.eyebrow}><span /> Start a conversation</div><h2>Let&apos;s build a solution that works for you.</h2><p>Tell us about your site, your goals and your constraints. We will design a practical plan — and stand behind it from first survey to final handover.</p><div className={styles.ctaActions}><LinkButton href="/quote" size="lg" rightIcon={<ArrowUpRight size={18} />}>Get a Free Assessment</LinkButton><a href={siteConfig.phoneHref} className={styles.ctaContact}><Phone size={17} /> {siteConfig.phone}</a></div></div><div className={styles.ctaAside}><span>Ready when you are</span><strong>Let&apos;s make it work.</strong><Mail size={27} /></div></div></div>
+        <div className={styles.container}>
+          <div className={styles.ctaPanel}>
+            <div className={styles.ctaGlow} />
+            <div className={styles.ctaContent}>
+              <div className={styles.eyebrow}>
+                <span /> Start a conversation
+              </div>
+              <h2>Let&apos;s build a solution that works for you.</h2>
+              <p>
+                Tell us about your site, your goals and your constraints. We
+                will design a practical plan — and stand behind it from first
+                survey to final handover.
+              </p>
+              <div className={styles.ctaActions}>
+                <LinkButton
+                  href="/quote"
+                  size="lg"
+                  rightIcon={<ArrowUpRight size={18} />}
+                >
+                  Get a Free Assessment
+                </LinkButton>
+                <a href={siteConfig.phoneHref} className={styles.ctaContact}>
+                  <Phone size={17} /> {siteConfig.phone}
+                </a>
+              </div>
+            </div>
+            <div className={styles.ctaAside}>
+              <span>Ready when you are</span>
+              <strong>Let&apos;s make it work.</strong>
+              <Mail size={27} />
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   );

@@ -16,7 +16,8 @@ import {
   Mail,
   Filter,
 } from "lucide-react";
-import { impactStats, countiesServed } from "../../data/projectStats";
+import { COMMON_IMPACT_STATS, countiesServed } from "@/data/impactStats";
+import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { SERVICE_CATEGORIES, type ServiceCategory } from "@/data/services";
 import { projects, type Project } from "@/data/projectStats";
 import ProjectModal from "./ProjectModal";
@@ -57,25 +58,6 @@ export default function ProjectsPage() {
     ...SERVICE_CATEGORIES,
   ];
 
-  const getCount = (cat: FilterCategory) => {
-    if (cat === "All Projects") return projects.length;
-    return projects.filter((p) => p.category === cat).length;
-  };
-
-  const heroStatKeys = new Set([
-    "projectsCompleted",
-    "yearsExperience",
-    "countiesServed",
-  ]);
-
-  const projectStats = Object.fromEntries(
-    impactStats.map((stat) => [stat.key, stat]),
-  );
-
-  const impactStatsGrid = impactStats.filter(
-    (stat) => !heroStatKeys.has(stat.key),
-  );
-
   return (
     <div className={styles.page}>
       {/* Hero Section */}
@@ -96,26 +78,7 @@ export default function ProjectsPage() {
             Explore our completed solar, borehole, irrigation, plumbing, and
             electrical projects across Kenya.
           </p>
-          <div className={styles.heroStats}>
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatValue}>
-                {projectStats.projectsCompleted.value}
-              </span>
-              <span className={styles.heroStatLabel}>Projects Completed</span>
-            </div>
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatValue}>
-                {projectStats.yearsExperience.value}
-              </span>
-              <span className={styles.heroStatLabel}>Years Experience</span>
-            </div>
-            <div className={styles.heroStat}>
-              <span className={styles.heroStatValue}>
-                {projectStats.countiesServed.value}
-              </span>
-              <span className={styles.heroStatLabel}>Counties Served</span>
-            </div>
-          </div>
+          <AnimatedStats />
         </div>
       </section>
 
@@ -222,8 +185,8 @@ export default function ProjectsPage() {
           </div>
 
           <div className={styles.statsGrid}>
-            {impactStatsGrid.map((stat) => (
-              <div key={stat.key} className={styles.statCard}>
+            {Object.entries(COMMON_IMPACT_STATS).map(([key, stat]) => (
+              <div key={key} className={styles.statCard}>
                 <div className={styles.statIcon}>{iconMap[stat.icon]}</div>
                 <div className={styles.statValue}>{stat.value}</div>
                 <div className={styles.statLabel}>{stat.label}</div>

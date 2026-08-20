@@ -1,0 +1,133 @@
+// export const COMMON_IMPACT_STATS = [
+//   {
+//     key: "projectsCompleted",
+//     label: "Projects Completed",
+//     value: "150+",
+//     icon: "check-circle",
+//   },
+//   {
+//     key: "countiesServed",
+//     label: "Counties Served",
+//     value: "27+",
+//     icon: "map",
+//   },
+//   {
+//     key: "yearsExperience",
+//     label: "Years Experience",
+//     value: "10+",
+//     icon: "CalendarDays",
+//   },
+//   {
+//     key: "clientsServed",
+//     label: "Clients Served",
+//     value: "120+",
+//     icon: "users",
+//   },
+//   {
+//     key: "systemsInstalled",
+//     label: "Systems Installed",
+//     value: "200+",
+//     icon: "settings",
+//   },
+//   {
+//     key: "customerSatisfaction",
+//     label: "Customer Satisfaction",
+//     value: "99%",
+//     icon: "smile",
+//   },
+// ] as const;
+
+export const COMMON_IMPACT_STATS = {
+  projectsCompleted: {
+    label: "Projects Completed",
+    value: "150+",
+    icon: "check-circle",
+  },
+
+  countiesServed: {
+    label: "Counties Served",
+    value: "27+",
+    icon: "map",
+  },
+
+  yearsExperience: {
+    label: "Years Experience",
+    value: "10+",
+    icon: "calendar-days",
+  },
+
+  clientsServed: {
+    label: "Clients Served",
+    value: "120+",
+    icon: "users",
+  },
+
+  systemsInstalled: {
+    label: "Systems Installed",
+    value: "200+",
+    icon: "settings",
+  },
+
+  customerSatisfaction: {
+    label: "Customer Satisfaction",
+    value: "99%",
+    icon: "smile",
+  },
+} as const;
+
+export const countiesServed = [
+  { countyName: "Meru", projectsCount: 32, coordinates: { x: 62, y: 38 } },
+  { countyName: "Isiolo", projectsCount: 18, coordinates: { x: 55, y: 32 } },
+  { countyName: "Marsabit", projectsCount: 15, coordinates: { x: 55, y: 20 } },
+  { countyName: "Wajir", projectsCount: 12, coordinates: { x: 65, y: 25 } },
+  { countyName: "Garissa", projectsCount: 9, coordinates: { x: 65, y: 38 } },
+  { countyName: "Mandera", projectsCount: 7, coordinates: { x: 72, y: 20 } },
+  { countyName: "Turkana", projectsCount: 6, coordinates: { x: 25, y: 25 } },
+  { countyName: "Samburu", projectsCount: 5, coordinates: { x: 50, y: 28 } },
+  { countyName: "Laikipia", projectsCount: 5, coordinates: { x: 50, y: 42 } },
+  {
+    countyName: "Tharaka Nithi",
+    projectsCount: 5,
+    coordinates: { x: 60, y: 44 },
+  },
+  { countyName: "Embu", projectsCount: 4, coordinates: { x: 58, y: 48 } },
+  { countyName: "Machakos", projectsCount: 4, coordinates: { x: 52, y: 55 } },
+  { countyName: "Kajiado", projectsCount: 3, coordinates: { x: 47, y: 58 } },
+  { countyName: "Kiambu", projectsCount: 3, coordinates: { x: 50, y: 52 } },
+  { countyName: "Nairobi", projectsCount: 3, coordinates: { x: 48, y: 55 } },
+  { countyName: "Nakuru", projectsCount: 3, coordinates: { x: 45, y: 48 } },
+  { countyName: "Nyeri", projectsCount: 2, coordinates: { x: 55, y: 45 } },
+  { countyName: "Kirinyaga", projectsCount: 2, coordinates: { x: 58, y: 48 } },
+  { countyName: "Murang'a", projectsCount: 2, coordinates: { x: 55, y: 52 } },
+  { countyName: "Kisumu", projectsCount: 2, coordinates: { x: 38, y: 52 } },
+  { countyName: "Kakamega", projectsCount: 2, coordinates: { x: 35, y: 42 } },
+  { countyName: "Vihiga", projectsCount: 1, coordinates: { x: 37, y: 44 } },
+  { countyName: "Homa Bay", projectsCount: 1, coordinates: { x: 40, y: 55 } },
+  { countyName: "Migori", projectsCount: 1, coordinates: { x: 43, y: 58 } },
+  { countyName: "Bomet", projectsCount: 1, coordinates: { x: 38, y: 48 } },
+  {
+    countyName: "Elgeyo Marakwet",
+    projectsCount: 1,
+    coordinates: { x: 40, y: 35 },
+  },
+  { countyName: "Lamu", projectsCount: 1, coordinates: { x: 70, y: 55 } },
+];
+
+// {
+//   key: "solarInstalled",
+//   label: "Solar Installed",
+//   value: "1.2MW",
+//   icon: "sun",
+// },
+// {
+//   key: "boreholesDrilled",
+//   label: "Boreholes Drilled",
+//   value: "8+",
+//   icon: "droplet",
+// },
+// {
+//   key: "acresIrrigated",
+//   label: "Acres Irrigated",
+//   value: "1000+",
+//   icon: "sprout",
+// },

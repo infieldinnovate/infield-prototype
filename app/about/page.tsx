@@ -1,8 +1,7 @@
-
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { Stats } from "@/components/ui/Stats";
+import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
@@ -112,7 +111,7 @@ export default function AboutPage() {
 
       <section className={styles.statsSection}>
         <div className={styles.container}>
-          <Stats />
+          <AnimatedStats />
         </div>
       </section>
 
@@ -134,11 +133,11 @@ export default function AboutPage() {
                 centered={false}
               />
               <p className={styles.paragraph}>
-                Infield Innovations was founded in 2009 with a simple mission: to provide
-                honest, reliable electrical services to our community. What
-                started as a three-person operation has grown into a
-                multi-disciplinary engineering company serving thousands of
-                satisfied customers across Kenya.
+                Infield Innovations was founded in 2009 with a simple mission:
+                to provide honest, reliable electrical services to our
+                community. What started as a three-person operation has grown
+                into a multi-disciplinary engineering company serving thousands
+                of satisfied customers across Kenya.
               </p>
               <p className={styles.paragraph}>
                 Today, we offer comprehensive services across electrical,

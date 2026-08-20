@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Award, Users, Clock, Shield, Wrench, ThumbsUp } from "lucide-react";
 import styles from "./WhyChooseUs.module.scss";
 import { SectionHeading } from "../ui/SectionHeading";
-import { impactStats } from "@/data/projectStats";
+import { AnimatedStats } from "@/components/sections/AnimatedStats";
 
 const WhyChooseUs = () => {
   const features = [
@@ -37,15 +37,6 @@ const WhyChooseUs = () => {
       color: "#10b981",
     },
   ];
-
-  const stats = impactStats.filter((stat) =>
-    [
-      "projectsCompleted",
-      "yearsExperience",
-      "customerSatisfaction",
-      "solarInstalled",
-    ].includes(stat.key),
-  );
 
   return (
     <section className={styles.whyChooseUsSection}>
@@ -93,21 +84,7 @@ const WhyChooseUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className={styles.statsGrid}>
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  className={styles.statItem}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                >
-                  <div className={styles.statNumber}>{stat.value}</div>
-                  <div className={styles.statLabel}>{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
+            <AnimatedStats />
           </motion.div>
         </div>
       </div>

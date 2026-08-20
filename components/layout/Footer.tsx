@@ -33,6 +33,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { siteConfig, footerLinks } from "@/data/site.config";
+import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";
 
@@ -175,20 +176,20 @@ export function Footer() {
               <div className={styles.stats}>
                 <div className={styles.statItem}>
                   <span className={styles.statValue}>
-                    {siteConfig.stats.yearsInBusiness}
+                    {COMMON_IMPACT_STATS.yearsExperience.value}
                   </span>
                   <span className={styles.statLabel}>Years in Business</span>
                 </div>
                 <div className={styles.statItem}>
                   <span className={styles.statValue}>
-                    {siteConfig.stats.projectsCompleted}
+                    {COMMON_IMPACT_STATS.projectsCompleted.value}
                   </span>
                   <span className={styles.statLabel}>Projects Completed</span>
                 </div>
               </div>
               <div className={styles.coverage}>
                 <MapPin size={14} />
-                <span>{siteConfig.stats.coverage}</span>
+                <span>Nationwide across Kenya</span>
               </div>
             </div>
 

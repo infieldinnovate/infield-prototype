@@ -37,11 +37,6 @@ export const siteConfig = {
     youtube: "https://youtube.com/@InfieldInnovations",
     whatsapp: "https://wa.me/254702393677",
   },
-  stats: {
-    yearsInBusiness: "15+",
-    projectsCompleted: "4,200+",
-    coverage: "Nationwide across Kenya",
-  },
   mission:
     "To deliver reliable, sustainable engineering solutions that empower Kenyan communities.",
   brands: [
@@ -98,13 +93,6 @@ export const footerLinks = {
     { label: "Cookie Policy", href: "/cookies" },
   ],
 } as const;
-
-export const stats = [
-  { label: "Years of Experience", value: "15+" },
-  { label: "Projects Completed", value: "4,200+" },
-  { label: "Certified Technicians", value: "28" },
-  { label: "Customer Satisfaction", value: "98%" },
-] as const;
 
 export const certifications = [
   "Licensed & Insured",

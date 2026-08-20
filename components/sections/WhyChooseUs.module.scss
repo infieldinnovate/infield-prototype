@@ -8,13 +8,18 @@
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #{$color-blue-800} 50%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #{$color-blue-800} 50%,
+      transparent 100%
+    );
   }
 }
 
@@ -70,7 +75,7 @@
   position: relative;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: -4px;
     border-radius: 50%;
@@ -110,71 +115,24 @@
 .statsSection {
   @include gradient-primary;
   border-radius: 24px;
-  padding: 60px 40px;
   position: relative;
   overflow: hidden;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -50%;
     right: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 
   @include breakpoint-down(md) {
-    padding: 40px 20px;
-  }
-}
-
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px;
-  position: relative;
-  z-index: 1;
-
-  @include breakpoint-down(md) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-  }
-
-  @include breakpoint-down(sm) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.statItem {
-  text-align: center;
-  color: $color-white;
-}
-
-.statNumber {
-  font-size: 48px;
-  font-weight: 800;
-  line-height: 1;
-  margin-bottom: 10px;
-  background: linear-gradient(135deg, #{$color-amber-400} 0%, #{$color-amber-500} 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-
-  @include breakpoint-down(md) {
-    font-size: 36px;
-  }
-}
-
-.statLabel {
-  font-size: 16px;
-  font-weight: 600;
-  opacity: 0.9;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-
-  @include breakpoint-down(md) {
-    font-size: 14px;
   }
 }

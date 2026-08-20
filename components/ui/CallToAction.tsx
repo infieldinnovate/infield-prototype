@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import styles from "./CallToAction.module.scss";
 import { SectionHeading } from "./SectionHeading";
+import { siteConfig } from "@/data/site.config";
 
 const CallToAction = () => {
   const benefits = [
@@ -75,13 +76,16 @@ const CallToAction = () => {
                 </Link>
 
                 <div className={styles.contactOptions}>
-                  <a href="tel:+254702393677" className={styles.contactButton}>
+                  <a
+                    href={`tel:${siteConfig.phone}`}
+                    className={styles.contactButton}
+                  >
                     <Phone size={18} />
                     <span>Call Now</span>
                   </a>
 
                   <a
-                    href="mailto:Infieldinnovations@gmail.com"
+                    href={`mailto:${siteConfig.email}`}
                     className={styles.contactButton}
                   >
                     <Mail size={18} />

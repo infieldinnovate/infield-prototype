@@ -71,7 +71,7 @@ const whyChooseUs = [
 ];
 
 export default function HomePage() {
-const generalFAQs = faqs.slice(0, 6);
+  const generalFAQs = faqs.slice(0, 6);
 
   return (
     <>

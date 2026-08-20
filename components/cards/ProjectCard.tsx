@@ -73,7 +73,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
             onClick();
           }}
         >
-          Read case study
+          Read Case Study
           <ArrowRight size={16} />
         </button>
       </div>

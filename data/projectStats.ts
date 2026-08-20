@@ -75,6 +75,11 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
+        url: "https://images.pexels.com/photos/9897190/pexels-photo-9897190.jpeg?auto=compress&cs=tinysrgb&w=800",
+        caption: "Site before solar installation",
+        phase: "before",
+      },
+      {
         url: "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=800",
         caption: "Completed rooftop solar installation",
         phase: "after",

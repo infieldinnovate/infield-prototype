@@ -1,23 +1,30 @@
-'use client';
+// components\sections\BeforeAfterSlider.tsx
 
-import { useRef, useState, useCallback } from 'react';
-import { MoveHorizontal } from 'lucide-react';
-import { caseStudies } from '@/data/caseStudies';
-import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
-import styles from './BeforeAfterSlider.module.scss';
+"use client";
+
+import { useRef, useState, useCallback } from "react";
+import { MoveHorizontal } from "lucide-react";
+import { projects } from "@/data/projectStats";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
+import styles from "./BeforeAfterSlider.module.scss";
 
 export function BeforeAfterSlider() {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
 
-  const study = caseStudies[0];
+  const project = projects[0];
+
+  const beforeImage = project.gallery.find((image) => image.phase === "before");
+  const afterImage = project.gallery.find((image) => image.phase === "after");
 
   const updatePosition = useCallback((clientX: number) => {
     const el = containerRef.current;
     if (!el) return;
+
     const rect = el.getBoundingClientRect();
     const pct = ((clientX - rect.left) / rect.width) * 100;
+
     setPosition(Math.max(0, Math.min(100, pct)));
   }, []);
 
@@ -36,13 +43,22 @@ export function BeforeAfterSlider() {
     isDragging.current = false;
   };
 
+  if (!beforeImage || !afterImage) {
+    return null;
+  }
+
   return (
     <section className={styles.section} aria-labelledby="ba-heading">
       <div className={styles.container}>
         <p className={styles.eyebrow}>See the Transformation</p>
-        <h2 id="ba-heading" className={styles.title}>Before &amp; After</h2>
+
+        <h2 id="ba-heading" className={styles.title}>
+          Before &amp; After
+        </h2>
+
         <p className={styles.description}>
-          Drag the slider to see the difference our work makes. {study.title}.
+          Drag the slider to see the difference our work makes.
+          <br /> {project.title}.
         </p>
 
         <div
@@ -55,25 +71,31 @@ export function BeforeAfterSlider() {
         >
           <div className={styles.imageWrap}>
             <ImageWithFallback
-              src={study.afterImage}
-              alt="After"
+              src={afterImage.url}
+              alt={`${project.title} after completion`}
               fill
               sizes="(max-width: 1024px) 100vw, 1024px"
               className={styles.image}
             />
-            <span className={`${styles.badge} ${styles.badgeAfter}`}>After</span>
+
+            <span className={`${styles.badge} ${styles.badgeAfter}`}>
+              After
+            </span>
           </div>
 
           <div className={styles.beforeWrap} style={{ width: `${position}%` }}>
             <div className={styles.beforeInner}>
               <ImageWithFallback
-                src={study.beforeImage}
-                alt="Before"
+                src={beforeImage.url}
+                alt={`${project.title} before work`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 1024px"
                 className={styles.image}
               />
-              <span className={`${styles.badge} ${styles.badgeBefore}`}>Before</span>
+
+              <span className={`${styles.badge} ${styles.badgeBefore}`}>
+                Before
+              </span>
             </div>
           </div>
 

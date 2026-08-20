@@ -197,6 +197,89 @@
 .detailServices div svg { color: $color-secondary-light; }
 .integrationDetailArrow { position: absolute; top: var(--space-6); right: var(--space-6); color: $color-accent-light; opacity: .3; }
 
+// ============================================
+// WHO WE SERVE
+// ============================================
+.audienceSection { @include section; background: $color-gray-50; }
+.audienceGrid { display: grid; grid-template-columns: 1fr; gap: var(--space-4); }
+.audienceCard { @include card; @include flex-column; gap: var(--space-3); padding: var(--space-6); height: 100%; transition: all $transition-base; border-left: 3px solid transparent; }
+.audienceCard:hover { transform: translateY(-4px); box-shadow: $shadow-lg; border-left-color: $color-secondary; }
+.audienceCardLarge { grid-column: span 1; }
+.audienceIconWrap { @include flex-center; width: 52px; height: 52px; background: linear-gradient(135deg, $color-primary-50, $color-secondary-50); color: $color-primary; border-radius: var(--radius-lg); transition: all $transition-base; }
+.audienceCard:hover .audienceIconWrap { background: linear-gradient(135deg, $color-primary, $color-secondary); color: $color-white; transform: scale(1.06); }
+.audienceName { font-size: $fs-lg; font-weight: $fw-bold; color: $color-slate-900; }
+.audienceDesc { font-size: $fs-sm; color: $color-slate-600; line-height: $lh-relaxed; flex: 1; }
+.audienceServices { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; padding: 0; margin: 0; }
+.audienceServices li { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: $color-white; border: 1px solid $color-gray-200; border-radius: 999px; font-size: $fs-xs; color: $color-slate-600; font-weight: $fw-medium; }
+.audienceServices svg { color: $color-secondary; }
+
+// ============================================
+// PROJECTS / CASE STUDIES
+// ============================================
+.caseStudiesSection { @include section; background: $color-white; }
+.caseStudiesLayout { display: grid; grid-template-columns: 1fr; gap: var(--space-6); margin-bottom: var(--space-8); }
+.caseStudyCard { @include card; overflow: hidden; display: flex; flex-direction: column; transition: all $transition-base; }
+.caseStudyCard:hover { box-shadow: $shadow-xl; transform: translateY(-4px); }
+.caseStudyFeatured { grid-column: span 1; }
+.caseStudyImage { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
+.caseStudyImg { object-fit: cover; transition: transform 0.5s ease; }
+.caseStudyCard:hover .caseStudyImg { transform: scale(1.04); }
+.caseStudyImageOverlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.55) 0%, transparent 50%); }
+.caseStudyMeta { position: absolute; bottom: var(--space-4); left: var(--space-4); right: var(--space-4); display: flex; justify-content: space-between; align-items: center; }
+.caseStudyCategory { display: inline-block; padding: 4px 12px; background: $color-primary; color: $color-white; font-size: $fs-xs; font-weight: $fw-bold; text-transform: uppercase; letter-spacing: .05em; border-radius: 999px; }
+.caseStudyLocation { display: inline-flex; align-items: center; gap: 4px; color: rgba(255,255,255,.9); font-size: $fs-xs; font-weight: $fw-medium; }
+.caseStudyBody { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4); flex: 1; }
+.caseStudyTitle { font-size: $fs-xl; font-weight: $fw-bold; color: $color-slate-900; line-height: 1.25; }
+.caseStudyBlock { display: grid; gap: 4px; }
+.caseStudyLabel { font-size: $fs-xs; font-weight: $fw-bold; text-transform: uppercase; letter-spacing: .08em; color: $color-secondary-dark; }
+.caseStudyBlock p { font-size: $fs-sm; color: $color-slate-600; line-height: $lh-relaxed; }
+.caseStudyResults { display: flex; flex-wrap: wrap; gap: var(--space-2); padding-top: var(--space-3); border-top: 1px solid $color-gray-200; }
+.caseStudyResult { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; background: rgba(13,148,136,.08); border: 1px solid rgba(13,148,136,.18); border-radius: 999px; font-size: $fs-xs; color: $color-slate-800; font-weight: $fw-medium; }
+.caseStudyResult svg { color: $color-secondary; }
+.caseStudyLink { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; color: $color-primary; font-size: $fs-sm; font-weight: $fw-semibold; transition: gap $transition-fast; }
+.caseStudyLink:hover { gap: 10px; color: $color-primary-dark; }
+.supportingProjects { display: grid; grid-template-columns: 1fr; gap: var(--space-4); margin-bottom: var(--space-8); }
+.supportingCard { @include card; overflow: hidden; transition: all $transition-base; }
+.supportingCard:hover { box-shadow: $shadow-lg; transform: translateY(-3px); }
+.supportingImage { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
+.supportingImg { object-fit: cover; transition: transform 0.4s ease; }
+.supportingCard:hover .supportingImg { transform: scale(1.05); }
+.supportingCategory { position: absolute; top: var(--space-3); left: var(--space-3); padding: 3px 10px; background: rgba(255,255,255,.95); color: $color-primary; font-size: 10px; font-weight: $fw-bold; text-transform: uppercase; letter-spacing: .05em; border-radius: 999px; }
+.supportingBody { padding: var(--space-4); }
+.supportingBody h4 { font-size: $fs-base; font-weight: $fw-bold; color: $color-slate-900; margin-bottom: 4px; }
+.supportingBody p { font-size: $fs-xs; color: $color-slate-600; }
+.caseStudiesCta { display: flex; justify-content: center; margin-top: var(--space-4); }
+
+// ============================================
+// RESULTS
+// ============================================
+.resultsSection { @include section; background: $color-slate-900; color: $color-white; }
+.resultsIntro { max-width: 640px; margin-bottom: var(--space-12); }
+.resultsIntro .eyebrow { color: $color-accent-light; }
+.resultsIntro .eyebrow span { background: $color-accent; }
+.resultsIntro h2 { color: $color-white; font-size: clamp(2rem, 5vw, $fs-5xl); letter-spacing: -.045em; line-height: 1.04; margin: var(--space-3) 0 var(--space-4); }
+.resultsIntro p { color: rgba(255,255,255,.62); font-size: $fs-lg; line-height: $lh-relaxed; }
+.resultsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8) var(--space-4); }
+.resultStat { display: grid; gap: var(--space-2); padding-left: var(--space-4); border-left: 2px solid rgba(45,212,191,.3); }
+.resultStat strong { font-size: clamp($fs-3xl, 5vw, $fs-5xl); font-weight: $fw-extrabold; line-height: 1; letter-spacing: -.04em; background: linear-gradient(135deg, $color-white, $color-secondary-light); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.resultStat span { color: rgba(255,255,255,.55); font-size: $fs-xs; text-transform: uppercase; letter-spacing: .07em; }
+
+// ============================================
+// WHY INFIELD
+// ============================================
+.whySection { @include section; background: #eff8f7; }
+.whyGrid { display: grid; gap: var(--space-10); }
+.whyCopy { max-width: 480px; }
+.whyCopy h2 { font-size: clamp(2rem, 5vw, $fs-5xl); letter-spacing: -.045em; line-height: 1.04; margin: var(--space-3) 0 var(--space-4); color: $color-slate-900; }
+.whyCopy p { font-size: $fs-lg; color: $color-slate-600; line-height: $lh-relaxed; margin-bottom: var(--space-6); }
+.whyItems { display: grid; gap: var(--space-4); }
+.whyItem { display: grid; grid-template-columns: 44px 1fr; gap: var(--space-4); align-items: start; padding: var(--space-5); background: $color-white; border: 1px solid $color-gray-200; border-radius: var(--radius-lg); transition: all $transition-base; }
+.whyItem:hover { border-color: $color-secondary-100; box-shadow: $shadow-md; transform: translateX(4px); }
+.whyIconWrap { @include flex-center; width: 44px; height: 44px; background: linear-gradient(135deg, $color-primary-50, $color-secondary-50); color: $color-primary; border-radius: var(--radius-md); flex-shrink: 0; transition: all $transition-base; }
+.whyItem:hover .whyIconWrap { background: linear-gradient(135deg, $color-primary, $color-secondary); color: $color-white; }
+.whyItem h3 { font-size: $fs-base; font-weight: $fw-bold; color: $color-slate-900; margin-bottom: 4px; }
+.whyItem p { font-size: $fs-sm; color: $color-slate-600; line-height: $lh-relaxed; }
+
 @include breakpoint-up("md") {
   .hero { padding: calc(var(--header-height) + var(--space-16)) 0 var(--space-16); }
   .heroGrid, .insightGrid { grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: var(--space-12); }
@@ -226,6 +309,15 @@
   .heroSystemFlow { flex-direction: row; align-items: center; justify-content: space-between; gap: var(--space-1); }
   .heroSystemItem { grid-template-columns: 1fr; grid-template-rows: auto auto; justify-items: center; text-align: center; flex: 1; padding: var(--space-2); }
   .heroSystemLine { top: 20px; left: 100%; width: var(--space-2); height: 2px; transform-origin: left; background: linear-gradient(90deg, $color-secondary, $color-accent); }
+  .audienceGrid { grid-template-columns: repeat(3, 1fr); }
+  .audienceCardLarge { grid-column: span 2; }
+  .caseStudiesLayout { grid-template-columns: 1fr 1fr; }
+  .caseStudyFeatured { grid-column: span 2; }
+  .caseStudyFeatured .caseStudyImage { aspect-ratio: 21 / 9; }
+  .supportingProjects { grid-template-columns: repeat(4, 1fr); }
+  .resultsGrid { grid-template-columns: repeat(4, 1fr); }
+  .whyGrid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: start; gap: var(--space-16); }
+  .whyItems { grid-template-columns: repeat(2, 1fr); }
 }
 
 @include breakpoint-up("lg") {
@@ -234,9 +326,12 @@
   .testimonial { padding: var(--space-12); }
   .problemPoint { padding: var(--space-8); }
   .integrationDetail { padding: var(--space-12); }
+  .audienceGrid { grid-template-columns: repeat(4, 1fr); }
+  .caseStudyFeatured .caseStudyImage { aspect-ratio: 24 / 9; }
 }
 
 @include reduced-motion {
-  .serviceItem, .relatedCard, .testimonialControls button, .problemPoint, .integrationStage { transition: none; }
+  .serviceItem, .relatedCard, .testimonialControls button, .problemPoint, .integrationStage, .audienceCard, .caseStudyCard, .supportingCard, .whyItem { transition: none; }
   .heroSystemLine { animation: none; }
+  .caseStudyImg, .supportingImg { transition: none; }
 }

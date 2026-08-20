@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -48,9 +48,8 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { getServiceBySlug, services, type Service } from "@/data/services";
 import { caseStudies } from "@/data/caseStudies";
-import { faqs } from "@/data/faqs";
 import { industries } from "@/data/industries";
-import { impactStats } from "@/data/projectStats";
+import { impactStats, projects } from "@/data/projectStats";
 import { siteConfig } from "@/data/site.config";
 import { testimonials } from "@/data/testimonials";
 import styles from "./page.module.scss";
@@ -119,6 +118,61 @@ const serviceStats = [
   { value: "15+", label: "Years experience" },
   { value: "8", label: "Counties served" },
 ];
+
+const whyInfieldItems = [
+  { icon: Settings2, title: "Integrated solutions", description: "We connect water, energy and infrastructure into one coherent system — no gaps, no finger-pointing." },
+  { icon: ShieldCheck, title: "Quality engineering", description: "Certified technicians, premium materials and workmanship that meets real-world conditions, not just specs." },
+  { icon: Wrench, title: "Reliable implementation", description: "Clear timelines, clean sites and minimal disruption. We do what we said we would, when we said we would." },
+  { icon: Clock3, title: "Long-term support", description: "Maintenance, monitoring and practical advice that keeps your system performing for years, not weeks." },
+  { icon: Users, title: "Customer-focused", description: "We listen first. Your brief, your site and your constraints shape the solution — not a catalogue." },
+  { icon: Sprout, title: "Sustainable by design", description: "Solar pumping, water harvesting and efficient delivery that lower cost and environmental impact together." },
+];
+
+const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+const supportingProjects = projects.filter((p) => !p.featured).slice(0, 4);
+
+function useCountUp(target: number, inView: boolean, duration = 1600): number {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!inView) return;
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) { setValue(target); return; }
+    const start = performance.now();
+    let raf: number;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(target * eased);
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, target, duration]);
+  return value;
+}
+
+function CountUpStat({ stat, index }: { stat: { key: string; label: string; value: string; icon: string }; index: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } }, { threshold: 0.3 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  const numericMatch = stat.value.match(/^([\d,.]+)/);
+  const numericPart = numericMatch ? parseFloat(numericMatch[1].replace(/,/g, "")) : 0;
+  const suffix = numericMatch ? stat.value.slice(numericMatch[1].length) : "";
+  const animated = useCountUp(numericPart, inView);
+  const display = numericPart >= 1000 ? Math.round(animated).toLocaleString() : Number.isInteger(numericPart) ? Math.round(animated).toString() : animated.toFixed(1);
+  return (
+    <motion.div ref={ref} className={styles.resultStat} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }}>
+      <strong>{display}{suffix}</strong>
+      <span>{stat.label}</span>
+    </motion.div>
+  );
+}
 
 function getIcon(name: string): LucideIcon {
   return iconMap[name] || Sparkles;
@@ -321,6 +375,189 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             {integratedStages.map((stage, index) => { const StageIcon = stage.icon; const isActive = stage.id === activeStage.id; return <button type="button" role="tab" aria-selected={isActive} className={`${styles.integrationStage} ${isActive ? styles.integrationStageActive : ""}`} key={stage.id} onClick={() => setSelectedStageId(stage.id)}><span className={styles.integrationStageNumber}>{stage.kicker}</span><span className={styles.integrationStageIcon}><StageIcon size={20} /></span><strong>{stage.label}</strong>{index < integratedStages.length - 1 && <ArrowRight className={styles.integrationStageArrow} size={17} />}</button>; })}
           </div>
           <AnimatePresence mode="wait"><motion.div key={activeStage.id} className={styles.integrationDetail} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: .24 }}><div><span className={styles.detailKicker}>Stage {activeStage.kicker}</span><h3>{activeStage.label}</h3><p>{activeStage.description}</p></div><div className={styles.detailServices}><span>Relevant services</span><div>{activeStage.services.map((item) => <span key={item}><Check size={14} /> {item}</span>)}</div></div><ArrowDownRight className={styles.integrationDetailArrow} size={28} /></motion.div></AnimatePresence>
+        </div>
+      </section>
+
+      {/* WHO WE SERVE */}
+      <section className={styles.audienceSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionIntro}>
+            <div>
+              <div className={styles.eyebrow}><span /> Who we serve</div>
+              <h2>Built for the way you work.</h2>
+            </div>
+            <p>From a single home to a multi-site operation, we tailor every system to the demands of your sector.</p>
+          </div>
+          <div className={styles.audienceGrid}>
+            {industries.map((industry, index) => {
+              const Icon = audienceIcons[industry.name] || Building2;
+              const isLarge = index === 0 || index === 5;
+              return (
+                <motion.div
+                  key={industry.id}
+                  className={`${styles.audienceCard} ${isLarge ? styles.audienceCardLarge : ""}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: index * 0.06 }}
+                >
+                  <div className={styles.audienceIconWrap}>
+                    <Icon size={28} strokeWidth={1.8} />
+                  </div>
+                  <h3 className={styles.audienceName}>{industry.name}</h3>
+                  <p className={styles.audienceDesc}>{industry.description}</p>
+                  <ul className={styles.audienceServices}>
+                    {industry.services.slice(0, 3).map((s) => (
+                      <li key={s}><Check size={12} /> {s}</li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* PROJECTS / CASE STUDIES */}
+      <section className={styles.caseStudiesSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionIntro}>
+            <div>
+              <div className={styles.eyebrow}><span /> Proven results</div>
+              <h2>Real projects. Real outcomes.</h2>
+            </div>
+            <p>Every installation is designed around a specific challenge. Here is what that looks like in practice.</p>
+          </div>
+
+          <div className={styles.caseStudiesLayout}>
+            {featuredProjects.map((project, index) => (
+              <motion.article
+                key={project.id}
+                className={`${styles.caseStudyCard} ${index === 0 ? styles.caseStudyFeatured : ""}`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className={styles.caseStudyImage}>
+                  <ImageWithFallback
+                    src={project.gallery[0]?.url || "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1200"}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 60vw"
+                    className={styles.caseStudyImg}
+                  />
+                  <div className={styles.caseStudyImageOverlay} />
+                  <div className={styles.caseStudyMeta}>
+                    <span className={styles.caseStudyCategory}>{project.category}</span>
+                    <span className={styles.caseStudyLocation}><MapPin size={12} /> {project.county}</span>
+                  </div>
+                </div>
+                <div className={styles.caseStudyBody}>
+                  <h3 className={styles.caseStudyTitle}>{project.title}</h3>
+                  <div className={styles.caseStudyBlock}>
+                    <span className={styles.caseStudyLabel}>Challenge</span>
+                    <p>{project.challenge}</p>
+                  </div>
+                  <div className={styles.caseStudyBlock}>
+                    <span className={styles.caseStudyLabel}>Solution</span>
+                    <p>{project.solution}</p>
+                  </div>
+                  <div className={styles.caseStudyResults}>
+                    {project.results.slice(0, 3).map((r) => (
+                      <span key={r} className={styles.caseStudyResult}><CheckCircle2 size={14} /> {r}</span>
+                    ))}
+                  </div>
+                  <Link href="/projects" className={styles.caseStudyLink}>View Case Study <ArrowUpRight size={16} /></Link>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          {supportingProjects.length > 0 && (
+            <div className={styles.supportingProjects}>
+              {supportingProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  className={styles.supportingCard}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-30px" }}
+                  transition={{ duration: 0.35, delay: index * 0.06 }}
+                >
+                  <div className={styles.supportingImage}>
+                    <ImageWithFallback
+                      src={project.gallery[0]?.url || "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=600"}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                      className={styles.supportingImg}
+                    />
+                    <span className={styles.supportingCategory}>{project.category}</span>
+                  </div>
+                  <div className={styles.supportingBody}>
+                    <h4>{project.title}</h4>
+                    <p>{project.results[0]}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          <div className={styles.caseStudiesCta}>
+            <LinkButton href="/projects" variant="outline" rightIcon={<ArrowRight size={18} />}>See All Projects</LinkButton>
+          </div>
+        </div>
+      </section>
+
+      {/* RESULTS */}
+      <section className={styles.resultsSection}>
+        <div className={styles.container}>
+          <div className={styles.resultsIntro}>
+            <div className={styles.eyebrow}><span /> Measurable impact</div>
+            <h2>Numbers that mean something.</h2>
+            <p>A decade of engineering across Kenya, tracked in outcomes that matter to the people who rely on our work.</p>
+          </div>
+          <div className={styles.resultsGrid}>
+            {impactStats.map((stat, index) => (
+              <CountUpStat key={stat.key} stat={stat} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WHY INFIELD */}
+      <section className={styles.whySection}>
+        <div className={styles.container}>
+          <div className={styles.whyGrid}>
+            <div className={styles.whyCopy}>
+              <div className={styles.eyebrow}><span /> Why Infield</div>
+              <h2>Engineering that holds together.</h2>
+              <p>We do not sell products. We design, build and maintain systems that keep working long after installation day.</p>
+              <LinkButton href="/quote" size="lg" rightIcon={<ArrowUpRight size={18} />}>Get a Free Assessment</LinkButton>
+            </div>
+            <div className={styles.whyItems}>
+              {whyInfieldItems.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={item.title}
+                    className={styles.whyItem}
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ duration: 0.4, delay: index * 0.07 }}
+                  >
+                    <div className={styles.whyIconWrap}><Icon size={22} strokeWidth={1.8} /></div>
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 

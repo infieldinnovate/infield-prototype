@@ -55,7 +55,6 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { getServiceBySlug, services, type Service } from "@/data/services";
 import { industries } from "@/data/industries";
 import { projects } from "@/data/projectStats";
-import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import { siteConfig } from "@/data/site.config";
 import { testimonials } from "@/data/testimonials";
 import { faqs } from "@/data/faqs";
@@ -897,11 +896,7 @@ export default function ServiceDetailClient({
               matter to the people who rely on our work.
             </p>
           </div>
-          <div className={styles.resultsGrid}>
-            {Object.entries(COMMON_IMPACT_STATS).map(([key, stat], index) => (
-              <CountUpStat key={key} stat={{ ...stat, key }} index={index} />
-            ))}
-          </div>
+          <AnimatedStats />
         </div>
       </section>
 

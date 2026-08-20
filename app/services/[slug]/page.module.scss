@@ -1504,11 +1504,7 @@
   font-size: $fs-lg;
   line-height: $lh-relaxed;
 }
-.resultsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-8) var(--space-4);
-}
+
 .resultStat {
   display: grid;
   gap: var(--space-2);
@@ -1770,9 +1766,7 @@
   .supportingProjects {
     grid-template-columns: repeat(4, 1fr);
   }
-  .resultsGrid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+
   .whyGrid {
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     align-items: start;

@@ -16,7 +16,7 @@ import {
   Mail,
   Filter,
 } from "lucide-react";
-import { COMMON_IMPACT_STATS, countiesServed } from "@/data/impactStats";
+import { countiesServed } from "@/data/impactStats";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { SERVICE_CATEGORIES, type ServiceCategory } from "@/data/services";
 import { projects, type Project } from "@/data/projectStats";
@@ -185,13 +185,7 @@ export default function ProjectsPage() {
           </div>
 
           <div className={styles.statsGrid}>
-            {Object.entries(COMMON_IMPACT_STATS).map(([key, stat]) => (
-              <div key={key} className={styles.statCard}>
-                <div className={styles.statIcon}>{iconMap[stat.icon]}</div>
-                <div className={styles.statValue}>{stat.value}</div>
-                <div className={styles.statLabel}>{stat.label}</div>
-              </div>
-            ))}
+            <AnimatedStats />
           </div>
         </div>
       </section>

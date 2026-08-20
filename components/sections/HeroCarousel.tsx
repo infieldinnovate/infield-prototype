@@ -64,7 +64,7 @@ const slides = [
     image: "/borehole/borehole_246374627.jpg",
     icon: <Zap size={60} />,
     buttonText: "Learn About Boreholes",
-    buttonLink: "/services/borehole",
+    buttonLink: "/services/boreholes",
   },
   {
     id: 4,
@@ -169,9 +169,7 @@ function HeroSlide() {
 
 export default function HeroCarousel() {
   return (
-    <section
-      className={`${styles.heroSection} ${styles.swiper_buttons}`}
-    >
+    <section className={`${styles.heroSection} ${styles.swiper_buttons}`}>
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         spaceBetween={0}

@@ -86,7 +86,12 @@ const socialLinks = [
     url: siteConfig.social.linkedin,
     label: "LinkedIn",
   },
-  { key: "tiktok", icon: Music2, url: siteConfig.social.tiktok, label: "TikTok" },
+  {
+    key: "tiktok",
+    icon: Music2,
+    url: siteConfig.social.tiktok,
+    label: "TikTok",
+  },
   {
     key: "youtube",
     icon: Youtube,
@@ -109,7 +114,11 @@ const footerServices = [
     icon: "Electrical",
   },
   { label: "Plumbing Services", href: "/services/plumbing", icon: "Plumbing" },
-  { label: "Borehole Solutions", href: "/services/borehole", icon: "Borehole" },
+  {
+    label: "Borehole Solutions",
+    href: "/services/boreholes",
+    icon: "Borehole",
+  },
   {
     label: "Irrigation Systems",
     href: "/services/irrigation",

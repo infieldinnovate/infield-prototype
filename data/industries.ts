@@ -58,7 +58,7 @@ export const industries: Industry[] = [
     icon: 'Wheat',
     description: 'Agricultural engineering — water supply, power, and irrigation solutions.',
     services: ['Borehole drilling', 'Solar pumps', 'Irrigation', 'Electrical'],
-    serviceSlug: 'borehole',
+    serviceSlug: 'boreholes',
   },
   {
     id: 'i7',

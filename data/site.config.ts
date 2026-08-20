@@ -82,7 +82,7 @@ export const footerLinks = {
     { label: "Plumbing", href: "/services/plumbing" },
     { label: "Solar", href: "/services/solar" },
     { label: "Irrigation", href: "/services/irrigation" },
-    { label: "Borehole", href: "/services/borehole" },
+    { label: "Borehole", href: "/services/boreholes" },
   ],
   company: [
     { label: "About Us", href: "/about" },

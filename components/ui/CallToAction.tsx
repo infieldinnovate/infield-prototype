@@ -6,11 +6,14 @@ import {
   Mail,
   ArrowRight,
   CircleCheck as CheckCircle,
+  Minus,
+  Calendar,
 } from "lucide-react";
 import Link from "next/link";
 import styles from "./CallToAction.module.scss";
 import { SectionHeading } from "./SectionHeading";
 import { siteConfig } from "@/data/site.config";
+import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 
 const CallToAction = () => {
   const benefits = [
@@ -33,10 +36,13 @@ const CallToAction = () => {
           >
             <SectionHeading
               themeColor="light"
-              title="Ready to Get Started?"
+              // icon={Minus}
+              // eyebrow="Start a conversation"
+              title="Let's build a solution that works for you."
               description="
               Transform your property with our expert water and energy
               solutions. Contact us today for a free consultation."
+              centered={false}
             />
 
             <ul className={styles.benefitsList}>
@@ -65,8 +71,8 @@ const CallToAction = () => {
             <div className={styles.ctaCard}>
               <SectionHeading
                 level="h3"
-                title="Get Your Free Quote Today"
-                description="Join 150+ satisfied customers who trust Infield Innovations"
+                title="Get Your Free Consultation Now"
+                description={`Join ${COMMON_IMPACT_STATS.clientsServed.value} satisfied customers who trust Infield Innovations`}
               />
 
               <div className={styles.buttonGroup}>
@@ -84,12 +90,9 @@ const CallToAction = () => {
                     <span>Call Now</span>
                   </a>
 
-                  <a
-                    href={`mailto:${siteConfig.email}`}
-                    className={styles.contactButton}
-                  >
-                    <Mail size={18} />
-                    <span>Email Us</span>
+                  <a href="#" className={styles.contactButton}>
+                    <Calendar size={18} />
+                    <span>Book Site Visit</span>
                   </a>
                 </div>
               </div>

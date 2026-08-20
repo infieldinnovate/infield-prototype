@@ -190,44 +190,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className={styles.cta}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <ImageWithFallback
-          src="https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=1600"
-          alt="Solar panels"
-          className={styles.ctaBg}
-          width={1600}
-          height={800}
-        />
-        <div className={styles.ctaContent}>
-          <h2 className={styles.ctaTitle}>Have a Similar Project in Mind?</h2>
-          <p className={styles.ctaText}>
-            Contact Infield Innovations for professional water and energy
-            solutions. Our team is ready to design, install, and maintain
-            systems tailored to your needs.
-          </p>
-          <div className={styles.ctaButtons}>
-            <Link
-              href="/quote"
-              className={`${styles.ctaBtn} ${styles.ctaBtnPrimary}`}
-            >
-              <Mail size={18} />
-              Request a Quote
-            </Link>
-
-            <button className={`${styles.ctaBtn} ${styles.ctaBtnSecondary}`}>
-              <Calendar size={18} />
-              Book Site Visit
-            </button>
-            <button className={`${styles.ctaBtn} ${styles.ctaBtnSecondary}`}>
-              <Phone size={18} />
-              Call Us
-            </button>
-          </div>
-        </div>
-      </section>
-
       {/* Interactive Map */}
       <section className={`${styles.section} ${styles.sectionAlt}`}>
         <div className={styles.container}>

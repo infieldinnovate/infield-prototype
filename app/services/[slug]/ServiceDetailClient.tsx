@@ -1225,42 +1225,6 @@ export default function ServiceDetailClient({
           </div>
         </div>
       </section>
-
-      <section className={styles.ctaSection}>
-        <div className={styles.container}>
-          <div className={styles.ctaPanel}>
-            <div className={styles.ctaGlow} />
-            <div className={styles.ctaContent}>
-              <div className={styles.eyebrow}>
-                <span /> Start a conversation
-              </div>
-              <h2>Let&apos;s build a solution that works for you.</h2>
-              <p>
-                Tell us about your site, your goals and your constraints. We
-                will design a practical plan — and stand behind it from first
-                survey to final handover.
-              </p>
-              <div className={styles.ctaActions}>
-                <LinkButton
-                  href="/quote"
-                  size="lg"
-                  rightIcon={<ArrowUpRight size={18} />}
-                >
-                  Get a Free Assessment
-                </LinkButton>
-                <a href={siteConfig.phoneHref} className={styles.ctaContact}>
-                  <Phone size={17} /> {siteConfig.phone}
-                </a>
-              </div>
-            </div>
-            <div className={styles.ctaAside}>
-              <span>Ready when you are</span>
-              <strong>Let&apos;s make it work.</strong>
-              <Mail size={27} />
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

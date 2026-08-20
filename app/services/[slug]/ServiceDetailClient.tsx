@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowDown,
   ArrowDownRight,
@@ -13,6 +13,7 @@ import {
   Building2,
   Check,
   CheckCircle2,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   CircleDot,
@@ -52,6 +53,7 @@ import { industries } from "@/data/industries";
 import { impactStats, projects } from "@/data/projectStats";
 import { siteConfig } from "@/data/site.config";
 import { testimonials } from "@/data/testimonials";
+import { faqs } from "@/data/faqs";
 import styles from "./page.module.scss";
 
 interface ServiceDetailClientProps {
@@ -130,6 +132,7 @@ const whyInfieldItems = [
 
 const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 const supportingProjects = projects.filter((p) => !p.featured).slice(0, 4);
+const serviceFaqs = faqs.filter((f) => ["g1", "g2", "g3", "g4", "g5", "g6", "g7"].includes(f.id));
 
 function useCountUp(target: number, inView: boolean, duration = 1600): number {
   const [value, setValue] = useState(0);
@@ -182,6 +185,10 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
   const [selectedServiceSlug, setSelectedServiceSlug] = useState(service.slug);
   const [selectedStageId, setSelectedStageId] = useState("source");
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [openFaqId, setOpenFaqId] = useState<string | null>(serviceFaqs[0]?.id ?? null);
+  const processTrackRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: processTrackRef, offset: ["start end", "end start"] });
+  const trackScale = useTransform(scrollYProgress, [0.15, 0.85], [0, 1]);
   const selectedService = getServiceBySlug(selectedServiceSlug) || service;
   const activeStage = integratedStages.find((stage) => stage.id === selectedStageId) || integratedStages[0];
   const activeTestimonial = testimonials[testimonialIndex % testimonials.length];
@@ -570,8 +577,10 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
             </div>
             <p>No hand-offs into the unknown. You get a considered plan, direct communication and a team accountable for the outcome.</p>
           </div>
-          <div className={styles.processTrack}>
+          <div className={styles.processTrack} ref={processTrackRef}>
             <div className={styles.trackLine} aria-hidden="true" />
+            <motion.div className={`${styles.trackProgress} ${styles.trackProgressV}`} style={{ scaleY: trackScale }} aria-hidden="true" />
+            <motion.div className={`${styles.trackProgress} ${styles.trackProgressH}`} style={{ scaleX: trackScale }} aria-hidden="true" />
             {processSteps.map((step, index) => (
               <motion.div
                 className={styles.processStep}
@@ -630,7 +639,7 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
           <div className={styles.testimonialHeader}><div><div className={styles.eyebrow}><span /> Client perspective</div><h2>Work that earns trust.</h2></div><div className={styles.testimonialControls}><button type="button" onClick={() => changeTestimonial(-1)} aria-label="Previous testimonial"><ChevronLeft size={19} /></button><span>{String(testimonialIndex + 1).padStart(2, "0")} / {String(testimonials.length).padStart(2, "0")}</span><button type="button" onClick={() => changeTestimonial(1)} aria-label="Next testimonial"><ChevronRight size={19} /></button></div></div>
           <AnimatePresence mode="wait">
             <motion.div key={activeTestimonial.id} className={styles.testimonial} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.25 }}>
-              <Quote className={styles.quoteIcon} size={45} />
+              <Quote className={styles.quoteIcon} size={28} />
               <blockquote>“{activeTestimonial.content}”</blockquote>
               <div className={styles.testimonialPerson}><ImageWithFallback src={activeTestimonial.avatar} alt={activeTestimonial.name} width={52} height={52} className={styles.avatar} /><span><strong>{activeTestimonial.name}</strong><small>{activeTestimonial.role}, {activeTestimonial.company}</small></span><span className={styles.rating}>{Array.from({ length: activeTestimonial.rating }).map((_, index) => <Star key={index} size={15} fill="currentColor" />)}</span></div>
             </motion.div>
@@ -645,8 +654,54 @@ export default function ServiceDetailClient({ service }: ServiceDetailClientProp
         </div>
       </section>
 
+      <section className={styles.faqSection}>
+        <div className={styles.container}>
+          <div className={styles.sectionIntro}>
+            <div>
+              <div className={styles.eyebrow}><span /> Questions &amp; answers</div>
+              <h2>Everything you need to know.</h2>
+            </div>
+            <p>Clear answers to the questions we hear most — about how we work, what we deliver, and how to get started.</p>
+          </div>
+          <div className={styles.faqList}>
+            {serviceFaqs.map((faq) => {
+              const isOpen = openFaqId === faq.id;
+              return (
+                <div key={faq.id} className={`${styles.faqItem} ${isOpen ? styles.faqItemOpen : ""}`}>
+                  <button
+                    type="button"
+                    className={styles.faqQuestion}
+                    onClick={() => setOpenFaqId(isOpen ? null : faq.id)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-content-${faq.id}`}
+                  >
+                    <span>{faq.question}</span>
+                    <ChevronDown size={20} className={`${styles.faqChevron} ${isOpen ? styles.faqChevronOpen : ""}`} />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        id={`faq-content-${faq.id}`}
+                        className={styles.faqContent}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <p className={styles.faqAnswer}>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className={styles.ctaSection}>
-        <div className={styles.container}><div className={styles.ctaPanel}><div className={styles.ctaGlow} /><div className={styles.ctaContent}><div className={styles.eyebrow}><span /> Start a conversation</div><h2>Have a project in mind?</h2><p>Let&apos;s build something exceptional together — with a plan that makes sense from day one.</p><div className={styles.ctaActions}><LinkButton href="/quote" size="lg" rightIcon={<ArrowUpRight size={18} />}>Start a project</LinkButton><a href={siteConfig.phoneHref} className={styles.ctaContact}><Phone size={17} /> {siteConfig.phone}</a></div></div><div className={styles.ctaAside}><span>Ready when you are</span><strong>Let&apos;s make it work.</strong><Mail size={27} /></div></div></div>
+        <div className={styles.container}><div className={styles.ctaPanel}><div className={styles.ctaGlow} /><div className={styles.ctaContent}><div className={styles.eyebrow}><span /> Start a conversation</div><h2>Let&apos;s build a solution that works for you.</h2><p>Tell us about your site, your goals and your constraints. We will design a practical plan — and stand behind it from first survey to final handover.</p><div className={styles.ctaActions}><LinkButton href="/quote" size="lg" rightIcon={<ArrowUpRight size={18} />}>Get a Free Assessment</LinkButton><a href={siteConfig.phoneHref} className={styles.ctaContact}><Phone size={17} /> {siteConfig.phone}</a></div></div><div className={styles.ctaAside}><span>Ready when you are</span><strong>Let&apos;s make it work.</strong><Mail size={27} /></div></div></div>
       </section>
     </div>
   );

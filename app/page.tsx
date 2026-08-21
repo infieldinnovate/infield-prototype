@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { FAQAccordion } from "@/components/ui/FAQAccordion";
+import { EnhancedFAQAccordion } from "@/components/ui/EnhancedFAQAccordion";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { IndustriesPreview } from "@/components/sections/IndustriesPreview";
@@ -84,7 +84,7 @@ export default function HomePage() {
             title="Frequently Asked Questions"
             description="Find answers to common questions about our services and process."
           />
-          <FAQAccordion faqs={generalFAQs} />
+          <EnhancedFAQAccordion faqs={generalFAQs} />
         </div>
       </section>
     </>

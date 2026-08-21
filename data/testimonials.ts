@@ -92,3 +92,15 @@ export const testimonials: Testimonial[] = [
 export function getFeaturedTestimonials(limit = 3): Testimonial[] {
   return testimonials.slice(0, limit);
 }
+
+export const reviewSummary = {
+  averageRating: 4.9,
+  totalReviews: 287,
+  ratingBreakdown: {
+    5: 268,
+    4: 15,
+    3: 3,
+    2: 1,
+    1: 0,
+  },
+};

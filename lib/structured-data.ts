@@ -1,5 +1,5 @@
 import { siteConfig } from "@/data/site.config";
-import { reviewSummary } from "@/data/reviews";
+import { reviewSummary } from "@/data/testimonials";
 import type { BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 type JsonLd = Record<string, unknown>;

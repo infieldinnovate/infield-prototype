@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { googleReviews, reviewSummary } from "@/data/reviews";
+import { testimonials, reviewSummary } from "@/data/testimonials";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import styles from "./GoogleReviews.module.scss";
 
@@ -88,7 +88,7 @@ export function GoogleReviews() {
           </button>
 
           <div className={styles.track} ref={trackRef} role="list">
-            {googleReviews.map((review) => (
+            {testimonials.map((review) => (
               <article
                 key={review.id}
                 className={styles.card}
@@ -107,21 +107,21 @@ export function GoogleReviews() {
                     />
                   ))}
                 </div>
-                <p className={styles.text}>{review.text}</p>
+                <p className={styles.text}>{review.content}</p>
                 <div className={styles.author}>
                   <div className={styles.avatar}>
                     <ImageWithFallback
                       src={review.avatar}
-                      alt={review.author}
+                      alt={review.name}
                       fill
                       sizes="48px"
                       className={styles.avatarImg}
                     />
                   </div>
                   <div className={styles.authorInfo}>
-                    <span className={styles.authorName}>{review.author}</span>
+                    <span className={styles.authorName}>{review.name}</span>
                     <span className={styles.authorMeta}>
-                      {review.service} · {review.source}
+                      {review.service} · Google
                     </span>
                   </div>
                 </div>

@@ -2,17 +2,39 @@
 // Navigation Services Menu Data
 // ============================================
 
-export interface NavServiceItem {
-  id: string;
-  number: string;
-  label: string;
-  slug: string;
-  href: string;
-  icon: string;
-  subServices: string[];
-}
+export const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "/projects" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Resources", href: "/resources" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Quote", href: "/quote" },
+] as const;
 
-export const navServices: NavServiceItem[] = [
+export const footerLinks = {
+  services: [
+    { label: "Electrical", href: "/services/electrical" },
+    { label: "Plumbing", href: "/services/plumbing" },
+    { label: "Solar", href: "/services/solar" },
+    { label: "Irrigation", href: "/services/irrigation" },
+    { label: "Borehole", href: "/services/boreholes" },
+  ],
+  company: [
+    { label: "About Us", href: "/about" },
+    { label: "Resources", href: "/resources" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Contact", href: "/contact" },
+    { label: "Request a Quote", href: "/quote" },
+  ],
+  legal: [
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms & Conditions", href: "/terms" },
+    { label: "Sitemap", href: "/sitemap.xml" },
+  ],
+} as const;
+
+export const navServicesDrop = [
   {
     id: "nav-solar",
     number: "01",

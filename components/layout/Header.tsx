@@ -16,8 +16,9 @@ import {
 } from "lucide-react";
 import * as Icons from "lucide-react";
 import { usePathname } from "next/navigation";
-import { navItems, siteConfig } from "@/data/site.config";
-import { navServices } from "@/data/navServices";
+import { siteConfig } from "@/data/site.config";
+import { navLinks } from "@/data/links";
+import { navServicesDrop } from "@/data/links";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import styles from "./Header.module.scss";
@@ -46,7 +47,7 @@ const Header = () => {
   };
 
   const isServiceActive = () =>
-    navServices.some((s) => pathname.startsWith(s.href));
+    navServicesDrop.some((s) => pathname.startsWith(s.href));
 
   // Close dropdown on route change
   useEffect(() => {
@@ -122,7 +123,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className={styles.desktopNav}>
-          {navItems
+          {navLinks
             .filter((item) => item.href !== "/quote")
             .map((item) => {
               const active = isActive(item.href);
@@ -159,7 +160,7 @@ const Header = () => {
                 size={16}
                 className={cn(
                   styles.servicesChevron,
-                  isServicesOpen && styles.chevronOpen
+                  isServicesOpen && styles.chevronOpen,
                 )}
               />
             </button>
@@ -183,7 +184,7 @@ const Header = () => {
                   </button>
 
                   <div className={styles.servicesGrid}>
-                    {navServices.map((service) => {
+                    {navServicesDrop.map((service) => {
                       const active = pathname.startsWith(service.href);
                       return (
                         <Link
@@ -258,7 +259,7 @@ const Header = () => {
             transition={{ duration: 0.24 }}
           >
             <div className={styles.mobileMenuContent}>
-              {navItems
+              {navLinks
                 .filter((item) => item.href !== "/quote")
                 .map((item) => {
                   const active = isActive(item.href);
@@ -305,7 +306,7 @@ const Header = () => {
                       transition={{ duration: 0.2 }}
                       style={{ overflow: "hidden" }}
                     >
-                      {navServices.map((service) => {
+                      {navServicesDrop.map((service) => {
                         const active = pathname.startsWith(service.href);
                         return (
                           <Link

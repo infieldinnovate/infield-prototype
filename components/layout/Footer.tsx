@@ -32,7 +32,8 @@ import {
   MessageCircle,
   type LucideIcon,
 } from "lucide-react";
-import { siteConfig, footerLinks } from "@/data/site.config";
+import { siteConfig } from "@/data/site.config";
+import { footerLinks } from "@/data/links";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";

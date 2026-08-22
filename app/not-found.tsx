@@ -2,7 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Home, ArrowLeft, Search, Wrench } from "lucide-react";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { navItems, siteConfig } from "@/data/site.config";
+import { siteConfig } from "@/data/site.config";
+import { navLinks } from "@/data/links";
 import styles from "./not-found.module.scss";
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ export default function NotFound() {
         <nav className={styles.suggestions} aria-label="Suggested pages">
           <p className={styles.suggestionsTitle}>Try one of these pages:</p>
           <div className={styles.suggestionLinks}>
-            {navItems
+            {navLinks
               .filter((item) => item.href !== "/")
               .map((item) => (
                 <Link

@@ -1,9 +1,8 @@
-@use '../../styles/abstracts/variables' as *;
-@use '../../styles/abstracts/mixins' as *;
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
 
 .section {
   padding: var(--space-16) 0;
-  background: var(--color-gray-50);
 }
 
 .container {
@@ -27,7 +26,7 @@
   color: var(--color-text);
   margin-bottom: var(--space-3);
 
-  @include breakpoint-down('sm') {
+  @include breakpoint-down("sm") {
     font-size: var(--fs-2xl);
   }
 }
@@ -117,7 +116,7 @@
 
   @include focus-visible;
 
-  @include breakpoint-down('sm') {
+  @include breakpoint-down("sm") {
     display: none;
   }
 }

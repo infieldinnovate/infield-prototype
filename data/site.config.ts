@@ -90,7 +90,6 @@ export const footerLinks = {
     { label: "Privacy Policy", href: "/privacy" },
     { label: "Terms & Conditions", href: "/terms" },
     { label: "Sitemap", href: "/sitemap.xml" },
-    { label: "Cookie Policy", href: "/cookies" },
   ],
 } as const;
 

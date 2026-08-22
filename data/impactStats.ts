@@ -1,42 +1,3 @@
-// export const COMMON_IMPACT_STATS = [
-//   {
-//     key: "projectsCompleted",
-//     label: "Projects Completed",
-//     value: "150+",
-//     icon: "check-circle",
-//   },
-//   {
-//     key: "countiesServed",
-//     label: "Counties Served",
-//     value: "27+",
-//     icon: "map",
-//   },
-//   {
-//     key: "yearsExperience",
-//     label: "Years Experience",
-//     value: "10+",
-//     icon: "CalendarDays",
-//   },
-//   {
-//     key: "clientsServed",
-//     label: "Clients Served",
-//     value: "120+",
-//     icon: "users",
-//   },
-//   {
-//     key: "systemsInstalled",
-//     label: "Systems Installed",
-//     value: "200+",
-//     icon: "settings",
-//   },
-//   {
-//     key: "customerSatisfaction",
-//     label: "Customer Satisfaction",
-//     value: "99%",
-//     icon: "smile",
-//   },
-// ] as const;
-
 export const COMMON_IMPACT_STATS = {
   projectsCompleted: {
     label: "Projects Completed",
@@ -112,22 +73,3 @@ export const countiesServed = [
   },
   { countyName: "Lamu", projectsCount: 1, coordinates: { x: 70, y: 55 } },
 ];
-
-// {
-//   key: "solarInstalled",
-//   label: "Solar Installed",
-//   value: "1.2MW",
-//   icon: "sun",
-// },
-// {
-//   key: "boreholesDrilled",
-//   label: "Boreholes Drilled",
-//   value: "8+",
-//   icon: "droplet",
-// },
-// {
-//   key: "acresIrrigated",
-//   label: "Acres Irrigated",
-//   value: "1000+",
-//   icon: "sprout",
-// },

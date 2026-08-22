@@ -652,60 +652,6 @@
 }
 
 // ============================================
-// Brands Section
-// ============================================
-.brandsSection {
-  margin-top: var(--space-10);
-  padding-top: var(--space-8);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.brandsTitle {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-white);
-  margin-bottom: var(--space-6);
-  text-align: center;
-}
-
-.brandsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-
-  @include breakpoint-up("sm") {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  @include breakpoint-up("lg") {
-    grid-template-columns: repeat(8, 1fr);
-  }
-}
-
-.brandLogo {
-  @include flex-center;
-  height: 56px;
-  padding: var(--space-2) var(--space-4);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-md);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  color: var(--color-gray-400);
-  text-align: center;
-  transition: all var(--transition-base);
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(15, 108, 189, 0.3);
-    color: var(--color-white);
-    transform: translateY(-2px);
-  }
-}
-
-// ============================================
 // Service Areas
 // ============================================
 .areasSection {

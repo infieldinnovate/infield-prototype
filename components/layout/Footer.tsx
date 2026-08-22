@@ -36,6 +36,7 @@ import { siteConfig, footerLinks } from "@/data/site.config";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";
+import { BrandsCarousel } from "../sections/BrandsCarousel";
 
 const serviceIcons: Record<string, LucideIcon> = {
   Solar: Sun,
@@ -349,16 +350,7 @@ export function Footer() {
           </div>
 
           {/* Brands We Work With */}
-          <div className={styles.brandsSection}>
-            <h3 className={styles.brandsTitle}>Brands We Work With</h3>
-            <div className={styles.brandsGrid}>
-              {siteConfig.brands.map((brand) => (
-                <div key={brand} className={styles.brandLogo}>
-                  {brand}
-                </div>
-              ))}
-            </div>
-          </div>
+          <BrandsCarousel />
 
           {/* Service Areas */}
           <div className={styles.areasSection}>

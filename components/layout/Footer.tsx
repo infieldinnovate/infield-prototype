@@ -13,7 +13,6 @@ import {
   MapPin,
   Clock,
   ArrowRight,
-  ArrowUp,
   ShieldCheck,
   BadgeCheck,
   Headphones,
@@ -24,28 +23,16 @@ import {
   CloudRain,
   CheckCircle2,
   AlertCircle,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Music2,
-  Youtube,
-  MessageCircle,
   type LucideIcon,
+  Database,
 } from "lucide-react";
-import { siteConfig } from "@/data/site.config";
-import { footerLinks } from "@/data/links";
+import { siteConfig, socialLinks } from "@/data/site.config";
+import { legalLinks, serviceLinks, navLinks } from "@/data/links";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";
 import { BrandsCarousel } from "../sections/BrandsCarousel";
-
-const serviceIcons: Record<string, LucideIcon> = {
-  Solar: Sun,
-  Electrical: Zap,
-  Plumbing: Droplets,
-  Borehole: Drill,
-  Irrigation: CloudRain,
-};
+import { ServiceIcons } from "@/data/services";
 
 const trustItems = [
   {
@@ -68,75 +55,6 @@ const trustItems = [
     label: "Quality Assurance",
     description: "ISO 9001 certified processes",
   },
-];
-
-const socialLinks = [
-  {
-    key: "facebook",
-    icon: Facebook,
-    url: siteConfig.social.facebook,
-    label: "Facebook",
-  },
-  {
-    key: "instagram",
-    icon: Instagram,
-    url: siteConfig.social.instagram,
-    label: "Instagram",
-  },
-  {
-    key: "linkedin",
-    icon: Linkedin,
-    url: siteConfig.social.linkedin,
-    label: "LinkedIn",
-  },
-  {
-    key: "tiktok",
-    icon: Music2,
-    url: siteConfig.social.tiktok,
-    label: "TikTok",
-  },
-  {
-    key: "youtube",
-    icon: Youtube,
-    url: siteConfig.social.youtube,
-    label: "YouTube",
-  },
-  {
-    key: "whatsapp",
-    icon: MessageCircle,
-    url: siteConfig.social.whatsapp,
-    label: "WhatsApp",
-  },
-];
-
-const footerServices = [
-  { label: "Solar Solutions", href: "/services/solar", icon: "Solar" },
-  {
-    label: "Electrical Installations",
-    href: "/services/electrical",
-    icon: "Electrical",
-  },
-  { label: "Plumbing Services", href: "/services/plumbing", icon: "Plumbing" },
-  {
-    label: "Borehole Solutions",
-    href: "/services/boreholes",
-    icon: "Borehole",
-  },
-  {
-    label: "Irrigation Systems",
-    href: "/services/irrigation",
-    icon: "Irrigation",
-  },
-];
-
-const quickLinks = [
-  { label: "About Us", href: "/about" },
-  { label: "Projects", href: "/about#projects" },
-  { label: "Products", href: "/services" },
-  { label: "Resources", href: "/resources" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
-  { label: "Request Quote", href: "/quote" },
 ];
 
 export function Footer() {
@@ -199,8 +117,8 @@ export function Footer() {
             <div className={styles.col}>
               <h3 className={styles.colTitle}>Services</h3>
               <ul className={styles.linkList}>
-                {footerServices.map((service) => {
-                  const Icon = serviceIcons[service.icon] || Zap;
+                {serviceLinks.map((service) => {
+                  const Icon = ServiceIcons[service.slug] || Zap;
                   return (
                     <li key={service.href}>
                       <Link href={service.href} className={styles.serviceLink}>
@@ -219,7 +137,7 @@ export function Footer() {
             <div className={styles.col}>
               <h3 className={styles.colTitle}>Quick Links</h3>
               <ul className={styles.linkList}>
-                {quickLinks.map((link) => (
+                {navLinks.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href} className={styles.link}>
                       {link.label}
@@ -308,21 +226,20 @@ export function Footer() {
                 </p>
               )}
               <div className={styles.social}>
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
+                {Object.entries(socialLinks).map(
+                  ([key, { link, icon: Icon, label }]) => (
                     <a
-                      key={social.key}
-                      href={social.url}
+                      key={key}
+                      href={link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`Visit us on ${social.label}`}
+                      aria-label={`Visit us on ${label}`}
                       className={styles.socialLink}
                     >
                       <Icon size={18} />
                     </a>
-                  );
-                })}
+                  ),
+                )}
               </div>
             </div>
           </div>
@@ -381,7 +298,7 @@ export function Footer() {
               reserved.
             </p>
             <div className={styles.legalLinks}>
-              {footerLinks.legal.map((link) => (
+              {legalLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

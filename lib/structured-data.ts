@@ -1,4 +1,4 @@
-import { siteConfig } from "@/data/site.config";
+import { siteConfig, socialLinks } from "@/data/site.config";
 import { reviewSummary } from "@/data/testimonials";
 import type { BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
@@ -43,7 +43,7 @@ export function buildLocalBusinessSchema(): JsonLd {
       },
     ],
     areaServed: siteConfig.serviceAreas,
-    sameAs: Object.values(siteConfig.social),
+    sameAs: Object.values(socialLinks).map((social) => social.link),
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: reviewSummary.averageRating,
@@ -72,7 +72,7 @@ export function buildOrganizationSchema(): JsonLd {
       postalCode: siteConfig.address.zip,
       addressCountry: siteConfig.address.country,
     },
-    sameAs: Object.values(siteConfig.social),
+    sameAs: Object.values(socialLinks).map((social) => social.link),
   };
 }
 

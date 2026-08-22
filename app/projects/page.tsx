@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { countiesServed } from "@/data/impactStats";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
-import { SERVICE_CATEGORIES, type ServiceCategory } from "@/data/services";
+import { SERVICE_CATEGORIES, type ServiceSlug } from "@/data/services";
 import { projects, type Project } from "@/data/projectStats";
 import ProjectModal from "./ProjectModal";
 import ProjectMap from "../../components/ui/ProjectMap";
@@ -27,26 +27,12 @@ import ProjectCard from "@/components/cards/ProjectCard";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
-type FilterCategory = "All Projects" | ServiceCategory;
-
-const iconMap: Record<string, React.ReactNode> = {
-  sun: <Sun size={28} />,
-  droplet: <Droplet size={28} />,
-  sprout: <Sprout size={28} />,
-  smile: <Smile size={28} />,
-  CalendarDays: <Calendar size={28} />,
-  map: <MapPin size={28} />,
-};
+type FilterCategory = "All Projects" | ServiceSlug;
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] =
     useState<FilterCategory>("All Projects");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === "All Projects") return projects;
-    return projects.filter((p) => p.category === activeFilter);
-  }, [activeFilter]);
 
   const featuredProjects = useMemo(
     () => projects.filter((p) => p.featured),
@@ -55,8 +41,14 @@ export default function ProjectsPage() {
 
   const filterCategories: FilterCategory[] = [
     "All Projects",
-    ...SERVICE_CATEGORIES,
+    ...SERVICE_CATEGORIES.map((category) => category.slug),
   ];
+
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "All Projects") return projects;
+
+    return projects.filter((project) => project.category === activeFilter);
+  }, [activeFilter]);
 
   return (
     <div className={styles.page}>

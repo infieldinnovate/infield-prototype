@@ -8,7 +8,6 @@ import { CertificationsSection } from "@/components/sections/CertificationsSecti
 import { certifications, siteConfig } from "@/data/site.config";
 import { teamMembers } from "@/data/team";
 import { equipment, safetyCommitments } from "@/data/equipment";
-import * as Icons from "lucide-react";
 import { CheckCircle2, Target, Eye, Heart, Linkedin } from "lucide-react";
 import styles from "./about.module.scss";
 import AboutTimeline from "./AboutTimeline";
@@ -259,9 +258,7 @@ export default function AboutPage() {
           />
           <div className={styles.equipmentGrid}>
             {equipment.map((item, i) => {
-              const Icon =
-                (Icons[item.icon as keyof typeof Icons] as Icons.LucideIcon) ||
-                Icons.Wrench;
+              const Icon = item.icon;
               return (
                 <ScrollReveal key={item.id} delay={(i % 4) * 80}>
                   <div className={styles.equipmentCard}>
@@ -293,9 +290,7 @@ export default function AboutPage() {
           />
           <div className={styles.safetyGrid}>
             {safetyCommitments.map((item, i) => {
-              const Icon =
-                (Icons[item.icon as keyof typeof Icons] as Icons.LucideIcon) ||
-                Icons.ShieldCheck;
+              const Icon = item.icon;
               return (
                 <ScrollReveal key={item.id} delay={(i % 3) * 100}>
                   <div className={styles.safetyCard}>

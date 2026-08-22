@@ -9,12 +9,10 @@ import {
   useTransform,
 } from "framer-motion";
 import {
-  ArrowDown,
   ArrowDownRight,
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  BatteryCharging,
   Building2,
   Check,
   CheckCircle2,
@@ -23,39 +21,25 @@ import {
   ChevronRight,
   CircleDot,
   Clock3,
-  CloudRain,
   Database,
   Drill,
   Droplets,
-  ExternalLink,
-  Factory,
-  Gauge,
-  HandHeart,
-  Home,
-  Landmark,
   Lightbulb,
-  Mail,
   MapPin,
-  Phone,
   Quote,
-  Search,
   Settings2,
   ShieldCheck,
-  Sparkles,
   Sprout,
   Star,
   Sun,
   Users,
-  Wheat,
   Wrench,
-  type LucideIcon,
 } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { getServiceBySlug, services, type Service } from "@/data/services";
+import { getServiceBySlug, SERVICES, type Service } from "@/data/services";
 import { industries } from "@/data/industries";
 import { projects } from "@/data/projectStats";
-import { siteConfig } from "@/data/site.config";
 import { testimonials } from "@/data/testimonials";
 import { faqs } from "@/data/faqs";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
@@ -64,38 +48,6 @@ import styles from "./page.module.scss";
 interface ServiceDetailClientProps {
   service: Service;
 }
-
-const iconMap: Record<string, LucideIcon> = {
-  ArrowDownToLine: ArrowDownRight,
-  ArrowDownRight,
-  BatteryCharging: Gauge,
-  Building2: ShieldCheck,
-  CloudRain: Droplets,
-  Database: Gauge,
-  Drill: CircleDot,
-  Droplets,
-  Filter: ShieldCheck,
-  GitBranch: ArrowRight,
-  Gutter: ArrowDownRight,
-  Lightbulb,
-  ShieldCheck,
-  ShowerHead: Droplets,
-  Sprout: Sparkles,
-  Sun: Sparkles,
-  Zap: Gauge,
-};
-
-const audienceIcons: Record<string, LucideIcon> = {
-  Residential: Home,
-  Commercial: Building2,
-  Schools: Users,
-  Hospitals: ShieldCheck,
-  Hotels: Sparkles,
-  Farms: Sprout,
-  Government: Landmark,
-  NGOs: HandHeart,
-  Manufacturing: Factory,
-};
 
 const integratedStages = [
   {
@@ -239,89 +191,6 @@ const serviceFaqs = faqs.filter((f) =>
   ["g1", "g2", "g3", "g4", "g5", "g6", "g7"].includes(f.id),
 );
 
-function useCountUp(target: number, inView: boolean, duration = 1600): number {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!inView) return;
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReduced) {
-      setValue(target);
-      return;
-    }
-    const start = performance.now();
-    let raf: number;
-    const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(target * eased);
-      if (progress < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, target, duration]);
-  return value;
-}
-
-function CountUpStat({
-  stat,
-  index,
-}: {
-  stat: { key: string; label: string; value: string; icon: string };
-  index: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setInView(true);
-          obs.disconnect();
-        }
-      },
-      { threshold: 0.3 },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  const numericMatch = stat.value.match(/^([\d,.]+)/);
-  const numericPart = numericMatch
-    ? parseFloat(numericMatch[1].replace(/,/g, ""))
-    : 0;
-  const suffix = numericMatch ? stat.value.slice(numericMatch[1].length) : "";
-  const animated = useCountUp(numericPart, inView);
-  const display =
-    numericPart >= 1000
-      ? Math.round(animated).toLocaleString()
-      : Number.isInteger(numericPart)
-        ? Math.round(animated).toString()
-        : animated.toFixed(1);
-  return (
-    <motion.div
-      ref={ref}
-      className={styles.resultStat}
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.08 }}
-    >
-      <strong>
-        {display}
-        {suffix}
-      </strong>
-      <span>{stat.label}</span>
-    </motion.div>
-  );
-}
-
-function getIcon(name: string): LucideIcon {
-  return iconMap[name] || Sparkles;
-}
-
 export default function ServiceDetailClient({
   service,
 }: ServiceDetailClientProps) {
@@ -343,11 +212,10 @@ export default function ServiceDetailClient({
     integratedStages[0];
   const activeTestimonial =
     testimonials[testimonialIndex % testimonials.length];
-  const relatedServices = services
-    .filter((item) => item.slug !== service.slug)
-    .slice(0, 4);
-  const heroIcon = getIcon(service.icon);
-  const HeroIcon = heroIcon;
+  const relatedServices = SERVICES.filter(
+    (item) => item.slug !== service.slug,
+  ).slice(0, 4);
+  const HeroIcon = service.icon;
 
   const changeTestimonial = (direction: number) => {
     setTestimonialIndex(
@@ -486,7 +354,7 @@ export default function ServiceDetailClient({
                 </span>
               </div>
               <div className={styles.visualIndex}>
-                0{services.findIndex((item) => item.slug === service.slug) + 1}
+                0{SERVICES.findIndex((item) => item.slug === service.slug) + 1}
                 <span>/ 07</span>
               </div>
             </motion.div>
@@ -563,8 +431,8 @@ export default function ServiceDetailClient({
               role="tablist"
               aria-label="Explore services"
             >
-              {services.map((item, index) => {
-                const Icon = getIcon(item.icon);
+              {SERVICES.map((item, index) => {
+                const Icon = item.icon;
                 const isActive = item.slug === selectedServiceSlug;
                 return (
                   <button
@@ -734,7 +602,7 @@ export default function ServiceDetailClient({
           </div>
           <div className={styles.audienceGrid}>
             {industries.map((industry, index) => {
-              const Icon = audienceIcons[industry.name] || Building2;
+              const Icon = industry.icon || Building2;
               const isLarge = index === 0 || index === 5;
               return (
                 <motion.div
@@ -1035,7 +903,7 @@ export default function ServiceDetailClient({
               </div>
               <div className={styles.diagram}>
                 {service.infographic.map((step, index) => {
-                  const Icon = getIcon(step.icon);
+                  const Icon = step.icon;
                   return (
                     <div className={styles.diagramStep} key={step.label}>
                       <div className={styles.diagramOrb}>
@@ -1146,7 +1014,7 @@ export default function ServiceDetailClient({
           </div>
           <div className={styles.relatedGrid}>
             {relatedServices.map((item) => {
-              const Icon = getIcon(item.icon);
+              const Icon = item.icon;
               return (
                 <Link
                   href={`/services/${item.slug}`}
@@ -1157,7 +1025,7 @@ export default function ServiceDetailClient({
                     <Icon size={21} />
                   </span>
                   <span className={styles.relatedNumber}>
-                    {String(services.indexOf(item) + 1).padStart(2, "0")}
+                    {String(SERVICES.indexOf(item) + 1).padStart(2, "0")}
                   </span>
                   <h3>{item.shortName}</h3>
                   <p>{item.tagline}</p>

@@ -2,6 +2,15 @@
 // Site Configuration & Constants
 // ============================================
 
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaTiktok,
+  FaWhatsapp,
+  FaYoutube,
+} from "react-icons/fa";
+
 export const siteConfig = {
   name: "Infield Innovations",
   shortName: "Infield",
@@ -29,14 +38,6 @@ export const siteConfig = {
     { day: "Saturday", time: "8:00 AM – 4:00 PM" },
     { day: "Sunday", time: "Emergency Only" },
   ],
-  social: {
-    facebook: "https://facebook.com/infieldinnovations",
-    instagram: "https://instagram.com/infieldinnovations",
-    linkedin: "https://linkedin.com/company/infieldinnovations",
-    tiktok: "https://tiktok.com/@infieldinnovations",
-    youtube: "https://youtube.com/@InfieldInnovations",
-    whatsapp: "https://wa.me/254702393677",
-  },
   mission:
     "To deliver reliable, sustainable engineering solutions that empower Kenyan communities.",
   brands: [
@@ -60,6 +61,39 @@ export const siteConfig = {
     "Thika",
   ],
 } as const;
+
+export const socialLinks = {
+  facebook: {
+    link: "https://facebook.com/infieldinnovations",
+    icon: FaFacebook,
+    label: "Facebook",
+  },
+  instagram: {
+    link: "https://instagram.com/infieldinnovations",
+    icon: FaInstagram,
+    label: "Instagram",
+  },
+  linkedin: {
+    link: "https://linkedin.com/company/infieldinnovations",
+    icon: FaLinkedin,
+    label: "LinkedIn",
+  },
+  tiktok: {
+    link: "https://tiktok.com/@infieldinnovations",
+    icon: FaTiktok,
+    label: "TikTok",
+  },
+  youtube: {
+    link: "https://youtube.com/@InfieldInnovations",
+    icon: FaYoutube,
+    label: "YouTube",
+  },
+  whatsapp: {
+    link: "https://wa.me/254702393677",
+    icon: FaWhatsapp,
+    label: "WhatsApp",
+  },
+};
 
 export const certifications = [
   "Licensed & Insured",

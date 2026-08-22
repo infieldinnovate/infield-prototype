@@ -5,7 +5,6 @@
 // ============================================
 
 import { motion } from "framer-motion";
-import * as Icons from "lucide-react";
 import { processSteps } from "@/data/process";
 import styles from "./ProcessTimeline.module.scss";
 
@@ -13,11 +12,6 @@ export function ProcessTimeline() {
   return (
     <div className={styles.timeline}>
       {processSteps.map((step, index) => {
-        const Icon =
-          (Icons[step.icon as keyof typeof Icons] as React.ComponentType<{
-            size?: number;
-            strokeWidth?: number;
-          }>) || Icons.Circle;
         const isLast = index === processSteps.length - 1;
 
         return (
@@ -33,11 +27,14 @@ export function ProcessTimeline() {
               <div className={styles.stepNumber}>{step.step}</div>
               {!isLast && <div className={styles.connector} />}
             </div>
+
             <div className={styles.stepContent}>
               <div className={styles.stepIcon}>
-                <Icon size={24} strokeWidth={1.8} />
+                <step.icon size={24} strokeWidth={1.8} />
               </div>
+
               <h3 className={styles.stepTitle}>{step.title}</h3>
+
               <p className={styles.stepDescription}>{step.description}</p>
             </div>
           </motion.div>

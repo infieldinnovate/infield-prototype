@@ -8,7 +8,7 @@ import Link from "next/link";
 import styles from "./ServicesOverview.module.scss";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCard } from "../cards/ServiceCard";
-import { services } from "@/data/services";
+import { SERVICES } from "@/data/services";
 
 const ServicesOverview = () => {
   return (
@@ -20,13 +20,13 @@ const ServicesOverview = () => {
           description="From electrical and plumbing to solar, irrigation, and borehole drilling, we deliver professional services you can trust."
         />
         <div className={styles.servicesGrid}>
-          {services.map((service, index) => (
+          {SERVICES.map((service, index) => (
             <ServiceCard
               key={index}
               id={service.slug}
               title={service.name}
               image={service.image}
-              icon={service.icon}
+              Icon={service.icon}
               features={service.features.map((feature) => feature.title)}
               color={service.color}
             />

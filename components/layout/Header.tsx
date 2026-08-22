@@ -12,13 +12,11 @@ import {
   ChevronDown,
   ChevronRight,
   ArrowRight,
-  type LucideIcon,
 } from "lucide-react";
-import * as Icons from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site.config";
 import { navLinks } from "@/data/links";
-import { navServicesDrop } from "@/data/links";
+import { servicesNavItems } from "@/data/links";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import styles from "./Header.module.scss";
@@ -47,7 +45,7 @@ const Header = () => {
   };
 
   const isServiceActive = () =>
-    navServicesDrop.some((s) => pathname.startsWith(s.href));
+    servicesNavItems.some((s) => pathname.startsWith(s.href));
 
   // Close dropdown on route change
   useEffect(() => {
@@ -64,12 +62,6 @@ const Header = () => {
       return () => document.removeEventListener("keydown", handleEsc);
     }
   }, [isServicesOpen]);
-
-  const renderServiceIcon = (iconName: string) => {
-    const Icon =
-      (Icons[iconName as keyof typeof Icons] as LucideIcon) || Icons.Wrench;
-    return <Icon size={20} strokeWidth={1.8} />;
-  };
 
   const handleServicesClick = () => {
     setIsServicesOpen((prev) => !prev);
@@ -184,8 +176,9 @@ const Header = () => {
                   </button>
 
                   <div className={styles.servicesGrid}>
-                    {navServicesDrop.map((service) => {
+                    {servicesNavItems.map((service) => {
                       const active = pathname.startsWith(service.href);
+                      const Icon = service.icon;
                       return (
                         <Link
                           key={service.id}
@@ -197,7 +190,7 @@ const Header = () => {
                         >
                           <div className={styles.serviceCardHeader}>
                             <div className={styles.serviceIconWrap}>
-                              {renderServiceIcon(service.icon)}
+                              <Icon size={20} strokeWidth={1.8} />
                             </div>
                             <span className={styles.serviceNumber}>
                               {service.number}
@@ -306,8 +299,10 @@ const Header = () => {
                       transition={{ duration: 0.2 }}
                       style={{ overflow: "hidden" }}
                     >
-                      {navServicesDrop.map((service) => {
+                      {servicesNavItems.map((service) => {
                         const active = pathname.startsWith(service.href);
+                        const Icon = service.icon;
+
                         return (
                           <Link
                             key={service.id}
@@ -321,11 +316,13 @@ const Header = () => {
                             }}
                           >
                             <span className={styles.mobileServiceIcon}>
-                              {renderServiceIcon(service.icon)}
+                              <Icon size={20} strokeWidth={1.8} />
                             </span>
+
                             <span className={styles.mobileServiceName}>
                               {service.label}
                             </span>
+
                             <ChevronRight size={16} />
                           </Link>
                         );

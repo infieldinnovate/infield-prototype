@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 // ============================================
 // FAQ Page (Client Component)
 // ============================================
 
-import { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import {
   Phone,
   Mail,
@@ -15,79 +15,99 @@ import {
   LifeBuoy,
   HelpCircle,
   Calendar,
-} from 'lucide-react';
-import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
-import { SearchBar } from '@/components/ui/SearchBar';
-import { EnhancedFAQAccordion } from '@/components/ui/EnhancedFAQAccordion';
-import { SupportCard } from '@/components/ui/SupportCard';
-import { LinkButton } from '@/components/ui/LinkButton';
-import { cn } from '@/lib/utils';
-import { faqs, faqCategories, searchFAQs, type FAQCategory } from '@/data/faqs';
-import { services } from '@/data/services';
-import { articles } from '@/data/articles';
-import { downloads } from '@/data/downloads';
-import { siteConfig } from '@/data/site.config';
-import styles from './page.module.scss';
+} from "lucide-react";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { SearchBar } from "@/components/ui/SearchBar";
+import { EnhancedFAQAccordion } from "@/components/ui/EnhancedFAQAccordion";
+import { SupportCard } from "@/components/ui/SupportCard";
+import { LinkButton } from "@/components/ui/LinkButton";
+import { cn } from "@/lib/utils";
+import { faqs, faqCategories, searchFAQs, type FAQCategory } from "@/data/faqs";
+import { SERVICES } from "@/data/services";
+import { articles } from "@/data/articles";
+import { downloads } from "@/data/downloads";
+import { siteConfig } from "@/data/site.config";
+import styles from "./page.module.scss";
 
 const supportCards = [
   {
-    icon: 'MessageCircle',
-    title: 'WhatsApp an Engineer',
-    description: 'Chat directly with one of our engineers for quick questions and advice.',
-    href: `https://wa.me/${siteConfig.whatsapp.replace(/[^0-9]/g, '')}`,
-    action: 'Start Chat',
-    accent: 'success' as const,
+    icon: MessageCircle,
+    title: "WhatsApp an Engineer",
+    description:
+      "Chat directly with one of our engineers for quick questions and advice.",
+    href: `https://wa.me/${siteConfig.whatsapp.replace(/[^0-9]/g, "")}`,
+    action: "Start Chat",
+    accent: "success" as const,
     external: true,
   },
   {
-    icon: 'Phone',
-    title: 'Call Us',
-    description: 'Speak with our team directly during business hours or for emergencies.',
+    icon: Phone,
+    title: "Call Us",
+    description:
+      "Speak with our team directly during business hours or for emergencies.",
     href: siteConfig.phoneHref,
-    action: 'Call Now',
-    accent: 'primary' as const,
+    action: "Call Now",
+    accent: "primary" as const,
   },
   {
-    icon: 'Mail',
-    title: 'Email Us',
-    description: 'Send us a detailed message and we will respond within 24 hours.',
+    icon: Mail,
+    title: "Email Us",
+    description:
+      "Send us a detailed message and we will respond within 24 hours.",
     href: `mailto:${siteConfig.email}`,
-    action: 'Send Email',
-    accent: 'secondary' as const,
+    action: "Send Email",
+    accent: "secondary" as const,
   },
   {
-    icon: 'FileText',
-    title: 'Request a Quote',
-    description: 'Get a free, no-obligation quote for your project or service needs.',
-    href: '/quote',
-    action: 'Get Quote',
-    accent: 'accent' as const,
+    icon: FileText,
+    title: "Request a Quote",
+    description:
+      "Get a free, no-obligation quote for your project or service needs.",
+    href: "/quote",
+    action: "Get Quote",
+    accent: "accent" as const,
   },
   {
-    icon: 'Calendar',
-    title: 'Book a Site Visit',
-    description: 'Schedule a professional site assessment with one of our engineers.',
-    href: '/contact',
-    action: 'Book Now',
-    accent: 'primary' as const,
+    icon: Calendar,
+    title: "Book a Site Visit",
+    description:
+      "Schedule a professional site assessment with one of our engineers.",
+    href: "/contact",
+    action: "Book Now",
+    accent: "primary" as const,
   },
 ];
 
 export default function FAQPage() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState<FAQCategory | 'All'>('All');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<FAQCategory | "All">(
+    "All",
+  );
 
   const filteredFAQs = useMemo(() => {
     if (searchQuery.trim()) {
       return searchFAQs(searchQuery);
     }
-    if (activeCategory === 'All') return faqs;
+    if (activeCategory === "All") return faqs;
     return faqs.filter((f) => f.category === activeCategory);
   }, [searchQuery, activeCategory]);
 
   const popularQuestions = faqs.filter((f) =>
-    ['g1', 'g2', 'g3', 'g4', 's1', 's2', 'e1', 'b1', 'p1', 'ir1', 'w1', 'pa1'].includes(f.id)
+    [
+      "g1",
+      "g2",
+      "g3",
+      "g4",
+      "s1",
+      "s2",
+      "e1",
+      "b1",
+      "p1",
+      "ir1",
+      "w1",
+      "pa1",
+    ].includes(f.id),
   );
 
   return (
@@ -100,7 +120,9 @@ export default function FAQPage() {
           <div className={styles.heroGrid} />
         </div>
         <div className={styles.container}>
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'FAQ' }]} />
+          <Breadcrumbs
+            items={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
+          />
           <motion.div
             className={styles.heroContent}
             initial={{ opacity: 0, y: 30 }}
@@ -115,8 +137,9 @@ export default function FAQPage() {
               How Can We <span className={styles.heroAccent}>Help You?</span>
             </h1>
             <p className={styles.heroDescription}>
-              Find answers to common questions about our services, products, installation process,
-              warranties, and payments. Our team is always here to help.
+              Find answers to common questions about our services, products,
+              installation process, warranties, and payments. Our team is always
+              here to help.
             </p>
             <div className={styles.heroSearch}>
               <SearchBar
@@ -128,8 +151,14 @@ export default function FAQPage() {
             </div>
             <div className={styles.heroQuickCats}>
               <button
-                className={cn(styles.quickCat, activeCategory === 'All' && styles.quickCatActive)}
-                onClick={() => { setActiveCategory('All'); setSearchQuery(''); }}
+                className={cn(
+                  styles.quickCat,
+                  activeCategory === "All" && styles.quickCatActive,
+                )}
+                onClick={() => {
+                  setActiveCategory("All");
+                  setSearchQuery("");
+                }}
                 type="button"
               >
                 All Questions
@@ -137,8 +166,14 @@ export default function FAQPage() {
               {faqCategories.slice(0, 6).map((cat) => (
                 <button
                   key={cat}
-                  className={cn(styles.quickCat, activeCategory === cat && styles.quickCatActive)}
-                  onClick={() => { setActiveCategory(cat); setSearchQuery(''); }}
+                  className={cn(
+                    styles.quickCat,
+                    activeCategory === cat && styles.quickCatActive,
+                  )}
+                  onClick={() => {
+                    setActiveCategory(cat);
+                    setSearchQuery("");
+                  }}
                   type="button"
                 >
                   {cat}
@@ -159,8 +194,14 @@ export default function FAQPage() {
                 <h3 className={styles.sidebarTitle}>Categories</h3>
                 <nav className={styles.categoryNav} aria-label="FAQ categories">
                   <button
-                    className={cn(styles.categoryLink, activeCategory === 'All' && styles.categoryLinkActive)}
-                    onClick={() => { setActiveCategory('All'); setSearchQuery(''); }}
+                    className={cn(
+                      styles.categoryLink,
+                      activeCategory === "All" && styles.categoryLinkActive,
+                    )}
+                    onClick={() => {
+                      setActiveCategory("All");
+                      setSearchQuery("");
+                    }}
                     type="button"
                   >
                     <HelpCircle size={16} />
@@ -172,8 +213,14 @@ export default function FAQPage() {
                     return (
                       <button
                         key={cat}
-                        className={cn(styles.categoryLink, activeCategory === cat && styles.categoryLinkActive)}
-                        onClick={() => { setActiveCategory(cat); setSearchQuery(''); }}
+                        className={cn(
+                          styles.categoryLink,
+                          activeCategory === cat && styles.categoryLinkActive,
+                        )}
+                        onClick={() => {
+                          setActiveCategory(cat);
+                          setSearchQuery("");
+                        }}
                         type="button"
                       >
                         <HelpCircle size={16} />
@@ -192,15 +239,18 @@ export default function FAQPage() {
                 <h2 className={styles.mainTitle}>
                   {searchQuery.trim()
                     ? `Search Results (${filteredFAQs.length})`
-                    : activeCategory === 'All'
-                    ? `All Questions (${filteredFAQs.length})`
-                    : `${activeCategory} Questions (${filteredFAQs.length})`}
+                    : activeCategory === "All"
+                      ? `All Questions (${filteredFAQs.length})`
+                      : `${activeCategory} Questions (${filteredFAQs.length})`}
                 </h2>
               </div>
-              <EnhancedFAQAccordion faqs={filteredFAQs} searchQuery={searchQuery} />
+              <EnhancedFAQAccordion
+                faqs={filteredFAQs}
+                searchQuery={searchQuery}
+              />
 
               {/* Popular Questions */}
-              {!searchQuery.trim() && activeCategory === 'All' && (
+              {!searchQuery.trim() && activeCategory === "All" && (
                 <div className={styles.popularSection}>
                   <h3 className={styles.popularTitle}>Most Asked Questions</h3>
                   <div className={styles.popularGrid}>
@@ -209,15 +259,21 @@ export default function FAQPage() {
                         key={faq.id}
                         className={styles.popularCard}
                         onClick={() => {
-                          document.getElementById(`faq-${faq.id}`)?.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center',
-                          });
+                          document
+                            .getElementById(`faq-${faq.id}`)
+                            ?.scrollIntoView({
+                              behavior: "smooth",
+                              block: "center",
+                            });
                         }}
                         type="button"
                       >
-                        <span className={styles.popularCategory}>{faq.category}</span>
-                        <span className={styles.popularQuestion}>{faq.question}</span>
+                        <span className={styles.popularCategory}>
+                          {faq.category}
+                        </span>
+                        <span className={styles.popularQuestion}>
+                          {faq.question}
+                        </span>
                         <ArrowRight size={16} className={styles.popularArrow} />
                       </button>
                     ))}
@@ -259,9 +315,12 @@ export default function FAQPage() {
             <div className={styles.relatedCol}>
               <h3 className={styles.relatedColTitle}>Our Services</h3>
               <ul className={styles.relatedList}>
-                {services.map((service) => (
+                {SERVICES.map((service) => (
                   <li key={service.slug}>
-                    <LinkButton href={`/services/${service.slug}`} className={styles.relatedLink}>
+                    <LinkButton
+                      href={`/services/${service.slug}`}
+                      className={styles.relatedLink}
+                    >
                       {service.shortName}
                       <ArrowRight size={14} />
                     </LinkButton>
@@ -276,8 +335,13 @@ export default function FAQPage() {
               <ul className={styles.relatedList}>
                 {articles.slice(0, 5).map((article) => (
                   <li key={article.id}>
-                    <LinkButton href="/resources" className={styles.relatedLink}>
-                      {article.title.length > 50 ? article.title.slice(0, 50) + '...' : article.title}
+                    <LinkButton
+                      href="/resources"
+                      className={styles.relatedLink}
+                    >
+                      {article.title.length > 50
+                        ? article.title.slice(0, 50) + "..."
+                        : article.title}
                       <ArrowRight size={14} />
                     </LinkButton>
                   </li>
@@ -291,7 +355,10 @@ export default function FAQPage() {
               <ul className={styles.relatedList}>
                 {downloads.slice(0, 5).map((download) => (
                   <li key={download.id}>
-                    <LinkButton href="/resources" className={styles.relatedLink}>
+                    <LinkButton
+                      href="/resources"
+                      className={styles.relatedLink}
+                    >
                       {download.title}
                       <ArrowRight size={14} />
                     </LinkButton>
@@ -305,7 +372,8 @@ export default function FAQPage() {
               <h3 className={styles.relatedColTitle}>Case Studies</h3>
               <div className={styles.comingSoon}>
                 <p className={styles.comingSoonText}>
-                  Case studies coming soon. In the meantime, explore our recent projects on the About page.
+                  Case studies coming soon. In the meantime, explore our recent
+                  projects on the About page.
                 </p>
                 <LinkButton href="/about" variant="outline" size="sm">
                   View Projects

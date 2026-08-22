@@ -1,6 +1,6 @@
 // data\projectStats.ts
 
-import { ServiceCategory } from "./services";
+import { ServiceSlug } from "./services";
 
 export interface ProjectDetail {
   label: string;
@@ -27,7 +27,7 @@ export interface ProjectVideo {
 export interface Project {
   id: string;
   title: string;
-  category: ServiceCategory;
+  category: ServiceSlug;
   county: string;
   completionDate: string;
   featured: boolean;

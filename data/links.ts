@@ -2,6 +2,17 @@
 // Navigation Services Menu Data
 // ============================================
 
+import {
+  CloudRain,
+  Database,
+  Drill,
+  Droplets,
+  Sprout,
+  Sun,
+  Zap,
+} from "lucide-react";
+import { SERVICE_CATEGORIES } from "./services";
+
 export const navLinks = [
   { label: "Home", href: "/" },
   { label: "Projects", href: "/projects" },
@@ -12,36 +23,29 @@ export const navLinks = [
   { label: "Quote", href: "/quote" },
 ] as const;
 
-export const footerLinks = {
-  services: [
-    { label: "Electrical", href: "/services/electrical" },
-    { label: "Plumbing", href: "/services/plumbing" },
-    { label: "Solar", href: "/services/solar" },
-    { label: "Irrigation", href: "/services/irrigation" },
-    { label: "Borehole", href: "/services/boreholes" },
-  ],
-  company: [
-    { label: "About Us", href: "/about" },
-    { label: "Resources", href: "/resources" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Contact", href: "/contact" },
-    { label: "Request a Quote", href: "/quote" },
-  ],
-  legal: [
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms & Conditions", href: "/terms" },
-    { label: "Sitemap", href: "/sitemap.xml" },
-  ],
-} as const;
+// SERVICE LINKS from SERVICE_CATEGORIES
+export const serviceLinks = Object.values(SERVICE_CATEGORIES).map(
+  (category) => ({
+    slug: category.slug,
+    label: category.label,
+    href: `/services/${category.slug}`,
+  }),
+);
 
-export const navServicesDrop = [
+export const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms & Conditions", href: "/terms" },
+  { label: "Sitemap", href: "/sitemap.xml" },
+];
+
+export const servicesNavItems = [
   {
     id: "nav-solar",
     number: "01",
     label: "Solar",
     slug: "solar",
     href: "/services/solar",
-    icon: "Sun",
+    icon: Sun,
     subServices: [
       "Solar System Design",
       "Solar Installation",
@@ -58,7 +62,7 @@ export const navServicesDrop = [
     label: "Electrical",
     slug: "electrical",
     href: "/services/electrical",
-    icon: "Zap",
+    icon: Zap,
     subServices: [
       "Electrical Installation",
       "Wiring and Distribution",
@@ -75,7 +79,7 @@ export const navServicesDrop = [
     label: "Plumbing",
     slug: "plumbing",
     href: "/services/plumbing",
-    icon: "Droplets",
+    icon: Droplets,
     subServices: [
       "Plumbing Installation",
       "Water Supply Systems",
@@ -92,7 +96,7 @@ export const navServicesDrop = [
     label: "Boreholes",
     slug: "boreholes",
     href: "/services/boreholes",
-    icon: "Drill",
+    icon: Drill,
     subServices: [
       "Hydrogeological Surveys",
       "Borehole Drilling",
@@ -109,7 +113,7 @@ export const navServicesDrop = [
     label: "Water Storage",
     slug: "water-storage",
     href: "/services/water-storage",
-    icon: "Database",
+    icon: Database,
     subServices: [
       "Plastic Water Tanks",
       "Steel Water Tanks",
@@ -126,7 +130,7 @@ export const navServicesDrop = [
     label: "Water Harvesting",
     slug: "water-harvesting",
     href: "/services/water-harvesting",
-    icon: "CloudRain",
+    icon: CloudRain,
     subServices: [
       "Rainwater Harvesting",
       "Surface Water Harvesting",
@@ -143,7 +147,7 @@ export const navServicesDrop = [
     label: "Irrigation",
     slug: "irrigation",
     href: "/services/irrigation",
-    icon: "Sprout",
+    icon: Sprout,
     subServices: [
       "Irrigation Design",
       "Drip Irrigation",

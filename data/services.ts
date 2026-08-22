@@ -1,18 +1,28 @@
-// ============================================
-// Services Data
-// ============================================
+// data/services.ts
 
-export const SERVICE_CATEGORIES = [
-  "solar",
-  "electrical",
-  "plumbing",
-  "boreholes",
-  "water-storage",
-  "water-harvesting",
-  "irrigation",
-] as const;
+import {
+  LucideIcon,
+  Sun,
+  Zap,
+  Droplets,
+  Drill,
+  CloudRain,
+  Database,
+  BatteryCharging,
+  Lightbulb,
+  ShieldCheck,
+  SquareSlash,
+  ArrowDownToLine,
+  GitBranch,
+  ShowerHead,
+  Sprout,
+  Filter,
+  Building2,
+} from "lucide-react";
 
-export type ServiceCategory = (typeof SERVICE_CATEGORIES)[number];
+/* -------------------------------------------------------------------------- */
+/* Types                                                                      */
+/* -------------------------------------------------------------------------- */
 
 export interface ServiceFeature {
   title: string;
@@ -25,33 +35,51 @@ export interface ServiceProcessStep {
   description: string;
 }
 
+export interface ServiceFaq {
+  question: string;
+  answer: string;
+}
+
 export interface InfographicStep {
-  icon: string;
+  icon: LucideIcon;
   label: string;
   description: string;
 }
 
 export interface Service {
-  slug: ServiceCategory;
+  slug: ServiceSlug;
   name: string;
   shortName: string;
   tagline: string;
   description: string;
   longDescription: string;
-  icon: string;
+  icon: LucideIcon;
   color: string;
   image: string;
   features: ServiceFeature[];
   process: ServiceProcessStep[];
   startingPrice: string;
   popularServices: string[];
-  faqs: { question: string; answer: string }[];
+  faqs: ServiceFaq[];
   infographic: InfographicStep[];
   infographicTitle: string;
   infographicSubtitle: string;
 }
 
-export const services: Service[] = [
+export type ServiceSlug =
+  | "solar"
+  | "electrical"
+  | "plumbing"
+  | "boreholes"
+  | "water-storage"
+  | "water-harvesting"
+  | "irrigation";
+
+/* -------------------------------------------------------------------------- */
+/* SERVICES                                                    */
+/* -------------------------------------------------------------------------- */
+
+export const SERVICES: Service[] = [
   {
     slug: "solar",
     name: "Solar Energy Solutions",
@@ -61,7 +89,7 @@ export const services: Service[] = [
       "Custom solar panel installation, battery storage, and energy system design for residential and commercial properties looking to reduce energy costs.",
     longDescription:
       "Transition to clean energy with our comprehensive solar solutions. We handle every aspect from initial assessment and system design to installation, permitting, and ongoing maintenance. Our solar systems are designed to maximize energy production and savings, with battery storage options for energy independence.",
-    icon: "Sun",
+    icon: Sun,
     color: "#fbbf24",
     image:
       "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -71,22 +99,22 @@ export const services: Service[] = [
       "From sunlight to power — a complete clean energy system",
     infographic: [
       {
-        icon: "Sun",
+        icon: Sun,
         label: "Solar Capture",
         description: "Panels harvest sunlight",
       },
       {
-        icon: "Zap",
+        icon: Zap,
         label: "Inverter",
         description: "DC converted to AC power",
       },
       {
-        icon: "BatteryCharging",
+        icon: BatteryCharging,
         label: "Battery Storage",
         description: "Excess energy stored",
       },
       {
-        icon: "Lightbulb",
+        icon: Lightbulb,
         label: "Power Supply",
         description: "Reliable electricity to your property",
       },
@@ -187,7 +215,7 @@ export const services: Service[] = [
       "From wiring and panel upgrades to lighting installation and emergency repairs, our licensed electricians deliver safe, code-compliant solutions.",
     longDescription:
       "Our certified electricians handle everything from routine maintenance to complex installations. We specialize in residential and commercial electrical systems, ensuring every project meets or exceeds local codes and safety standards. Whether you need a new circuit installed, a panel upgrade, or 24/7 emergency repairs, our team responds quickly and works efficiently.",
-    icon: "Zap",
+    icon: Zap,
     color: "#f59e0b",
     image:
       "https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -197,22 +225,22 @@ export const services: Service[] = [
       "From grid to appliance — safe, reliable power distribution",
     infographic: [
       {
-        icon: "Zap",
+        icon: Zap,
         label: "Power Source",
         description: "Grid or backup supply",
       },
       {
-        icon: "SquareSlash",
+        icon: SquareSlash,
         label: "Distribution Board",
         description: "Power routed and protected",
       },
       {
-        icon: "ShieldCheck",
+        icon: ShieldCheck,
         label: "Protection",
         description: "Surge & RCD safety",
       },
       {
-        icon: "Lightbulb",
+        icon: Lightbulb,
         label: "End Use",
         description: "Lighting, sockets & equipment",
       },
@@ -311,7 +339,7 @@ export const services: Service[] = [
       "Comprehensive plumbing services including repairs, installations, drain cleaning, and water heater services for homes and businesses.",
     longDescription:
       "Our expert plumbers tackle everything from minor leaks to major pipe replacements. We use the latest diagnostic tools to identify issues quickly and provide lasting solutions. Our services cover residential and commercial properties, with a commitment to clean, professional work that respects your property.",
-    icon: "Droplets",
+    icon: Droplets,
     color: "#1e40af",
     image:
       "https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -321,22 +349,22 @@ export const services: Service[] = [
       "From source to drain — a complete water management system",
     infographic: [
       {
-        icon: "Droplets",
+        icon: Droplets,
         label: "Water Source",
         description: "Mains or tank supply",
       },
       {
-        icon: "GitBranch",
+        icon: GitBranch,
         label: "Distribution",
         description: "Pipes route water to fixtures",
       },
       {
-        icon: "ShowerHead",
+        icon: ShowerHead,
         label: "Fixtures",
         description: "Taps, showers & appliances",
       },
       {
-        icon: "ArrowDownToLine",
+        icon: ArrowDownToLine,
         label: "Drainage",
         description: "Wastewater safely removed",
       },
@@ -431,7 +459,7 @@ export const services: Service[] = [
       "Professional borehole drilling, pump installation, and water treatment services for residential, agricultural, and commercial water needs.",
     longDescription:
       "Access your own reliable water supply with our professional borehole drilling services. We handle the entire process from geological survey and site selection through drilling, casing, pump installation, and water quality testing. Our boreholes provide a sustainable, independent water source for homes, farms, and businesses.",
-    icon: "Drill",
+    icon: Drill,
     color: "#0891b2",
     image:
       "https://images.pexels.com/photos/4226796/pexels-photo-4226796.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -441,22 +469,22 @@ export const services: Service[] = [
       "From underground to irrigation — a complete water supply system",
     infographic: [
       {
-        icon: "Drill",
+        icon: Drill,
         label: "Borehole",
         description: "Drilling taps groundwater",
       },
       {
-        icon: "Sun",
+        icon: Sun,
         label: "Solar Pump",
         description: "Solar-powered pumping",
       },
       {
-        icon: "Database",
+        icon: Database,
         label: "Storage Tank",
         description: "Water stored for use",
       },
       {
-        icon: "Sprout",
+        icon: Sprout,
         label: "Irrigation",
         description: "Water delivered to crops",
       },
@@ -560,7 +588,7 @@ export const services: Service[] = [
       "Comprehensive water storage solutions — from domestic plastic tanks to large-capacity commercial reservoirs and elevated water towers.",
     longDescription:
       "Ensure a reliable water supply with our comprehensive water storage solutions. We supply and install plastic, steel, GRP, and concrete storage systems for domestic, agricultural, and commercial applications. From small household tanks to large-capacity elevated towers and underground reservoirs, we design storage systems that guarantee water availability when you need it most.",
-    icon: "Database",
+    icon: Database,
     color: "#0ea5e9",
     image:
       "https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -569,22 +597,22 @@ export const services: Service[] = [
     infographicSubtitle: "From capture to reserve — secure water availability",
     infographic: [
       {
-        icon: "CloudRain",
+        icon: CloudRain,
         label: "Water Source",
         description: "Borehole or harvested water",
       },
       {
-        icon: "Database",
+        icon: Database,
         label: "Storage Tank",
         description: "Water held in reserve",
       },
       {
-        icon: "Building2",
+        icon: Building2,
         label: "Water Tower",
         description: "Elevated for gravity pressure",
       },
       {
-        icon: "Droplets",
+        icon: Droplets,
         label: "Distribution",
         description: "Reliable supply to taps & fields",
       },
@@ -687,7 +715,7 @@ export const services: Service[] = [
       "Rainwater and surface water harvesting systems — from rooftop collection to farm pans, ponds, and small dams for agricultural and domestic use.",
     longDescription:
       "Maximize your water security with our comprehensive water harvesting solutions. We design and install rainwater collection systems, surface water capture, farm pans, ponds, and small dams that turn seasonal rainfall into a reliable year-round water supply. Our systems integrate seamlessly with storage and irrigation for a complete water management solution.",
-    icon: "CloudRain",
+    icon: CloudRain,
     color: "#0d9488",
     image:
       "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -697,22 +725,22 @@ export const services: Service[] = [
       "From rainfall to reserve — capturing nature's water supply",
     infographic: [
       {
-        icon: "CloudRain",
+        icon: CloudRain,
         label: "Rainfall",
         description: "Rain falls on rooftops & surfaces",
       },
       {
-        icon: "Gutter",
+        icon: Droplets,
         label: "Gutters & Capture",
         description: "Water collected and channelled",
       },
       {
-        icon: "Filter",
+        icon: Filter,
         label: "Filtration",
         description: "Debris removed, water cleaned",
       },
       {
-        icon: "Database",
+        icon: Database,
         label: "Storage",
         description: "Harvested water stored for use",
       },
@@ -819,7 +847,7 @@ export const services: Service[] = [
       "Design, installation, and maintenance of efficient irrigation systems that keep your landscape thriving while conserving water.",
     longDescription:
       "A well-designed irrigation system is essential for maintaining a healthy landscape while conserving water. We design and install custom irrigation solutions tailored to your property's unique needs, incorporating smart controllers, efficient sprinkler heads, and drip systems for optimal water distribution.",
-    icon: "Sprout",
+    icon: Sprout,
     color: "#10b981",
     image:
       "https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200",
@@ -829,22 +857,22 @@ export const services: Service[] = [
       "From source to root — efficient water delivery for every crop",
     infographic: [
       {
-        icon: "Droplets",
+        icon: Droplets,
         label: "Water Source",
         description: "Borehole, tank or mains",
       },
       {
-        icon: "Filter",
+        icon: Filter,
         label: "Filtration",
         description: "Water filtered for purity",
       },
       {
-        icon: "GitBranch",
+        icon: GitBranch,
         label: "Distribution",
         description: "Pipes deliver water to zones",
       },
       {
-        icon: "Sprout",
+        icon: Sprout,
         label: "Irrigation",
         description: "Drip or sprinkler feeds crops",
       },
@@ -934,10 +962,33 @@ export const services: Service[] = [
   },
 ];
 
+export const ServiceIcons: Record<string, LucideIcon> = {
+  solar: Sun,
+  electrical: Zap,
+  plumbing: Droplets,
+  borehole: Drill,
+  irrigation: CloudRain,
+  "water-storage": Database,
+  "water-harvesting": CloudRain,
+};
+
+export type ServiceSlugFromData = (typeof SERVICES)[number]["slug"];
+
+export const SERVICE_CATEGORIES = SERVICES.map((service) => ({
+  slug: service.slug,
+  label: service.shortName,
+}));
+
+export type ServiceCategory = (typeof SERVICE_CATEGORIES)[number];
+
+/* -------------------------------------------------------------------------- */
+/* GET SERVICE HELPERS                                                    */
+/* -------------------------------------------------------------------------- */
+
 export function getServiceBySlug(slug: string): Service | undefined {
-  return services.find((s) => s.slug === slug);
+  return SERVICES.find((s) => s.slug === slug);
 }
 
 export function getServiceSlugs(): string[] {
-  return services.map((s) => s.slug);
+  return SERVICES.map((s) => s.slug);
 }

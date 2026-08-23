@@ -94,10 +94,3 @@ export const socialLinks = {
     label: "WhatsApp",
   },
 };
-
-export const certifications = [
-  "Licensed & Insured",
-  "ISO 9001 Certified",
-  "Master Electrician",
-  "Green Energy Pro",
-] as const;

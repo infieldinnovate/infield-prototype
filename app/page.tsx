@@ -6,7 +6,7 @@ import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { IndustriesPreview } from "@/components/sections/IndustriesPreview";
 import { BeforeAfterSlider } from "@/components/sections/BeforeAfterSlider";
 import { GoogleReviews } from "@/components/sections/GoogleReviews";
-import { faqs } from "@/data/faqs";
+import { FAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
 import HeroCarousel from "@/components/sections/HeroCarousel";
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const generalFAQs = faqs.slice(0, 6);
+  const generalFAQs = FAQs.slice(0, 6);
 
   return (
     <>

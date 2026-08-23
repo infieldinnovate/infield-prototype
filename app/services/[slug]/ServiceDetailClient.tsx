@@ -41,7 +41,7 @@ import { getServiceBySlug, SERVICES, Service } from "@/data/services";
 import { industries } from "@/data/industries";
 import { projects } from "@/data/projectStats";
 import { testimonials } from "@/data/testimonials";
-import { faqs } from "@/data/faqs";
+import { FAQs } from "@/data/faqs";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import styles from "./page.module.scss";
 import { ServiceIcons } from "@/data/service-icons";
@@ -90,39 +90,6 @@ const integratedStages = [
     icon: Sprout,
     description: "Turn reliable infrastructure into a stronger operation.",
     services: ["Irrigation", "Solar energy"],
-  },
-];
-
-const processSteps = [
-  {
-    number: "01",
-    title: "Assess",
-    description:
-      "We inspect the site, listen carefully and define the real need.",
-  },
-  {
-    number: "02",
-    title: "Design",
-    description:
-      "Our specialists connect the right technologies into one workable plan.",
-  },
-  {
-    number: "03",
-    title: "Implement",
-    description:
-      "Certified teams install with care, precision and minimal disruption.",
-  },
-  {
-    number: "04",
-    title: "Commission",
-    description:
-      "We test every part, explain the system and hand it over properly.",
-  },
-  {
-    number: "05",
-    title: "Support",
-    description:
-      "We stay close with maintenance, improvements and practical advice.",
   },
 ];
 
@@ -188,9 +155,6 @@ const whyInfieldItems = [
 
 const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
 const supportingProjects = projects.filter((p) => !p.featured).slice(0, 4);
-const serviceFaqs = faqs.filter((f) =>
-  ["g1", "g2", "g3", "g4", "g5", "g6", "g7"].includes(f.id),
-);
 
 export default function ServiceDetailClient({
   service,
@@ -198,6 +162,9 @@ export default function ServiceDetailClient({
   const [selectedServiceSlug, setSelectedServiceSlug] = useState(service.slug);
   const [selectedStageId, setSelectedStageId] = useState("source");
   const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  const serviceFaqs = FAQs.filter((f) => service.slug.includes(f.category));
+
   const [openFaqId, setOpenFaqId] = useState<string | null>(
     serviceFaqs[0]?.id ?? null,
   );
@@ -843,19 +810,19 @@ export default function ServiceDetailClient({
               style={{ scaleX: trackScale }}
               aria-hidden="true"
             />
-            {processSteps.map((step, index) => (
+            {service.process.map((process, index) => (
               <motion.div
                 className={styles.processStep}
-                key={step.number}
+                key={process.step}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1 }}
               >
-                <div className={styles.processMarker}>{step.number}</div>
+                <div className={styles.processMarker}>{process.step}</div>
                 <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
+                  <h3>{process.title}</h3>
+                  <p>{process.description}</p>
                 </div>
               </motion.div>
             ))}

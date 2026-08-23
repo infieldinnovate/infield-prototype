@@ -15,11 +15,6 @@ interface ServiceProcessStep {
   description: string;
 }
 
-interface ServiceFaq {
-  question: string;
-  answer: string;
-}
-
 interface InfographicStep {
   icon: string;
   label: string;
@@ -40,13 +35,12 @@ export interface Service {
   process: ServiceProcessStep[];
   startingPrice: string;
   popularServices: string[];
-  faqs: ServiceFaq[];
   infographic: InfographicStep[];
   infographicTitle: string;
   infographicSubtitle: string;
 }
 
-type ServiceSlug =
+export type ServiceSlug =
   | "solar"
   | "electrical"
   | "plumbing"
@@ -168,23 +162,6 @@ export const SERVICES: Service[] = [
       "Inverter replacement",
       "Solar water pumping",
     ],
-    faqs: [
-      {
-        question: "How much can I save with solar?",
-        answer:
-          "Most customers save 50-90% on their electricity bills. We provide detailed savings estimates during your consultation.",
-      },
-      {
-        question: "How long do solar panels last?",
-        answer:
-          "Our premium panels come with a 25-year warranty and typically last 25-30+ years with proper maintenance.",
-      },
-      {
-        question: "Are there financing options?",
-        answer:
-          "Yes, we offer flexible payment plans and can connect you with financing partners. We also advise on available incentives and tax reliefs for solar installations in Kenya.",
-      },
-    ],
   },
   {
     slug: "electrical",
@@ -292,23 +269,6 @@ export const SERVICES: Service[] = [
       "Generator installation & wiring",
       "Three-phase power installation",
     ],
-    faqs: [
-      {
-        question: "Are your electricians licensed?",
-        answer:
-          "Yes, all our electricians are fully licensed, insured, and certified to work in your area.",
-      },
-      {
-        question: "Do you offer emergency services?",
-        answer:
-          "Yes, we provide 24/7 emergency electrical repair services. Call our emergency line for immediate assistance.",
-      },
-      {
-        question: "How long does a panel upgrade take?",
-        answer:
-          "A typical panel upgrade takes 4-8 hours depending on the complexity and your home's current setup.",
-      },
-    ],
   },
   {
     slug: "plumbing",
@@ -411,23 +371,6 @@ export const SERVICES: Service[] = [
       "Pump installation & repair",
       "Water filtration systems",
       "Manhole & sewer line services",
-    ],
-    faqs: [
-      {
-        question: "Do you offer same-day service?",
-        answer:
-          "Yes, we offer same-day service for most plumbing emergencies. Contact us early in the day for best availability.",
-      },
-      {
-        question: "What areas do you serve?",
-        answer:
-          "We serve Meru and surrounding counties including Nairobi, Nyeri, Embu, Isiolo, and Thika. Contact us to confirm coverage for your location.",
-      },
-      {
-        question: "Do you work on tankless water heaters?",
-        answer:
-          "Yes, we install, repair, and maintain both traditional and tankless water heater systems.",
-      },
     ],
   },
   {
@@ -541,23 +484,6 @@ export const SERVICES: Service[] = [
       "Borehole rehabilitation",
       "Solar borehole pumping",
     ],
-    faqs: [
-      {
-        question: "How deep do you drill?",
-        answer:
-          "Depth varies by location and geology, typically ranging from 30 to 200 meters. Our survey helps determine the optimal depth.",
-      },
-      {
-        question: "How long does drilling take?",
-        answer:
-          "Most boreholes are completed in 1-3 days depending on depth and geological conditions.",
-      },
-      {
-        question: "Is the water safe to drink?",
-        answer:
-          "We conduct thorough water quality testing after drilling and recommend treatment if needed to ensure safe drinking water.",
-      },
-    ],
   },
   {
     slug: "water-storage",
@@ -667,23 +593,6 @@ export const SERVICES: Service[] = [
       "Water tower construction",
       "Underground reservoir installation",
       "Tank maintenance & cleaning",
-    ],
-    faqs: [
-      {
-        question: "What tank size do I need?",
-        answer:
-          "Tank size depends on your daily water usage and supply reliability. We assess your needs and recommend the optimal capacity — typically 1,000L to 10,000L for homes and much larger for commercial use.",
-      },
-      {
-        question: "Do you build water towers?",
-        answer:
-          "Yes, we design and construct elevated water towers with steel or concrete structures for gravity-fed distribution systems.",
-      },
-      {
-        question: "How long do water tanks last?",
-        answer:
-          "Plastic tanks last 15-20 years, steel tanks 20-30+ years with proper maintenance, and concrete storage can last 50+ years. We provide maintenance guidance for every system we install.",
-      },
     ],
   },
   {
@@ -800,23 +709,6 @@ export const SERVICES: Service[] = [
       "Gutter installation",
       "Harvesting system maintenance",
     ],
-    faqs: [
-      {
-        question: "How much water can I harvest?",
-        answer:
-          "A 100 sqm roof can harvest approximately 23,000 litres from 230mm of annual rainfall. We calculate your specific yield based on roof area and local rainfall data.",
-      },
-      {
-        question: "Is harvested rainwater safe to drink?",
-        answer:
-          "With proper filtration and first-flush diversion, harvested rainwater is safe for most uses. For drinking, we recommend additional UV or chlorination treatment.",
-      },
-      {
-        question: "Do you build farm ponds and dams?",
-        answer:
-          "Yes, we construct lined farm ponds, water pans, earth dams, and sand dams for agricultural water retention and supply.",
-      },
-    ],
   },
   {
     slug: "irrigation",
@@ -922,23 +814,6 @@ export const SERVICES: Service[] = [
       "System audit & optimization",
       "Solar irrigation systems",
     ],
-    faqs: [
-      {
-        question: "How much water can I save with a smart system?",
-        answer:
-          "Smart irrigation controllers can reduce water usage by 20-50% compared to traditional timer-based systems.",
-      },
-      {
-        question: "How do I prepare my system for the dry season?",
-        answer:
-          "We recommend a system check before the dry season begins, typically in December to January, to ensure optimal water use during the dry months.",
-      },
-      {
-        question: "Do you repair existing systems?",
-        answer:
-          "Yes, we service and repair all brands of irrigation systems, even if we didn't install them.",
-      },
-    ],
   },
 ];
 
@@ -947,7 +822,7 @@ export const SERVICE_CATEGORIES = SERVICES.map((service) => ({
   label: service.shortName,
 }));
 
-// export type ServiceCategory = (typeof SERVICE_CATEGORIES)[number];
+export type ServiceCategory = (typeof SERVICE_CATEGORIES)[number];
 
 /* -------------------------------------------------------------------------- */
 /* GET SERVICE HELPERS                                                    */

@@ -23,7 +23,7 @@ import { EnhancedFAQAccordion } from "@/components/ui/EnhancedFAQAccordion";
 import { SupportCard } from "@/components/ui/SupportCard";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { cn } from "@/lib/utils";
-import { faqs, faqCategories, searchFAQs, type FAQCategory } from "@/data/faqs";
+import { FAQs, FAQ_CATEGORIES, searchFAQs, type FAQSlug } from "@/data/faqs";
 import { SERVICES } from "@/data/services";
 import { articles } from "@/data/articles";
 import { downloads } from "@/data/downloads";
@@ -81,32 +81,25 @@ const supportCards = [
 
 export default function FAQPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<FAQCategory | "All">(
-    "All",
+  const [activeCategory, setActiveCategory] = useState<FAQSlug | "All">(
+    "general",
   );
 
   const filteredFAQs = useMemo(() => {
     if (searchQuery.trim()) {
       return searchFAQs(searchQuery);
     }
-    if (activeCategory === "All") return faqs;
-    return faqs.filter((f) => f.category === activeCategory);
+    if (activeCategory === "All") return FAQs;
+    return FAQs.filter((f) => f.category === activeCategory);
   }, [searchQuery, activeCategory]);
 
-  const popularQuestions = faqs.filter((f) =>
+  const popularQuestions = FAQs.filter((f) =>
     [
-      "g1",
-      "g2",
-      "g3",
-      "g4",
-      "s1",
-      "s2",
-      "e1",
-      "b1",
-      "p1",
-      "ir1",
-      "w1",
-      "pa1",
+      "solar-1",
+      "electrical-4",
+      "plumbing-6",
+      "boreholes-2",
+      "irrigation-2",
     ].includes(f.id),
   );
 
@@ -163,20 +156,21 @@ export default function FAQPage() {
               >
                 All Questions
               </button>
-              {faqCategories.slice(0, 6).map((cat) => (
+
+              {FAQ_CATEGORIES.map((cat) => (
                 <button
-                  key={cat}
+                  key={cat.slug}
                   className={cn(
                     styles.quickCat,
-                    activeCategory === cat && styles.quickCatActive,
+                    activeCategory === cat.slug && styles.quickCatActive,
                   )}
                   onClick={() => {
-                    setActiveCategory(cat);
+                    setActiveCategory(cat.slug);
                     setSearchQuery("");
                   }}
                   type="button"
                 >
-                  {cat}
+                  {cat.label}
                 </button>
               ))}
             </div>
@@ -191,7 +185,7 @@ export default function FAQPage() {
             {/* Sidebar */}
             <aside className={styles.sidebar}>
               <div className={styles.sidebarCard}>
-                <h3 className={styles.sidebarTitle}>Categories</h3>
+                <h3 className={styles.sidebarTitle}> Categories </h3>
                 <nav className={styles.categoryNav} aria-label="FAQ categories">
                   <button
                     className={cn(
@@ -206,25 +200,30 @@ export default function FAQPage() {
                   >
                     <HelpCircle size={16} />
                     All Questions
-                    <span className={styles.categoryCount}>{faqs.length}</span>
+                    <span className={styles.categoryCount}>{FAQs.length}</span>
                   </button>
-                  {faqCategories.map((cat) => {
-                    const count = faqs.filter((f) => f.category === cat).length;
+
+                  {FAQ_CATEGORIES.map((cat) => {
+                    const count = FAQs.filter(
+                      (f) => f.category === cat.slug,
+                    ).length;
+
                     return (
                       <button
-                        key={cat}
+                        key={cat.slug}
                         className={cn(
                           styles.categoryLink,
-                          activeCategory === cat && styles.categoryLinkActive,
+                          activeCategory === cat.slug &&
+                            styles.categoryLinkActive,
                         )}
                         onClick={() => {
-                          setActiveCategory(cat);
+                          setActiveCategory(cat.slug);
                           setSearchQuery("");
                         }}
                         type="button"
                       >
                         <HelpCircle size={16} />
-                        {cat}
+                        {cat.label}
                         <span className={styles.categoryCount}>{count}</span>
                       </button>
                     );

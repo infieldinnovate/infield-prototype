@@ -33,7 +33,7 @@ import {
 } from "@/data/articles";
 import { downloads, downloadCategories } from "@/data/downloads";
 import { industries } from "@/data/industries";
-import { faqs } from "@/data/faqs";
+import { FAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
 
@@ -70,7 +70,7 @@ export default function ResourcesPage() {
   const filteredFAQs = useMemo(() => {
     if (!searchQuery.trim()) return [];
     const q = searchQuery.toLowerCase();
-    return faqs.filter(
+    return FAQs.filter(
       (f) =>
         f.question.toLowerCase().includes(q) ||
         f.answer.toLowerCase().includes(q),

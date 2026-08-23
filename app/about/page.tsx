@@ -5,7 +5,8 @@ import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
-import { certifications, siteConfig } from "@/data/site.config";
+import { siteConfig } from "@/data/site.config";
+import { certificationsList } from "@/data/certifications";
 import { teamMembers } from "@/data/team";
 import { equipment, safetyCommitments } from "@/data/equipment";
 import { CheckCircle2, Target, Eye, Heart, Linkedin } from "lucide-react";
@@ -145,10 +146,10 @@ export default function AboutPage() {
                 a commitment to quality to every project.
               </p>
               <div className={styles.certifications}>
-                {certifications.map((cert) => (
-                  <span key={cert} className={styles.certification}>
+                {certificationsList.map((cert) => (
+                  <span key={cert.id} className={styles.certification}>
                     <CheckCircle2 size={16} />
-                    {cert}
+                    {cert.name}
                   </span>
                 ))}
               </div>

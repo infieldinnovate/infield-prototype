@@ -23,6 +23,7 @@ import styles from "./Header.module.scss";
 import { cn } from "@/lib/utils";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
+import { ServiceIcons } from "@/data/service-icons";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -178,7 +179,7 @@ const Header = () => {
                   <div className={styles.servicesGrid}>
                     {servicesNavItems.map((service) => {
                       const active = pathname.startsWith(service.href);
-                      const Icon = service.icon;
+                      const Icon = ServiceIcons[service.icon];
                       return (
                         <Link
                           key={service.id}
@@ -301,7 +302,7 @@ const Header = () => {
                     >
                       {servicesNavItems.map((service) => {
                         const active = pathname.startsWith(service.href);
-                        const Icon = service.icon;
+                        const Icon = ServiceIcons[service.icon];
 
                         return (
                           <Link

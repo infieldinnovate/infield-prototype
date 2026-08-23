@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import {
   AnimatePresence,
@@ -37,13 +37,14 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { getServiceBySlug, SERVICES, type Service } from "@/data/services";
+import { getServiceBySlug, SERVICES, Service } from "@/data/services";
 import { industries } from "@/data/industries";
 import { projects } from "@/data/projectStats";
 import { testimonials } from "@/data/testimonials";
 import { faqs } from "@/data/faqs";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import styles from "./page.module.scss";
+import { ServiceIcons } from "@/data/service-icons";
 
 interface ServiceDetailClientProps {
   service: Service;
@@ -215,7 +216,7 @@ export default function ServiceDetailClient({
   const relatedServices = SERVICES.filter(
     (item) => item.slug !== service.slug,
   ).slice(0, 4);
-  const HeroIcon = service.icon;
+  const HeroIcon = ServiceIcons[service.icon];
 
   const changeTestimonial = (direction: number) => {
     setTestimonialIndex(
@@ -432,7 +433,7 @@ export default function ServiceDetailClient({
               aria-label="Explore services"
             >
               {SERVICES.map((item, index) => {
-                const Icon = item.icon;
+                const Icon = ServiceIcons[item.icon];
                 const isActive = item.slug === selectedServiceSlug;
                 return (
                   <button
@@ -903,7 +904,7 @@ export default function ServiceDetailClient({
               </div>
               <div className={styles.diagram}>
                 {service.infographic.map((step, index) => {
-                  const Icon = step.icon;
+                  const Icon = ServiceIcons[step.icon];
                   return (
                     <div className={styles.diagramStep} key={step.label}>
                       <div className={styles.diagramOrb}>
@@ -1014,7 +1015,7 @@ export default function ServiceDetailClient({
           </div>
           <div className={styles.relatedGrid}>
             {relatedServices.map((item) => {
-              const Icon = item.icon;
+              const Icon = ServiceIcons[item.icon];
               return (
                 <Link
                   href={`/services/${item.slug}`}

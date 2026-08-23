@@ -26,7 +26,7 @@ const ServicesOverview = () => {
               id={service.slug}
               title={service.name}
               image={service.image}
-              Icon={service.icon}
+              icon={service.icon}
               features={service.features.map((feature) => feature.title)}
               color={service.color}
             />

@@ -3,16 +3,17 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { ArrowRight, CircleCheck, type LucideIcon } from "lucide-react";
+import { ArrowRight, CircleCheck } from "lucide-react";
 import styles from "./ServiceCard.module.scss";
 import { SectionHeading } from "../ui/SectionHeading";
+import { ServiceIcons } from "@/data/service-icons";
 
 export interface ServiceCardProps {
   id: string;
   title: string;
   // description: string;
   image: string;
-  Icon: LucideIcon;
+  icon: string;
   features: string[];
   color: string;
 }
@@ -22,10 +23,11 @@ export const ServiceCard = ({
   title,
   // description,
   image,
-  Icon,
+  icon,
   features,
   color,
 }: ServiceCardProps) => {
+  const Icon = ServiceIcons[icon];
   return (
     <motion.article
       className={styles.serviceCard}

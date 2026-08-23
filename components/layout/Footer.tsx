@@ -27,12 +27,12 @@ import {
   Database,
 } from "lucide-react";
 import { siteConfig, socialLinks } from "@/data/site.config";
-import { legalLinks, serviceLinks, navLinks } from "@/data/links";
+import { legalLinks, navLinks, servicesNavItems } from "@/data/links";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";
 import { BrandsCarousel } from "../sections/BrandsCarousel";
-import { ServiceIcons } from "@/data/services";
+import { ServiceIcons } from "@/data/service-icons";
 
 const trustItems = [
   {
@@ -117,14 +117,16 @@ export function Footer() {
             <div className={styles.col}>
               <h3 className={styles.colTitle}>Services</h3>
               <ul className={styles.linkList}>
-                {serviceLinks.map((service) => {
-                  const Icon = ServiceIcons[service.slug] || Zap;
+                {servicesNavItems.map((service) => {
+                  const Icon = ServiceIcons[service.icon];
+
                   return (
                     <li key={service.href}>
                       <Link href={service.href} className={styles.serviceLink}>
                         <span className={styles.serviceIcon}>
                           <Icon size={16} />
                         </span>
+
                         {service.label}
                       </Link>
                     </li>

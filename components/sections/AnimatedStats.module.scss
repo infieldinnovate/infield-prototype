@@ -69,6 +69,7 @@
 // Grid mode: card-like appearance
 .grid .stat {
   flex: 1 1 240px;
+  min-width: 0;
   padding: var(--space-6);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -87,6 +88,19 @@
   &[data-inview='true'] {
     transform: translateY(0);
   }
+}
+
+// When 3 or fewer stats, grow to fill the row evenly
+.grid:has(> .stat:only-child) .stat {
+  flex: 1 1 100%;
+}
+
+.grid:has(> .stat:nth-child(2):last-child) .stat {
+  flex: 1 1 45%;
+}
+
+.grid:has(> .stat:nth-child(3):last-child) .stat {
+  flex: 1 1 30%;
 }
 
 // ============================================

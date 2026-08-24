@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { COMMON_IMPACT_STATS } from "@/data/impactStats";
+import {
+  getStatsByCategory,
+  type StatCategory,
+  type ImpactStat,
+} from "@/data/impactStats";
 import { AutoScroll } from "@/components/ui/AutoScroll";
 import styles from "./AnimatedStats.module.scss";
 
@@ -53,9 +57,14 @@ function AnimatedValue({ value, inView }: { value: string; inView: boolean }) {
 interface AnimatedStatsProps {
   theme?: "dark" | "light";
   scroll?: boolean;
+  category?: StatCategory;
 }
 
-export function AnimatedStats({ theme = "dark", scroll = false }: AnimatedStatsProps) {
+export function AnimatedStats({
+  theme = "dark",
+  scroll = false,
+  category = "all",
+}: AnimatedStatsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -75,9 +84,9 @@ export function AnimatedStats({ theme = "dark", scroll = false }: AnimatedStatsP
     return () => observer.disconnect();
   }, []);
 
-  const stats = Object.values(COMMON_IMPACT_STATS);
+  const stats = getStatsByCategory(category);
 
-  const renderStat = (stat: (typeof stats)[number], i: number) => (
+  const renderStat = (stat: ImpactStat, i: number) => (
     <div
       key={stat.label}
       className={`${styles.stat} ${scroll ? styles.statScroll : ""}`}

@@ -1,40 +1,69 @@
-export const COMMON_IMPACT_STATS = {
+export type StatCategory =
+  | "all"
+  | "solar"
+  | "electrical"
+  | "plumbing"
+  | "boreholes"
+  | "water-storage"
+  | "water-harvesting"
+  | "irrigation";
+
+export interface ImpactStat {
+  label: string;
+  value: string;
+  icon: string;
+  categories: StatCategory[];
+}
+
+export const COMMON_IMPACT_STATS: Record<string, ImpactStat> = {
   projectsCompleted: {
     label: "Projects Completed",
     value: "150+",
     icon: "check-circle",
+    categories: ["all"],
   },
 
   countiesServed: {
     label: "Counties Served",
     value: "27+",
     icon: "map",
+    categories: ["all"],
   },
 
   yearsExperience: {
     label: "Years Experience",
     value: "10+",
     icon: "calendar-days",
+    categories: ["all"],
   },
 
   clientsServed: {
     label: "Clients Served",
     value: "120+",
     icon: "users",
+    categories: ["all"],
   },
 
   systemsInstalled: {
     label: "Systems Installed",
     value: "200+",
     icon: "settings",
+    categories: ["all", "solar", "electrical", "boreholes", "irrigation"],
   },
 
   customerSatisfaction: {
     label: "Customer Satisfaction",
     value: "99%",
     icon: "smile",
+    categories: ["all"],
   },
-} as const;
+};
+
+export function getStatsByCategory(category: StatCategory): ImpactStat[] {
+  return Object.values(COMMON_IMPACT_STATS).filter((stat) =>
+    stat.categories.includes(category),
+  );
+}
 
 export const countiesServed = [
   { countyName: "Meru", projectsCount: 32, coordinates: { x: 62, y: 38 } },

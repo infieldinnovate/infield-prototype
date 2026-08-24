@@ -245,108 +245,73 @@
 }
 
 // Team
-.teamGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-
-  @include breakpoint-up("sm") {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include breakpoint-up("lg") {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.teamSection {
+  @include section;
+  background: var(--color-gray-50);
 }
 
-.teamCard {
-  @include card;
-  overflow: hidden;
-  height: 100%;
-  transition: all var(--transition-base);
-
-  &:hover {
-    @include card-hover;
-  }
-}
-
-.teamImage {
+.teamGroupPhoto {
   position: relative;
   width: 100%;
-  aspect-ratio: 1;
+  aspect-ratio: 21 / 9;
+  max-height: 520px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  background: var(--color-gray-100);
+  box-shadow: var(--shadow-xl);
+  background: var(--color-gray-200);
+
+  @media (max-width: 768px) {
+    aspect-ratio: 16 / 10;
+    max-height: 360px;
+  }
 }
 
-.teamContent {
-  @include flex-column;
-  padding: var(--space-5);
-  gap: var(--space-2);
+.teamGroupImage {
+  object-fit: cover;
+  object-position: center;
 }
 
-.teamName {
-  font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
-  color: var(--color-text);
+.teamGroupOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  color: var(--color-white);
 }
 
-.teamRole {
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  color: var(--color-primary);
-}
-
-.teamBio {
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-  line-height: var(--lh-relaxed);
-}
-
-.teamMeta {
-  @include flex-between;
-  margin-top: var(--space-1);
-}
-
-.teamExp {
-  font-size: var(--fs-xs);
-  color: var(--color-text-muted);
-  font-weight: var(--fw-medium);
-}
-
-.teamSocial {
+.teamGroupBadge {
   @include flex-center;
-  width: 32px;
-  height: 32px;
-  background: var(--color-gray-100);
-  color: var(--color-primary);
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-full);
-  transition: all var(--transition-fast);
-
-  &:hover {
-    background: var(--color-primary);
-    color: var(--color-white);
-  }
+  margin-bottom: var(--space-4);
+  backdrop-filter: blur(8px);
 }
 
-.teamQuals {
-  @include flex-column;
-  gap: var(--space-1);
-  margin-top: var(--space-3);
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--color-border);
-  list-style: none;
+.teamGroupTitle {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: var(--fw-bold);
+  margin-bottom: var(--space-2);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 
-  li {
-    @include flex-center;
-    gap: var(--space-2);
-    font-size: var(--fs-xs);
-    color: var(--color-text-muted);
-
-    svg {
-      color: var(--color-success);
-      flex-shrink: 0;
-    }
-  }
+.teamGroupSubtitle {
+  font-size: var(--fs-base);
+  max-width: 480px;
+  line-height: var(--lh-relaxed);
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 // Equipment

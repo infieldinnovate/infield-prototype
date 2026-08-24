@@ -7,9 +7,8 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { siteConfig } from "@/data/site.config";
 import { certificationsList } from "@/data/certifications";
-import { employees as teamMembers } from "@/data/teamData";
 import { equipment, safetyCommitments } from "@/data/equipment";
-import { CircleCheck as CheckCircle2, Target, Eye, Heart, Linkedin } from "lucide-react";
+import { CircleCheck as CheckCircle2, Target, Eye, Heart, Users } from "lucide-react";
 import styles from "./about.module.scss";
 import AboutTimeline from "./AboutTimeline";
 
@@ -181,58 +180,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Profiles */}
-      <section className={styles.section}>
+      {/* Team */}
+      <section className={styles.teamSection}>
         <div className={styles.container}>
           <SectionHeading
             eyebrow="Our People"
             title="Meet the Team"
             description="The certified professionals behind every Infield Innovations project."
           />
-          <div className={styles.teamGrid}>
-            {teamMembers.map((member, i) => (
-              <ScrollReveal key={member.id} delay={(i % 3) * 100}>
-                <article className={styles.teamCard}>
-                  <div className={styles.teamImage}>
-                    <ImageWithFallback
-                      src={member.photo}
-                      alt={member.fullName}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className={styles.image}
-                    />
-                  </div>
-                  <div className={styles.teamContent}>
-                    <h3 className={styles.teamName}>{member.fullName}</h3>
-                    <span className={styles.teamRole}>{member.jobTitle}</span>
-                    <p className={styles.teamBio}>{member.bio}</p>
-                    <div className={styles.teamMeta}>
-                      <span className={styles.teamExp}>
-                        {member.experience} experience
-                      </span>
-                      {member.social?.linkedin && (
-                        <a
-                          href={member.social.linkedin}
-                          className={styles.teamSocial}
-                          aria-label={`${member.fullName} on LinkedIn`}
-                        >
-                          <Linkedin size={16} />
-                        </a>
-                      )}
-                    </div>
-                    <ul className={styles.teamQuals}>
-                      {member.qualifications.map((q) => (
-                        <li key={q}>
-                          <CheckCircle2 size={14} />
-                          {q}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              </ScrollReveal>
-            ))}
-          </div>
+          <ScrollReveal>
+            <div className={styles.teamGroupPhoto}>
+              <ImageWithFallback
+                src="https://images.pexels.com/photos/13005576/pexels-photo-13005576.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                alt="Infield Innovations team"
+                fill
+                sizes="(max-width: 768px) 100vw, 1200px"
+                className={styles.teamGroupImage}
+              />
+              <div className={styles.teamGroupOverlay}>
+                <div className={styles.teamGroupBadge}>
+                  <Users size={28} />
+                </div>
+                <h3 className={styles.teamGroupTitle}>Our Crew</h3>
+                <p className={styles.teamGroupSubtitle}>
+                  28 certified technicians, engineers, and specialists working
+                  across Kenya.
+                </p>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 

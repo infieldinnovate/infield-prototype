@@ -25,7 +25,7 @@ export function BrandsCarousel() {
 
         <AutoScroll
           items={brandItems}
-          direction="right"
+          direction="left"
           speed={35}
           showNavButtons={true}
           pauseOnHover={true}

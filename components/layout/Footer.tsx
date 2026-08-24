@@ -6,27 +6,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  Zap,
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  ArrowRight,
-  ShieldCheck,
-  BadgeCheck,
-  Headphones,
-  Award,
-  CheckCircle2,
-  AlertCircle,
-} from "lucide-react";
+import { Zap, Phone, Mail, MapPin, Clock, ShieldCheck, BadgeCheck, Headphones, Award, CircleCheck as CheckCircle2, CircleAlert as AlertCircle } from "lucide-react";
 import { siteConfig, socialLinks } from "@/data/site.config";
 import { legalLinks, navLinks, servicesNavItems } from "@/data/links";
-import { COMMON_IMPACT_STATS } from "@/data/impactStats";
+import { COMMON_IMPACT_STATS, countiesServed } from "@/data/impactStats";
 import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";
 import { BrandsCarousel } from "../sections/BrandsCarousel";
 import { ServiceIcons } from "@/data/service-icons";
+import { AutoScroll } from "@/components/ui/AutoScroll";
 
 const trustItems = [
   {
@@ -276,17 +264,33 @@ export function Footer() {
           {/* Service Areas */}
           <div className={styles.areasSection}>
             <h3 className={styles.areasTitle}>Service Areas</h3>
-            <div className={styles.areasList}>
-              {siteConfig.serviceAreas.map((area) => (
-                <span key={area} className={styles.areaChip}>
-                  <MapPin size={12} />
-                  {area}
-                </span>
-              ))}
-              <Link href="/contact" className={styles.areaChipAll}>
-                View All Areas
-                <ArrowRight size={12} />
-              </Link>
+            <div className={styles.areasScroll}>
+              <AutoScroll
+                items={countiesServed.map((county) => (
+                  <span className={styles.areaChip}>
+                    <MapPin size={12} />
+                    {county.countyName}
+                  </span>
+                ))}
+                direction="left"
+                speed={30}
+                showNavButtons={false}
+                pauseOnHover={true}
+                trackClassName={styles.areasTrack}
+              />
+              <AutoScroll
+                items={countiesServed.map((county) => (
+                  <span className={styles.areaChip}>
+                    <MapPin size={12} />
+                    {county.countyName}
+                  </span>
+                ))}
+                direction="right"
+                speed={30}
+                showNavButtons={false}
+                pauseOnHover={true}
+                trackClassName={styles.areasTrack}
+              />
             </div>
           </div>
         </div>

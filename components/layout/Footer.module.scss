@@ -667,12 +667,17 @@
   letter-spacing: 0.08em;
   color: var(--color-white);
   margin-bottom: var(--space-5);
+  text-align: center;
 }
 
-.areasList {
-  @include flex-center;
+.areasScroll {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
-  flex-wrap: wrap;
+}
+
+.areasTrack {
+  gap: var(--space-3);
 }
 
 .areaChip {
@@ -684,39 +689,13 @@
   border-radius: var(--radius-full);
   font-size: var(--fs-sm);
   color: var(--color-gray-300);
+  white-space: nowrap;
   transition: all var(--transition-fast);
 
   &:hover {
     background: rgba(15, 108, 189, 0.15);
     border-color: rgba(15, 108, 189, 0.3);
     color: var(--color-primary-light);
-  }
-}
-
-.areaChipAll {
-  @include flex-center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  background: linear-gradient(
-    135deg,
-    rgba(15, 108, 189, 0.15),
-    rgba(13, 148, 136, 0.15)
-  );
-  border: 1px solid rgba(15, 108, 189, 0.3);
-  border-radius: var(--radius-full);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  color: var(--color-primary-light);
-  transition: all var(--transition-fast);
-
-  &:hover {
-    background: linear-gradient(
-      135deg,
-      var(--color-primary),
-      var(--color-secondary)
-    );
-    color: var(--color-white);
-    border-color: transparent;
   }
 }
 

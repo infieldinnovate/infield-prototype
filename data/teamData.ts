@@ -18,6 +18,8 @@ export interface Employee {
   fullName: string;
   jobTitle: string;
   department: string;
+  employeeNumber: string;
+  phone: string;
 
   // Public team profile
   bio: string;
@@ -54,6 +56,8 @@ export const employees: Employee[] = [
     fullName: "Wadeya Wicklife",
     jobTitle: "Lead Technician",
     department: "Engineering",
+    employeeNumber: "EMP-001",
+    phone: "+254712345678",
 
     bio: "Wadeya is a lead technician supporting engineering installations, maintenance, and field operations, with a strong focus on reliable project delivery, technical quality, and safety.",
 
@@ -80,6 +84,8 @@ export const employees: Employee[] = [
     fullName: "Collince Ngicho",
     jobTitle: "Technician",
     department: "Engineering",
+    employeeNumber: "EMP-002",
+    phone: "+254723456789",
 
     bio: "Collince supports engineering installation, maintenance, troubleshooting, and field operations, helping deliver dependable technical solutions for residential, commercial, and institutional projects.",
 
@@ -106,6 +112,8 @@ export const employees: Employee[] = [
     fullName: "Mary Odhiambo",
     jobTitle: "Snr. Operations",
     department: "Operations",
+    employeeNumber: "EMP-003",
+    phone: "+254734567890",
 
     bio: "Mary supports the coordination of company operations and project activities, helping ensure efficient resource management, client service, scheduling, and smooth delivery across service divisions.",
 
@@ -132,6 +140,8 @@ export const employees: Employee[] = [
     fullName: "Jared Oluoch",
     jobTitle: "Lead Engineer",
     department: "Engineering",
+    employeeNumber: "EMP-004",
+    phone: "+254745678901",
 
     bio: "Jared leads engineering activities and provides technical oversight across projects, supporting system design, implementation, troubleshooting, and quality assurance.",
 
@@ -158,6 +168,8 @@ export const employees: Employee[] = [
     fullName: "Alex Juma",
     jobTitle: "Technician",
     department: "Engineering",
+    employeeNumber: "EMP-005",
+    phone: "+254756789012",
 
     bio: "Alex supports technical installations, maintenance, inspections, and field service activities, contributing to the reliable execution of engineering projects.",
 
@@ -184,6 +196,8 @@ export const employees: Employee[] = [
     fullName: "Josephine Anyango",
     jobTitle: "Sales Manager",
     department: "Sales & Marketing",
+    employeeNumber: "EMP-006",
+    phone: "+254767890123",
 
     bio: "Josephine leads sales and marketing activities, helping clients understand available engineering solutions, develop project requirements, and identify services suited to their needs.",
 
@@ -225,4 +239,32 @@ export function lookupEmployee(verificationCode: string): LookupResult {
     found: false,
     employee: null,
   };
+}
+
+// ============================================
+// EMPLOYEE LOOKUP BY EMPLOYEE NUMBER
+// ============================================
+
+export function lookupEmployeeByNumber(employeeNumber: string): LookupResult {
+  const normalized = employeeNumber.trim().toUpperCase();
+  const employee = employees.find(
+    (e) => e.employeeNumber.toUpperCase() === normalized,
+  );
+  if (employee) {
+    return { found: true, employee };
+  }
+  return { found: false, employee: null };
+}
+
+// ============================================
+// EMPLOYEE LOOKUP BY PHONE NUMBER
+// ============================================
+
+export function lookupEmployeeByPhone(phone: string): LookupResult {
+  const normalized = phone.replace(/\s+/g, "");
+  const employee = employees.find((e) => e.phone.replace(/\s+/g, "") === normalized);
+  if (employee) {
+    return { found: true, employee };
+  }
+  return { found: false, employee: null };
 }

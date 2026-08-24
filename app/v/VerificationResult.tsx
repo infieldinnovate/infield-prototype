@@ -1,22 +1,63 @@
 "use client";
 
-import { ShieldCheck, ShieldAlert, ShieldX, Circle as XCircle, User, Briefcase, Users, Hash, Building2, ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
+import {
+  ShieldCheck,
+  ShieldAlert,
+  ShieldX,
+  Circle as XCircle,
+  User,
+  Briefcase,
+  Users,
+  Hash,
+  Building2,
+  ArrowLeft,
+  X,
+  Phone,
+  IdCard,
+} from "lucide-react";
 import Link from "next/link";
 import type { Employee, LookupResult } from "@/data/teamData";
 import styles from "./page.module.scss";
 
 interface VerificationResultProps {
   result: LookupResult;
+  onClose?: () => void;
 }
 
 export default function VerificationResult({
   result,
+  onClose,
 }: VerificationResultProps) {
-  if (!result.found) {
-    return <NotFound />;
-  }
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && onClose) onClose();
+    };
+    document.addEventListener("keydown", handleEsc);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleEsc);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
 
-  return <EmployeeCard employee={result.employee} />;
+  return (
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div
+        className={styles.modalContent}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          className={styles.modalCloseBtn}
+          onClick={onClose}
+          aria-label="Close"
+        >
+          <X size={20} />
+        </button>
+        {!result.found ? <NotFound onClose={onClose} /> : <EmployeeCard employee={result.employee} />}
+      </div>
+    </div>
+  );
 }
 
 function EmployeeCard({ employee }: { employee: Employee }) {
@@ -46,7 +87,6 @@ function EmployeeCard({ employee }: { employee: Employee }) {
 
   return (
     <div className={styles.resultCard}>
-      {/* Header with status */}
       <div className={`${styles.resultHeader} ${config.header}`}>
         <div>
           <div className={`${styles.statusBadge} ${config.badge}`}>
@@ -56,7 +96,6 @@ function EmployeeCard({ employee }: { employee: Employee }) {
         </div>
       </div>
 
-      {/* Photo */}
       <div className={styles.resultPhotoWrap}>
         {employee.photo ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -73,16 +112,13 @@ function EmployeeCard({ employee }: { employee: Employee }) {
       </div>
 
       <div className={styles.resultBody}>
-        {/* Name */}
         <h2 className={styles.resultName}>{employee.fullName}</h2>
 
-        {/* Details */}
         <div className={styles.resultDetails}>
-          <DetailRow
-            label="Verification Code"
-            value={employee.verificationCode}
-            code
-          >
+          <DetailRow label="Employee No." value={employee.employeeNumber}>
+            <IdCard size={14} />
+          </DetailRow>
+          <DetailRow label="Verification Code" value={employee.verificationCode} code>
             <Hash size={14} />
           </DetailRow>
           <DetailRow label="Job Title" value={employee.jobTitle}>
@@ -90,6 +126,9 @@ function EmployeeCard({ employee }: { employee: Employee }) {
           </DetailRow>
           <DetailRow label="Department" value={employee.department}>
             <Users size={14} />
+          </DetailRow>
+          <DetailRow label="Phone" value={employee.phone}>
+            <Phone size={14} />
           </DetailRow>
           <DetailRow label="Status" value={employee.status}>
             <StatusIcon size={14} />
@@ -124,7 +163,7 @@ function DetailRow({
   );
 }
 
-function NotFound() {
+function NotFound({ onClose }: { onClose?: () => void }) {
   return (
     <div className={styles.resultCard}>
       <div className={`${styles.resultHeader} ${styles.resultHeaderNotFound}`}>
@@ -139,14 +178,18 @@ function NotFound() {
         </div>
         <h2 className={styles.notFoundTitle}>EMPLOYEE NOT VERIFIED</h2>
         <p className={styles.notFoundText}>
-          The verification code you entered is invalid or does not exist in our
-          system. Please check the code and try again, or contact your
+          The information you entered does not match any employee in our
+          system. Please check the details and try again, or contact your
           administrator for assistance.
         </p>
-        <Link href="/v" className={styles.backBtn}>
+        <button
+          type="button"
+          className={styles.backBtn}
+          onClick={onClose}
+        >
           <ArrowLeft size={18} />
-          Try Another Code
-        </Link>
+          Try Again
+        </button>
       </div>
     </div>
   );

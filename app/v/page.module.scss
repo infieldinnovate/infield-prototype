@@ -126,6 +126,44 @@ $expired-yellow-light: $color-expired-light;
   overflow: hidden;
 }
 
+/* Method toggle */
+.methodToggle {
+  display: flex;
+  gap: 0;
+  padding: 0.5rem;
+  background: $muted;
+  border-bottom: 1px solid $border;
+}
+
+.methodBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: $muted-foreground;
+  border: none;
+  border-radius: $radius;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all $transition;
+
+  &:hover:not(.methodBtnActive) {
+    color: $foreground;
+    background: rgba($white, 0.5);
+  }
+}
+
+.methodBtnActive {
+  background: $border;
+  color: $foreground;
+  cursor: default;
+  opacity: 0.7;
+}
+
 /* Input section */
 .inputSection {
   padding: 2.5rem 2rem;
@@ -151,10 +189,27 @@ $expired-yellow-light: $color-expired-light;
   flex-wrap: wrap;
 }
 
+.inputIconWrap {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  color: $muted-foreground;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .input {
   flex: 1;
   min-width: 200px;
-  padding: 1rem 1.25rem;
+  width: 100%;
+  padding: 1rem 1.25rem 1rem 3rem;
   font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -602,6 +657,88 @@ $expired-yellow-light: $color-expired-light;
   }
 }
 
+// ============================================
+// MODAL STYLES
+// ============================================
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContent {
+  position: relative;
+  max-width: 560px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all $transition;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: rotate(90deg);
+  }
+}
+
+// ============================================
+// FOOTER
+// ============================================
+
+.footer {
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  color: $muted-foreground;
+  font-size: 0.85rem;
+  line-height: 1.6;
+
+  p {
+    margin: 0;
+  }
+}
+
 // Responsive
 @media (max-width: 768px) {
   .hero {
@@ -653,5 +790,18 @@ $expired-yellow-light: $color-expired-light;
     border-radius: 0;
     max-width: 100%;
     height: 100%;
+  }
+
+  .modalOverlay {
+    padding: 1rem;
+  }
+
+  .modalCloseBtn {
+    top: -2.5rem;
+  }
+
+  .methodBtn {
+    font-size: 0.8rem;
+    padding: 0.6rem 0.5rem;
   }
 }

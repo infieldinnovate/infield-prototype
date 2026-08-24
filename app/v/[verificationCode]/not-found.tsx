@@ -25,10 +25,6 @@ export default function VerificationNotFound() {
           <ChevronLeft size={18} />
           Back to Verification
         </Link>
-
-        <VerificationResult
-          result={{ found: false, employee: null }}
-        />
       </main>
 
       <footer className={styles.footer}>
@@ -38,6 +34,8 @@ export default function VerificationNotFound() {
           For assistance, contact your HR administrator.
         </p>
       </footer>
+
+      <VerificationResult result={{ found: false, employee: null }} />
     </div>
   );
 }

@@ -71,7 +71,7 @@ export default function ProjectsPage() {
             Explore our completed solar, borehole, irrigation, plumbing, and
             electrical projects across Kenya.
           </p>
-          <AnimatedStats />
+          <AnimatedStats theme='light ' />
         </div>
       </section>
 

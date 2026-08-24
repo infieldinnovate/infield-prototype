@@ -5,8 +5,8 @@ import { AutoScroll } from "@/components/ui/AutoScroll";
 import styles from "./BrandsCarousel.module.scss";
 
 export function BrandsCarousel() {
-  const brandItems = siteConfig.brands.map((brand) => (
-    <div className={styles.brandCard}>
+  const brandItems = siteConfig.brands.map((brand, index) => (
+    <div className={styles.brandCard} key={index}>
       <span className={styles.brandName}>{brand}</span>
     </div>
   ));
@@ -25,7 +25,7 @@ export function BrandsCarousel() {
 
         <AutoScroll
           items={brandItems}
-          direction="left"
+          direction="right"
           speed={35}
           showNavButtons={true}
           pauseOnHover={true}

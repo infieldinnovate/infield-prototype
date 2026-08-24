@@ -62,7 +62,7 @@ interface AnimatedStatsProps {
 
 export function AnimatedStats({
   theme = "dark",
-  scroll = false,
+  scroll = true,
   category = "all",
 }: AnimatedStatsProps) {
   const ref = useRef<HTMLDivElement>(null);

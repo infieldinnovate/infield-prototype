@@ -37,32 +37,47 @@ export function AutoScroll({
   const offsetRef = useRef(0);
   const pausedRef = useRef(false);
   const lastTimeRef = useRef<number | null>(null);
+  const singleSetWidthRef = useRef(0);
 
   const [paused, setPaused] = useState(false);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [ready, setReady] = useState(false);
 
-  // Duplicate items enough times to fill the viewport so the loop is seamless
   const displayItems = useMemo(() => {
     if (!items.length) return [];
-    // 3 copies is enough for smooth looping in most cases
     return [...items, ...items, ...items];
   }, [items]);
-
-  const contentWidth = useMemo(() => {
-    if (!trackRef.current) return 0;
-    // Width of one set of items (including gap between items)
-    const total = trackRef.current.scrollWidth;
-    return total / 3;
-  }, [displayItems]);
 
   useEffect(() => {
     const track = trackRef.current;
     const wrapper = wrapperRef.current;
-    if (!track || !wrapper) return;
+    if (!track || !wrapper || !items.length) return;
 
-    // Measure one set width
-    const singleSetWidth = track.scrollWidth / 3;
+    // Allow DOM to lay out the tripled items before measuring
+    const measureTimer = setTimeout(() => {
+      const singleSetWidth = track.scrollWidth / 3;
+      singleSetWidthRef.current = singleSetWidth;
+      if (singleSetWidth === 0) return;
+
+      // For right direction, start one set in so content fills the left side
+      if (direction === "right") {
+        offsetRef.current = singleSetWidth;
+      } else {
+        offsetRef.current = 0;
+      }
+      track.style.transform = `translateX(${-offsetRef.current}px)`;
+      setReady(true);
+    }, 50);
+
+    return () => clearTimeout(measureTimer);
+  }, [direction, items]);
+
+  useEffect(() => {
+    if (!ready) return;
+
+    const track = trackRef.current;
+    if (!track) return;
+
+    const singleSetWidth = singleSetWidthRef.current;
     if (singleSetWidth === 0) return;
 
     const animate = (time: number) => {
@@ -76,13 +91,12 @@ export function AutoScroll({
         const pxPerMs = speed / 1000;
         offsetRef.current += pxPerMs * delta * (direction === "left" ? 1 : -1);
 
-        // Loop: when we've scrolled past one set, reset by one set width
         if (direction === "left") {
           if (offsetRef.current >= singleSetWidth) {
             offsetRef.current -= singleSetWidth;
           }
         } else {
-          if (offsetRef.current <= -singleSetWidth) {
+          if (offsetRef.current <= 0) {
             offsetRef.current += singleSetWidth;
           }
         }
@@ -101,7 +115,7 @@ export function AutoScroll({
       }
       lastTimeRef.current = null;
     };
-  }, [speed, direction, contentWidth]);
+  }, [speed, direction, ready]);
 
   const handleMouseEnter = () => {
     if (pauseOnHover) {
@@ -124,6 +138,8 @@ export function AutoScroll({
       trackRef.current.style.transform = `translateX(${-offsetRef.current}px)`;
     }
   };
+
+  if (!items.length) return null;
 
   return (
     <div

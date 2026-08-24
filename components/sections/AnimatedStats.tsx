@@ -63,7 +63,7 @@ interface AnimatedStatsProps {
 export function AnimatedStats({
   theme = "dark",
   scroll = true,
-  category = "all",
+  category = "solar",
 }: AnimatedStatsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);

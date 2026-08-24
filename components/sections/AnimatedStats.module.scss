@@ -41,14 +41,14 @@
   z-index: var(--z-base);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-8);
+// ============================================
+// Grid mode (scroll=false) — wrapping flex cards
+// ============================================
 
-  @include breakpoint-up('md') {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
 }
 
 .stat {
@@ -64,6 +64,42 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+// Grid mode: card-like appearance
+.grid .stat {
+  flex: 1 1 240px;
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base),
+    opacity 0.6s ease;
+
+  &:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+
+  &[data-inview='true'] {
+    transform: translateY(0);
+  }
+}
+
+// ============================================
+// Scroll mode (scroll=true) — fixed-width items
+// ============================================
+
+.statScroll {
+  @include flex-column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 220px;
+  padding: var(--space-5) var(--space-6);
+  gap: var(--space-2);
 }
 
 .value {

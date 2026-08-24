@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";
+import { AutoScroll } from "@/components/ui/AutoScroll";
 import styles from "./AnimatedStats.module.scss";
 
 function AnimatedValue({ value, inView }: { value: string; inView: boolean }) {
@@ -51,9 +52,10 @@ function AnimatedValue({ value, inView }: { value: string; inView: boolean }) {
 
 interface AnimatedStatsProps {
   theme?: "dark" | "light";
+  scroll?: boolean;
 }
 
-export function AnimatedStats({ theme = "dark" }: AnimatedStatsProps) {
+export function AnimatedStats({ theme = "dark", scroll = false }: AnimatedStatsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -73,27 +75,40 @@ export function AnimatedStats({ theme = "dark" }: AnimatedStatsProps) {
     return () => observer.disconnect();
   }, []);
 
+  const stats = Object.values(COMMON_IMPACT_STATS);
+
+  const renderStat = (stat: (typeof stats)[number], i: number) => (
+    <div
+      key={stat.label}
+      className={`${styles.stat} ${scroll ? styles.statScroll : ""}`}
+      style={{ transitionDelay: `${i * 120}ms` }}
+      data-inview={inView}
+    >
+      <span className={styles.value}>
+        <AnimatedValue value={stat.value} inView={inView} />
+      </span>
+      <span className={styles.label}>{stat.label}</span>
+    </div>
+  );
+
   return (
     <section
       className={`${styles.section} ${styles[theme]}`}
       aria-label="Company statistics"
     >
       <div className={styles.container}>
-        <div className={styles.grid} ref={ref}>
-          {Object.values(COMMON_IMPACT_STATS).map((stat, i) => (
-            <div
-              key={stat.label}
-              className={styles.stat}
-              style={{ transitionDelay: `${i * 120}ms` }}
-              data-inview={inView}
-            >
-              <span className={styles.value}>
-                <AnimatedValue value={stat.value} inView={inView} />
-              </span>
-
-              <span className={styles.label}>{stat.label}</span>
+        <div ref={ref}>
+          {scroll ? (
+            <AutoScroll
+              items={stats.map((stat, i) => renderStat(stat, i))}
+              showNavButtons={false}
+              pauseOnHover={true}
+            />
+          ) : (
+            <div className={styles.grid}>
+              {stats.map((stat, i) => renderStat(stat, i))}
             </div>
-          ))}
+          )}
         </div>
       </div>
     </section>

@@ -49,7 +49,11 @@ function AnimatedValue({ value, inView }: { value: string; inView: boolean }) {
   return <>{display}</>;
 }
 
-export function AnimatedStats() {
+interface AnimatedStatsProps {
+  theme?: "dark" | "light";
+}
+
+export function AnimatedStats({ theme = "dark" }: AnimatedStatsProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -70,7 +74,10 @@ export function AnimatedStats() {
   }, []);
 
   return (
-    <section className={styles.section} aria-label="Company statistics">
+    <section
+      className={`${styles.section} ${styles[theme]}`}
+      aria-label="Company statistics"
+    >
       <div className={styles.container}>
         <div className={styles.grid} ref={ref}>
           {Object.values(COMMON_IMPACT_STATS).map((stat, i) => (

@@ -14,14 +14,18 @@ export interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
+  theme?: 'light' | 'dark';
 }
 
-export function Breadcrumbs({ items }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, theme = 'light' }: BreadcrumbsProps) {
   const jsonLd = buildBreadcrumbSchema(items);
 
   return (
     <>
-      <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
+      <nav
+        aria-label="Breadcrumb"
+        className={`${styles.breadcrumbs} ${styles[theme]}`}
+      >
         <ol className={styles.list}>
           {items.map((item, index) => {
             const isLast = index === items.length - 1;

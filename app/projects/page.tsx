@@ -64,6 +64,7 @@ export default function ProjectsPage() {
         <div className={styles.heroContent}>
           <Breadcrumbs
             items={[{ label: "Home", href: "/" }, { label: "Projects" }]}
+            theme='dark'
           />
           <h1 className={styles.heroTitle}>Our Projects</h1>
           <p className={styles.heroSubtitle}>

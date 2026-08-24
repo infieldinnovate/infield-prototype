@@ -35,3 +35,41 @@
   color: var(--color-text-light);
   flex-shrink: 0;
 }
+
+// Dark theme — for use on dark/colored backgrounds
+.dark {
+  .link {
+    color: rgba(255, 255, 255, 0.7);
+
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+
+  .current {
+    color: var(--color-white);
+  }
+
+  .separator {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+// Light theme — for use on white/light backgrounds (default)
+.light {
+  .link {
+    color: var(--color-text-muted);
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  .current {
+    color: var(--color-gray-700);
+  }
+
+  .separator {
+    color: var(--color-text-light);
+  }
+}

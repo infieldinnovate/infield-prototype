@@ -2,7 +2,7 @@ import { ShieldCheck, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import VerificationResult from '../VerificationResult';
-import { lookupEmployee } from '../data';
+import { lookupEmployee } from '@/data/teamData';
 import styles from '../page.module.scss';
 
 interface PageProps {

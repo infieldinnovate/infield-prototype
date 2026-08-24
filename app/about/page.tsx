@@ -7,9 +7,9 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { siteConfig } from "@/data/site.config";
 import { certificationsList } from "@/data/certifications";
-import { teamMembers } from "@/data/team";
+import { employees as teamMembers } from "@/data/teamData";
 import { equipment, safetyCommitments } from "@/data/equipment";
-import { CheckCircle2, Target, Eye, Heart, Linkedin } from "lucide-react";
+import { CircleCheck as CheckCircle2, Target, Eye, Heart, Linkedin } from "lucide-react";
 import styles from "./about.module.scss";
 import AboutTimeline from "./AboutTimeline";
 
@@ -195,16 +195,16 @@ export default function AboutPage() {
                 <article className={styles.teamCard}>
                   <div className={styles.teamImage}>
                     <ImageWithFallback
-                      src={member.image}
-                      alt={member.name}
+                      src={member.photo}
+                      alt={member.fullName}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className={styles.image}
                     />
                   </div>
                   <div className={styles.teamContent}>
-                    <h3 className={styles.teamName}>{member.name}</h3>
-                    <span className={styles.teamRole}>{member.role}</span>
+                    <h3 className={styles.teamName}>{member.fullName}</h3>
+                    <span className={styles.teamRole}>{member.jobTitle}</span>
                     <p className={styles.teamBio}>{member.bio}</p>
                     <div className={styles.teamMeta}>
                       <span className={styles.teamExp}>
@@ -214,7 +214,7 @@ export default function AboutPage() {
                         <a
                           href={member.social.linkedin}
                           className={styles.teamSocial}
-                          aria-label={`${member.name} on LinkedIn`}
+                          aria-label={`${member.fullName} on LinkedIn`}
                         >
                           <Linkedin size={16} />
                         </a>

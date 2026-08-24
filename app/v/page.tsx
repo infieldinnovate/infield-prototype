@@ -4,7 +4,7 @@ import { useState, useCallback } from "react";
 import { ShieldCheck, Search, QrCode, AlertTriangle } from "lucide-react";
 import VerificationResult from "./VerificationResult";
 import QrScanner from "./QrScanner";
-import { lookupEmployee, type LookupResult } from "./data";
+import { lookupEmployee, type LookupResult } from "@/data/teamData";
 import styles from "./page.module.scss";
 
 export default function VerificationPage() {

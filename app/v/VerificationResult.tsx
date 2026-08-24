@@ -1,19 +1,8 @@
 "use client";
 
-import {
-  ShieldCheck,
-  ShieldAlert,
-  ShieldX,
-  XCircle,
-  User,
-  Briefcase,
-  Users,
-  Hash,
-  Building2,
-  ArrowLeft,
-} from "lucide-react";
+import { ShieldCheck, ShieldAlert, ShieldX, Circle as XCircle, User, Briefcase, Users, Hash, Building2, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import type { Employee, LookupResult } from "./data";
+import type { Employee, LookupResult } from "@/data/teamData";
 import styles from "./page.module.scss";
 
 interface VerificationResultProps {

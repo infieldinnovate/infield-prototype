@@ -17,14 +17,8 @@ import {
   BadgeCheck,
   Headphones,
   Award,
-  Sun,
-  Droplets,
-  Drill,
-  CloudRain,
   CheckCircle2,
   AlertCircle,
-  type LucideIcon,
-  Database,
 } from "lucide-react";
 import { siteConfig, socialLinks } from "@/data/site.config";
 import { legalLinks, navLinks, servicesNavItems } from "@/data/links";
@@ -174,7 +168,14 @@ export function Footer() {
                 </li>
                 <li>
                   <Clock size={16} />
-                  <span>Mon–Fri: 7AM–6PM | Sat: 8AM–4PM</span>
+                  {/* {siteConfig.hours} */}
+                  <span>
+                    {siteConfig.hours.map((x) => (
+                      <span key={x.day}>
+                        {x.day} - {x.time} <br />
+                      </span>
+                    ))}
+                  </span>
                 </li>
                 <li className={styles.emergencyContact}>
                   <AlertCircle size={16} />

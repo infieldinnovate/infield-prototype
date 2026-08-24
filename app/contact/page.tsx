@@ -1,59 +1,80 @@
-import type { Metadata } from 'next';
-import { SectionHeading } from '@/components/ui/SectionHeading';
-import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
-import { ContactForm } from '@/components/forms/ContactForm';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { siteConfig } from '@/data/site.config';
-import { Phone, Mail, MapPin, Clock, MessageSquare, AlertCircle, MessageCircle, ExternalLink } from 'lucide-react';
-import styles from './contact.module.scss';
+import type { Metadata } from "next";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { ContactForm } from "@/components/forms/ContactForm";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { siteConfig } from "@/data/site.config";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  MessageSquare,
+  AlertCircle,
+  MessageCircle,
+  ExternalLink,
+} from "lucide-react";
+import styles from "./contact.module.scss";
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
+  title: "Contact Us",
   description:
-    'Get in touch with Infield Innovations for electrical, plumbing, solar, irrigation, and borehole services across Kenya. Call us, email us, WhatsApp us, or send a message through our contact form.',
+    "Get in touch with Infield Innovations for electrical, plumbing, solar, irrigation, and borehole services across Kenya. Call us, email us, WhatsApp us, or send a message through our contact form.",
   alternates: {
-    canonical: '/contact',
+    canonical: "/contact",
   },
   openGraph: {
-    title: 'Contact Infield Innovations',
+    title: "Contact Infield Innovations",
     description:
-      'Reach out to our team for reliable engineering services across Kenya. Phone, email, WhatsApp, and contact form available.',
+      "Reach out to our team for reliable engineering services across Kenya. Phone, email, WhatsApp, and contact form available.",
     url: `${siteConfig.url}/contact`,
     siteName: siteConfig.name,
-    type: 'website',
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Contact Infield Innovations',
+    card: "summary_large_image",
+    title: "Contact Infield Innovations",
     description:
-      'Reach out to our team for reliable engineering services across Kenya. Phone, email, WhatsApp, and contact form available.',
+      "Reach out to our team for reliable engineering services across Kenya. Phone, email, WhatsApp, and contact form available.",
   },
 };
 
 const contactInfo = [
   {
     icon: Phone,
-    label: 'Phone',
+    label: "Phone",
     value: siteConfig.phone,
     href: siteConfig.phoneHref,
   },
   {
     icon: Mail,
-    label: 'Email',
+    label: "Email",
     value: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
   },
   {
     icon: MapPin,
-    label: 'Address',
+    label: "Address",
     value: `${siteConfig.address.street}, ${siteConfig.address.city}, ${siteConfig.address.country}`,
   },
 ];
 
 const enquiryTypes = [
-  { icon: MessageSquare, label: 'General Enquiry', description: 'Questions about our services or company' },
-  { icon: AlertCircle, label: 'Emergency Service', description: 'Urgent electrical, plumbing, or water issues' },
-  { icon: MessageCircle, label: 'WhatsApp Chat', description: 'Quick questions and project discussions' },
+  {
+    icon: MessageSquare,
+    label: "General Enquiry",
+    description: "Questions about our services or company",
+  },
+  {
+    icon: AlertCircle,
+    label: "Emergency Service",
+    description: "Urgent electrical, plumbing, or water issues",
+  },
+  {
+    icon: MessageCircle,
+    label: "WhatsApp Chat",
+    description: "Quick questions and project discussions",
+  },
 ];
 
 export default function ContactPage() {
@@ -61,7 +82,9 @@ export default function ContactPage() {
     <>
       <section className={styles.hero}>
         <div className={styles.container}>
-          <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Contact' }]} />
+          <Breadcrumbs
+            items={[{ label: "Home", href: "/" }, { label: "Contact" }]}
+          />
           <SectionHeading
             eyebrow="Get in Touch"
             title="We're Here to Help"
@@ -77,8 +100,8 @@ export default function ContactPage() {
             <div className={styles.info}>
               <h2 className={styles.infoTitle}>Contact Information</h2>
               <p className={styles.infoDescription}>
-                Reach out to us directly using any of these methods. We respond to all inquiries
-                within 24 hours.
+                Reach out to us directly using any of these methods. We respond
+                to all inquiries within 24 hours.
               </p>
 
               <div className={styles.infoList}>
@@ -108,9 +131,13 @@ export default function ContactPage() {
                   <h3 className={styles.emergencyTitle}>24/7 Emergency</h3>
                 </div>
                 <p className={styles.emergencyDesc}>
-                  For urgent electrical, plumbing, or water emergencies outside business hours.
+                  For urgent electrical, plumbing, or water emergencies outside
+                  business hours.
                 </p>
-                <a href={siteConfig.emergencyPhoneHref} className={styles.emergencyPhone}>
+                <a
+                  href={siteConfig.emergencyPhoneHref}
+                  className={styles.emergencyPhone}
+                >
                   <Phone size={18} />
                   {siteConfig.emergencyPhone}
                 </a>
@@ -142,7 +169,9 @@ export default function ContactPage() {
                         <type.icon size={20} />
                       </div>
                       <div>
-                        <span className={styles.enquiryLabel}>{type.label}</span>
+                        <span className={styles.enquiryLabel}>
+                          {type.label}
+                        </span>
                         <p className={styles.enquiryDesc}>{type.description}</p>
                       </div>
                     </div>
@@ -157,7 +186,8 @@ export default function ContactPage() {
                 <MessageSquare size={24} />
                 <h2 className={styles.formTitle}>Send Us a Message</h2>
                 <p className={styles.formDescription}>
-                  Fill out the form below and we&apos;ll get back to you as soon as possible.
+                  Fill out the form below and we&apos;ll get back to you as soon
+                  as possible.
                 </p>
               </div>
               <ContactForm />
@@ -169,12 +199,13 @@ export default function ContactPage() {
             <div className={styles.mapSection}>
               <h2 className={styles.mapTitle}>Visit Our Office</h2>
               <p className={styles.mapDesc}>
-                Located in {siteConfig.address.city}, {siteConfig.address.country}. Click to open in Google Maps.
+                Located in {siteConfig.address.city},{" "}
+                {siteConfig.address.country}. Click to open in Google Maps.
               </p>
               <div className={styles.mapWrapper}>
                 <iframe
                   title="Infield Innovations office location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31911.703!2d36.82!3d-1.29!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwMTcnMjQuMCJTIDM2wrA0OScyNC4wIkU!5e0!3m2!1sen!2ske!4v1700000000000"
+                  src={siteConfig.mapsEmbedUrl}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

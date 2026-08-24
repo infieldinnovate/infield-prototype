@@ -39,12 +39,13 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { getServiceBySlug, SERVICES, Service } from "@/data/services";
 import { industries } from "@/data/industries";
-import { projects } from "@/data/projectStats";
+import { getProjectsByService } from "@/data/projectStats";
 import { testimonials } from "@/data/testimonials";
 import { FAQs } from "@/data/faqs";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import styles from "./page.module.scss";
 import { ServiceIcons } from "@/data/service-icons";
+import ProjectsShowcase from "@/components/sections/ProjectsShowcase";
 
 interface ServiceDetailClientProps {
   service: Service;
@@ -152,9 +153,6 @@ const whyInfieldItems = [
       "Solar pumping, water harvesting and efficient delivery that lower cost and environmental impact together.",
   },
 ];
-
-const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
-const supportingProjects = projects.filter((p) => !p.featured).slice(0, 4);
 
 export default function ServiceDetailClient({
   service,
@@ -601,123 +599,7 @@ export default function ServiceDetailClient({
       </section>
 
       {/* PROJECTS / CASE STUDIES */}
-      <section className={styles.caseStudiesSection}>
-        <div className={styles.container}>
-          <div className={styles.sectionIntro}>
-            <div>
-              <div className={styles.eyebrow}>
-                <span /> Proven results
-              </div>
-              <h2>Real projects. Real outcomes.</h2>
-            </div>
-            <p>
-              Every installation is designed around a specific challenge. Here
-              is what that looks like in practice.
-            </p>
-          </div>
-
-          <div className={styles.caseStudiesLayout}>
-            {featuredProjects.map((project, index) => (
-              <motion.article
-                key={project.id}
-                className={`${styles.caseStudyCard} ${index === 0 ? styles.caseStudyFeatured : ""}`}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className={styles.caseStudyImage}>
-                  <ImageWithFallback
-                    src={
-                      project.gallery[0]?.url ||
-                      "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1200"
-                    }
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 60vw"
-                    className={styles.caseStudyImg}
-                  />
-                  <div className={styles.caseStudyImageOverlay} />
-                  <div className={styles.caseStudyMeta}>
-                    <span className={styles.caseStudyCategory}>
-                      {project.category}
-                    </span>
-                    <span className={styles.caseStudyLocation}>
-                      <MapPin size={12} /> {project.county}
-                    </span>
-                  </div>
-                </div>
-                <div className={styles.caseStudyBody}>
-                  <h3 className={styles.caseStudyTitle}>{project.title}</h3>
-                  <div className={styles.caseStudyBlock}>
-                    <span className={styles.caseStudyLabel}>Challenge</span>
-                    <p>{project.challenge}</p>
-                  </div>
-                  <div className={styles.caseStudyBlock}>
-                    <span className={styles.caseStudyLabel}>Solution</span>
-                    <p>{project.solution}</p>
-                  </div>
-                  <div className={styles.caseStudyResults}>
-                    {project.results.slice(0, 3).map((r) => (
-                      <span key={r} className={styles.caseStudyResult}>
-                        <CheckCircle2 size={14} /> {r}
-                      </span>
-                    ))}
-                  </div>
-                  <Link href="/projects" className={styles.caseStudyLink}>
-                    View Case Study <ArrowUpRight size={16} />
-                  </Link>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-
-          {supportingProjects.length > 0 && (
-            <div className={styles.supportingProjects}>
-              {supportingProjects.map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  className={styles.supportingCard}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-30px" }}
-                  transition={{ duration: 0.35, delay: index * 0.06 }}
-                >
-                  <div className={styles.supportingImage}>
-                    <ImageWithFallback
-                      src={
-                        project.gallery[0]?.url ||
-                        "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=600"
-                      }
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 25vw"
-                      className={styles.supportingImg}
-                    />
-                    <span className={styles.supportingCategory}>
-                      {project.category}
-                    </span>
-                  </div>
-                  <div className={styles.supportingBody}>
-                    <h4>{project.title}</h4>
-                    <p>{project.results[0]}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          )}
-
-          <div className={styles.caseStudiesCta}>
-            <LinkButton
-              href="/projects"
-              variant="outline"
-              rightIcon={<ArrowRight size={18} />}
-            >
-              See All Projects
-            </LinkButton>
-          </div>
-        </div>
-      </section>
+      <ProjectsShowcase projects={getProjectsByService(service.slug)} />
 
       {/* RESULTS */}
       <section className={styles.resultsSection}>

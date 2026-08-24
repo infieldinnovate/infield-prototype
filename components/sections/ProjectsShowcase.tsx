@@ -10,23 +10,23 @@ import Link from "next/link";
 import styles from "./ProjectsShowcase.module.scss";
 import { SectionHeading } from "../ui/SectionHeading";
 import ProjectCard from "../cards/ProjectCard";
-import { projects, type Project } from "@/data/projectStats";
+import { type Project } from "@/data/projectStats";
 import ProjectModal from "@/app/projects/ProjectModal";
 
-const ProjectsShowcase = () => {
+interface ProjectsShowcaseProps {
+  projects: Project[];
+}
+
+const ProjectsShowcase = ({ projects }: ProjectsShowcaseProps) => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const featuredProjects = useMemo(
-    () => projects.filter((p) => p.featured),
-    [],
-  );
   return (
     <section className={styles.projectsSection}>
       <div className={styles.container}>
         <SectionHeading
           eyebrow="Proven Results"
-          title="Featured Case Studies"
-          description="Real projects, real outcomes. See how we've delivered measurable results for our clients."
+          title="Real projects. Real outcomes."
+          description="Every installation is designed around a specific challenge. Here is what that looks like in practice."
         />
 
         <AnimatePresence mode="wait">
@@ -37,7 +37,7 @@ const ProjectsShowcase = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.6 }}
           >
-            {featuredProjects.map((project) => (
+            {projects.map((project) => (
               <ProjectCard
                 key={project.id}
                 project={project}

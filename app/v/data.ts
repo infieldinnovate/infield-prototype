@@ -1,3 +1,5 @@
+// app\v\data.ts
+
 export type EmployeeStatus = "Active" | "Suspended" | "Expired";
 
 export interface Employee {
@@ -13,7 +15,6 @@ export type LookupResult =
   | { found: true; employee: Employee }
   | { found: false; employee: null };
 
-// MOCK DATA — Replaceable with Supabase or any database
 const employees: Employee[] = [
   {
     verificationCode: "Q7W3NZ5R",

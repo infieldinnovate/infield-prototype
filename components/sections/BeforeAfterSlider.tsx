@@ -15,7 +15,9 @@ export function BeforeAfterSlider() {
 
   const project = projects[0];
 
-  const beforeImage = project.gallery.find((image) => image.phase === "before");
+  const beforeImage = project.gallery.find(
+    (image) => image.phase === "before" || "during",
+  );
   const afterImage = project.gallery.find((image) => image.phase === "after");
 
   const updatePosition = useCallback((clientX: number) => {

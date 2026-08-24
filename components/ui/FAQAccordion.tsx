@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
 // ============================================
-// EnhancedFAQAccordion Component
+// FAQAccordion Component
 // ============================================
 
-import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
   Copy,
@@ -14,23 +14,25 @@ import {
   ThumbsDown,
   Link2,
   Clock,
-} from 'lucide-react';
-import type { FAQ } from '@/data/faqs';
-import { cn } from '@/lib/utils';
-import styles from './EnhancedFAQAccordion.module.scss';
+} from "lucide-react";
+import type { FAQ } from "@/data/faqs";
+import { cn } from "@/lib/utils";
+import styles from "./FAQAccordion.module.scss";
 
-interface EnhancedFAQAccordionProps {
+interface FAQAccordionProps {
   faqs: FAQ[];
   searchQuery?: string;
 }
 
-const RECENTLY_VIEWED_KEY = 'vf-faq-recent';
+const RECENTLY_VIEWED_KEY = "vf-faq-recent";
 
-export function EnhancedFAQAccordion({ faqs, searchQuery = '' }: EnhancedFAQAccordionProps) {
+export function FAQAccordion({ faqs, searchQuery = "" }: FAQAccordionProps) {
   const [openId, setOpenId] = useState<string | null>(null);
   const [allExpanded, setAllExpanded] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [votes, setVotes] = useState<Record<string, 'helpful' | 'not-helpful'>>({});
+  const [votes, setVotes] = useState<Record<string, "helpful" | "not-helpful">>(
+    {},
+  );
   const [recentlyViewed, setRecentlyViewed] = useState<string[]>([]);
 
   useEffect(() => {
@@ -84,20 +86,25 @@ export function EnhancedFAQAccordion({ faqs, searchQuery = '' }: EnhancedFAQAcco
     }
   };
 
-  const handleVote = (id: string, vote: 'helpful' | 'not-helpful') => {
+  const handleVote = (id: string, vote: "helpful" | "not-helpful") => {
     setVotes((prev) => ({ ...prev, [id]: vote }));
   };
 
   const highlight = (text: string) => {
     if (!searchQuery.trim()) return text;
-    const regex = new RegExp(`(${searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    const regex = new RegExp(
+      `(${searchQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+      "gi",
+    );
     const parts = text.split(regex);
     return parts.map((part, i) =>
       part.toLowerCase() === searchQuery.toLowerCase() ? (
-        <mark key={i} className={styles.highlight}>{part}</mark>
+        <mark key={i} className={styles.highlight}>
+          {part}
+        </mark>
       ) : (
         part
-      )
+      ),
     );
   };
 
@@ -116,9 +123,12 @@ export function EnhancedFAQAccordion({ faqs, searchQuery = '' }: EnhancedFAQAcco
         >
           <ChevronDown
             size={16}
-            className={cn(styles.expandIcon, allExpanded && styles.expandIconOpen)}
+            className={cn(
+              styles.expandIcon,
+              allExpanded && styles.expandIconOpen,
+            )}
           />
-          {allExpanded ? 'Collapse All' : 'Expand All'}
+          {allExpanded ? "Collapse All" : "Expand All"}
         </button>
       </div>
 
@@ -135,11 +145,15 @@ export function EnhancedFAQAccordion({ faqs, searchQuery = '' }: EnhancedFAQAcco
                 className={styles.recentChip}
                 onClick={() => {
                   setOpenId(faq.id);
-                  document.getElementById(`faq-${faq.id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  document
+                    .getElementById(`faq-${faq.id}`)
+                    ?.scrollIntoView({ behavior: "smooth", block: "center" });
                 }}
                 type="button"
               >
-                {faq.question.length > 40 ? faq.question.slice(0, 40) + '...' : faq.question}
+                {faq.question.length > 40
+                  ? faq.question.slice(0, 40) + "..."
+                  : faq.question}
               </button>
             ))}
           </div>
@@ -180,10 +194,10 @@ export function EnhancedFAQAccordion({ faqs, searchQuery = '' }: EnhancedFAQAcco
                     className={styles.content}
                     role="region"
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
+                    animate={{ height: "auto", opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.25, ease: 'easeInOut' }}
-                    style={{ overflow: 'hidden' }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    style={{ overflow: "hidden" }}
                   >
                     <div className={styles.answerWrapper}>
                       <p className={styles.answer}>{highlight(faq.answer)}</p>
@@ -194,17 +208,23 @@ export function EnhancedFAQAccordion({ faqs, searchQuery = '' }: EnhancedFAQAcco
                           type="button"
                           aria-label="Copy link to this question"
                         >
-                          {copiedId === faq.id ? <Check size={14} /> : <Link2 size={14} />}
-                          {copiedId === faq.id ? 'Copied!' : 'Copy Link'}
+                          {copiedId === faq.id ? (
+                            <Check size={14} />
+                          ) : (
+                            <Link2 size={14} />
+                          )}
+                          {copiedId === faq.id ? "Copied!" : "Copy Link"}
                         </button>
                         <div className={styles.voteGroup}>
-                          <span className={styles.voteLabel}>Was this helpful?</span>
+                          <span className={styles.voteLabel}>
+                            Was this helpful?
+                          </span>
                           <button
                             className={cn(
                               styles.voteButton,
-                              userVote === 'helpful' && styles.votedHelpful
+                              userVote === "helpful" && styles.votedHelpful,
                             )}
-                            onClick={() => handleVote(faq.id, 'helpful')}
+                            onClick={() => handleVote(faq.id, "helpful")}
                             type="button"
                             aria-label="Mark as helpful"
                           >
@@ -213,9 +233,10 @@ export function EnhancedFAQAccordion({ faqs, searchQuery = '' }: EnhancedFAQAcco
                           <button
                             className={cn(
                               styles.voteButton,
-                              userVote === 'not-helpful' && styles.votedNotHelpful
+                              userVote === "not-helpful" &&
+                                styles.votedNotHelpful,
                             )}
-                            onClick={() => handleVote(faq.id, 'not-helpful')}
+                            onClick={() => handleVote(faq.id, "not-helpful")}
                             type="button"
                             aria-label="Mark as not helpful"
                           >

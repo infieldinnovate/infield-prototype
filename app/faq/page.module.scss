@@ -1,5 +1,5 @@
-@use '../../styles/abstracts/variables' as *;
-@use '../../styles/abstracts/mixins' as *;
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
 
 .container {
   @include container;
@@ -37,7 +37,11 @@
   left: -5%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(13, 148, 136, 0.08), transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(13, 148, 136, 0.08),
+    transparent 70%
+  );
   border-radius: 50%;
   animation: float 25s ease-in-out infinite reverse;
 }
@@ -50,7 +54,11 @@
     linear-gradient(90deg, rgba(15, 108, 189, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 30%,
+    transparent 70%
+  );
 }
 
 .heroContent {
@@ -66,7 +74,11 @@
   width: 96px;
   height: 96px;
   margin: 0 auto var(--space-6);
-  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-50),
+    var(--color-secondary-50)
+  );
   color: var(--color-primary);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-lg);
@@ -92,7 +104,11 @@
 }
 
 .heroAccent {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -106,7 +122,7 @@
   max-width: 640px;
   margin-inline: auto;
 
-  @include breakpoint-down('sm') {
+  @include breakpoint-down("sm") {
     font-size: var(--fs-base);
   }
 }
@@ -139,7 +155,11 @@
   }
 
   &.quickCatActive {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
     color: var(--color-white);
     border-color: transparent;
     box-shadow: var(--shadow-md);
@@ -158,7 +178,7 @@
   grid-template-columns: 1fr;
   gap: var(--space-8);
 
-  @include breakpoint-up('lg') {
+  @include breakpoint-up("lg") {
     grid-template-columns: 280px 1fr;
     gap: var(--space-12);
     align-items: flex-start;
@@ -170,7 +190,7 @@
   position: sticky;
   top: calc(var(--header-height) + var(--space-6));
 
-  @include breakpoint-down('lg') {
+  @include breakpoint-down("lg") {
     position: relative;
     top: 0;
   }
@@ -224,7 +244,11 @@
   }
 
   &.categoryLinkActive {
-    background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary-50),
+      var(--color-secondary-50)
+    );
     color: var(--color-primary-dark);
     font-weight: var(--fw-semibold);
 
@@ -265,75 +289,6 @@
   color: var(--color-gray-700);
 }
 
-// Popular Questions
-.popularSection {
-  margin-top: var(--space-12);
-  padding-top: var(--space-10);
-  border-top: 1px solid var(--color-border);
-}
-
-.popularTitle {
-  @include heading-4;
-  margin-bottom: var(--space-6);
-}
-
-.popularGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-
-  @include breakpoint-up('md') {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.popularCard {
-  @include flex-column;
-  gap: var(--space-2);
-  padding: var(--space-5) var(--space-6);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  text-align: left;
-  transition: all var(--transition-fast);
-  position: relative;
-
-  &:hover {
-    border-color: var(--color-primary-200);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-  }
-
-  @include focus-visible;
-}
-
-.popularCategory {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-primary);
-}
-
-.popularQuestion {
-  font-size: var(--fs-base);
-  font-weight: var(--fw-semibold);
-  color: var(--color-gray-900);
-}
-
-.popularArrow {
-  position: absolute;
-  top: var(--space-5);
-  right: var(--space-5);
-  color: var(--color-text-light);
-  transition: all var(--transition-fast);
-
-  .popularCard:hover & {
-    color: var(--color-primary);
-    transform: translateX(4px);
-  }
-}
-
 // Support Section
 .supportSection {
   @include section;
@@ -345,11 +300,11 @@
   grid-template-columns: 1fr;
   gap: var(--space-6);
 
-  @include breakpoint-up('sm') {
+  @include breakpoint-up("sm") {
     grid-template-columns: 1fr 1fr;
   }
 
-  @include breakpoint-up('lg') {
+  @include breakpoint-up("lg") {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -364,11 +319,11 @@
   grid-template-columns: 1fr;
   gap: var(--space-8);
 
-  @include breakpoint-up('md') {
+  @include breakpoint-up("md") {
     grid-template-columns: 1fr 1fr;
   }
 
-  @include breakpoint-up('lg') {
+  @include breakpoint-up("lg") {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-10);
   }

@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
 // ============================================
 // QuoteForm Component (Multi-Step)
 // ============================================
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   CheckCircle2,
   ChevronLeft,
@@ -17,12 +17,9 @@ import {
   Building,
   User,
   CheckCheck,
-} from 'lucide-react';
-import {
-  quoteFullSchema,
-  type QuoteFullData,
-} from '@/lib/validations';
-import { submitQuoteForm, type SubmissionResult } from '@/lib/services';
+} from "lucide-react";
+import { quoteFullSchema, type QuoteFullData } from "@/lib/validations";
+import { submitQuoteForm, type SubmissionResult } from "@/lib/services";
 import {
   QUOTE_STEPS,
   QUOTE_SERVICE_OPTIONS,
@@ -31,12 +28,12 @@ import {
   BUDGET_RANGES,
   CONTACT_METHODS,
   PREFERRED_TIMES,
-} from '@/lib/constants';
-import { Button } from '@/components/ui/Button';
-import InputField from '@/components/forms/form_elements/input';
-import SelectField from '@/components/forms/form_elements/select';
-import { cn } from '@/lib/utils';
-import styles from './QuoteForm.module.scss';
+} from "@/lib/constants";
+import { Button } from "@/components/ui/Button";
+import InputField from "@/components/forms/form_elements/input";
+import SelectField from "@/components/forms/form_elements/select";
+import { cn } from "@/lib/utils";
+import styles from "./QuoteForm.module.scss";
 
 const stepIcons = [FileText, Building, User, CheckCheck];
 
@@ -52,22 +49,23 @@ export function QuoteForm() {
     formState: { errors, isSubmitting },
   } = useForm<QuoteFullData>({
     resolver: zodResolver(quoteFullSchema),
-    mode: 'onChange',
-    reValidateMode: 'onChange',
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   const watchedValues = watch();
 
   const stepFields: (keyof QuoteFullData)[][] = [
-    ['serviceType', 'serviceDetails', 'urgency', 'budget'],
-    ['propertyType', 'address', 'city', 'state', 'zipCode'],
-    ['name', 'email', 'phone', 'preferredContact', 'preferredTime'],
+    ["serviceType", "serviceDetails", "urgency", "budget"],
+    ["propertyType", "address", "city", "state", "zipCode"],
+    ["name", "email", "phone", "preferredContact", "preferredTime"],
   ];
 
   const handleNext = async () => {
     const fields = stepFields[currentStep];
     const valid = await trigger(fields);
-    if (valid) setCurrentStep((prev) => Math.min(prev + 1, QUOTE_STEPS.length - 1));
+    if (valid)
+      setCurrentStep((prev) => Math.min(prev + 1, QUOTE_STEPS.length - 1));
   };
 
   const handleBack = () => {
@@ -92,12 +90,19 @@ export function QuoteForm() {
             <span className={styles.referenceLabel}>Your Reference Number</span>
             <span className={styles.referenceId}>{result.referenceId}</span>
             <span className={styles.referenceHint}>
-              Please save this number for future correspondence about your request.
+              Please save this number for future correspondence about your
+              request.
             </span>
           </div>
         )}
         <div className={styles.successActions}>
-          <Button variant="outline" onClick={() => { setResult(null); setCurrentStep(0); }}>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setResult(null);
+              setCurrentStep(0);
+            }}
+          >
             Submit Another Request
           </Button>
         </div>
@@ -108,7 +113,11 @@ export function QuoteForm() {
   return (
     <div className={styles.wrapper}>
       {/* Stepper */}
-      <div className={styles.stepper} role="navigation" aria-label="Form progress">
+      <div
+        className={styles.stepper}
+        role="navigation"
+        aria-label="Form progress"
+      >
         {QUOTE_STEPS.map((step, index) => {
           const StepIcon = stepIcons[index];
           const isComplete = index < currentStep;
@@ -119,29 +128,41 @@ export function QuoteForm() {
               className={cn(
                 styles.step,
                 isActive && styles.stepActive,
-                isComplete && styles.stepComplete
+                isComplete && styles.stepComplete,
               )}
             >
               <div className={styles.stepIndicator}>
-                {isComplete ? <CheckCircle2 size={20} /> : <StepIcon size={20} />}
+                {isComplete ? (
+                  <CheckCircle2 size={20} />
+                ) : (
+                  <StepIcon size={20} />
+                )}
               </div>
               <div className={styles.stepInfo}>
                 <span className={styles.stepNumber}>Step {step.id}</span>
                 <span className={styles.stepTitle}>{step.title}</span>
               </div>
-              {index < QUOTE_STEPS.length - 1 && <div className={styles.stepConnector} />}
+              {index < QUOTE_STEPS.length - 1 && (
+                <div className={styles.stepConnector} />
+              )}
             </div>
           );
         })}
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form} noValidate>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.form}
+        noValidate
+      >
         {/* Step 1: Service Details */}
         {currentStep === 0 && (
           <div className={styles.stepContent}>
             <h2 className={styles.stepHeading}>Service Details</h2>
-            <p className={styles.stepDescription}>Tell us what you need help with.</p>
+            <p className={styles.stepDescription}>
+              Tell us what you need help with.
+            </p>
             <div className={styles.fields}>
               <SelectField
                 register={register}
@@ -149,7 +170,10 @@ export function QuoteForm() {
                 label="Service Type"
                 required
                 placeholder="Select a service"
-                options={QUOTE_SERVICE_OPTIONS.map((s) => ({ value: s, label: s }))}
+                options={QUOTE_SERVICE_OPTIONS.map((s) => ({
+                  value: s,
+                  label: s,
+                }))}
                 error={errors.serviceType}
               />
               <InputField
@@ -190,7 +214,9 @@ export function QuoteForm() {
         {currentStep === 1 && (
           <div className={styles.stepContent}>
             <h2 className={styles.stepHeading}>Property Information</h2>
-            <p className={styles.stepDescription}>Where is the project located?</p>
+            <p className={styles.stepDescription}>
+              Where is the project located?
+            </p>
             <div className={styles.fields}>
               <SelectField
                 register={register}
@@ -306,7 +332,10 @@ export function QuoteForm() {
                   label="Preferred Contact Method"
                   required
                   placeholder="How should we contact you?"
-                  options={CONTACT_METHODS.map((m) => ({ value: m.value, label: m.label }))}
+                  options={CONTACT_METHODS.map((m) => ({
+                    value: m.value,
+                    label: m.label,
+                  }))}
                   error={errors.preferredContact}
                 />
                 <SelectField
@@ -315,7 +344,10 @@ export function QuoteForm() {
                   label="Preferred Time"
                   required
                   placeholder="When should we contact you?"
-                  options={PREFERRED_TIMES.map((t) => ({ value: t.value, label: t.label }))}
+                  options={PREFERRED_TIMES.map((t) => ({
+                    value: t.value,
+                    label: t.label,
+                  }))}
                   error={errors.preferredTime}
                 />
               </div>
@@ -336,23 +368,27 @@ export function QuoteForm() {
                 <dl className={styles.reviewList}>
                   <div className={styles.reviewItem}>
                     <dt>Service Type</dt>
-                    <dd>{watchedValues.serviceType || '—'}</dd>
+                    <dd>{watchedValues.serviceType || "—"}</dd>
                   </div>
                   <div className={styles.reviewItem}>
                     <dt>Urgency</dt>
                     <dd>
-                      {URGENCY_LEVELS.find((u) => u.value === watchedValues.urgency)?.label || '—'}
+                      {URGENCY_LEVELS.find(
+                        (u) => u.value === watchedValues.urgency,
+                      )?.label || "—"}
                     </dd>
                   </div>
                   <div className={styles.reviewItem}>
                     <dt>Budget</dt>
                     <dd>
-                      {BUDGET_RANGES.find((b) => b.value === watchedValues.budget)?.label || '—'}
+                      {BUDGET_RANGES.find(
+                        (b) => b.value === watchedValues.budget,
+                      )?.label || "—"}
                     </dd>
                   </div>
                   <div className={styles.reviewItem}>
                     <dt>Project Details</dt>
-                    <dd>{watchedValues.serviceDetails || '—'}</dd>
+                    <dd>{watchedValues.serviceDetails || "—"}</dd>
                   </div>
                 </dl>
               </div>
@@ -361,12 +397,14 @@ export function QuoteForm() {
                 <dl className={styles.reviewList}>
                   <div className={styles.reviewItem}>
                     <dt>Property Type</dt>
-                    <dd>{watchedValues.propertyType || '—'}</dd>
+                    <dd>{watchedValues.propertyType || "—"}</dd>
                   </div>
                   <div className={styles.reviewItem}>
                     <dt>Address</dt>
                     <dd>
-                      {watchedValues.address ? `${watchedValues.address}, ${watchedValues.city || ''}, ${watchedValues.state || ''} ${watchedValues.zipCode || ''}` : '—'}
+                      {watchedValues.address
+                        ? `${watchedValues.address}, ${watchedValues.city || ""}, ${watchedValues.state || ""} ${watchedValues.zipCode || ""}`
+                        : "—"}
                     </dd>
                   </div>
                 </dl>
@@ -376,26 +414,30 @@ export function QuoteForm() {
                 <dl className={styles.reviewList}>
                   <div className={styles.reviewItem}>
                     <dt>Name</dt>
-                    <dd>{watchedValues.name || '—'}</dd>
+                    <dd>{watchedValues.name || "—"}</dd>
                   </div>
                   <div className={styles.reviewItem}>
                     <dt>Email</dt>
-                    <dd>{watchedValues.email || '—'}</dd>
+                    <dd>{watchedValues.email || "—"}</dd>
                   </div>
                   <div className={styles.reviewItem}>
                     <dt>Phone</dt>
-                    <dd>{watchedValues.phone || '—'}</dd>
+                    <dd>{watchedValues.phone || "—"}</dd>
                   </div>
                   <div className={styles.reviewItem}>
                     <dt>Preferred Contact</dt>
                     <dd>
-                      {CONTACT_METHODS.find((c) => c.value === watchedValues.preferredContact)?.label || '—'}
+                      {CONTACT_METHODS.find(
+                        (c) => c.value === watchedValues.preferredContact,
+                      )?.label || "—"}
                     </dd>
                   </div>
                   <div className={styles.reviewItem}>
                     <dt>Preferred Time</dt>
                     <dd>
-                      {PREFERRED_TIMES.find((t) => t.value === watchedValues.preferredTime)?.label || '—'}
+                      {PREFERRED_TIMES.find(
+                        (t) => t.value === watchedValues.preferredTime,
+                      )?.label || "—"}
                     </dd>
                   </div>
                 </dl>
@@ -415,17 +457,30 @@ export function QuoteForm() {
         {/* Navigation */}
         <div className={styles.navigation}>
           {currentStep > 0 && (
-            <Button type="button" variant="outline" onClick={handleBack} leftIcon={<ChevronLeft size={18} />}>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={handleBack}
+              leftIcon={<ChevronLeft size={18} />}
+            >
               Back
             </Button>
           )}
           {currentStep < QUOTE_STEPS.length - 1 ? (
-            <Button type="button" onClick={handleNext} rightIcon={<ChevronRight size={18} />}>
+            <Button
+              type="button"
+              onClick={handleNext}
+              rightIcon={<ChevronRight size={18} />}
+            >
               Continue
             </Button>
           ) : (
-            <Button type="submit" loading={isSubmitting} leftIcon={<Send size={18} />}>
-              {isSubmitting ? 'Submitting...' : 'Submit Request'}
+            <Button
+              type="submit"
+              loading={isSubmitting}
+              leftIcon={<Send size={18} />}
+            >
+              {isSubmitting ? "Submitting..." : "Submit Request"}
             </Button>
           )}
         </div>

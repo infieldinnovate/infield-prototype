@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { EnhancedFAQAccordion } from "@/components/ui/EnhancedFAQAccordion";
+import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { IndustriesPreview } from "@/components/sections/IndustriesPreview";
 import { BeforeAfterSlider } from "@/components/sections/BeforeAfterSlider";
 import { GoogleReviews } from "@/components/sections/GoogleReviews";
-import { FAQs } from "@/data/faqs";
+import { getPopularFAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
 import HeroCarousel from "@/components/sections/HeroCarousel";
 import ServicesOverview from "@/components/sections/ServicesOverview";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import ProjectsShowcase from "@/components/sections/ProjectsShowcase";
+import { getFeaturedProjects } from "@/data/projectStats";
 
 export const metadata: Metadata = {
   title: {
@@ -48,8 +49,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const generalFAQs = FAQs.slice(0, 6);
-
   return (
     <>
       <HeroCarousel />
@@ -62,7 +61,7 @@ export default function HomePage() {
       <WhyChooseUs />
 
       {/* Featured Case Studies */}
-      <ProjectsShowcase />
+      <ProjectsShowcase projects={getFeaturedProjects()} />
 
       {/* Before & After Slider */}
       <BeforeAfterSlider />
@@ -84,7 +83,7 @@ export default function HomePage() {
             title="Frequently Asked Questions"
             description="Find answers to common questions about our services and process."
           />
-          <EnhancedFAQAccordion faqs={generalFAQs} />
+          <FAQAccordion faqs={getPopularFAQs()} />
         </div>
       </section>
     </>

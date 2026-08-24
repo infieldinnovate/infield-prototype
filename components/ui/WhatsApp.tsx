@@ -8,6 +8,7 @@ import styles from "./WhatsApp.module.scss";
 import { FaWhatsapp } from "react-icons/fa";
 import { HiChevronRight } from "react-icons/hi2";
 import { MdOutlineClose } from "react-icons/md";
+import { siteConfig } from "@/data/site.config";
 
 interface ChatOption {
   customerCare: string;
@@ -25,7 +26,7 @@ const chatOptions: ChatOption[] = [
     customerCare:
       process.env.NEXT_PUBLIC_WHATSAPP_SOLAR ||
       process.env.NEXT_PUBLIC_WHATSAPP_GENERAL ||
-      "+254702393677",
+      siteConfig.whatsapp,
     label: "Solar Solutions",
     message:
       "Hello — I'm interested in Infield Innovations' solar solutions (design, installation, battery storage). Can you share a quote and next steps?",
@@ -34,7 +35,7 @@ const chatOptions: ChatOption[] = [
     customerCare:
       process.env.NEXT_PUBLIC_WHATSAPP_ELECTRICAL ||
       process.env.NEXT_PUBLIC_WHATSAPP_GENERAL ||
-      "+254702393677",
+      siteConfig.whatsapp,
     label: "Electrical Installations",
     message:
       "Hi — I need information on electrical installation services for a residential/commercial project. Please share availability and pricing.",
@@ -43,7 +44,7 @@ const chatOptions: ChatOption[] = [
     customerCare:
       process.env.NEXT_PUBLIC_WHATSAPP_PLUMBING ||
       process.env.NEXT_PUBLIC_WHATSAPP_GENERAL ||
-      "+254702393677",
+      siteConfig.whatsapp,
     label: "Plumbing Services",
     message:
       "Hello — I'm enquiring about plumbing services (repairs, installations, emergency). Could you advise on next steps and rates?",
@@ -52,7 +53,7 @@ const chatOptions: ChatOption[] = [
     customerCare:
       process.env.NEXT_PUBLIC_WHATSAPP_BOREHOLE ||
       process.env.NEXT_PUBLIC_WHATSAPP_GENERAL ||
-      "+254702393677",
+      siteConfig.whatsapp,
     label: "Borehole Solutions",
     message:
       "Hi — I'd like a quote and timeline for borehole drilling, pump installation and water testing from Infield Innovations.",
@@ -61,7 +62,7 @@ const chatOptions: ChatOption[] = [
     customerCare:
       process.env.NEXT_PUBLIC_WHATSAPP_IRRIGATION ||
       process.env.NEXT_PUBLIC_WHATSAPP_GENERAL ||
-      "+254702393677",
+      siteConfig.whatsapp,
     label: "Irrigation Systems",
     message:
       "Hello — I'm interested in irrigation system design and installation (drip/sprinkler). Could you send info and sample proposals?",
@@ -70,7 +71,7 @@ const chatOptions: ChatOption[] = [
     customerCare:
       process.env.NEXT_PUBLIC_WHATSAPP_SALES ||
       process.env.NEXT_PUBLIC_WHATSAPP_GENERAL ||
-      "+254702393677",
+      siteConfig.whatsapp,
     label: "Get a Quote",
     message:
       "Hi — I'd like a tailored quote. My project: [brief description]. Please advise required steps and documentation.",

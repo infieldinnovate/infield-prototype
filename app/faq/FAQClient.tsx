@@ -1,10 +1,10 @@
 "use client";
 
 // ============================================
-// FAQ Page (Client Component)
+// FAQ Page
 // ============================================
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Phone,
@@ -19,7 +19,7 @@ import {
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchBar } from "@/components/ui/SearchBar";
-import { EnhancedFAQAccordion } from "@/components/ui/EnhancedFAQAccordion";
+import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { SupportCard } from "@/components/ui/SupportCard";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { cn } from "@/lib/utils";
@@ -29,6 +29,10 @@ import { articles } from "@/data/articles";
 import { downloads } from "@/data/downloads";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
+
+// ============================================
+// Support Cards
+// ============================================
 
 const supportCards = [
   {
@@ -79,61 +83,112 @@ const supportCards = [
   },
 ];
 
+// ============================================
+// FAQ View
+// ============================================
+
+type FAQView = FAQSlug;
+
+// ============================================
+// FAQ Page
+// ============================================
+
 export default function FAQPage() {
+  // ------------------------------------------
+  // State
+  // ------------------------------------------
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<FAQSlug | "All">(
-    "general",
-  );
+  const [activeView, setActiveView] = useState<FAQView>("general");
+
+  // ------------------------------------------
+  // Current FAQ Results
+  // ------------------------------------------
 
   const filteredFAQs = useMemo(() => {
+    // Search takes priority over the active category.
     if (searchQuery.trim()) {
       return searchFAQs(searchQuery);
     }
-    if (activeCategory === "All") return FAQs;
-    return FAQs.filter((f) => f.category === activeCategory);
-  }, [searchQuery, activeCategory]);
 
-  const popularQuestions = FAQs.filter((f) =>
-    [
-      "solar-1",
-      "electrical-4",
-      "plumbing-6",
-      "boreholes-2",
-      "irrigation-2",
-    ].includes(f.id),
-  );
+    // Show FAQs for the selected category.
+    return FAQs.filter((faq) => faq.category === activeView);
+  }, [searchQuery, activeView]);
+
+  // ------------------------------------------
+  // Active Category Label
+  // ------------------------------------------
+
+  const activeCategoryLabel = useMemo(() => {
+    return (
+      FAQ_CATEGORIES.find((category) => category.slug === activeView)?.label ??
+      activeView
+    );
+  }, [activeView]);
+
+  // ------------------------------------------
+  // Category Selection
+  // ------------------------------------------
+
+  const handleCategoryChange = (category: FAQSlug) => {
+    setSearchQuery("");
+    setActiveView(category);
+  };
+
+  // ==========================================
+  // Render
+  // ==========================================
 
   return (
     <>
-      {/* Hero */}
+      {/* ======================================
+          Hero
+          ====================================== */}
+
       <section className={styles.hero}>
         <div className={styles.heroBg}>
           <div className={styles.heroOrb1} />
           <div className={styles.heroOrb2} />
           <div className={styles.heroGrid} />
         </div>
+
         <div className={styles.container}>
           <Breadcrumbs
             items={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
           />
+
           <motion.div
             className={styles.heroContent}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
+            {/* Hero Icon */}
+
             <div className={styles.heroIconWrapper}>
               <LifeBuoy size={48} strokeWidth={1.5} />
             </div>
+
+            {/* Badge */}
+
             <span className={styles.heroBadge}>Help Centre</span>
+
+            {/* Heading */}
+
             <h1 className={styles.heroTitle}>
               How Can We <span className={styles.heroAccent}>Help You?</span>
             </h1>
+
+            {/* Description */}
+
             <p className={styles.heroDescription}>
               Find answers to common questions about our services, products,
               installation process, warranties, and payments. Our team is always
               here to help.
             </p>
+
+            {/* Search */}
+
             <div className={styles.heroSearch}>
               <SearchBar
                 value={searchQuery}
@@ -142,35 +197,21 @@ export default function FAQPage() {
                 autoFocus={false}
               />
             </div>
-            <div className={styles.heroQuickCats}>
-              <button
-                className={cn(
-                  styles.quickCat,
-                  activeCategory === "All" && styles.quickCatActive,
-                )}
-                onClick={() => {
-                  setActiveCategory("All");
-                  setSearchQuery("");
-                }}
-                type="button"
-              >
-                All Questions
-              </button>
 
-              {FAQ_CATEGORIES.map((cat) => (
+            {/* Quick Category Navigation */}
+
+            <div className={styles.heroQuickCats}>
+              {FAQ_CATEGORIES.map((category) => (
                 <button
-                  key={cat.slug}
+                  key={category.slug}
                   className={cn(
                     styles.quickCat,
-                    activeCategory === cat.slug && styles.quickCatActive,
+                    activeView === category.slug && styles.quickCatActive,
                   )}
-                  onClick={() => {
-                    setActiveCategory(cat.slug);
-                    setSearchQuery("");
-                  }}
+                  onClick={() => handleCategoryChange(category.slug)}
                   type="button"
                 >
-                  {cat.label}
+                  {category.label}
                 </button>
               ))}
             </div>
@@ -178,52 +219,42 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Main FAQ Section */}
+      {/* ======================================
+          Main FAQ Section
+          ====================================== */}
+
       <section className={styles.section}>
         <div className={styles.container}>
           <div className={styles.layout}>
-            {/* Sidebar */}
+            {/* ==================================
+                Sidebar
+                ================================== */}
+
             <aside className={styles.sidebar}>
               <div className={styles.sidebarCard}>
-                <h3 className={styles.sidebarTitle}> Categories </h3>
-                <nav className={styles.categoryNav} aria-label="FAQ categories">
-                  <button
-                    className={cn(
-                      styles.categoryLink,
-                      activeCategory === "All" && styles.categoryLinkActive,
-                    )}
-                    onClick={() => {
-                      setActiveCategory("All");
-                      setSearchQuery("");
-                    }}
-                    type="button"
-                  >
-                    <HelpCircle size={16} />
-                    All Questions
-                    <span className={styles.categoryCount}>{FAQs.length}</span>
-                  </button>
+                <h3 className={styles.sidebarTitle}>Categories</h3>
 
-                  {FAQ_CATEGORIES.map((cat) => {
+                <nav className={styles.categoryNav} aria-label="FAQ categories">
+                  {FAQ_CATEGORIES.map((category) => {
                     const count = FAQs.filter(
-                      (f) => f.category === cat.slug,
+                      (faq) => faq.category === category.slug,
                     ).length;
 
                     return (
                       <button
-                        key={cat.slug}
+                        key={category.slug}
                         className={cn(
                           styles.categoryLink,
-                          activeCategory === cat.slug &&
+                          activeView === category.slug &&
                             styles.categoryLinkActive,
                         )}
-                        onClick={() => {
-                          setActiveCategory(cat.slug);
-                          setSearchQuery("");
-                        }}
+                        onClick={() => handleCategoryChange(category.slug)}
                         type="button"
                       >
                         <HelpCircle size={16} />
-                        {cat.label}
+
+                        <span>{category.label}</span>
+
                         <span className={styles.categoryCount}>{count}</span>
                       </button>
                     );
@@ -232,59 +263,72 @@ export default function FAQPage() {
               </div>
             </aside>
 
-            {/* Main Content */}
+            {/* ==================================
+                Main Content
+                ================================== */}
+
             <div className={styles.main}>
+              {/* ----------------------------------
+                  Header
+                  ---------------------------------- */}
+
               <div className={styles.mainHeader}>
                 <h2 className={styles.mainTitle}>
                   {searchQuery.trim()
                     ? `Search Results (${filteredFAQs.length})`
-                    : activeCategory === "All"
-                      ? `All Questions (${filteredFAQs.length})`
-                      : `${activeCategory} Questions (${filteredFAQs.length})`}
+                    : activeCategoryLabel}
                 </h2>
-              </div>
-              <EnhancedFAQAccordion
-                faqs={filteredFAQs}
-                searchQuery={searchQuery}
-              />
 
-              {/* Popular Questions */}
-              {!searchQuery.trim() && activeCategory === "All" && (
-                <div className={styles.popularSection}>
-                  <h3 className={styles.popularTitle}>Most Asked Questions</h3>
-                  <div className={styles.popularGrid}>
-                    {popularQuestions.slice(0, 6).map((faq) => (
-                      <button
-                        key={faq.id}
-                        className={styles.popularCard}
-                        onClick={() => {
-                          document
-                            .getElementById(`faq-${faq.id}`)
-                            ?.scrollIntoView({
-                              behavior: "smooth",
-                              block: "center",
-                            });
-                        }}
-                        type="button"
-                      >
-                        <span className={styles.popularCategory}>
-                          {faq.category}
-                        </span>
-                        <span className={styles.popularQuestion}>
-                          {faq.question}
-                        </span>
-                        <ArrowRight size={16} className={styles.popularArrow} />
-                      </button>
-                    ))}
+                {!searchQuery.trim() && (
+                  <span className={styles.mainCount}>
+                    {filteredFAQs.length}{" "}
+                    {filteredFAQs.length === 1 ? "question" : "questions"}
+                  </span>
+                )}
+              </div>
+
+              {/* ==================================
+                  Search Results / Category FAQs
+                  ================================== */}
+
+              {searchQuery.trim() ? (
+                filteredFAQs.length > 0 ? (
+                  <FAQAccordion faqs={filteredFAQs} searchQuery={searchQuery} />
+                ) : (
+                  <div className={styles.emptyState}>
+                    <div className={styles.emptyIcon}>
+                      <HelpCircle size={32} />
+                    </div>
+
+                    <h3 className={styles.emptyTitle}>No answers found</h3>
+
+                    <p className={styles.emptyDescription}>
+                      We couldn&apos;t find any questions matching{" "}
+                      <strong>{searchQuery}</strong>. Try a different search
+                      term or browse our categories.
+                    </p>
+
+                    <button
+                      type="button"
+                      className={styles.emptyButton}
+                      onClick={() => setSearchQuery("")}
+                    >
+                      Browse Categories
+                    </button>
                   </div>
-                </div>
+                )
+              ) : (
+                <FAQAccordion faqs={filteredFAQs} searchQuery={searchQuery} />
               )}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Need More Help */}
+      {/* ======================================
+          Need More Help
+          ====================================== */}
+
       <section className={styles.supportSection}>
         <div className={styles.container}>
           <SectionHeading
@@ -292,6 +336,7 @@ export default function FAQPage() {
             title="We're Here for You"
             description="Reach out to our team through any of these channels and we will get back to you promptly."
           />
+
           <div className={styles.supportGrid}>
             {supportCards.map((card) => (
               <SupportCard key={card.title} {...card} />
@@ -300,7 +345,10 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Related Content */}
+      {/* ======================================
+          Related Content
+          ====================================== */}
+
       <section className={styles.relatedSection}>
         <div className={styles.container}>
           <SectionHeading
@@ -310,9 +358,13 @@ export default function FAQPage() {
           />
 
           <div className={styles.relatedGrid}>
-            {/* Services */}
+            {/* ----------------------------------
+                Services
+                ---------------------------------- */}
+
             <div className={styles.relatedCol}>
               <h3 className={styles.relatedColTitle}>Our Services</h3>
+
               <ul className={styles.relatedList}>
                 {SERVICES.map((service) => (
                   <li key={service.slug}>
@@ -328,9 +380,13 @@ export default function FAQPage() {
               </ul>
             </div>
 
-            {/* Articles */}
+            {/* ----------------------------------
+                Articles
+                ---------------------------------- */}
+
             <div className={styles.relatedCol}>
               <h3 className={styles.relatedColTitle}>Knowledge Articles</h3>
+
               <ul className={styles.relatedList}>
                 {articles.slice(0, 5).map((article) => (
                   <li key={article.id}>
@@ -339,8 +395,9 @@ export default function FAQPage() {
                       className={styles.relatedLink}
                     >
                       {article.title.length > 50
-                        ? article.title.slice(0, 50) + "..."
+                        ? `${article.title.slice(0, 50)}...`
                         : article.title}
+
                       <ArrowRight size={14} />
                     </LinkButton>
                   </li>
@@ -348,9 +405,13 @@ export default function FAQPage() {
               </ul>
             </div>
 
-            {/* Downloads */}
+            {/* ----------------------------------
+                Downloads
+                ---------------------------------- */}
+
             <div className={styles.relatedCol}>
               <h3 className={styles.relatedColTitle}>Downloads</h3>
+
               <ul className={styles.relatedList}>
                 {downloads.slice(0, 5).map((download) => (
                   <li key={download.id}>
@@ -366,14 +427,19 @@ export default function FAQPage() {
               </ul>
             </div>
 
-            {/* Case Studies (future ready) */}
+            {/* ----------------------------------
+                Case Studies
+                ---------------------------------- */}
+
             <div className={styles.relatedCol}>
               <h3 className={styles.relatedColTitle}>Case Studies</h3>
+
               <div className={styles.comingSoon}>
                 <p className={styles.comingSoonText}>
                   Case studies coming soon. In the meantime, explore our recent
                   projects on the About page.
                 </p>
+
                 <LinkButton href="/about" variant="outline" size="sm">
                   View Projects
                 </LinkButton>

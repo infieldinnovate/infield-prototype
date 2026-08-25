@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import styles from "@/components/sections/AnimatedStats.module.scss";
+import styles from "./AutoScroll.module.scss";
 
 interface AutoScrollProps {
   items: ReactNode[];

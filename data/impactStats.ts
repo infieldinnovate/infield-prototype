@@ -12,7 +12,7 @@ export interface ImpactStat {
   label: string;
   value: string;
   icon: string;
-  categories: StatCategory[];
+  category: StatCategory[];
 }
 
 export const COMMON_IMPACT_STATS: Record<string, ImpactStat> = {
@@ -20,48 +20,48 @@ export const COMMON_IMPACT_STATS: Record<string, ImpactStat> = {
     label: "Projects Completed",
     value: "150+",
     icon: "check-circle",
-    categories: ["all"],
+    category: ["all"],
   },
 
   countiesServed: {
     label: "Counties Served",
     value: "27+",
     icon: "map",
-    categories: ["all"],
+    category: ["all"],
   },
 
   yearsExperience: {
     label: "Years Experience",
     value: "10+",
     icon: "calendar-days",
-    categories: ["all"],
+    category: ["all"],
   },
 
   clientsServed: {
     label: "Clients Served",
     value: "120+",
     icon: "users",
-    categories: ["all"],
+    category: ["all"],
   },
 
   systemsInstalled: {
     label: "Systems Installed",
     value: "200+",
     icon: "settings",
-    categories: ["all", "solar", "electrical", "boreholes", "irrigation"],
+    category: ["all"],
   },
 
   customerSatisfaction: {
     label: "Customer Satisfaction",
     value: "99%",
     icon: "smile",
-    categories: ["all"],
+    category: ["all"],
   },
 };
 
 export function getStatsByCategory(category: StatCategory): ImpactStat[] {
   return Object.values(COMMON_IMPACT_STATS).filter((stat) =>
-    stat.categories.includes(category),
+    stat.category.includes(category),
   );
 }
 

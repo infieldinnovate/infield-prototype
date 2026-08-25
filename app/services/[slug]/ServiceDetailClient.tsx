@@ -614,7 +614,7 @@ export default function ServiceDetailClient({
               matter to the people who rely on our work.
             </p>
           </div>
-          <AnimatedStats />
+          <AnimatedStats theme="light" scroll={true} category="boreholes" />
         </div>
       </section>
 

@@ -3,7 +3,11 @@
 
 .projectsSection {
   @include section;
-  background: linear-gradient(135deg, #{$color-gray-50} 0%, #{$color-border} 100%);
+  background: linear-gradient(
+    135deg,
+    #{$color-gray-50} 0%,
+    #{$color-border} 100%
+  );
 }
 
 .container {

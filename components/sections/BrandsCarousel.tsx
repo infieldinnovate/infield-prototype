@@ -14,15 +14,9 @@ export function BrandsCarousel() {
   return (
     <section className={styles.section} aria-labelledby="brands-heading">
       <div className={styles.container}>
-        <p className={styles.eyebrow}>Trusted Partners</p>
         <h2 id="brands-heading" className={styles.title}>
-          Brands We Work With
+          BRANDS WE WORK WITH
         </h2>
-        <p className={styles.description}>
-          We partner with the world&apos;s leading manufacturers to deliver
-          reliable, high-quality solutions.
-        </p>
-
         <AutoScroll
           items={brandItems}
           direction="left"

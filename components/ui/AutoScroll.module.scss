@@ -1,5 +1,5 @@
-@use '../../styles/abstracts/variables' as *;
-@use '../../styles/abstracts/mixins' as *;
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
 
 .ribbonWrapper {
   position: relative;
@@ -11,11 +11,11 @@
 .carousel {
   position: relative;
   flex: 1;
-  overflow: hidden;
+  overflow-x: hidden;
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
@@ -26,12 +26,20 @@
 
   &::before {
     left: 0;
-    background: linear-gradient(to right, var(--color-surface, rgba(255, 255, 255, 0.04)), transparent);
+    background: linear-gradient(
+      to right,
+      var(rgba(255, 255, 255, 0.04)),
+      transparent
+    );
   }
 
   &::after {
     right: 0;
-    background: linear-gradient(to left, var(--color-surface, rgba(255, 255, 255, 0.04)), transparent);
+    background: linear-gradient(
+      to left,
+      var(rgba(255, 255, 255, 0.04)),
+      transparent
+    );
   }
 }
 
@@ -81,7 +89,7 @@
 
   @include focus-visible;
 
-  @include breakpoint-down('sm') {
+  @include breakpoint-down("sm") {
     display: none;
   }
 }

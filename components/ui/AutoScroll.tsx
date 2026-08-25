@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, useState, useMemo, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import styles from "./AutoScroll.module.scss";
 

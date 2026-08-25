@@ -1,6 +1,10 @@
 @use '../../styles/abstracts/variables' as *;
 @use '../../styles/abstracts/mixins' as *;
 
+// ============================================
+// Section
+// ============================================
+
 .section {
   padding: var(--space-12) 0;
   position: relative;
@@ -8,7 +12,7 @@
 }
 
 // ============================================
-// Dark theme (default — identical to original)
+// Themes
 // ============================================
 
 .dark {
@@ -27,10 +31,6 @@
   }
 }
 
-// ============================================
-// Light theme
-// ============================================
-
 .light {
   background: transparent;
 }
@@ -42,7 +42,70 @@
 }
 
 // ============================================
-// Grid mode (scroll=false) — wrapping flex cards
+// Header (grid mode only)
+// ============================================
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-extrabold);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-3);
+
+  @include breakpoint-down('sm') {
+    font-size: var(--fs-2xl);
+  }
+}
+
+.description {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-relaxed);
+}
+
+// Dark theme header colors
+.dark .eyebrow {
+  color: var(--color-secondary-light);
+}
+
+.dark .title {
+  color: var(--color-white);
+}
+
+.dark .description {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+// Light theme header colors
+.light .eyebrow {
+  color: var(--color-primary);
+}
+
+.light .title {
+  color: var(--color-text);
+}
+
+.light .description {
+  color: var(--color-text-muted);
+}
+
+// ============================================
+// Grid mode (scroll=false) — card layout
 // ============================================
 
 .grid {
@@ -55,7 +118,7 @@
   @include flex-column;
   align-items: flex-start;
   text-align: left;
-  gap: var(--space-2);
+  gap: var(--space-4);
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -70,10 +133,10 @@
 .grid .stat {
   flex: 1 1 240px;
   min-width: 0;
-  padding: var(--space-6);
+  padding: var(--space-8);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm);
   transition:
     box-shadow var(--transition-base),
@@ -90,7 +153,19 @@
   }
 }
 
-// When 3 or fewer stats, grow to fill the row evenly
+// Dark theme card overrides
+.dark .grid .stat {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(45, 212, 191, 0.3);
+  }
+}
+
+// Balance small counts
 .grid:has(> .stat:only-child) .stat {
   flex: 1 1 100%;
 }
@@ -104,16 +179,47 @@
 }
 
 // ============================================
-// Scroll mode (scroll=true) — fixed-width items
+// Stat content (shared)
 // ============================================
 
-.statScroll {
+.statIcon {
+  @include flex-center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.statContent {
   @include flex-column;
-  align-items: flex-start;
-  text-align: left;
-  min-width: 220px;
-  padding: var(--space-5) var(--space-6);
-  gap: var(--space-2);
+  gap: var(--space-1);
+}
+
+// Dark theme icon
+.dark .statIcon {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.15), rgba(15, 108, 189, 0.15));
+  color: var(--color-secondary-light);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+}
+
+.dark .grid .stat:hover .statIcon {
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+  color: var(--color-white);
+  border-color: transparent;
+  transform: scale(1.08);
+}
+
+// Light theme icon
+.light .statIcon {
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  color: var(--color-primary);
+}
+
+.light .grid .stat:hover .statIcon {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
+  transform: scale(1.08);
 }
 
 .value {
@@ -152,4 +258,105 @@
 
 .light .label {
   color: var(--color-text-muted);
+}
+
+// ============================================
+// Scroll mode (scroll=true) — ribbon items
+// ============================================
+
+.statScroll {
+  @include flex-column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 240px;
+  padding: var(--space-6) var(--space-8);
+  gap: var(--space-3);
+}
+
+// Dark theme scroll icon
+.dark .statScroll .statIcon {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--color-secondary-light);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+// Light theme scroll icon
+.light .statScroll .statIcon {
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  color: var(--color-primary);
+}
+
+// ============================================
+// ScrollingRibbon (merged from AutoScroll)
+// ============================================
+
+.ribbonWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.carousel {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  gap: var(--space-4);
+  width: max-content;
+  will-change: transform;
+}
+
+.trackItem {
+  display: flex;
+  align-items: center;
+}
+
+.paused {
+  animation-play-state: paused !important;
+}
+
+.navBtn {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  color: var(--color-gray-300);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
+    color: var(--color-white);
+    border-color: transparent;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  @include focus-visible;
+
+  @include breakpoint-down('sm') {
+    display: none;
+  }
+}
+
+.navLeft {
+  order: -1;
+}
+
+.navRight {
+  order: 1;
 }

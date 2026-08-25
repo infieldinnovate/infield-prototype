@@ -26,7 +26,7 @@ import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";
 import { BrandsCarousel } from "../sections/BrandsCarousel";
 import { ServiceIcons } from "@/data/service-icons";
-import { AutoScroll } from "@/components/ui/AutoScroll";
+import { AutoScroll } from "@/components/sections/AnimatedStats";
 
 const trustItems = [
   {

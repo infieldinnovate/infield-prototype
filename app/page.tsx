@@ -54,7 +54,11 @@ export default function HomePage() {
       <HeroCarousel />
 
       {/* Animated Stats Section */}
-      <AnimatedStats />
+      <AnimatedStats
+        eyebrow="Our Impact"
+        title="Delivering Measurable Results"
+        description="Over a decade of engineering excellence across Kenya — the numbers speak for themselves."
+      />
 
       <ServicesOverview />
 

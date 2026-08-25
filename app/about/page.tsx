@@ -110,7 +110,11 @@ export default function AboutPage() {
 
       <section className={styles.statsSection}>
         <div className={styles.container}>
-          <AnimatedStats />
+          <AnimatedStats
+            eyebrow="Our Track Record"
+            title="A Decade of Engineering Excellence"
+            description="The results behind our reputation — built project by project across Kenya."
+          />
         </div>
       </section>
 

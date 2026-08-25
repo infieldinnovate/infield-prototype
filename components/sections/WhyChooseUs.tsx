@@ -84,7 +84,11 @@ const WhyChooseUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <AnimatedStats />
+            <AnimatedStats
+              eyebrow="Our Track Record"
+              title="The Numbers Behind Our Promise"
+              description="Real outcomes from real projects — the proof that our commitment to quality delivers."
+            />
           </motion.div>
         </div>
       </div>

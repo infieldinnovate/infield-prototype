@@ -71,7 +71,7 @@ export default function ProjectsPage() {
             Explore our completed solar, borehole, irrigation, plumbing, and
             electrical projects across Kenya.
           </p>
-          <AnimatedStats theme='light' />
+          <AnimatedStats theme='light' scroll />
         </div>
       </section>
 
@@ -178,7 +178,11 @@ export default function ProjectsPage() {
           </div>
 
           <div className={styles.statsGrid}>
-            <AnimatedStats />
+            <AnimatedStats
+              eyebrow="Project Impact"
+              title="Our Impact in Numbers"
+              description="Measurable outcomes from a decade of delivering water and energy solutions across Kenya."
+            />
           </div>
         </div>
       </section>

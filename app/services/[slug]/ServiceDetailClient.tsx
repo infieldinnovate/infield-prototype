@@ -372,7 +372,7 @@ export default function ServiceDetailClient({
       </section>
 
       <section className={styles.statStrip} aria-label="Company statistics">
-        <AnimatedStats />
+        <AnimatedStats scroll category={service.slug} />
       </section>
 
       <section className={styles.section} id="services">
@@ -614,7 +614,13 @@ export default function ServiceDetailClient({
               matter to the people who rely on our work.
             </p>
           </div>
-          <AnimatedStats theme="light" scroll={true} category="boreholes" />
+          <AnimatedStats
+            theme="light"
+            eyebrow="Measurable impact"
+            title="Numbers that mean something."
+            description="A decade of engineering across Kenya, tracked in outcomes that matter to the people who rely on our work."
+            category={service.slug}
+          />
         </div>
       </section>
 

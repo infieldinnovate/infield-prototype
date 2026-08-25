@@ -1,7 +1,7 @@
 "use client";
 
 import { siteConfig } from "@/data/site.config";
-import { AutoScroll } from "@/components/ui/AutoScroll";
+import { AutoScroll } from "@/components/sections/AnimatedStats";
 import styles from "./BrandsCarousel.module.scss";
 
 export function BrandsCarousel() {

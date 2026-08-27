@@ -92,3 +92,32 @@ export type QuoteStep1Data = z.infer<typeof quoteStep1Schema>;
 export type QuoteStep2Data = z.infer<typeof quoteStep2Schema>;
 export type QuoteStep3Data = z.infer<typeof quoteStep3Schema>;
 export type QuoteFullData = z.infer<typeof quoteFullSchema>;
+
+export const siteVisitSchema = z.object({
+  name: z
+    .string()
+    .min(2, "Name must be at least 2 characters")
+    .max(80, "Name must be less than 80 characters"),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .email("Please enter a valid email address"),
+  phone: z
+    .string()
+    .min(10, "Phone number must be at least 10 digits")
+    .max(20, "Phone number is too long")
+    .regex(/^[\d\s+()-]+$/, "Please enter a valid phone number"),
+  serviceType: z.string().min(1, "Please select a service"),
+  preferredDate: z.string().min(1, "Please select a preferred date"),
+  preferredTime: z.string().min(1, "Please select a preferred time"),
+  address: z
+    .string()
+    .min(5, "Address must be at least 5 characters")
+    .max(300, "Address is too long"),
+  notes: z
+    .string()
+    .max(500, "Please keep notes under 500 characters")
+    .optional(),
+});
+
+export type SiteVisitFormData = z.infer<typeof siteVisitSchema>;

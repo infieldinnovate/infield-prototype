@@ -5,6 +5,7 @@
 import { FORM_SUBMISSION_DELAY } from "./constants";
 import type { ContactFormData } from "./validations";
 import type { QuoteFullData } from "./validations";
+import type { SiteVisitFormData } from "./validations";
 import type { SubmissionResult } from "@/types/submission";
 
 export type { SubmissionResult };
@@ -39,5 +40,17 @@ export async function submitQuoteForm(
     success: true,
     message: `Thank you, ${data.name}! Your quote request has been submitted. A project specialist will contact you within 1 business day at your preferred time.`,
     referenceId: generateReferenceId("QT"),
+  };
+}
+
+export async function submitSiteVisitForm(
+  data: SiteVisitFormData,
+): Promise<SubmissionResult> {
+  await new Promise((resolve) => setTimeout(resolve, FORM_SUBMISSION_DELAY));
+
+  return {
+    success: true,
+    message: `Thank you, ${data.name}! Your site visit request has been received. Our team will confirm your appointment within 1 business day.`,
+    referenceId: generateReferenceId("SV"),
   };
 }

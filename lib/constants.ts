@@ -59,3 +59,19 @@ export const PREFERRED_TIMES = [
   { value: "evening", label: "Evening (5PM - 7PM)" },
   { value: "anytime", label: "Anytime" },
 ] as const;
+
+export const SITE_VISIT_SERVICES = [
+  "Solar Energy Solutions",
+  "Electrical Services",
+  "Plumbing Services",
+  "Borehole Drilling",
+  "Water Storage Solutions",
+  "Water Harvesting Solutions",
+  "Irrigation Systems",
+] as const;
+
+export const SITE_VISIT_TIMES = [
+  { value: "morning", label: "Morning (8AM - 12PM)" },
+  { value: "afternoon", label: "Afternoon (12PM - 5PM)" },
+  { value: "anytime", label: "Anytime" },
+] as const;

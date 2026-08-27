@@ -1,0 +1,453 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-white;
+}
+
+.container {
+  @include container;
+}
+
+// ============================================
+// Hero
+// ============================================
+
+.hero {
+  position: relative;
+  padding: var(--space-8) 0 var(--space-12);
+  background: $color-gray-50;
+  overflow: hidden;
+}
+
+.heroContent {
+  max-width: 800px;
+}
+
+.categoryBadge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  background: linear-gradient(135deg, $color-primary-50, $color-secondary-50);
+  color: $color-primary-dark;
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: $radius-full;
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, $fs-5xl);
+  font-weight: $fw-extrabold;
+  line-height: $lh-tight;
+  letter-spacing: -0.02em;
+  color: $color-slate-900;
+  margin-bottom: var(--space-4);
+}
+
+.excerpt {
+  font-size: $fs-xl;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+  margin-bottom: var(--space-6);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: $fs-sm;
+  color: $color-text-light;
+  font-weight: $fw-medium;
+
+  svg {
+    color: $color-primary;
+  }
+}
+
+// ============================================
+// Featured Image
+// ============================================
+
+.featuredImageWrap {
+  background: $color-gray-50;
+  padding-bottom: var(--space-12);
+}
+
+.featuredImageContainer {
+  @include container;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: $shadow-xl;
+  max-height: 500px;
+}
+
+.featuredImage {
+  object-fit: cover;
+}
+
+// ============================================
+// Body
+// ============================================
+
+.body {
+  padding: var(--space-12) 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+
+  @include breakpoint-up("lg") {
+    grid-template-columns: 1fr 320px;
+    gap: var(--space-16);
+    align-items: flex-start;
+  }
+}
+
+.content {
+  max-width: 720px;
+}
+
+.section {
+  margin-bottom: var(--space-10);
+}
+
+.sectionHeading {
+  font-size: $fs-2xl;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+  position: relative;
+  padding-bottom: var(--space-3);
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, $color-primary, $color-secondary);
+    border-radius: $radius-full;
+  }
+}
+
+.paragraph {
+  font-size: $fs-base;
+  line-height: $lh-relaxed;
+  color: $color-slate-700;
+  margin-bottom: var(--space-4);
+}
+
+// ============================================
+// Tags
+// ============================================
+
+.tags {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid $color-border;
+}
+
+.tagsLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: $fs-sm;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-light;
+  margin-bottom: var(--space-3);
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tag {
+  padding: var(--space-1) var(--space-3);
+  background: $color-gray-100;
+  color: $color-gray-700;
+  font-size: $fs-xs;
+  font-weight: $fw-medium;
+  border-radius: $radius-full;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $color-primary-50;
+    color: $color-primary-dark;
+  }
+}
+
+// ============================================
+// CTA
+// ============================================
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+  padding: var(--space-8);
+  background: linear-gradient(135deg, $color-primary-900, $color-primary-700);
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+}
+
+.ctaContent {
+  flex: 1;
+  min-width: 250px;
+
+  h3 {
+    font-size: $fs-xl;
+    font-weight: $fw-bold;
+    color: $color-white;
+    margin-bottom: var(--space-2);
+  }
+
+  p {
+    font-size: $fs-sm;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: $lh-relaxed;
+  }
+}
+
+// ============================================
+// Back Link
+// ============================================
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-8);
+  font-size: $fs-sm;
+  font-weight: $fw-semibold;
+  color: $color-text-muted;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  @include focus-visible;
+}
+
+// ============================================
+// Sidebar
+// ============================================
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+
+  @include breakpoint-up("lg") {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-6));
+  }
+}
+
+// Author Card
+
+.authorCard {
+  @include card;
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.authorPhotoWrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto var(--space-4);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid $color-white;
+  box-shadow: $shadow-md;
+}
+
+.authorPhoto {
+  object-fit: cover;
+}
+
+.authorName {
+  font-size: $fs-lg;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+  margin-bottom: var(--space-1);
+}
+
+.authorRole {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  font-size: $fs-sm;
+  color: $color-primary;
+  font-weight: $fw-semibold;
+  margin-bottom: var(--space-1);
+}
+
+.authorDept {
+  font-size: $fs-xs;
+  color: $color-text-light;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: $fw-semibold;
+  margin-bottom: var(--space-3);
+}
+
+.authorBio {
+  font-size: $fs-sm;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+  margin-bottom: var(--space-4);
+  text-align: left;
+}
+
+.authorQuals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  text-align: left;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: $fs-xs;
+    color: $color-slate-700;
+    line-height: $lh-relaxed;
+
+    svg {
+      color: $color-secondary;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+  }
+}
+
+.authorMeta {
+  padding-top: var(--space-3);
+  border-top: 1px solid $color-border;
+
+  span {
+    font-size: $fs-xs;
+    color: $color-text-light;
+    font-weight: $fw-medium;
+  }
+}
+
+// Info Card
+
+.infoCard {
+  @include card;
+  padding: var(--space-6);
+}
+
+.infoTitle {
+  font-size: $fs-sm;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-muted;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid $color-border;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.infoItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-3);
+  align-items: center;
+
+  dt {
+    font-size: $fs-sm;
+    color: $color-text-light;
+    font-weight: $fw-medium;
+  }
+
+  dd {
+    font-size: $fs-sm;
+    color: $color-slate-900;
+    font-weight: $fw-semibold;
+    text-align: right;
+  }
+}
+
+// ============================================
+// Related Articles
+// ============================================
+
+.relatedSection {
+  padding: var(--space-16) 0;
+  background: $color-gray-50;
+}
+
+.relatedGrid {
+  @include responsive-grid(1, 2, 3, var(--space-6));
+}
+
+// ============================================
+// Responsive
+// ============================================
+
+@include breakpoint-down("sm") {
+  .hero {
+    padding: var(--space-6) 0 var(--space-8);
+  }
+
+  .title {
+    font-size: $fs-3xl;
+  }
+
+  .excerpt {
+    font-size: $fs-base;
+  }
+
+  .featuredImageContainer {
+    aspect-ratio: 16 / 10;
+    max-height: 300px;
+  }
+
+  .body {
+    padding: var(--space-8) 0;
+  }
+
+  .cta {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-6);
+  }
+
+  .ctaContent {
+    min-width: 100%;
+  }
+}

@@ -257,6 +257,14 @@ export function lookupEmployeeByNumber(employeeNumber: string): LookupResult {
 }
 
 // ============================================
+// EMPLOYEE LOOKUP BY ID
+// ============================================
+
+export function getEmployeeById(id: string): Employee | undefined {
+  return employees.find((e) => e.id === id);
+}
+
+// ============================================
 // EMPLOYEE LOOKUP BY PHONE NUMBER
 // ============================================
 

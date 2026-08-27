@@ -527,6 +527,7 @@
   font-size: var(--fs-sm);
   font-weight: var(--fw-semibold);
   color: var(--color-text);
+  text-wrap: nowrap;
 
   &:hover {
     color: var(--color-primary);

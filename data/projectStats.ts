@@ -528,5 +528,5 @@ export function getProjectsByService(slug: string): Project[] {
 }
 
 export function getFeaturedProjects(limit = 3): Project[] {
-  return projects.slice(0, limit);
+  return projects.filter((p) => p.featured).slice(0, limit);
 }

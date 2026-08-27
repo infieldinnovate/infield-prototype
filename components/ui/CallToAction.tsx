@@ -90,10 +90,13 @@ const CallToAction = () => {
                     <span>Call Now</span>
                   </a>
 
-                  <a href="#" className={styles.contactButton}>
+                  <Link
+                    href="/contact?tab=visit#book-site-visit"
+                    className={styles.contactButton}
+                  >
                     <Calendar size={18} />
                     <span>Book Site Visit</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
 

@@ -77,7 +77,14 @@ const enquiryTypes = [
   },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tab?: string }>;
+}) {
+  const params = await searchParams;
+  const initialTab = params.tab === "visit" ? "visit" : "message";
+
   return (
     <>
       <section className={styles.hero}>
@@ -181,7 +188,9 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <ContactFormSection />
+            <div id="book-site-visit">
+              <ContactFormSection initialTab={initialTab} />
+            </div>
           </div>
 
           {/* Interactive Google Map */}

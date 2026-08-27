@@ -57,7 +57,7 @@ export function QuoteForm() {
 
   const stepFields: (keyof QuoteFullData)[][] = [
     ["serviceType", "serviceDetails", "urgency", "budget"],
-    ["propertyType", "address", "city", "state", "zipCode"],
+    ["propertyType", "address", "city", "county", "zipCode"],
     ["name", "email", "phone", "preferredContact", "preferredTime"],
   ];
 
@@ -246,11 +246,11 @@ export function QuoteForm() {
                 />
                 <InputField
                   register={register}
-                  name="state"
+                  name="county"
                   label="County"
                   required
                   placeholder="Meru"
-                  error={errors.state}
+                  error={errors.county}
                 />
               </div>
               <div className={styles.fieldRow}>
@@ -403,7 +403,7 @@ export function QuoteForm() {
                     <dt>Address</dt>
                     <dd>
                       {watchedValues.address
-                        ? `${watchedValues.address}, ${watchedValues.city || ""}, ${watchedValues.state || ""} ${watchedValues.zipCode || ""}`
+                        ? `${watchedValues.address}, ${watchedValues.city || ""}, ${watchedValues.county || ""} ${watchedValues.zipCode || ""}`
                         : "—"}
                     </dd>
                   </div>

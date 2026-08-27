@@ -47,7 +47,7 @@ export const quoteStep2Schema = z.object({
     .min(5, "Address must be at least 5 characters")
     .max(200, "Address is too long"),
   city: z.string().min(2, "City/Town is required").max(60, "City name is too long"),
-  state: z
+  county: z
     .string()
     .min(2, "County is required")
     .max(60, "County name is too long"),

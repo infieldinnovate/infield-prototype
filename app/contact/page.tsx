@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
-import { ContactForm } from "@/components/forms/ContactForm";
+import { ContactFormSection } from "@/components/forms/ContactFormSection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { siteConfig } from "@/data/site.config";
 import {
@@ -181,17 +181,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className={styles.formWrapper}>
-              <div className={styles.formHeader}>
-                <MessageSquare size={24} />
-                <h2 className={styles.formTitle}>Send Us a Message</h2>
-                <p className={styles.formDescription}>
-                  Fill out the form below and we&apos;ll get back to you as soon
-                  as possible.
-                </p>
-              </div>
-              <ContactForm />
-            </div>
+            <ContactFormSection />
           </div>
 
           {/* Interactive Google Map */}

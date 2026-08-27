@@ -202,7 +202,7 @@ export default function ServiceDetailClient({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
             >
-              <Link href="/services" className={styles.backLink}>
+              <Link href="/" className={styles.backLink}>
                 <ArrowLeft size={16} />
                 All services
               </Link>
@@ -864,7 +864,7 @@ export default function ServiceDetailClient({
               </div>
               <h2>One challenge rarely stands alone.</h2>
             </div>
-            <Link href="/services" className={styles.textLink}>
+            <Link href="/" className={styles.textLink}>
               View all services <ArrowRight size={17} />
             </Link>
           </div>

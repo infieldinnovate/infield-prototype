@@ -143,7 +143,7 @@ function HeroSlide() {
             >
               Get a Free Quote
             </LinkButton>
-            <LinkButton href="/services" variant="outline" size="lg">
+            <LinkButton href="/" variant="outline" size="lg">
               Explore Services
             </LinkButton>
           </motion.div>

@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUp, FileText } from "lucide-react";
-import { siteConfig } from "@/data/site.config";
+import { FileText } from "lucide-react";
 import styles from "./FloatingActions.module.scss";
 import WhatsApp from "./WhatsApp";
 
@@ -27,32 +26,37 @@ export function FloatingActions() {
   };
 
   return (
-    <div
-      className={`${styles.wrap} ${visible ? styles.visible : ""}`}
-      aria-hidden={!visible}
-    >
-      <WhatsApp />
-      <Link
-        href="/quote"
-        className={`${styles.btn} ${styles.quote}`}
-        aria-label="Request a quote"
-      >
-        <FileText size={24} />
-        <span className={styles.tooltip}>Request a quote</span>
-      </Link>
+    <>
+      {/* WhatsApp — always visible */}
+      <div className={styles.whatsappWrap}>
+        <WhatsApp />
+      </div>
 
-      {/* Back to Top */}
-      {showTop && (
-        <button
-          className={styles.backToTop}
-          onClick={scrollToTop}
-          aria-label="Back to top"
-          type="button"
+      {/* Quote + Back to Top — appear on scroll */}
+      <div
+        className={`${styles.wrap} ${visible ? styles.visible : ""}`}
+        aria-hidden={!visible}
+      >
+        <Link
+          href="/quote"
+          className={`${styles.btn} ${styles.quote}`}
+          aria-label="Request a quote"
         >
-          {/* <ArrowUp size={20} /> */}
-          TOP
-        </button>
-      )}
-    </div>
+          <FileText size={24} />
+          <span className={styles.tooltip}>Request a quote</span>
+        </Link>
+
+        {showTop && (
+          <button
+            className={styles.backToTop}
+            onClick={scrollToTop}
+            aria-label="Back to top"
+            type="button"
+          >
+            TOP
+          </button>
+        )}
+      </div>
+    </>
   );
 }

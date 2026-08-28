@@ -2,11 +2,28 @@
 @use "../../styles/abstracts/mixins" as *;
 
 // ============================================
-// Container — fixed vertical stack, bottom-right
+// WhatsApp — always visible, fixed bottom-right
+// ============================================
+.whatsappWrap {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  z-index: var(--z-sticky);
+  pointer-events: auto;
+
+  @include breakpoint-down("sm") {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+}
+
+// ============================================
+// Container — quote + back-to-top, appear on scroll
+// Positioned above the WhatsApp button
 // ============================================
 .wrap {
   position: fixed;
-  bottom: var(--space-6);
+  bottom: calc(var(--space-6) + 60px);
   right: var(--space-6);
   z-index: var(--z-sticky);
   display: flex;
@@ -27,7 +44,7 @@
   }
 
   @include breakpoint-down("sm") {
-    bottom: var(--space-4);
+    bottom: calc(var(--space-4) + 60px);
     right: var(--space-4);
   }
 }

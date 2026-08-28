@@ -127,7 +127,9 @@
 // ============================================
 
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
   padding: $space-1 $space-3;
   background: rgba(255, 255, 255, 0.12);
   color: $color-amber-400;
@@ -137,6 +139,11 @@
   letter-spacing: 0.1em;
   border-radius: $radius-full;
   margin-bottom: $space-3;
+
+  svg {
+    color: $color-amber-400;
+    flex-shrink: 0;
+  }
 
   @include breakpoint-down(sm) {
     margin-bottom: $space-2;

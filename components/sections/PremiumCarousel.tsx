@@ -73,6 +73,7 @@ export interface PremiumSlide {
   title: string;
   description?: string;
   badge?: string;
+  badgeIcon?: LucideIcon;
   primaryButton?: PremiumSlideButton;
   secondaryButton?: PremiumSlideButton;
   meta?: PremiumSlideMeta[];
@@ -218,7 +219,12 @@ export function PremiumCarousel({
                   <div className={styles.slideContent}>
                     <GlassPanel>
                       {slide.badge && (
-                        <span className={styles.badge}>{slide.badge}</span>
+                        <span className={styles.badge}>
+                          {slide.badgeIcon && (
+                            <slide.badgeIcon size={14} strokeWidth={1.8} />
+                          )}
+                          {slide.badge}
+                        </span>
                       )}
                       {slide.eyebrow && (
                         <span className={styles.eyebrow}>{slide.eyebrow}</span>

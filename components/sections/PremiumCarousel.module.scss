@@ -1,0 +1,468 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+// ============================================
+// Carousel shell
+// ============================================
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: $color-slate-900;
+  min-height: 70vh;
+
+  @include breakpoint-down(md) {
+    min-height: 60vh;
+  }
+
+  @include breakpoint-down(sm) {
+    min-height: 50vh;
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+// ============================================
+// Image + overlay
+// ============================================
+
+.slideImage {
+  position: absolute;
+  inset: 0;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.15) 35%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  pointer-events: none;
+}
+
+// ============================================
+// Content layout
+// ============================================
+
+.content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 5.5rem 0;
+  z-index: 2;
+
+  @include breakpoint-down(md) {
+    padding: 0 0 4.5rem 0;
+  }
+
+  @include breakpoint-down(sm) {
+    padding: 0 0 3.5rem 0;
+  }
+}
+
+.container {
+  @include container;
+  width: 100%;
+}
+
+// Staggered entrance — driven by Swiper's active class
+.slideContent {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:global(.swiper-slide-active) .slideContent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// ============================================
+// Glass panel
+// ============================================
+
+.glassPanel {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-xl;
+  padding: $space-8 $space-10;
+  max-width: 580px;
+
+  @include breakpoint-down(md) {
+    padding: $space-6 $space-8;
+    max-width: 100%;
+  }
+
+  @include breakpoint-down(sm) {
+    padding: $space-5 $space-6;
+    border-radius: $radius-lg;
+  }
+}
+
+// ============================================
+// Slide text elements
+// ============================================
+
+.badge {
+  display: inline-block;
+  padding: $space-1 $space-3;
+  background: rgba(255, 255, 255, 0.12);
+  color: $color-amber-400;
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: $radius-full;
+  margin-bottom: $space-3;
+
+  @include breakpoint-down(sm) {
+    margin-bottom: $space-2;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: $fs-sm;
+  font-weight: $fw-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: $color-secondary-light;
+  margin-bottom: $space-3;
+
+  @include breakpoint-down(sm) {
+    font-size: $fs-xs;
+    margin-bottom: $space-2;
+  }
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: $fw-extrabold;
+  line-height: $lh-tight;
+  letter-spacing: -0.02em;
+  color: $color-white;
+  margin-bottom: $space-4;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  @include breakpoint-down(sm) {
+    font-size: $fs-3xl;
+    margin-bottom: $space-3;
+  }
+}
+
+.description {
+  font-size: $fs-lg;
+  line-height: $lh-relaxed;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: $space-6;
+  max-width: 500px;
+
+  @include breakpoint-down(sm) {
+    font-size: $fs-base;
+    margin-bottom: $space-5;
+  }
+}
+
+// ============================================
+// Meta chips
+// ============================================
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  margin-bottom: $space-6;
+
+  @include breakpoint-down(sm) {
+    margin-bottom: $space-5;
+  }
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-1 $space-3;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: $radius-full;
+  font-size: $fs-xs;
+  font-weight: $fw-medium;
+  color: rgba(255, 255, 255, 0.85);
+
+  svg {
+    color: $color-secondary-light;
+    flex-shrink: 0;
+  }
+}
+
+// ============================================
+// Buttons
+// ============================================
+
+.buttons {
+  display: flex;
+  gap: $space-3;
+  flex-wrap: wrap;
+
+  @include breakpoint-down(sm) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  background: linear-gradient(135deg, $color-amber-400, $color-amber-500);
+  color: $color-gray-900;
+  border-radius: $radius-full;
+  font-weight: $fw-bold;
+  font-size: $fs-base;
+  text-decoration: none;
+  transition: all $transition-base;
+  box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(251, 191, 36, 0.4);
+    color: $color-gray-900;
+  }
+
+  @include focus-visible;
+
+  @include breakpoint-down(sm) {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  background: transparent;
+  color: $color-white;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: $radius-full;
+  font-weight: $fw-semibold;
+  font-size: $fs-base;
+  text-decoration: none;
+  transition: all $transition-base;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    color: $color-white;
+    transform: translateY(-2px);
+  }
+
+  @include focus-visible;
+
+  @include breakpoint-down(sm) {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+// ============================================
+// Controls (nav arrows + slide counter)
+// ============================================
+
+.controls {
+  position: absolute;
+  bottom: $space-6;
+  right: $space-8;
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  z-index: 4;
+
+  @include breakpoint-down(md) {
+    right: $space-4;
+    bottom: $space-4;
+    gap: $space-2;
+  }
+
+  @include breakpoint-down(sm) {
+    display: none;
+  }
+}
+
+.navArrow {
+  @include flex-center;
+  @include button-reset;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-full;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: $color-white;
+  transition: all $transition-fast;
+
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  @include focus-visible;
+}
+
+.navArrowDisabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+// ============================================
+// Slide counter
+// ============================================
+
+.slideCounter {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-family: $font-mono;
+  font-size: $fs-sm;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0 $space-1;
+}
+
+.slideCounterCurrent {
+  font-weight: $fw-bold;
+  color: $color-white;
+}
+
+.slideCounterDivider {
+  opacity: 0.4;
+  margin: 0 1px;
+}
+
+.slideCounterTotal {
+  opacity: 0.6;
+}
+
+// ============================================
+// Progress bar (autoplay-synced)
+// ============================================
+
+.progressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, $color-secondary, $color-accent);
+  z-index: 5;
+  pointer-events: none;
+}
+
+// ============================================
+// Pagination dots
+// ============================================
+
+.pagination {
+  position: absolute;
+  bottom: $space-6;
+  left: $space-8;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  @include breakpoint-down(md) {
+    left: $space-4;
+    bottom: $space-4;
+  }
+
+  @include breakpoint-down(sm) {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: $space-3;
+  }
+
+  // Override global swiper-pagination styles
+  &:global(.swiper-pagination) {
+    position: absolute !important;
+    bottom: auto !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    width: auto !important;
+    opacity: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: $space-2 !important;
+  }
+
+  :global(.swiper-pagination-bullet) {
+    width: 8px !important;
+    height: 8px !important;
+    background: rgba(255, 255, 255, 0.35) !important;
+    border: none !important;
+    border-radius: $radius-full !important;
+    opacity: 1 !important;
+    margin: 0 !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    background: $color-white !important;
+    width: 28px !important;
+    border-radius: $radius-full !important;
+    transform: none !important;
+  }
+}
+
+// ============================================
+// Reduced motion
+// ============================================
+
+@include reduced-motion {
+  .slideContent {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .navArrow,
+  .primaryBtn,
+  .secondaryBtn {
+    transition: none;
+  }
+}

@@ -7,13 +7,13 @@ import styles from "./FloatingActions.module.scss";
 import WhatsApp from "./WhatsApp";
 
 export function FloatingActions() {
-  const [visible, setVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [showTop, setShowTop] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const y = window.scrollY;
-      setVisible(y > 200);
+      setScrolled(y > 200);
       setShowTop(y > 600);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -26,37 +26,40 @@ export function FloatingActions() {
   };
 
   return (
-    <>
-      {/* WhatsApp — always visible */}
-      <div className={styles.whatsappWrap}>
+    <div className={styles.container}>
+      <div className={styles.whatsappSlot}>
         <WhatsApp />
       </div>
 
-      {/* Quote + Back to Top — appear on scroll */}
       <div
-        className={`${styles.wrap} ${visible ? styles.visible : ""}`}
-        aria-hidden={!visible}
+        className={`${styles.actionSlot} ${scrolled ? styles.actionSlotVisible : ""}`}
       >
         <Link
           href="/quote"
           className={`${styles.btn} ${styles.quote}`}
           aria-label="Request a quote"
+          aria-hidden={!scrolled}
+          tabIndex={scrolled ? 0 : -1}
         >
           <FileText size={24} />
           <span className={styles.tooltip}>Request a quote</span>
         </Link>
-
-        {showTop && (
-          <button
-            className={styles.backToTop}
-            onClick={scrollToTop}
-            aria-label="Back to top"
-            type="button"
-          >
-            TOP
-          </button>
-        )}
       </div>
-    </>
+
+      <div
+        className={`${styles.actionSlot} ${showTop ? styles.actionSlotVisible : ""}`}
+      >
+        <button
+          className={`${styles.btn} ${styles.backToTop}`}
+          onClick={scrollToTop}
+          aria-label="Back to top"
+          aria-hidden={!showTop}
+          tabIndex={showTop ? 0 : -1}
+          type="button"
+        >
+          TOP
+        </button>
+      </div>
+    </div>
   );
 }

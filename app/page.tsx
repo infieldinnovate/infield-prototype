@@ -14,6 +14,7 @@ import ServicesOverview from "@/components/sections/ServicesOverview";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import ProjectsShowcase from "@/components/sections/ProjectsShowcase";
 import { getFeaturedProjects } from "@/data/projectStats";
+import HomeHeroCarousel from "@/components/sections/hero/HeroCarousel";
 
 export const metadata: Metadata = {
   title: {
@@ -51,6 +52,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <HomeHeroCarousel />
       <HeroCarousel />
 
       {/* Animated Stats Section */}

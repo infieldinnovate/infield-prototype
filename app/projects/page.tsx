@@ -24,8 +24,8 @@ import ProjectModal from "./ProjectModal";
 import ProjectMap from "../../components/ui/ProjectMap";
 import styles from "./page.module.scss";
 import ProjectCard from "@/components/cards/ProjectCard";
-import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import ProjectsHeroCarousel from "@/components/sections/ProjectsHeroCarousel";
+// Breadcrumbs and ImageWithFallback are now handled inside ProjectsHeroCarousel
 
 type FilterCategory = "All Projects" | ServiceSlug;
 
@@ -52,28 +52,8 @@ export default function ProjectsPage() {
 
   return (
     <div className={styles.page}>
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <ImageWithFallback
-          src="/projects/3467b787b566bu.jpg"
-          alt="Solar installation"
-          className={styles.heroBg}
-          width={1280}
-          height={640}
-        />
-        <div className={styles.heroContent}>
-          <Breadcrumbs
-            items={[{ label: "Home", href: "/" }, { label: "Projects" }]}
-            theme='dark'
-          />
-          <h1 className={styles.heroTitle}>Our Projects</h1>
-          <p className={styles.heroSubtitle}>
-            Explore our completed solar, borehole, irrigation, plumbing, and
-            electrical projects across Kenya.
-          </p>
-          <AnimatedStats theme='light' scroll />
-        </div>
-      </section>
+      {/* Hero Carousel */}
+      <ProjectsHeroCarousel />
 
       {/* Project Filters */}
       <section className={styles.section}>

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
+import AboutHeroCarousel from "@/components/sections/AboutHeroCarousel";
 import { siteConfig } from "@/data/site.config";
 import { certificationsList } from "@/data/certifications";
 import { equipment, safetyCommitments } from "@/data/equipment";
@@ -95,18 +95,7 @@ const milestones = [
 export default function AboutPage() {
   return (
     <>
-      <section className={styles.hero}>
-        <div className={styles.container}>
-          <Breadcrumbs
-            items={[{ label: "Home", href: "/" }, { label: "About" }]}
-          />
-          <SectionHeading
-            eyebrow="About Us"
-            title="Engineering Excellence Since 2009"
-            description="For over 15 years, Infield Innovations has been the trusted name in electrical, plumbing, solar, irrigation, and borehole services. We combine technical expertise with genuine care for our community."
-          />
-        </div>
-      </section>
+      <AboutHeroCarousel />
 
       <section className={styles.statsSection}>
         <div className={styles.container}>

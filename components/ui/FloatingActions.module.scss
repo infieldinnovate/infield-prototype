@@ -1,49 +1,70 @@
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/abstracts/mixins" as *;
 
+// ============================================
+// Container — fixed vertical stack, bottom-right
+// ============================================
 .wrap {
-  height: fit-content;
   position: fixed;
-  bottom: var(--space-4);
-  right: var(--space-4);
+  bottom: var(--space-6);
+  right: var(--space-6);
   z-index: var(--z-sticky);
-  @include flex-column;
-  gap: var(--space-8);
-  transform: translateY(60px);
-  transition: all 1s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-3);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
 
   &.visible {
-    gap: var(--space-3);
+    pointer-events: auto;
+    opacity: 1;
     transform: translateY(0);
-    transition: all 1s ease;
+  }
+
+  @include breakpoint-down("sm") {
+    bottom: var(--space-4);
+    right: var(--space-4);
   }
 }
 
-.btn {
+// ============================================
+// Shared button base — consistent 48x48 circle
+// ============================================
+.btn,
+.backToTop {
   @include flex-center;
-  width: 40px;
-  height: 35px;
+  @include button-reset;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
   border-radius: var(--radius-full);
   color: var(--color-white);
   box-shadow: var(--shadow-lg);
-  transition: all var(--transition-fast);
-  position: relative;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
 
   &:hover {
     transform: scale(1.08);
   }
 
+  &:active {
+    transform: scale(0.96);
+  }
+
   @include focus-visible;
 }
 
-.whatsapp {
-  background: #25d366;
-
-  &:hover {
-    background: #1ebe5d;
-  }
-}
-
+// ============================================
+// Quote button
+// ============================================
 .quote {
   background: linear-gradient(
     135deg,
@@ -56,6 +77,9 @@
   }
 }
 
+// ============================================
+// Tooltip (quote button)
+// ============================================
 .tooltip {
   position: absolute;
   right: calc(100% + var(--space-3));
@@ -82,7 +106,7 @@
     border-left-color: var(--color-gray-900);
   }
 
-  .btn:hover & {
+  .quote:hover & {
     opacity: 1;
   }
 
@@ -95,39 +119,47 @@
 // Back to Top
 // ============================================
 .backToTop {
-  @include flex-center;
-  width: 40px;
-  height: 40px;
   background: linear-gradient(
     135deg,
     var(--color-primary),
     var(--color-secondary)
   );
-  color: var(--color-white);
-  border: none;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(15, 108, 189, 0.4);
-  z-index: var(--z-sticky);
-  transition: all var(--transition-fast);
-  animation: fadeInUp 1s ease;
   font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transform: scale(0.6);
+  pointer-events: none;
+  animation:
+    backToTopIn 0.3s ease forwards,
+    backToTopOut 0.3s ease forwards;
+
+  // When showTop is true, the element is rendered and the "in" animation plays.
+  // When showTop is false, the element is removed from the DOM.
 
   &:hover {
-    transform: translateY(-3px);
     box-shadow: 0 12px 28px rgba(15, 108, 189, 0.5);
   }
-
-  @include focus-visible;
 }
 
-@keyframes fadeInUp {
+@keyframes backToTopIn {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: scale(0.6);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes backToTopOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.6);
   }
 }

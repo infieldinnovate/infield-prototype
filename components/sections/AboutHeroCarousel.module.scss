@@ -1,6 +1,51 @@
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/abstracts/mixins" as *;
 
+// ============================================
+// Wrapper + Breadcrumbs (new shell-based hero)
+// ============================================
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  background: $color-slate-900;
+}
+
+.breadcrumbsBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  pointer-events: none;
+
+  & > * {
+    pointer-events: auto;
+  }
+}
+
+.breadcrumbsContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: calc(var(--header-height, 80px) + 1rem) 1.5rem 0;
+
+  @include breakpoint-up(sm) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @include breakpoint-up(lg) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+// ============================================
+// Legacy slide styles (retained for reference but
+// the new component delegates rendering to
+// PremiumCarousel which has its own SCSS)
+// ============================================
+
 .heroSection {
   position: relative;
   width: 100%;

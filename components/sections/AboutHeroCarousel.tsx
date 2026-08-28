@@ -1,17 +1,5 @@
 "use client";
 
-// ============================================
-// AboutHeroCarousel — Built on PremiumCarousel
-// ============================================
-// 5 slides per the About page design brief:
-//   01 Who We Are  — company positioning (siteConfig)
-//   02 What We Do  — Water + Energy + Engineering (SERVICES)
-//   03 How We Work — Assess → Design → Install → Support (process.ts)
-//   04 Why Choose Us — Quality / Safety / Reliability / Professional Expertise
-//                     (drawn only from certifications.ts + equipment.ts)
-//   05 Our Reach  — Kenya coverage (countiesServed from impactStats.ts)
-// ============================================
-
 import { useMemo } from "react";
 import {
   ArrowRight,
@@ -27,7 +15,10 @@ import {
   Wrench,
   type LucideIcon,
 } from "lucide-react";
-import { PremiumCarousel, type PremiumSlide } from "@/components/sections/PremiumCarousel";
+import {
+  PremiumCarousel,
+  type PremiumSlide,
+} from "@/components/sections/PremiumCarousel";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { siteConfig } from "@/data/site.config";
 import { SERVICES } from "@/data/services";
@@ -36,7 +27,6 @@ import { processSteps } from "@/data/process";
 import { certificationsList } from "@/data/certifications";
 import { safetyCommitments } from "@/data/equipment";
 import { countiesServed } from "@/data/impactStats";
-import styles from "./AboutHeroCarousel.module.scss";
 
 export default function AboutHeroCarousel() {
   const slides: PremiumSlide[] = useMemo(() => {
@@ -151,24 +141,10 @@ export default function AboutHeroCarousel() {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.breadcrumbsBar}>
-        <div className={styles.breadcrumbsContainer}>
-          <Breadcrumbs
-            items={[
-              { label: "Home", href: "/" },
-              { label: "About" },
-            ]}
-            theme="dark"
-          />
-        </div>
-      </div>
-
-      <PremiumCarousel
-        slides={slides}
-        autoplayDelay={6000}
-        loop={slides.length > 1}
-      />
-    </div>
+    <PremiumCarousel
+      slides={slides}
+      autoplayDelay={6000}
+      loop={slides.length > 1}
+    />
   );
 }

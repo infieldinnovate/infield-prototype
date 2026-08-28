@@ -1,48 +1,13 @@
-"use client";
-
-// ============================================
-// PremiumCarousel — Reusable Hero Carousel Shell
-// ============================================
-// Wraps Swiper with a shared, production-ready config:
-// fade transition, autoplay with pause-on-interaction,
-// keyboard nav, touch/swipe, manual prev/next controls,
-// slide counter (01 / 05), and an autoplay-synced progress bar.
-//
-// Sub-pieces: GlassPanel, NavArrow, SlideCounter, ProgressBar
-// All use existing SCSS variables/mixins, fonts, colors.
-//
-// ---
-// Usage example:
-//
-//   import { PremiumCarousel, type PremiumSlide } from "@/components/sections/PremiumCarousel";
-//   import { Sun, MapPin, Calendar } from "lucide-react";
-//
-//   const slides: PremiumSlide[] = [
-//     {
-//       image: "/hero/solar.jpg",
-//       imageAlt: "Solar installation",
-//       imagePriority: true,
-//       badge: "Solar",
-//       eyebrow: "Our Services",
-//       title: "Professional Solar Solutions",
-//       description: "Complete solar installation from design to maintenance.",
-//       primaryButton: { label: "Explore", href: "/services/solar" },
-//       secondaryButton: { label: "Get Quote", href: "/quote" },
-//       meta: [
-//         { icon: MapPin, text: "Meru, Kenya" },
-//         { icon: Calendar, text: "2024" },
-//       ],
-//     },
-//   ];
-//
-//   <PremiumCarousel slides={slides} autoplayDelay={6000} />
-// ============================================
-
 import { useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade, Keyboard } from "swiper/modules";
-import { ChevronLeft, ChevronRight, ArrowRight, type LucideIcon } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  type LucideIcon,
+} from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { cn } from "@/lib/utils";
 import styles from "./PremiumCarousel.module.scss";
@@ -98,9 +63,7 @@ function GlassPanel({
   children: ReactNode;
   className?: string;
 }) {
-  return (
-    <div className={cn(styles.glassPanel, className)}>{children}</div>
-  );
+  return <div className={cn(styles.glassPanel, className)}>{children}</div>;
 }
 
 function NavArrow({
@@ -150,7 +113,13 @@ export function PremiumCarousel({
 }: PremiumCarouselProps) {
   const paginationRef = useRef<HTMLDivElement | null>(null);
   const progressRef = useRef<HTMLDivElement | null>(null);
-  const swiperRef = useRef<{ slidePrev: () => void; slideNext: () => void; realIndex: number; isBeginning: boolean; isEnd: boolean } | null>(null);
+  const swiperRef = useRef<{
+    slidePrev: () => void;
+    slideNext: () => void;
+    realIndex: number;
+    isBeginning: boolean;
+    isEnd: boolean;
+  } | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -296,9 +265,7 @@ export function PremiumCarousel({
 
       <div ref={paginationRef} className={styles.pagination} />
 
-      {showControls && (
-        <div ref={progressRef} className={styles.progressBar} />
-      )}
+      {showControls && <div ref={progressRef} className={styles.progressBar} />}
     </section>
   );
 }

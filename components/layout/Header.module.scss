@@ -1,7 +1,12 @@
-// components\Header\Header.module.scss
+// components/layout/Header.module.scss
+// Mobile-first SCSS architecture
 
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/abstracts/mixins" as *;
+
+// ============================================
+// HEADER SHELL
+// ============================================
 
 .header {
   position: fixed;
@@ -24,355 +29,189 @@
   }
 }
 
-.contactLink {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: white;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-
-  &:hover {
-    opacity: 0.8;
-  }
-}
+// ============================================
+// NAVBAR — mobile base
+// ============================================
 
 .navbar {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  gap: 50px;
-  padding: 0 20px;
-  padding-right: 50px;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 12px;
   background-color: rgb(255, 255, 255);
-  height: 80px;
+  height: var(--header-height);
 }
+
+// ============================================
+// LOGO
+// ============================================
 
 .logo {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .logoImage {
-  height: 60px;
+  height: 44px;
   width: auto;
-}
 
-/* ---------- Desktop nav ---------- */
-.desktopNav {
-  display: flex;
-  align-items: center;
-  gap: 40px;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 1rem;
+  @media (min-width: 380px) {
+    height: 50px;
+  }
 
-  @media (max-width: 1045px) {
-    display: none;
+  @media (min-width: 480px) {
+    height: 56px;
+  }
+
+  @media (min-width: 768px) {
+    height: 64px;
   }
 }
 
-.navLink {
-  color: #374151;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.22s ease;
-  position: relative;
-  padding: 6px 0;
+// ============================================
+// RIGHT-SIDE GROUP (quote button + hamburger)
+// ============================================
 
-  &:hover {
-    color: #1e40af;
-  }
-
-  &:after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -6px;
-    left: 50%;
-    background: #1e40af;
-    transition: all 0.22s ease;
-    border-radius: 2px;
-  }
-
-  &:hover:after {
-    width: 100%;
-    left: 0;
-  }
-
-  &:focus {
-    outline: none;
-    border-radius: 4px;
-  }
-}
-
-.active {
-  color: #940b0b !important;
-}
-
-.navLink.active:after {
-  width: 100%;
-  left: 0;
-  height: 3px;
-  bottom: -6px;
-}
-
-/* ---------- Services Dropdown ---------- */
-.servicesDropdown {
-  position: static;
-
-  @media (max-width: 1045px) {
-    display: none;
-  }
-}
-
-.servicesTrigger {
+// Get Quote button — visible from 320px upward
+.quoteBtn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  cursor: pointer;
+  padding: 6px 10px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-radius: 9999px;
+
+  // Hide the arrow icon on very small screens to save space
+  span {
+    font-size: 0.75rem;
+  }
+
+  @media (min-width: 380px) {
+    padding: 7px 14px;
+    font-size: 0.75rem;
+  }
+
+  @media (min-width: 480px) {
+    padding: 8px 18px;
+    font-size: 0.8rem;
+  }
+
+  @media (min-width: 768px) {
+    padding: 9px 22px;
+    font-size: 0.85rem;
+  }
+}
+
+// ============================================
+// DESKTOP NAV + SERVICES DROPDOWN — hidden on mobile
+// ============================================
+
+.desktopNav {
+  display: none;
+}
+
+.servicesDropdown {
+  display: none;
+}
+
+// ============================================
+// ACTIONS (phone link) — hidden on mobile
+// ============================================
+
+.actions {
+  display: none;
+}
+
+.phoneLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-primary);
+  }
+}
+
+// ============================================
+// MOBILE MENU BUTTON — visible on mobile only
+// ============================================
+
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
-  font: inherit;
-  color: inherit;
-  padding: 6px 0;
-  transition: color 0.22s ease;
-
-  &:hover,
-  &.triggerOpen {
-    color: #1e40af;
-  }
+  color: #374151;
+  cursor: pointer;
+  padding: 4px;
+  flex-shrink: 0;
 }
 
-.chevronOpen {
-  transform: rotate(180deg);
-}
+// ============================================
+// MOBILE MENU — full screen below navbar
+// ============================================
 
-.servicesChevron {
-  transition: transform var(--transition-fast);
-
-  .servicesDropdown:hover & {
-    transform: rotate(180deg);
-  }
-}
-
-.servicesMenu {
+.mobileMenu {
   position: fixed;
   top: var(--header-height);
   left: 0;
   right: 0;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1280px;
-  background: $color-white;
-  border-bottom: 1px solid $color-border;
-  box-shadow: $shadow-xl;
-  padding: $space-6 $space-8;
-  z-index: $z-dropdown;
-  position: absolute;
-}
-
-.closeButton {
-  position: absolute;
-  top: $space-3;
-  right: $space-4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: $radius-full;
-  border: 1px solid $color-border;
-  background: $color-gray-50;
-  color: $color-gray-600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-
-  &:hover {
-    background: $color-primary;
-    color: $color-white;
-    border-color: $color-primary;
-    transform: rotate(90deg);
-  }
-}
-
-.servicesGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: $space-3;
-
-  @media (max-width: 1280px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @media (max-width: 1100px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.serviceCard {
-  display: flex;
-  flex-direction: column;
-  gap: $space-2;
-  padding: $space-4;
-  border-radius: $radius-lg;
-  border: 1px solid transparent;
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  min-width: 0;
-
-  &:hover {
-    background: linear-gradient(
-      135deg,
-      rgba(15, 108, 189, 0.04),
-      rgba(13, 148, 136, 0.04)
-    );
-    border-color: $color-primary-200;
-    transform: translateY(-2px);
-    box-shadow: $shadow-md;
-  }
-
-  &.serviceCardActive {
-    border-color: $color-primary;
-    background: $color-primary-50;
-  }
-}
-
-.serviceCardHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.serviceIconWrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: $radius-md;
-  background: linear-gradient(135deg, $color-primary-50, $color-secondary-50);
-  color: $color-primary;
-  transition: all var(--transition-fast);
-
-  .serviceCard:hover & {
-    background: linear-gradient(135deg, $color-primary, $color-secondary);
-    color: $color-white;
-  }
-}
-
-.serviceNumber {
-  font-size: $fs-xs;
-  font-weight: $fw-bold;
-  color: $color-gray-400;
-  letter-spacing: 0.05em;
-}
-
-.serviceTitle {
-  font-size: $fs-sm;
-  font-weight: $fw-bold;
-  color: $color-gray-800;
-  margin: 0;
-  transition: color var(--transition-fast);
-
-  .serviceCard:hover & {
-    color: $color-primary;
-  }
-}
-
-.subServicesList {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.subServiceItem {
-  font-size: $fs-xs;
-  color: $color-gray-500;
-  line-height: 1.4;
-  transition: all var(--transition-fast);
-  position: relative;
-  padding-left: 0;
-
-  .serviceCard:hover & {
-    color: $color-primary-700;
-    padding-left: 6px;
-  }
-}
-
-.serviceLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: $fs-xs;
-  font-weight: $fw-semibold;
-  color: $color-primary;
-  margin-top: $space-1;
-
-  svg {
-    transition: transform var(--transition-fast);
-  }
-
-  .serviceCard:hover & svg {
-    transform: translateX(3px);
-  }
-}
-
-/* ---------- Quote/CTA ---------- */
-.quoteButton {
-  background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2);
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(30, 64, 175, 0.3);
-  }
-}
-
-/* ---------- Mobile ---------- */
-.mobileMenuButton {
-  display: none;
-  background: none;
-  border: none;
-  color: #374151;
-  cursor: pointer;
-
-  @media (max-width: 1045px) {
-    display: block;
-  }
-}
-
-.mobileMenu {
-  background: white;
+  height: calc(100vh - var(--header-height));
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: rgb(255, 255, 255);
   border-top: 1px solid #e5e7eb;
-  overflow: hidden;
+  z-index: calc(var(--z-header) - 1);
+  -webkit-overflow-scrolling: touch;
 
-  @media (min-width: 1045px) {
-    display: none;
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: var(--radius-full);
   }
 }
 
 .mobileMenuContent {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px 48px;
+  min-height: 100%;
 }
+
+// ============================================
+// MOBILE NAV LINKS
+// ============================================
 
 .mobileNavLink {
   display: block;
   color: #374151;
   text-decoration: none;
   font-weight: 500;
-  padding: 15px 0;
+  font-size: 1rem;
+  padding: 16px 0;
   border-bottom: 1px solid #f3f4f6;
   transition: color 0.22s ease;
   position: relative;
@@ -384,26 +223,29 @@
   &:last-of-type {
     border-bottom: none;
   }
+
+  &.active {
+    color: #0b5394;
+    font-weight: 600;
+  }
+
+  &.active::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: #1e40af;
+    border-radius: 50%;
+  }
 }
 
-.mobileNavLink.active {
-  color: #0b5394;
-  font-weight: 600;
-}
+// ============================================
+// MOBILE SERVICES ACCORDION
+// ============================================
 
-.mobileNavLink.active:after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 6px;
-  height: 6px;
-  background: #1e40af;
-  border-radius: 50%;
-}
-
-/* ---------- Mobile Services Accordion ---------- */
 .mobileServicesSection {
   border-bottom: 1px solid #f3f4f6;
 }
@@ -413,7 +255,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 15px 0;
+  padding: 16px 0;
   color: #374151;
   font-weight: 500;
   font-size: 1rem;
@@ -493,43 +335,332 @@
   flex: 1;
 }
 
+// ============================================
+// MOBILE QUOTE BUTTON
+// ============================================
+
 .mobileQuoteButton {
   display: block;
   background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
   color: white;
-  padding: 15px 20px;
-  border-radius: 8px;
+  padding: 16px 20px;
+  border-radius: 12px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1rem;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 24px;
   transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3);
   }
 }
 
-/* ---------- Actions ---------- */
-.actions {
-  @include flex-center;
-  gap: var(--space-4);
+// ============================================
+// DESKTOP BREAKPOINT — min-width: 1045px
+// ============================================
 
-  @include breakpoint-down("lg") {
+@media (min-width: 1045px) {
+  // Navbar switches to desktop layout
+  .navbar {
+    justify-content: space-evenly;
+    gap: 40px;
+    padding: 0 20px;
+    padding-right: 50px;
+    height: var(--header-height);
+  }
+
+  // Logo grows to full size
+  .logoImage {
+    height: 60px;
+  }
+
+  // Quote button scales up
+  .quoteBtn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+
+  // Desktop nav visible
+  .desktopNav {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1rem;
+  }
+
+  // Services dropdown visible
+  .servicesDropdown {
+    display: block;
+    position: static;
+  }
+
+  // Actions (phone link) visible
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  // Mobile menu button hidden
+  .mobileMenuButton {
     display: none;
   }
-}
 
-.phoneLink {
-  @include flex-center;
-  gap: var(--space-2);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  color: var(--color-text);
-  text-wrap: nowrap;
+  // Mobile menu hidden
+  .mobileMenu {
+    display: none;
+  }
 
-  &:hover {
-    color: var(--color-primary);
+  // ============================================
+  // DESKTOP NAV LINKS
+  // ============================================
+
+  .navLink {
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.22s ease;
+    position: relative;
+    padding: 6px 0;
+
+    &:hover {
+      color: #1e40af;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -6px;
+      left: 50%;
+      background: #1e40af;
+      transition: all 0.22s ease;
+      border-radius: 2px;
+    }
+
+    &:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    &:focus {
+      outline: none;
+      border-radius: 4px;
+    }
+
+    &.active {
+      color: #940b0b !important;
+    }
+
+    &.active::after {
+      width: 100%;
+      left: 0;
+      height: 3px;
+      bottom: -6px;
+    }
+  }
+
+  // ============================================
+  // SERVICES DROPDOWN
+  // ============================================
+
+  .servicesTrigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    padding: 6px 0;
+    transition: color 0.22s ease;
+
+    &:hover,
+    &.triggerOpen {
+      color: #1e40af;
+    }
+  }
+
+  .chevronOpen {
+    transform: rotate(180deg);
+  }
+
+  .servicesChevron {
+    transition: transform var(--transition-fast);
+
+    .servicesDropdown:hover & {
+      transform: rotate(180deg);
+    }
+  }
+
+  .servicesMenu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1280px;
+    background: $color-white;
+    border-bottom: 1px solid $color-border;
+    box-shadow: $shadow-xl;
+    padding: $space-6 $space-8;
+    z-index: $z-dropdown;
+    position: absolute;
+  }
+
+  .closeButton {
+    position: absolute;
+    top: $space-3;
+    right: $space-4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-full;
+    border: 1px solid $color-border;
+    background: $color-gray-50;
+    color: $color-gray-600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background: $color-primary;
+      color: $color-white;
+      border-color: $color-primary;
+      transform: rotate(90deg);
+    }
+  }
+
+  .servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $space-3;
+
+    @media (max-width: 1280px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .serviceCard {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    padding: $space-4;
+    border-radius: $radius-lg;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    min-width: 0;
+
+    &:hover {
+      background: linear-gradient(
+        135deg,
+        rgba(15, 108, 189, 0.04),
+        rgba(13, 148, 136, 0.04)
+      );
+      border-color: $color-primary-200;
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+
+    &.serviceCardActive {
+      border-color: $color-primary;
+      background: $color-primary-50;
+    }
+  }
+
+  .serviceCardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .serviceIconWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: $radius-md;
+    background: linear-gradient(135deg, $color-primary-50, $color-secondary-50);
+    color: $color-primary;
+    transition: all var(--transition-fast);
+
+    .serviceCard:hover & {
+      background: linear-gradient(135deg, $color-primary, $color-secondary);
+      color: $color-white;
+    }
+  }
+
+  .serviceNumber {
+    font-size: $fs-xs;
+    font-weight: $fw-bold;
+    color: $color-gray-400;
+    letter-spacing: 0.05em;
+  }
+
+  .serviceTitle {
+    font-size: $fs-sm;
+    font-weight: $fw-bold;
+    color: $color-gray-800;
+    margin: 0;
+    transition: color var(--transition-fast);
+
+    .serviceCard:hover & {
+      color: $color-primary;
+    }
+  }
+
+  .subServicesList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .subServiceItem {
+    font-size: $fs-xs;
+    color: $color-gray-500;
+    line-height: 1.4;
+    transition: all var(--transition-fast);
+    position: relative;
+    padding-left: 0;
+
+    .serviceCard:hover & {
+      color: $color-primary-700;
+      padding-left: 6px;
+    }
+  }
+
+  .serviceLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: $fs-xs;
+    font-weight: $fw-semibold;
+    color: $color-primary;
+    margin-top: $space-1;
+
+    svg {
+      transition: transform var(--transition-fast);
+    }
+
+    .serviceCard:hover & svg {
+      transform: translateX(3px);
+    }
   }
 }

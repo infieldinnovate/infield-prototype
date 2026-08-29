@@ -145,7 +145,11 @@ export default function FAQPage() {
 
         <div className={styles.container}>
           <Breadcrumbs
-            items={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Resources", href: "/resources" },
+              { label: "FAQ" },
+            ]}
           />
 
           <motion.div
@@ -427,11 +431,11 @@ export default function FAQPage() {
 
               <div className={styles.comingSoon}>
                 <p className={styles.comingSoonText}>
-                  Case studies coming soon. In the meantime, explore our recent
-                  projects on the About page.
+                  Explore our recent installations and completed projects
+                  across Kenya.
                 </p>
 
-                <LinkButton href="/about" variant="outline" size="sm">
+                <LinkButton href="/projects" variant="outline" size="sm">
                   View Projects
                 </LinkButton>
               </div>

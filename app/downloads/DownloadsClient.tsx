@@ -57,7 +57,11 @@ export default function DownloadsPage() {
         </div>
         <div className={styles.container}>
           <Breadcrumbs
-            items={[{ label: "Home", href: "/" }, { label: "Downloads" }]}
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Resources", href: "/resources" },
+              { label: "Downloads" },
+            ]}
           />
           <motion.div
             className={styles.heroContent}

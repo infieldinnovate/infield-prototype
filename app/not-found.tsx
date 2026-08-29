@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Home, ArrowLeft, Search, Wrench } from "lucide-react";
+import { Chrome as Home, ArrowLeft, Search, Wrench } from "lucide-react";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { siteConfig } from "@/data/site.config";
-import { navLinks } from "@/data/links";
+import { navLinks, resourcesNavItems } from "@/data/links";
 import styles from "./not-found.module.scss";
 
 export const metadata: Metadata = {
@@ -58,6 +58,15 @@ export default function NotFound() {
                   {item.label}
                 </Link>
               ))}
+            {resourcesNavItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={styles.suggestionLink}
+              >
+                {item.label}
+              </Link>
+            ))}
           </div>
         </nav>
       </div>

@@ -11,6 +11,7 @@
 import { useMemo } from "react";
 import { MapPin, Calendar, Tag, ArrowRight, CircleCheck } from "lucide-react";
 import { PremiumCarousel, type PremiumSlide } from "@/components/sections/PremiumCarousel";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { projects } from "@/data/projectStats";
 import { ServiceIcons } from "@/data/service-icons";
 
@@ -58,10 +59,21 @@ export default function ProjectsHeroCarousel() {
   }, []);
 
   return (
-    <PremiumCarousel
-      slides={slides}
-      autoplayDelay={6000}
-      loop={slides.length > 1}
-    />
+    <>
+      <div className="container" style={{ paddingTop: "1.5rem" }}>
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Resources", href: "/resources" },
+            { label: "Projects" },
+          ]}
+        />
+      </div>
+      <PremiumCarousel
+        slides={slides}
+        autoplayDelay={6000}
+        loop={slides.length > 1}
+      />
+    </>
   );
 }

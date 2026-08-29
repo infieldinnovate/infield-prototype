@@ -9,12 +9,11 @@ import { GoogleReviews } from "@/components/sections/GoogleReviews";
 import { getPopularFAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
-import HeroCarousel from "@/components/sections/HeroCarousel";
 import ServicesOverview from "@/components/sections/ServicesOverview";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import ProjectsShowcase from "@/components/sections/ProjectsShowcase";
 import { getFeaturedProjects } from "@/data/projectStats";
-import HomeHeroCarousel from "@/components/sections/hero/HeroCarousel";
+import HomeCarousel from "@/components/sections/hero/HeroCarousel";
 
 export const metadata: Metadata = {
   title: {
@@ -52,8 +51,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <HomeHeroCarousel />
-      <HeroCarousel />
+      <HomeCarousel />
 
       {/* Animated Stats Section */}
       <AnimatedStats

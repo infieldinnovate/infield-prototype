@@ -8,7 +8,7 @@ import styles from "./HeroCarousel.module.scss";
 const AUTOPLAY_MS = 6500;
 const DRAG_THRESHOLD = 60;
 
-export default function HomeHeroCarousel() {
+export default function HomeCarousel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);

@@ -366,7 +366,7 @@ const Header = () => {
           aria-expanded={isMenuOpen}
           type="button"
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? <X size={30} /> : <Menu size={40} />}
         </button>
       </nav>
 

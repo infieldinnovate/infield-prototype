@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site.config";
 import { navLinks } from "@/data/links";
 import { servicesNavItems } from "@/data/links";
+import { resourcesNavItems } from "@/data/links";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import styles from "./Header.module.scss";
@@ -28,13 +29,19 @@ import { ServiceIcons } from "@/data/service-icons";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const pathname = usePathname() || "/";
   const { scrolled } = useScrollDirection();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const resourcesDropdownRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resourcesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
 
-  useLockBodyScroll(isServicesOpen || isMenuOpen);
+  useLockBodyScroll(isServicesOpen || isResourcesOpen || isMenuOpen);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -48,9 +55,15 @@ const Header = () => {
   const isServiceActive = () =>
     servicesNavItems.some((s) => pathname.startsWith(s.href));
 
+  const isResourceActive = () =>
+    resourcesNavItems.some(
+      (r) => pathname === r.href || pathname.startsWith(r.href + "/"),
+    );
+
   // Close dropdown on route change
   useEffect(() => {
     setIsServicesOpen(false);
+    setIsResourcesOpen(false);
     setIsMenuOpen(false);
   }, [pathname]);
 
@@ -59,6 +72,7 @@ const Header = () => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setIsServicesOpen(false);
+        setIsResourcesOpen(false);
         setIsMenuOpen(false);
       }
     };
@@ -85,6 +99,28 @@ const Header = () => {
   const handleMouseLeave = () => {
     closeTimer.current = setTimeout(() => {
       setIsServicesOpen(false);
+    }, 200);
+  };
+
+  const handleResourcesClick = () => {
+    setIsResourcesOpen((prev) => !prev);
+  };
+
+  const closeResourcesDropdown = () => {
+    setIsResourcesOpen(false);
+  };
+
+  const handleResourcesMouseEnter = () => {
+    if (resourcesCloseTimer.current) {
+      clearTimeout(resourcesCloseTimer.current);
+      resourcesCloseTimer.current = null;
+    }
+    setIsResourcesOpen(true);
+  };
+
+  const handleResourcesMouseLeave = () => {
+    resourcesCloseTimer.current = setTimeout(() => {
+      setIsResourcesOpen(false);
     }, 200);
   };
 
@@ -221,6 +257,87 @@ const Header = () => {
               )}
             </AnimatePresence>
           </div>
+
+          {/* Resources Dropdown */}
+          <div
+            className={styles.servicesDropdown}
+            ref={resourcesDropdownRef}
+            onMouseEnter={handleResourcesMouseEnter}
+            onMouseLeave={handleResourcesMouseLeave}
+          >
+            <button
+              className={`${styles.navLink} ${styles.servicesTrigger} ${
+                isResourceActive() ? styles.active : ""
+              } ${isResourcesOpen ? styles.triggerOpen : ""}`}
+              aria-haspopup="true"
+              aria-expanded={isResourcesOpen}
+              type="button"
+              onClick={handleResourcesClick}
+            >
+              Resources
+              <ChevronDown
+                size={16}
+                className={cn(
+                  styles.servicesChevron,
+                  isResourcesOpen && styles.chevronOpen,
+                )}
+              />
+            </button>
+
+            <AnimatePresence>
+              {isResourcesOpen && (
+                <motion.div
+                  className={styles.servicesMenu}
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                >
+                  <button
+                    className={styles.closeButton}
+                    onClick={closeResourcesDropdown}
+                    aria-label="Close resources menu"
+                    type="button"
+                  >
+                    <X size={22} />
+                  </button>
+
+                  <div className={styles.servicesGrid}>
+                    {resourcesNavItems.map((item) => {
+                      const active =
+                        pathname === item.href ||
+                        pathname.startsWith(item.href + "/");
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          className={`${styles.serviceCard} ${
+                            active ? styles.serviceCardActive : ""
+                          }`}
+                          onClick={closeResourcesDropdown}
+                        >
+                          <div className={styles.serviceCardHeader}>
+                            <div className={styles.serviceIconWrap}>
+                              <Icon size={20} strokeWidth={1.8} />
+                            </div>
+                          </div>
+                          <h3 className={styles.serviceTitle}>{item.label}</h3>
+                          <p className={styles.subServiceItem}>
+                            {item.description}
+                          </p>
+                          <span className={styles.serviceLink}>
+                            View {item.label}
+                            <ArrowRight size={14} />
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
         {/* Desktop Actions (phone + quote) */}
@@ -333,6 +450,69 @@ const Header = () => {
 
                             <span className={styles.mobileServiceName}>
                               {service.label}
+                            </span>
+
+                            <ChevronRight size={16} />
+                          </Link>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Mobile Resources Accordion */}
+              <div className={styles.mobileServicesSection}>
+                <button
+                  className={`${styles.mobileServicesToggle} ${
+                    isResourceActive() ? styles.active : ""
+                  }`}
+                  onClick={() => setMobileResourcesOpen(!mobileResourcesOpen)}
+                  aria-expanded={mobileResourcesOpen}
+                  type="button"
+                >
+                  Resources
+                  <ChevronDown
+                    size={18}
+                    className={
+                      mobileResourcesOpen ? styles.mobileChevronOpen : ""
+                    }
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileResourcesOpen && (
+                    <motion.div
+                      className={styles.mobileServicesList}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      {resourcesNavItems.map((item) => {
+                        const active =
+                          pathname === item.href ||
+                          pathname.startsWith(item.href + "/");
+                        const Icon = item.icon;
+
+                        return (
+                          <Link
+                            key={item.id}
+                            href={item.href}
+                            className={`${styles.mobileServiceLink} ${
+                              active ? styles.active : ""
+                            }`}
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              setMobileResourcesOpen(false);
+                            }}
+                          >
+                            <span className={styles.mobileServiceIcon}>
+                              <Icon size={20} strokeWidth={1.8} />
+                            </span>
+
+                            <span className={styles.mobileServiceName}>
+                              {item.label}
                             </span>
 
                             <ChevronRight size={16} />

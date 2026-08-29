@@ -20,7 +20,12 @@ import {
   CircleAlert as AlertCircle,
 } from "lucide-react";
 import { siteConfig, socialLinks } from "@/data/site.config";
-import { legalLinks, navLinks, servicesNavItems } from "@/data/links";
+import {
+  legalLinks,
+  navLinks,
+  servicesNavItems,
+  resourcesNavItems,
+} from "@/data/links";
 import { COMMON_IMPACT_STATS, countiesServed } from "@/data/impactStats";
 import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";
@@ -134,6 +139,13 @@ export function Footer() {
               <h3 className={styles.colTitle}>Quick Links</h3>
               <ul className={styles.linkList}>
                 {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className={styles.link}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+                {resourcesNavItems.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href} className={styles.link}>
                       {link.label}

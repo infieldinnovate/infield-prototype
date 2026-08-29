@@ -5,14 +5,18 @@
 // ============================================
 
 import { SERVICES } from "./services";
+import {
+  BookOpen,
+  FolderKanban,
+  CircleHelp,
+  Download,
+  type LucideIcon,
+} from "lucide-react";
 
 export const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
-  { label: "Resources", href: "/resources" },
-  { label: "FAQ", href: "/faq" },
   { label: "Quote", href: "/quote" },
 ] as const;
 
@@ -26,6 +30,46 @@ export const servicesNavItems = SERVICES.map((service, index) => ({
   icon: service.icon,
   subServices: service.features.map((feature) => feature.title),
 }));
+
+// RESOURCES DROPDOWN LINKS
+export interface ResourceNavItem {
+  id: string;
+  label: string;
+  href: string;
+  icon: LucideIcon;
+  description: string;
+}
+
+export const resourcesNavItems: ResourceNavItem[] = [
+  {
+    id: "nav-resources",
+    label: "Resources",
+    href: "/resources",
+    icon: BookOpen,
+    description: "Expert articles, guides, and industry insights.",
+  },
+  {
+    id: "nav-projects",
+    label: "Projects",
+    href: "/projects",
+    icon: FolderKanban,
+    description: "Completed installations and case studies across Kenya.",
+  },
+  {
+    id: "nav-faq",
+    label: "FAQ",
+    href: "/faq",
+    icon: CircleHelp,
+    description: "Answers to common questions about our services.",
+  },
+  {
+    id: "nav-downloads",
+    label: "Downloads",
+    href: "/downloads",
+    icon: Download,
+    description: "Brochures, datasheets, and maintenance guides.",
+  },
+];
 
 export const legalLinks = [
   { label: "Privacy Policy", href: "/privacy" },

@@ -167,7 +167,7 @@
   }
 
   @include breakpoint-up("lg") {
-    grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
     gap: var(--space-10);
   }
 }

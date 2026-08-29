@@ -145,13 +145,6 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div className={styles.col}>
-              <h3 className={styles.colTitle}>Resources</h3>
-              <ul className={styles.linkList}>
                 {resourcesNavItems.map((link) => (
                   <li key={link.href}>
                     <Link href={link.href} className={styles.link}>

@@ -147,11 +147,6 @@
   @include section;
 }
 
-.sectionAlt {
-  @include section;
-  background: var(--color-gray-50);
-}
-
 // Search results
 .searchResults {
   padding: var(--space-12) 0 var(--space-24);
@@ -186,71 +181,12 @@
   }
 }
 
-.resultsSection {
-  margin-bottom: var(--space-12);
-}
-
-.resultsSectionTitle {
-  @include heading-4;
-  margin-bottom: var(--space-6);
-  color: var(--color-gray-700);
-}
-
-.faqResults {
-  @include flex-column;
-  gap: var(--space-4);
-  max-width: 800px;
-}
-
-.faqResult {
-  padding: var(--space-6);
-  background: var(--color-gray-50);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-}
-
-.faqCategory {
-  display: inline-block;
-  padding: 2px var(--space-3);
-  background: var(--color-primary-50);
-  color: var(--color-primary);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  border-radius: var(--radius-full);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-2);
-}
-
-.faqQuestion {
-  @include heading-4;
-  margin-bottom: var(--space-2);
-}
-
-.faqAnswer {
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-  line-height: var(--lh-relaxed);
-}
-
 .noResults {
   @include flex-center;
   padding: var(--space-16);
   text-align: center;
   color: var(--color-text-muted);
   font-size: var(--fs-base);
-}
-
-// Featured
-.featuredGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-
-  @include breakpoint-up("lg") {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
-  }
 }
 
 // Category filters
@@ -291,77 +227,38 @@
 }
 
 // Grids
-.articlesGrid {
-  @include responsive-grid(1, 2, 3, var(--space-6));
-}
-
 .downloadsGrid {
   @include responsive-grid(1, 2, 3, var(--space-6));
 }
 
-.industriesGrid {
-  @include responsive-grid(1, 2, 3, var(--space-6));
+// CTA
+.ctaSection {
+  @include section;
+  background: var(--color-gray-50);
 }
 
-// Downloads CTA
-.downloadsCta {
-  @include flex-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-6);
-  padding: var(--space-12);
-  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-
-  @include breakpoint-down("md") {
-    text-align: center;
-    justify-content: center;
-  }
-}
-
-.downloadsCtaContent {
+.ctaContent {
   @include flex-column;
-  gap: var(--space-2);
+  @include flex-center;
+  text-align: center;
+  max-width: 600px;
+  margin-inline: auto;
+  gap: var(--space-4);
 
-  @include breakpoint-down("md") {
-    align-items: center;
-    text-align: center;
+  h2 {
+    @include heading-2;
+  }
+
+  p {
+    font-size: var(--fs-lg);
+    color: var(--color-text-muted);
+    line-height: var(--lh-relaxed);
   }
 }
 
-.downloadsCtaBadge {
-  @include inline-flex-center;
-  gap: var(--space-2);
-  padding: var(--space-1) var(--space-3);
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-primary);
-  width: fit-content;
-  margin-bottom: var(--space-1);
-
-  @include breakpoint-down("md") {
-    margin-inline: auto;
-  }
-}
-
-.downloadsCtaTitle {
-  @include heading-2;
-  margin-bottom: 0;
-}
-
-.downloadsCtaDesc {
-  font-size: var(--fs-lg);
-  color: var(--color-text-muted);
-  line-height: var(--lh-relaxed);
-  max-width: 500px;
-
-  @include breakpoint-down("md") {
-    margin-inline: auto;
-  }
+.ctaActions {
+  @include flex-center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-2);
 }

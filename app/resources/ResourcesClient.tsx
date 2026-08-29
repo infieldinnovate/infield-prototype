@@ -13,15 +13,11 @@ import {
   ArrowRight,
   Search as SearchIcon,
   Sparkles,
-  BookOpen,
-  FileBadge,
-  Building2,
 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { ArticleCard } from "@/components/cards/ArticleCard";
-import { DownloadCard } from "@/components/cards/DownloadCard";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { cn } from "@/lib/utils";
 import {
@@ -29,7 +25,6 @@ import {
   articleCategories,
   type ArticleCategory,
 } from "@/data/articles";
-import { downloads, downloadCategories } from "@/data/downloads";
 import { FAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
@@ -39,9 +34,6 @@ export default function ResourcesPage() {
   const [activeCategory, setActiveCategory] = useState<ArticleCategory | "All">(
     "All",
   );
-  const [activeDownloadCategory, setActiveDownloadCategory] =
-    useState<string>("All");
-
   const filteredArticles = useMemo(() => {
     let result = articles;
     if (activeCategory !== "All") {
@@ -58,11 +50,6 @@ export default function ResourcesPage() {
     }
     return result;
   }, [searchQuery, activeCategory]);
-
-  const filteredDownloads = useMemo(() => {
-    if (activeDownloadCategory === "All") return downloads;
-    return downloads.filter((d) => d.category === activeDownloadCategory);
-  }, [activeDownloadCategory]);
 
   const filteredFAQs = useMemo(() => {
     if (!searchQuery.trim()) return [];
@@ -261,44 +248,30 @@ export default function ResourcesPage() {
         </section>
       )}
 
-      {/* Downloads Centre */}
+      {/* Downloads CTA */}
       {!searchQuery.trim() && (
         <section className={styles.section}>
           <div className={styles.container}>
-            <SectionHeading
-              eyebrow="Downloads"
-              title="Resource Library"
-              description="Download brochures, technical datasheets, warranty information, and maintenance guides."
-            />
-            <div className={styles.categoryFilters}>
-              <button
-                className={cn(
-                  styles.categoryChip,
-                  activeDownloadCategory === "All" && styles.categoryChipActive,
-                )}
-                onClick={() => setActiveDownloadCategory("All")}
-                type="button"
+            <div className={styles.downloadsCta}>
+              <div className={styles.downloadsCtaContent}>
+                <span className={styles.downloadsCtaBadge}>
+                  <Download size={16} />
+                  Downloads
+                </span>
+                <h2 className={styles.downloadsCtaTitle}>
+                  Resource Library
+                </h2>
+                <p className={styles.downloadsCtaDesc}>
+                  Download brochures, technical datasheets, warranty
+                  information, and maintenance guides — all in one place.
+                </p>
+              </div>
+              <LinkButton
+                href="/downloads"
+                rightIcon={<ArrowRight size={18} />}
               >
-                All Downloads
-              </button>
-              {downloadCategories.map((cat) => (
-                <button
-                  key={cat}
-                  className={cn(
-                    styles.categoryChip,
-                    activeDownloadCategory === cat && styles.categoryChipActive,
-                  )}
-                  onClick={() => setActiveDownloadCategory(cat)}
-                  type="button"
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-            <div className={styles.downloadsGrid}>
-              {filteredDownloads.map((download, i) => (
-                <DownloadCard key={download.id} download={download} index={i} />
-              ))}
+                Browse Downloads
+              </LinkButton>
             </div>
           </div>
         </section>

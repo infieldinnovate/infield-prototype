@@ -6,16 +6,7 @@
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Phone,
-  Mail,
-  MessageCircle,
-  FileText,
-  ArrowRight,
-  LifeBuoy,
-  HelpCircle,
-  Calendar,
-} from "lucide-react";
+import { Phone, Mail, MessageCircle, FileText, ArrowRight, LifeBuoy, CircleHelp as HelpCircle, Calendar } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchBar } from "@/components/ui/SearchBar";
@@ -416,7 +407,7 @@ export default function FAQPage() {
                 {downloads.slice(0, 5).map((download) => (
                   <li key={download.id}>
                     <LinkButton
-                      href="/resources"
+                      href="/downloads"
                       className={styles.relatedLink}
                     >
                       {download.title}

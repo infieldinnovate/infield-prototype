@@ -34,7 +34,7 @@ const Header = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useLockBodyScroll(isServicesOpen);
+  useLockBodyScroll(isServicesOpen || isMenuOpen);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -51,18 +51,20 @@ const Header = () => {
   // Close dropdown on route change
   useEffect(() => {
     setIsServicesOpen(false);
+    setIsMenuOpen(false);
   }, [pathname]);
 
   // Close on Escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsServicesOpen(false);
+      if (e.key === "Escape") {
+        setIsServicesOpen(false);
+        setIsMenuOpen(false);
+      }
     };
-    if (isServicesOpen) {
-      document.addEventListener("keydown", handleEsc);
-      return () => document.removeEventListener("keydown", handleEsc);
-    }
-  }, [isServicesOpen]);
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, []);
 
   const handleServicesClick = () => {
     setIsServicesOpen((prev) => !prev);
@@ -221,15 +223,23 @@ const Header = () => {
           </div>
         </div>
 
+        {/* Desktop Actions (phone + quote) */}
         <div className={styles.actions}>
           <a href={siteConfig.phoneHref} className={styles.phoneLink}>
             <Phone size={18} />
             <span>{siteConfig.phone}</span>
           </a>
-          <LinkButton href="/quote" size="sm" rightIcon={<span>→</span>}>
-            Get a Quote
-          </LinkButton>
         </div>
+
+        {/* Get Quote — visible from 320px upward */}
+        <LinkButton
+          href="/quote"
+          size="sm"
+          className={styles.quoteBtn}
+          rightIcon={<span>→</span>}
+        >
+          Get a Quote
+        </LinkButton>
 
         {/* Mobile Menu Button */}
         <button
@@ -237,20 +247,21 @@ const Header = () => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMenuOpen}
+          type="button"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — full screen below navbar, internally scrollable */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             className={styles.mobileMenu}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.24 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
           >
             <div className={styles.mobileMenuContent}>
               {navLinks

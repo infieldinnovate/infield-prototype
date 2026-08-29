@@ -6,9 +6,12 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
+import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import AboutHeroCarousel from "@/components/sections/AboutHeroCarousel";
+import { IndustryCard } from "@/components/cards/IndustryCard";
 import { certificationsList } from "@/data/certifications";
 import { equipment, safetyCommitments } from "@/data/equipment";
+import { industries } from "@/data/industries";
 import {
   CircleCheck as CheckCircle2,
   Target,
@@ -311,6 +314,34 @@ export default function AboutClient() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Industries We Serve */}
+      <section className={styles.industriesSection}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="Industries"
+            title="Industries We Serve"
+            description="We deliver tailored engineering solutions across a wide range of industries."
+          />
+          <div className={styles.industriesGrid}>
+            {industries.map((industry, i) => (
+              <IndustryCard key={industry.id} industry={industry} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Process */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="How We Work"
+            title="Our Process"
+            description="From initial consultation to ongoing maintenance, we follow a proven process to deliver exceptional results."
+          />
+          <ProcessTimeline />
         </div>
       </section>
 

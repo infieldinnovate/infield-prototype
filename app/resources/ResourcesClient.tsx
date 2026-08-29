@@ -22,8 +22,6 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { DownloadCard } from "@/components/cards/DownloadCard";
-import { IndustryCard } from "@/components/cards/IndustryCard";
-import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { cn } from "@/lib/utils";
 import {
@@ -32,7 +30,6 @@ import {
   type ArticleCategory,
 } from "@/data/articles";
 import { downloads, downloadCategories } from "@/data/downloads";
-import { industries } from "@/data/industries";
 import { FAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
@@ -307,37 +304,6 @@ export default function ResourcesPage() {
         </section>
       )}
 
-      {/* Industries We Serve */}
-      {!searchQuery.trim() && (
-        <section className={styles.sectionAlt}>
-          <div className={styles.container}>
-            <SectionHeading
-              eyebrow="Industries"
-              title="Industries We Serve"
-              description="We deliver tailored engineering solutions across a wide range of industries."
-            />
-            <div className={styles.industriesGrid}>
-              {industries.map((industry, i) => (
-                <IndustryCard key={industry.id} industry={industry} index={i} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Our Process */}
-      {!searchQuery.trim() && (
-        <section className={styles.section}>
-          <div className={styles.container}>
-            <SectionHeading
-              eyebrow="How We Work"
-              title="Our Process"
-              description="From initial consultation to ongoing maintenance, we follow a proven process to deliver exceptional results."
-            />
-            <ProcessTimeline />
-          </div>
-        </section>
-      )}
     </>
   );
 }

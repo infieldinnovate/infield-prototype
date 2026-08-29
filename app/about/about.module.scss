@@ -445,3 +445,13 @@
   color: var(--color-text-muted);
   line-height: var(--lh-relaxed);
 }
+
+// Industries
+.industriesSection {
+  @include section;
+  background: var(--color-gray-50);
+}
+
+.industriesGrid {
+  @include responsive-grid(1, 2, 3, var(--space-6));
+}

@@ -3,7 +3,7 @@
 import { forwardRef } from "react";
 import type { HeroSlideData } from "./slides";
 import styles from "./HeroSlide.module.scss";
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 
 interface HeroSlideProps {
   slide: HeroSlideData;
@@ -25,15 +25,13 @@ const HeroSlide = forwardRef<HTMLDivElement, HeroSlideProps>(
         aria-label={`${index + 1} of ${total}`}
       >
         <div className={styles.imageWrap}>
-          <Image
+          <ImageWithFallback
             src={slide.image}
             alt={slide.imageAlt}
-            className={`${styles.image} ${isActive && !isReducedMotion ? styles.imageAnimate : ""}`}
+            fill
+            className={`${styles.image} ${isActive && !isReducedMotion ? styles.imageAnimate : ""} ${isReducedMotion ? styles.imageReduced : ""}`}
             loading={index === 0 ? "eager" : "lazy"}
-            draggable={false}
-            data-reduced={isReducedMotion}
-            width={1600}
-            height={900}
+            priority={index === 0}
           />
           <div className={styles.gradient} />
           <div className={styles.gradientBottom} />

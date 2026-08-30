@@ -12,9 +12,9 @@ export const siteConfig = {
   url: "https://infieldinnovations.co.ke",
   ogImage: "/og-image.png",
   email: "infieldinnovations@gmail.com",
-  phone: "+254 702 393 677",
+  phone: "+254702393677",
   phoneHref: "tel:+254702393677",
-  emergencyPhone: "+254 718 338 810",
+  emergencyPhone: "+254718338810",
   emergencyPhoneHref: "tel:+254718338810",
   whatsapp: "+254702393677",
   address: {

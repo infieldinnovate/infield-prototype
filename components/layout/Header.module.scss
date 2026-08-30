@@ -563,7 +563,6 @@
     text-decoration: none;
     transition: all var(--transition-fast);
     min-width: 0;
-    box-shadow: 5px 5px 5px $color-gray-300;
 
     &:hover {
       background: linear-gradient(
@@ -579,7 +578,6 @@
     &.serviceCardActive {
       border-color: $color-primary;
       background: $color-primary-50;
-      box-shadow: none;
     }
   }
 

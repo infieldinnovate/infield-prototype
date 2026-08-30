@@ -34,7 +34,6 @@ export interface Service {
   features: ServiceFeature[];
   process: ServiceProcessStep[];
   startingPrice: string;
-  popularServices: string[];
   infographic: InfographicStep[];
   infographicTitle: string;
   infographicSubtitle: string;
@@ -154,14 +153,6 @@ export const SERVICES: Service[] = [
         description: "System testing, activation, and monitoring setup.",
       },
     ],
-    popularServices: [
-      "Residential solar installation",
-      "Commercial solar systems",
-      "Solar battery backup",
-      "Solar panel maintenance",
-      "Inverter replacement",
-      "Solar water pumping",
-    ],
   },
   {
     slug: "electrical",
@@ -261,14 +252,6 @@ export const SERVICES: Service[] = [
         description: "Final safety inspection and walkthrough with you.",
       },
     ],
-    popularServices: [
-      "Circuit breaker replacement",
-      "Socket & switch installation",
-      "Ceiling fan installation",
-      "Security lighting installation",
-      "Generator installation & wiring",
-      "Three-phase power installation",
-    ],
   },
   {
     slug: "plumbing",
@@ -363,14 +346,6 @@ export const SERVICES: Service[] = [
         title: "Cleanup",
         description: "We leave your space clean and test all work thoroughly.",
       },
-    ],
-    popularServices: [
-      "Tap repair & replacement",
-      "Toilet installation",
-      "Water tank installation",
-      "Pump installation & repair",
-      "Water filtration systems",
-      "Manhole & sewer line services",
     ],
   },
   {
@@ -476,14 +451,6 @@ export const SERVICES: Service[] = [
           "Water quality testing and treatment system setup if needed.",
       },
     ],
-    popularServices: [
-      "Residential borehole drilling",
-      "Agricultural water wells",
-      "Borehole pump replacement",
-      "Water quality testing",
-      "Borehole rehabilitation",
-      "Solar borehole pumping",
-    ],
   },
   {
     slug: "water-storage",
@@ -585,14 +552,6 @@ export const SERVICES: Service[] = [
         title: "Commissioning",
         description: "System testing, water quality check, and handover.",
       },
-    ],
-    popularServices: [
-      "Plastic tank supply & installation",
-      "Steel tank fabrication",
-      "GRP modular tank installation",
-      "Water tower construction",
-      "Underground reservoir installation",
-      "Tank maintenance & cleaning",
     ],
   },
   {
@@ -701,14 +660,6 @@ export const SERVICES: Service[] = [
         description: "Connection to storage tanks and irrigation systems.",
       },
     ],
-    popularServices: [
-      "Rooftop rainwater harvesting",
-      "Farm pan construction",
-      "Lined pond installation",
-      "Earth dam construction",
-      "Gutter installation",
-      "Harvesting system maintenance",
-    ],
   },
   {
     slug: "irrigation",
@@ -805,14 +756,6 @@ export const SERVICES: Service[] = [
         title: "Programming",
         description: "We set up smart scheduling and show you how to use it.",
       },
-    ],
-    popularServices: [
-      "Sprinkler system installation",
-      "Drip line installation",
-      "Smart controller upgrade",
-      "Sprinkler head repair",
-      "System audit & optimization",
-      "Solar irrigation systems",
     ],
   },
 ];

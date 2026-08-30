@@ -1,0 +1,367 @@
+@use "../../../styles/abstracts/variables" as *;
+@use "../../../styles/abstracts/mixins" as *;
+
+.container {
+  @include container;
+}
+
+// Hero
+.hero {
+  position: relative;
+  padding: var(--space-8) 0 var(--space-16);
+  overflow: hidden;
+  background: var(--color-gray-50);
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heroOrb1 {
+  position: absolute;
+  top: -20%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(15, 108, 189, 0.1), transparent 70%);
+  border-radius: 50%;
+  animation: float 20s ease-in-out infinite;
+}
+
+.heroOrb2 {
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(13, 148, 136, 0.08),
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(15, 108, 189, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 108, 189, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 30%,
+    transparent 70%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: var(--z-base);
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.heroBadge {
+  @include inline-flex-center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-6);
+}
+
+.heroTitle {
+  @include heading-1;
+  margin-bottom: var(--space-5);
+}
+
+.heroAccent {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroDescription {
+  font-size: var(--fs-xl);
+  line-height: var(--lh-relaxed);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+  max-width: 640px;
+  margin-inline: auto;
+
+  @include breakpoint-down("sm") {
+    font-size: var(--fs-base);
+  }
+}
+
+.heroSearch {
+  max-width: 600px;
+  margin: 0 auto var(--space-8);
+}
+
+.heroActions {
+  @include flex-center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.heroPhoneLink {
+  @include flex-center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
+  border: 2px solid var(--color-border-dark);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  @include focus-visible;
+}
+
+// Sections
+.section {
+  @include section;
+}
+
+.sectionAlt {
+  @include section;
+  background: var(--color-gray-50);
+}
+
+// Search results
+.searchResults {
+  padding: var(--space-12) 0 var(--space-24);
+  background: var(--color-white);
+}
+
+.resultsHeader {
+  @include flex-between;
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.resultsTitle {
+  @include heading-3;
+  @include flex-center;
+  gap: var(--space-3);
+
+  svg {
+    color: var(--color-primary);
+  }
+}
+
+.clearSearch {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--color-primary-dark);
+  }
+}
+
+.resultsSection {
+  margin-bottom: var(--space-12);
+}
+
+.resultsSectionTitle {
+  @include heading-4;
+  margin-bottom: var(--space-6);
+  color: var(--color-gray-700);
+}
+
+.faqResults {
+  @include flex-column;
+  gap: var(--space-4);
+  max-width: 800px;
+}
+
+.faqResult {
+  padding: var(--space-6);
+  background: var(--color-gray-50);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.faqCategory {
+  display: inline-block;
+  padding: 2px var(--space-3);
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.faqQuestion {
+  @include heading-4;
+  margin-bottom: var(--space-2);
+}
+
+.faqAnswer {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+}
+
+.noResults {
+  @include flex-center;
+  padding: var(--space-16);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--fs-base);
+}
+
+// Featured
+.featuredGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+
+  @include breakpoint-up("lg") {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+}
+
+// Category filters
+.categoryFilters {
+  @include flex-center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-10);
+}
+
+.categoryChip {
+  padding: var(--space-2) var(--space-5);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+
+  &:hover {
+    border-color: var(--color-primary-200);
+    color: var(--color-primary);
+  }
+
+  &.categoryChipActive {
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
+    color: var(--color-white);
+    border-color: transparent;
+    box-shadow: var(--shadow-md);
+  }
+
+  @include focus-visible;
+}
+
+// Grids
+.articlesGrid {
+  @include responsive-grid(1, 2, 3, var(--space-6));
+}
+
+.downloadsGrid {
+  @include responsive-grid(1, 2, 3, var(--space-6));
+}
+
+.industriesGrid {
+  @include responsive-grid(1, 2, 3, var(--space-6));
+}
+
+// Downloads CTA
+.downloadsCta {
+  @include flex-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  padding: var(--space-12);
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+
+  @include breakpoint-down("md") {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+.downloadsCtaContent {
+  @include flex-column;
+  gap: var(--space-2);
+
+  @include breakpoint-down("md") {
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.downloadsCtaBadge {
+  @include inline-flex-center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  width: fit-content;
+  margin-bottom: var(--space-1);
+
+  @include breakpoint-down("md") {
+    margin-inline: auto;
+  }
+}
+
+.downloadsCtaTitle {
+  @include heading-2;
+  margin-bottom: 0;
+}
+
+.downloadsCtaDesc {
+  font-size: var(--fs-lg);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+  max-width: 500px;
+
+  @include breakpoint-down("md") {
+    margin-inline: auto;
+  }
+}

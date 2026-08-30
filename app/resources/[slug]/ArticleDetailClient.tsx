@@ -9,6 +9,7 @@ import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import type { Article } from "@/data/articles";
+import { getArticleAuthorName } from "@/data/articles";
 import type { Employee } from "@/data/teamData";
 import { formatDateShort } from "@/lib/utils";
 import styles from "./page.module.scss";
@@ -60,7 +61,7 @@ export default function ArticleDetailClient({
               </span>
               <span className={styles.metaItem}>
                 <User size={16} />
-                {article.author}
+                {getArticleAuthorName(article)}
               </span>
             </div>
           </motion.div>
@@ -204,7 +205,7 @@ export default function ArticleDetailClient({
                   </div>
                   <div className={styles.infoItem}>
                     <dt>Author</dt>
-                    <dd>{article.author}</dd>
+                    <dd>{getArticleAuthorName(article)}</dd>
                   </div>
                 </dl>
               </div>

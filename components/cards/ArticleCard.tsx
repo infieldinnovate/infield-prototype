@@ -9,6 +9,7 @@ import { ImageWithFallback } from '@/components/ui/ImageWithFallback';
 import { motion } from 'framer-motion';
 import { Clock, Calendar, ArrowRight } from 'lucide-react';
 import type { Article } from '@/data/articles';
+import { getArticleAuthorName } from '@/data/articles';
 import { formatDateShort } from '@/lib/utils';
 import styles from './ArticleCard.module.scss';
 
@@ -53,7 +54,7 @@ export function ArticleCard({ article, featured = false, index = 0 }: ArticleCar
           <h3 className={styles.title}>{article.title}</h3>
           <p className={styles.excerpt}>{article.excerpt}</p>
           <div className={styles.footer}>
-            <span className={styles.author}>By {article.author}</span>
+            <span className={styles.author}>By {getArticleAuthorName(article)}</span>
             <span className={styles.readMore}>
               Read More <ArrowRight size={16} />
             </span>

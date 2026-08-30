@@ -2,6 +2,8 @@
 // Articles / Knowledge Centre Data
 // ============================================
 
+import { getEmployeeById } from "./teamData";
+
 export type ArticleCategory = 'Solar' | 'Electrical' | 'Boreholes' | 'Plumbing' | 'Irrigation';
 
 export interface ArticleSection {
@@ -18,7 +20,6 @@ export interface Article {
   image: string;
   readingTime: string;
   publishDate: string;
-  author: string;
   authorId: string;
   featured: boolean;
   content: ArticleSection[];
@@ -37,7 +38,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '8 min read',
     publishDate: '2024-06-15',
-    author: 'Sarah Mwangi',
     authorId: 'tm4',
     featured: true,
     tags: ['solar', 'residential', 'installation', 'panels', 'inverters'],
@@ -97,7 +97,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '6 min read',
     publishDate: '2024-05-28',
-    author: 'James Otieno',
     authorId: 'tm1',
     featured: true,
     tags: ['electrical', 'panel', 'upgrade', 'distribution', 'safety'],
@@ -150,7 +149,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/4226796/pexels-photo-4226796.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '10 min read',
     publishDate: '2024-05-10',
-    author: 'Michael Kiprop',
     authorId: 'tm2',
     featured: true,
     tags: ['borehole', 'drilling', 'water', 'groundwater', 'pump'],
@@ -217,7 +215,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '5 min read',
     publishDate: '2024-04-22',
-    author: 'Emily Njeri',
     authorId: 'tm5',
     featured: false,
     tags: ['plumbing', 'leaks', 'maintenance', 'repairs', 'prevention'],
@@ -270,7 +267,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '7 min read',
     publishDate: '2024-04-05',
-    author: 'Lisa Wairimu',
     authorId: 'tm6',
     featured: false,
     tags: ['irrigation', 'smart', 'water-saving', 'drip', 'automation'],
@@ -330,7 +326,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/9823144/pexels-photo-9823144.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '9 min read',
     publishDate: '2024-03-18',
-    author: 'Sarah Mwangi',
     authorId: 'tm4',
     featured: false,
     tags: ['solar', 'battery', 'storage', 'backup', 'lithium'],
@@ -390,7 +385,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/3779457/pexels-photo-3779457.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '6 min read',
     publishDate: '2024-03-01',
-    author: 'James Otieno',
     authorId: 'tm1',
     featured: false,
     tags: ['generator', 'backup', 'power', 'electrical', 'installation'],
@@ -443,7 +437,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/4226796/pexels-photo-4226796.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '7 min read',
     publishDate: '2024-02-14',
-    author: 'Michael Kiprop',
     authorId: 'tm2',
     featured: false,
     tags: ['borehole', 'water-quality', 'testing', 'treatment', 'safety'],
@@ -496,7 +489,6 @@ export const articles: Article[] = [
       'https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200',
     readingTime: '5 min read',
     publishDate: '2024-01-20',
-    author: 'Lisa Wairimu',
     authorId: 'tm6',
     featured: false,
     tags: ['irrigation', 'dry-season', 'maintenance', 'water-conservation', 'preparation'],
@@ -562,4 +554,9 @@ export function getRelatedArticles(currentArticle: Article, limit = 3): Article[
   return articles
     .filter((a) => a.id !== currentArticle.id && a.category === currentArticle.category)
     .slice(0, limit);
+}
+
+export function getArticleAuthorName(article: Article): string {
+  const employee = getEmployeeById(article.authorId);
+  return employee ? employee.fullName : "Infield Innovations";
 }

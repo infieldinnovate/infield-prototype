@@ -41,7 +41,7 @@ import { getServiceBySlug, SERVICES, Service } from "@/data/services";
 import { industries } from "@/data/industries";
 import { getProjectsByService } from "@/data/projectStats";
 import { testimonials } from "@/data/testimonials";
-import { FAQs } from "@/data/faqs";
+import { getFAQsByCategory } from "@/data/faqs";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import styles from "./page.module.scss";
 import { ServiceIcons } from "@/data/service-icons";
@@ -161,7 +161,7 @@ export default function ServiceDetailClient({
   const [selectedStageId, setSelectedStageId] = useState("source");
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
-  const serviceFaqs = FAQs.filter((f) => service.slug.includes(f.category));
+  const serviceFaqs = getFAQsByCategory(service.slug);
 
   const [openFaqId, setOpenFaqId] = useState<string | null>(
     serviceFaqs[0]?.id ?? null,

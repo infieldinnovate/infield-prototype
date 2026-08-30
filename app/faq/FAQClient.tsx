@@ -14,7 +14,7 @@ import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { SupportCard } from "@/components/ui/SupportCard";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { cn } from "@/lib/utils";
-import { FAQs, FAQ_CATEGORIES, searchFAQs, type FAQSlug } from "@/data/faqs";
+import { FAQ_CATEGORIES, searchFAQs, getFAQsByCategory, type FAQSlug } from "@/data/faqs";
 import { SERVICES } from "@/data/services";
 import { articles } from "@/data/articles";
 import { downloads } from "@/data/downloads";
@@ -103,7 +103,7 @@ export default function FAQPage() {
     }
 
     // Show FAQs for the selected category.
-    return FAQs.filter((faq) => faq.category === activeView);
+    return getFAQsByCategory(activeView);
   }, [searchQuery, activeView]);
 
   // ------------------------------------------
@@ -231,9 +231,7 @@ export default function FAQPage() {
 
                 <nav className={styles.categoryNav} aria-label="FAQ categories">
                   {FAQ_CATEGORIES.map((category) => {
-                    const count = FAQs.filter(
-                      (faq) => faq.category === category.slug,
-                    ).length;
+                    const count = getFAQsByCategory(category.slug).length;
 
                     return (
                       <button

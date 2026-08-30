@@ -20,7 +20,12 @@ import { SearchBar } from "@/components/ui/SearchBar";
 import { DownloadCard } from "@/components/cards/DownloadCard";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { cn } from "@/lib/utils";
-import { downloads, downloadCategories } from "@/data/downloads";
+import {
+  downloads,
+  downloadCategories,
+  getDownloadsByCategory,
+  type DownloadCategory,
+} from "@/data/downloads";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
 
@@ -30,10 +35,10 @@ export default function DownloadsPage() {
     useState<string>("All");
 
   const filteredDownloads = useMemo(() => {
-    let result = downloads;
-    if (activeDownloadCategory !== "All") {
-      result = result.filter((d) => d.category === activeDownloadCategory);
-    }
+    let result =
+      activeDownloadCategory !== "All"
+        ? getDownloadsByCategory(activeDownloadCategory as DownloadCategory)
+        : downloads;
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(

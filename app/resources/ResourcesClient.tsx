@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 import {
   articles,
   articleCategories,
+  getArticlesByCategory,
   type ArticleCategory,
 } from "@/data/articles";
 import { FAQs } from "@/data/faqs";
@@ -35,10 +36,10 @@ export default function ResourcesPage() {
     "All",
   );
   const filteredArticles = useMemo(() => {
-    let result = articles;
-    if (activeCategory !== "All") {
-      result = result.filter((a) => a.category === activeCategory);
-    }
+    let result =
+      activeCategory !== "All"
+        ? getArticlesByCategory(activeCategory)
+        : articles;
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       result = result.filter(

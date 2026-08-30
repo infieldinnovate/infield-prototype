@@ -37,6 +37,7 @@ export const servicesNavItems = SERVICES.map((service, index) => ({
   href: `/services/${service.slug}`,
   icon: service.icon,
   subServices: service.features.map((feature) => feature.title),
+  tagline: service.tagline,
 }));
 
 // RESOURCES DROPDOWN LINKS

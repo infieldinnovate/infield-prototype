@@ -231,19 +231,14 @@ const Header = () => {
                             <div className={styles.serviceIconWrap}>
                               <Icon size={20} strokeWidth={1.8} />
                             </div>
-                            <span className={styles.serviceNumber}>
-                              {service.number}
-                            </span>
                           </div>
                           <h3 className={styles.serviceTitle}>
                             {service.label}
                           </h3>
                           <ul className={styles.subServicesList}>
-                            {service.subServices.map((sub) => (
-                              <li key={sub} className={styles.subServiceItem}>
-                                {sub}
-                              </li>
-                            ))}
+                            <li className={styles.subServiceItem}>
+                              {service.tagline}
+                            </li>
                           </ul>
                           <span className={styles.serviceLink}>
                             View {service.label}

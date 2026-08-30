@@ -52,16 +52,6 @@ export const siteConfig = {
     "Trina Solar",
     "Davis & Shirtliff",
   ],
-  serviceAreas: [
-    "Meru",
-    "Nairobi",
-    "Kiambu",
-    "Nyeri",
-    "Embu",
-    "Isiolo",
-    "Nanyuki",
-    "Thika",
-  ],
 } as const;
 
 export const socialLinks = {

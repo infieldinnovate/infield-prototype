@@ -247,3 +247,5 @@ export const countiesServed = [
   },
   { countyName: "Lamu", projectsCount: 1, coordinates: { x: 70, y: 55 } },
 ];
+
+export const serviceAreaNames = countiesServed.map((c) => c.countyName);

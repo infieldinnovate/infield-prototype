@@ -1,5 +1,6 @@
 import { siteConfig, socialLinks } from "@/data/site.config";
 import { reviewSummary } from "@/data/testimonials";
+import { serviceAreaNames } from "@/data/impactStats";
 import type { BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 type JsonLd = Record<string, unknown>;
@@ -42,7 +43,7 @@ export function buildLocalBusinessSchema(): JsonLd {
         closes: "16:00",
       },
     ],
-    areaServed: siteConfig.serviceAreas,
+    areaServed: serviceAreaNames,
     sameAs: Object.values(socialLinks).map((social) => social.link),
     aggregateRating: {
       "@type": "AggregateRating",

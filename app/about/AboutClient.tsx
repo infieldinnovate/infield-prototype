@@ -77,7 +77,7 @@ const milestones = [
     year: currentYear,
     event: `${COMMON_IMPACT_STATS.projectsCompleted.value} Projects`,
     description: `Celebrating over ${COMMON_IMPACT_STATS.projectsCompleted.value} successful installations`,
- }
+  },
 ];
 
 function AboutTimeline() {
@@ -135,8 +135,10 @@ function AboutTimeline() {
 export default function AboutClient() {
   return (
     <>
+      {/* Hero */}
       <AboutHeroCarousel />
 
+      {/* AnimatedStats */}
       <section className={styles.statsSection}>
         <div className={styles.container}>
           <AnimatedStats
@@ -147,6 +149,7 @@ export default function AboutClient() {
         </div>
       </section>
 
+      {/* Our Story */}
       <section className={styles.section}>
         <div className={styles.container}>
           <div className={styles.storyGrid}>
@@ -165,11 +168,11 @@ export default function AboutClient() {
                 centered={false}
               />
               <p className={styles.paragraph}>
-                Infield Innovations was founded in {siteConfig.foundedYear} with a simple mission:
-                to provide honest, reliable electrical services to our
-                community. What started as a three-person operation has grown
-                into a multi-disciplinary engineering company serving thousands
-                of satisfied customers across Kenya.
+                Infield Innovations was founded in {siteConfig.foundedYear} with
+                a simple mission: to provide honest, reliable electrical
+                services to our community. What started as a three-person
+                operation has grown into a multi-disciplinary engineering
+                company serving thousands of satisfied customers across Kenya.
               </p>
               <p className={styles.paragraph}>
                 Today, we offer comprehensive services across electrical,
@@ -190,6 +193,20 @@ export default function AboutClient() {
         </div>
       </section>
 
+      {/* Milestones Timeline */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="Our Journey"
+            title="Milestones Through the Years"
+            description="Key moments that shaped Infield Innovations into the company we are today."
+          />
+
+          <AboutTimeline />
+        </div>
+      </section>
+
+      {/* Mission, Vision & Values */}
       <section className={styles.valuesSection}>
         <div className={styles.container}>
           <SectionHeading
@@ -205,9 +222,7 @@ export default function AboutClient() {
                     <value.icon size={32} />
                   </div>
                   <h3 className={styles.valueTitle}>{value.title}</h3>
-                  <p className={styles.valueDescription}>
-                    {value.description}
-                  </p>
+                  <p className={styles.valueDescription}>{value.description}</p>
                 </div>
               </ScrollReveal>
             ))}
@@ -247,16 +262,31 @@ export default function AboutClient() {
         </div>
       </section>
 
-      {/* Milestones Timeline */}
+      {/* Industries We Serve */}
+      <section className={styles.industriesSection}>
+        <div className={styles.container}>
+          <SectionHeading
+            eyebrow="Industries"
+            title="Industries We Serve"
+            description="We deliver tailored engineering solutions across a wide range of industries."
+          />
+          <div className={styles.industriesGrid}>
+            {industries.map((industry, i) => (
+              <IndustryCard key={industry.id} industry={industry} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Process */}
       <section className={styles.section}>
         <div className={styles.container}>
           <SectionHeading
-            eyebrow="Our Journey"
-            title="Milestones Through the Years"
-            description="Key moments that shaped Infield Innovations into the company we are today."
+            eyebrow="How We Work"
+            title="Our Process"
+            description="From initial consultation to ongoing maintenance, we follow a proven process to deliver exceptional results."
           />
-
-          <AboutTimeline />
+          <ProcessTimeline />
         </div>
       </section>
 
@@ -316,34 +346,6 @@ export default function AboutClient() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* Industries We Serve */}
-      <section className={styles.industriesSection}>
-        <div className={styles.container}>
-          <SectionHeading
-            eyebrow="Industries"
-            title="Industries We Serve"
-            description="We deliver tailored engineering solutions across a wide range of industries."
-          />
-          <div className={styles.industriesGrid}>
-            {industries.map((industry, i) => (
-              <IndustryCard key={industry.id} industry={industry} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Process */}
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <SectionHeading
-            eyebrow="How We Work"
-            title="Our Process"
-            description="From initial consultation to ongoing maintenance, we follow a proven process to deliver exceptional results."
-          />
-          <ProcessTimeline />
         </div>
       </section>
 

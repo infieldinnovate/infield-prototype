@@ -5,13 +5,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Menu,
-  X,
-  Phone,
-  ChevronDown,
-  ChevronRight,
-} from "lucide-react";
+import { Menu, X, Phone, ChevronDown, ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site.config";
 import { navLinks } from "@/data/links";

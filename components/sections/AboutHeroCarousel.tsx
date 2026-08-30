@@ -26,7 +26,7 @@ import { ServiceIcons } from "@/data/service-icons";
 import { processSteps } from "@/data/process";
 import { certificationsList } from "@/data/certifications";
 import { safetyCommitments } from "@/data/equipment";
-import { countiesServed } from "@/data/impactStats";
+import { countiesServed } from "@/data/serviceAreas";
 
 export default function AboutHeroCarousel() {
   const slides: PremiumSlide[] = useMemo(() => {
@@ -90,7 +90,10 @@ export default function AboutHeroCarousel() {
         { icon: processSteps[4].icon, text: "Install" },
         { icon: processSteps[7].icon, text: "Support" },
       ],
-      primaryButton: { label: "See Our Process", href: "/resources/knowledge-centre" },
+      primaryButton: {
+        label: "See Our Process",
+        href: "/resources/knowledge-centre",
+      },
     };
 
     // ── 04 Why Choose Us ──

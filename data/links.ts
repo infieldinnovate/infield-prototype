@@ -4,6 +4,14 @@
 // Navigation Services Menu Data
 // ============================================
 
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaTiktok,
+  FaYoutube,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { SERVICES } from "./services";
 import {
   BookOpen,
@@ -76,3 +84,36 @@ export const legalLinks = [
   { label: "Terms & Conditions", href: "/terms" },
   { label: "Sitemap", href: "/sitemap.xml" },
 ];
+
+export const socialLinks = {
+  facebook: {
+    link: "https://facebook.com/infieldinnovations",
+    icon: FaFacebook,
+    label: "Facebook",
+  },
+  instagram: {
+    link: "https://instagram.com/infieldinnovations",
+    icon: FaInstagram,
+    label: "Instagram",
+  },
+  linkedin: {
+    link: "https://linkedin.com/company/infieldinnovations",
+    icon: FaLinkedin,
+    label: "LinkedIn",
+  },
+  tiktok: {
+    link: "https://tiktok.com/@infieldinnovations",
+    icon: FaTiktok,
+    label: "TikTok",
+  },
+  youtube: {
+    link: "https://youtube.com/@InfieldInnovations",
+    icon: FaYoutube,
+    label: "YouTube",
+  },
+  whatsapp: {
+    link: "https://wa.me/254702393677",
+    icon: FaWhatsapp,
+    label: "WhatsApp",
+  },
+};

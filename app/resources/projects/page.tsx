@@ -16,7 +16,7 @@ import {
   Mail,
   Filter,
 } from "lucide-react";
-import { countiesServed } from "@/data/impactStats";
+import { countiesServed } from "@/data/serviceAreas";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { SERVICE_CATEGORIES, type ServiceSlug } from "@/data/services";
 import { projects, type Project } from "@/data/projectStats";

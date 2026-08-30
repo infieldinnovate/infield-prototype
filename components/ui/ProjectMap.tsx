@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { countiesServed } from "@/data/impactStats";
+import { countiesServed } from "@/data/serviceAreas";
 import styles from "./ProjectMap.module.scss";
 
 export default function ProjectMap() {

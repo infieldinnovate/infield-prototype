@@ -19,14 +19,16 @@ import {
   CircleCheck as CheckCircle2,
   CircleAlert as AlertCircle,
 } from "lucide-react";
-import { siteConfig, socialLinks } from "@/data/site.config";
+import { siteConfig } from "@/data/site.config";
 import {
   legalLinks,
   navLinks,
   servicesNavItems,
   resourcesNavItems,
+  socialLinks,
 } from "@/data/links";
-import { COMMON_IMPACT_STATS, countiesServed } from "@/data/impactStats";
+import { COMMON_IMPACT_STATS } from "@/data/impactStats";
+import { countiesServed } from "@/data/serviceAreas";
 import styles from "./Footer.module.scss";
 import CallToAction from "../ui/CallToAction";
 import { BrandsCarousel } from "../sections/BrandsCarousel";

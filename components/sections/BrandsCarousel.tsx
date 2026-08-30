@@ -1,11 +1,11 @@
 "use client";
 
-import { siteConfig } from "@/data/site.config";
 import { AutoScroll } from "@/components/ui/AutoScroll";
 import styles from "./BrandsCarousel.module.scss";
+import { brands } from "@/data/brands";
 
 export function BrandsCarousel() {
-  const brandItems = siteConfig.brands.map((brand, index) => (
+  const brandItems = brands.map((brand, index) => (
     <div className={styles.brandCard} key={index}>
       <span className={styles.brandName}>{brand}</span>
     </div>

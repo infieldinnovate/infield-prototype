@@ -177,8 +177,8 @@ export default function AboutClient() {
               <p className={styles.paragraph}>
                 Today, we offer comprehensive services across electrical,
                 plumbing, solar, irrigation, and borehole drilling. Our team of
-                28 certified technicians brings expertise, professionalism, and
-                a commitment to quality to every project.
+                certified technicians brings expertise, professionalism, and a
+                commitment to quality to every project.
               </p>
               <div className={styles.certifications}>
                 {certificationsList.map((cert) => (
@@ -253,7 +253,7 @@ export default function AboutClient() {
                 </div>
                 <h3 className={styles.teamGroupTitle}>Our Crew</h3>
                 <p className={styles.teamGroupSubtitle}>
-                  28 certified technicians, engineers, and specialists working
+                  Certified technicians, engineers, and specialists working
                   across Kenya.
                 </p>
               </div>

@@ -38,7 +38,7 @@ export default function AboutHeroCarousel() {
       imagePriority: true,
       badge: "Who We Are",
       badgeIcon: Building2,
-      eyebrow: "Since 2009",
+      eyebrow: `Since ${siteConfig.foundedYear}`,
       title: "Engineering excellence across Kenya.",
       description:
         "From a three-person operation to a multi-disciplinary engineering company — we combine technical expertise with genuine care for every project we deliver.",

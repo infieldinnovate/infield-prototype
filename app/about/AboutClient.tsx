@@ -19,6 +19,7 @@ import {
   Heart,
   Users,
 } from "lucide-react";
+import { siteConfig } from "@/data/site.config";
 import styles from "./about.module.scss";
 
 const values = [
@@ -46,7 +47,7 @@ const currentYear = new Date().getFullYear();
 
 const milestones = [
   {
-    year: "2014",
+    year: siteConfig.foundedYear,
     event: "Company Founded",
     description:
       "Started with a vision to provide quality water and energy solutions",
@@ -163,7 +164,7 @@ export default function AboutClient() {
                 centered={false}
               />
               <p className={styles.paragraph}>
-                Infield Innovations was founded in 2009 with a simple mission:
+                Infield Innovations was founded in {siteConfig.foundedYear} with a simple mission:
                 to provide honest, reliable electrical services to our
                 community. What started as a three-person operation has grown
                 into a multi-disciplinary engineering company serving thousands

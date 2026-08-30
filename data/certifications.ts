@@ -11,6 +11,7 @@ import {
   Wrench,
   type LucideIcon,
 } from "lucide-react";
+import { siteConfig } from "@/data/site.config";
 
 export interface Certification {
   id: string;
@@ -29,7 +30,7 @@ export const certificationsList: Certification[] = [
     description:
       "Fully licensed to perform electrical installations and maintenance across Kenya.",
     icon: BadgeCheck,
-    year: "2009",
+    year: siteConfig.foundedYear,
   },
 
   {

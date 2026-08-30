@@ -7,8 +7,9 @@ export const QUOTE_STEPS = [
   { id: 4, title: "Review & Submit", description: "Confirm your request" },
 ] as const;
 
-// Derived from the canonical SERVICES list so options stay in sync
-export const QUOTE_SERVICE_OPTIONS = SERVICES.map((s) => s.shortName) as readonly string[];
+export const QUOTE_SERVICE_OPTIONS = SERVICES.map(
+  (s) => s.shortName,
+) as readonly string[];
 
 export const PROPERTY_TYPES = [
   "Residential - Single Family",
@@ -51,8 +52,9 @@ export const PREFERRED_TIMES = [
   { value: "anytime", label: "Anytime" },
 ] as const;
 
-// Derived from the canonical SERVICES list so options stay in sync
-export const SITE_VISIT_SERVICES = SERVICES.map((s) => s.name) as readonly string[];
+export const SITE_VISIT_SERVICES = SERVICES.map(
+  (s) => s.name,
+) as readonly string[];
 
 export const SITE_VISIT_TIMES = [
   { value: "morning", label: "Morning (8AM - 12PM)" },

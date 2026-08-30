@@ -28,12 +28,12 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
     title: article.title,
     description: article.excerpt,
     alternates: {
-      canonical: `/resources/${article.slug}`,
+      canonical: `/resources/knowledge-centre/${article.slug}`,
     },
     openGraph: {
       title: `${article.title} | ${siteConfig.name}`,
       description: article.excerpt,
-      url: `${siteConfig.url}/resources/${article.slug}`,
+      url: `${siteConfig.url}/resources/knowledge-centre/${article.slug}`,
       siteName: siteConfig.name,
       type: "article",
       images: [{ url: article.image, alt: article.title }],

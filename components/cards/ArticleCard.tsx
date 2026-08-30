@@ -28,7 +28,7 @@ export function ArticleCard({ article, featured = false, index = 0 }: ArticleCar
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
     >
-      <Link href={`/resources/${article.slug}`} className={styles.link}>
+      <Link href={`/resources/knowledge-centre/${article.slug}`} className={styles.link}>
         <div className={styles.imageWrapper}>
           <ImageWithFallback
             src={article.image}

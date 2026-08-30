@@ -20,6 +20,7 @@ import {
   Users,
 } from "lucide-react";
 import { siteConfig } from "@/data/site.config";
+import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import styles from "./about.module.scss";
 
 const values = [
@@ -74,9 +75,9 @@ const milestones = [
   },
   {
     year: currentYear,
-    event: "150+ Projects",
-    description: "Celebrating over 150 successful installations",
-  },
+    event: `${COMMON_IMPACT_STATS.projectsCompleted.value} Projects`,
+    description: `Celebrating over ${COMMON_IMPACT_STATS.projectsCompleted.value} successful installations`,
+ }
 ];
 
 function AboutTimeline() {

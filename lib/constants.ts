@@ -1,0 +1,1 @@
+export const FORM_SUBMISSION_DELAY = 1500;

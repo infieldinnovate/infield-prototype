@@ -2,8 +2,6 @@
 // App Constants
 // ============================================
 
-export const FORM_SUBMISSION_DELAY = 1500;
-
 export const QUOTE_STEPS = [
   { id: 1, title: "Service Details", description: "What do you need?" },
   { id: 2, title: "Property Info", description: "Where is the project?" },

@@ -2,7 +2,7 @@
 // Form Submission Services (Simulated)
 // ============================================
 
-import { FORM_SUBMISSION_DELAY } from "../data/quoteFormOptions";
+import { FORM_SUBMISSION_DELAY } from "./constants";
 import type { ContactFormData } from "./validations";
 import type { QuoteFullData } from "./validations";
 import type { SiteVisitFormData } from "./validations";

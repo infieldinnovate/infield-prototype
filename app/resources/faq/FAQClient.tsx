@@ -147,7 +147,7 @@ export default function FAQPage() {
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Resources", href: "/resources" },
+              { label: "Resources", href: "/resources/knowledge-centre" },
               { label: "FAQ" },
             ]}
           />
@@ -384,7 +384,7 @@ export default function FAQPage() {
                 {articles.slice(0, 5).map((article) => (
                   <li key={article.id}>
                     <LinkButton
-                      href="/resources"
+                      href="/resources/knowledge-centre"
                       className={styles.relatedLink}
                     >
                       {article.title.length > 50
@@ -409,7 +409,7 @@ export default function FAQPage() {
                 {downloads.slice(0, 5).map((download) => (
                   <li key={download.id}>
                     <LinkButton
-                      href="/downloads"
+                      href="/resources/downloads"
                       className={styles.relatedLink}
                     >
                       {download.title}

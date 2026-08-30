@@ -90,7 +90,7 @@ export default function AboutHeroCarousel() {
         { icon: processSteps[4].icon, text: "Install" },
         { icon: processSteps[7].icon, text: "Support" },
       ],
-      primaryButton: { label: "See Our Process", href: "/resources" },
+      primaryButton: { label: "See Our Process", href: "/resources/knowledge-centre" },
     };
 
     // ── 04 Why Choose Us ──

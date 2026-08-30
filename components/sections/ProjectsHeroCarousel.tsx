@@ -64,7 +64,7 @@ export default function ProjectsHeroCarousel() {
         <Breadcrumbs
           items={[
             { label: "Home", href: "/" },
-            { label: "Resources", href: "/resources" },
+            { label: "Resources", href: "/resources/knowledge-centre" },
             { label: "Projects" },
           ]}
         />

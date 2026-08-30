@@ -33,7 +33,7 @@ export default function ArticleDetailClient({
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
-              { label: "Resources", href: "/resources" },
+              { label: "Resources", href: "/resources/knowledge-centre" },
               { label: article.title },
             ]}
           />
@@ -142,7 +142,7 @@ export default function ArticleDetailClient({
               </div>
 
               {/* Back Link */}
-              <Link href="/resources" className={styles.backLink}>
+              <Link href="/resources/knowledge-centre" className={styles.backLink}>
                 <ArrowLeft size={18} />
                 Back to all articles
               </Link>

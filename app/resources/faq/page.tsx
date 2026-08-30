@@ -9,13 +9,13 @@ export const metadata: Metadata = {
   description:
     "Find answers to common questions about Infield Innovations' services, products, installation, maintenance, warranties, and payment options. Get help via WhatsApp, phone, or email.",
   alternates: {
-    canonical: "/faq",
+    canonical: "/resources/faq",
   },
   openGraph: {
     title: `FAQ | ${siteConfig.name}`,
     description:
       "Get answers to common questions about our electrical, plumbing, solar, irrigation, and borehole services.",
-    url: `${siteConfig.url}/faq`,
+    url: `${siteConfig.url}/resources/faq`,
     siteName: siteConfig.name,
     type: "website",
   },

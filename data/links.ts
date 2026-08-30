@@ -43,8 +43,8 @@ export interface ResourceNavItem {
 export const resourcesNavItems: ResourceNavItem[] = [
   {
     id: "nav-resources",
-    label: "Resources",
-    href: "/resources",
+    label: "Knowledge Centre",
+    href: "/resources/knowledge-centre",
     icon: BookOpen,
     description: "Expert articles, guides, and industry insights.",
   },
@@ -58,14 +58,14 @@ export const resourcesNavItems: ResourceNavItem[] = [
   {
     id: "nav-faq",
     label: "FAQ",
-    href: "/faq",
+    href: "/resources/faq",
     icon: CircleHelp,
     description: "Answers to common questions about our services.",
   },
   {
     id: "nav-downloads",
     label: "Downloads",
-    href: "/downloads",
+    href: "/resources/downloads",
     icon: Download,
     description: "Brochures, datasheets, and maintenance guides.",
   },

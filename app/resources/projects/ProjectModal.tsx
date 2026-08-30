@@ -1,17 +1,9 @@
-// app/projects/ProjectModal.tsx
+// app/resources/projects/ProjectModal.tsx
 
 "use client";
 
 import { useEffect, useMemo } from "react";
-import {
-  X,
-  MapPin,
-  Calendar,
-  CheckCircle2,
-  Wrench,
-  Quote,
-  Camera,
-} from "lucide-react";
+import { X, MapPin, Calendar, CircleCheck as CheckCircle2, Wrench, Quote, Camera } from "lucide-react";
 import type { Project, ProjectVideo } from "@/data/projectStats";
 import { useProjectImages } from "@/hooks/useProjectImages";
 import ImageSwiper from "@/components/ui/ImageSwiper";

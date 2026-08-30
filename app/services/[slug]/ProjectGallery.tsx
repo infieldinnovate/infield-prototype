@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import ProjectCard from "@/components/cards/ProjectCard";
-import ProjectModal from "@/app/projects/ProjectModal";
+import ProjectModal from "@/app/resources/projects/ProjectModal";
 import { Project } from "@/data/projectStats";
 import styles from "./[slug].module.scss";
 

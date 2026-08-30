@@ -11,7 +11,7 @@ import styles from "./ProjectsShowcase.module.scss";
 import { SectionHeading } from "../ui/SectionHeading";
 import ProjectCard from "../cards/ProjectCard";
 import { type Project } from "@/data/projectStats";
-import ProjectModal from "@/app/projects/ProjectModal";
+import ProjectModal from "@/app/resources/projects/ProjectModal";
 
 interface ProjectsShowcaseProps {
   projects: Project[];
@@ -54,7 +54,7 @@ const ProjectsShowcase = ({ projects }: ProjectsShowcaseProps) => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <Link href="/projects" className={styles.viewAllButton}>
+          <Link href="/resources/projects" className={styles.viewAllButton}>
             See More Case Studies
             <ArrowRight size={20} />
           </Link>

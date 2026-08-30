@@ -51,7 +51,7 @@ export const resourcesNavItems: ResourceNavItem[] = [
   {
     id: "nav-projects",
     label: "Projects",
-    href: "/projects",
+    href: "/resources/projects",
     icon: FolderKanban,
     description: "Completed installations and case studies across Kenya.",
   },

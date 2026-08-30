@@ -1,4 +1,4 @@
-// app\projects\page.tsx
+// app\resources\projects\page.tsx
 
 "use client";
 
@@ -21,7 +21,7 @@ import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { SERVICE_CATEGORIES, type ServiceSlug } from "@/data/services";
 import { projects, type Project } from "@/data/projectStats";
 import ProjectModal from "./ProjectModal";
-import ProjectMap from "../../components/ui/ProjectMap";
+import ProjectMap from "../../../components/ui/ProjectMap";
 import styles from "./page.module.scss";
 import ProjectCard from "@/components/cards/ProjectCard";
 import ProjectsHeroCarousel from "@/components/sections/ProjectsHeroCarousel";

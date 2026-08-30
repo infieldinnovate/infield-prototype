@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     'Explore our completed solar, borehole, irrigation, plumbing, and electrical projects across Kenya. See the real-world impact of our engineering solutions.',
   alternates: {
-    canonical: '/projects',
+    canonical: '/resources/projects',
   },
   openGraph: {
     title: `Our Projects | ${siteConfig.name}`,
     description:
       'Explore our completed solar, borehole, irrigation, plumbing, and electrical projects across Kenya.',
-    url: `${siteConfig.url}/projects`,
+    url: `${siteConfig.url}/resources/projects`,
     siteName: siteConfig.name,
     type: 'website',
   },

@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
     { url: '/about', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/resources/knowledge-centre', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/projects', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/resources/projects', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/resources/downloads', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/resources/faq', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/quote', priority: 0.8, changeFrequency: 'monthly' as const },

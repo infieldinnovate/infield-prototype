@@ -48,11 +48,11 @@ export default function ProjectsHeroCarousel() {
         ],
         primaryButton: {
           label: "View Project",
-          href: `/projects#project-${project.id}`,
+          href: `/resources/projects#project-${project.id}`,
         },
         secondaryButton: {
           label: "Explore Projects",
-          href: "/projects",
+          href: "/resources/projects",
         },
       };
     });
@@ -65,7 +65,7 @@ export default function ProjectsHeroCarousel() {
           items={[
             { label: "Home", href: "/" },
             { label: "Resources", href: "/resources/knowledge-centre" },
-            { label: "Projects" },
+            { label: "Projects", href: "/resources/projects" },
           ]}
         />
       </div>

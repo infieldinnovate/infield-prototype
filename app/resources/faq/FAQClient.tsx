@@ -433,7 +433,7 @@ export default function FAQPage() {
                   across Kenya.
                 </p>
 
-                <LinkButton href="/projects" variant="outline" size="sm">
+                <LinkButton href="/resources/projects" variant="outline" size="sm">
                   View Projects
                 </LinkButton>
               </div>

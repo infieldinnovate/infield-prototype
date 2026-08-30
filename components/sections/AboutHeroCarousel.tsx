@@ -133,7 +133,7 @@ export default function AboutHeroCarousel() {
         { icon: MapPin, text: `${countyCount} counties served` },
         { icon: CheckCircle2, text: "150+ installations" },
       ],
-      primaryButton: { label: "View Projects", href: "/projects" },
+      primaryButton: { label: "View Projects", href: "/resources/projects" },
       secondaryButton: { label: "Get a Quote", href: "/quote" },
     };
 

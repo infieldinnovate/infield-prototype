@@ -1,3 +1,5 @@
+import { SERVICES } from "./services";
+
 export const QUOTE_STEPS = [
   { id: 1, title: "Service Details", description: "What do you need?" },
   { id: 2, title: "Property Info", description: "Where is the project?" },
@@ -5,13 +7,8 @@ export const QUOTE_STEPS = [
   { id: 4, title: "Review & Submit", description: "Confirm your request" },
 ] as const;
 
-export const QUOTE_SERVICE_OPTIONS = [
-  "Electrical",
-  "Plumbing",
-  "Solar",
-  "Irrigation",
-  "Borehole",
-] as const;
+// Derived from the canonical SERVICES list so options stay in sync
+export const QUOTE_SERVICE_OPTIONS = SERVICES.map((s) => s.shortName) as readonly string[];
 
 export const PROPERTY_TYPES = [
   "Residential - Single Family",
@@ -54,15 +51,8 @@ export const PREFERRED_TIMES = [
   { value: "anytime", label: "Anytime" },
 ] as const;
 
-export const SITE_VISIT_SERVICES = [
-  "Solar Energy Solutions",
-  "Electrical Services",
-  "Plumbing Services",
-  "Borehole Drilling",
-  "Water Storage Solutions",
-  "Water Harvesting Solutions",
-  "Irrigation Systems",
-] as const;
+// Derived from the canonical SERVICES list so options stay in sync
+export const SITE_VISIT_SERVICES = SERVICES.map((s) => s.name) as readonly string[];
 
 export const SITE_VISIT_TIMES = [
   { value: "morning", label: "Morning (8AM - 12PM)" },

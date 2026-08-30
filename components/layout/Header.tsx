@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -11,7 +11,6 @@ import {
   Phone,
   ChevronDown,
   ChevronRight,
-  ArrowRight,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site.config";
@@ -25,23 +24,16 @@ import { cn } from "@/lib/utils";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
 import { ServiceIcons } from "@/data/service-icons";
+import { Dropdown, type DropdownItem } from "./Dropdown";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const pathname = usePathname() || "/";
   const { scrolled } = useScrollDirection();
-  const dropdownRef = useRef<HTMLDivElement>(null);
-  const resourcesDropdownRef = useRef<HTMLDivElement>(null);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const resourcesCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(
-    null,
-  );
 
-  useLockBodyScroll(isServicesOpen || isResourcesOpen || isMenuOpen);
+  useLockBodyScroll(isMenuOpen);
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
@@ -60,19 +52,15 @@ const Header = () => {
       (r) => pathname === r.href || pathname.startsWith(r.href + "/"),
     );
 
-  // Close dropdown on route change
+  // Close mobile menu on route change
   useEffect(() => {
-    setIsServicesOpen(false);
-    setIsResourcesOpen(false);
     setIsMenuOpen(false);
   }, [pathname]);
 
-  // Close on Escape key
+  // Close mobile menu on Escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        setIsServicesOpen(false);
-        setIsResourcesOpen(false);
         setIsMenuOpen(false);
       }
     };
@@ -80,49 +68,25 @@ const Header = () => {
     return () => document.removeEventListener("keydown", handleEsc);
   }, []);
 
-  const handleServicesClick = () => {
-    setIsServicesOpen((prev) => !prev);
-  };
+  const serviceDropdownItems: DropdownItem[] = servicesNavItems.map(
+    (service) => ({
+      id: service.id,
+      label: service.label,
+      href: service.href,
+      icon: ServiceIcons[service.icon],
+      description: service.tagline,
+    }),
+  );
 
-  const closeDropdown = () => {
-    setIsServicesOpen(false);
-  };
-
-  const handleMouseEnter = () => {
-    if (closeTimer.current) {
-      clearTimeout(closeTimer.current);
-      closeTimer.current = null;
-    }
-    setIsServicesOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    closeTimer.current = setTimeout(() => {
-      setIsServicesOpen(false);
-    }, 200);
-  };
-
-  const handleResourcesClick = () => {
-    setIsResourcesOpen((prev) => !prev);
-  };
-
-  const closeResourcesDropdown = () => {
-    setIsResourcesOpen(false);
-  };
-
-  const handleResourcesMouseEnter = () => {
-    if (resourcesCloseTimer.current) {
-      clearTimeout(resourcesCloseTimer.current);
-      resourcesCloseTimer.current = null;
-    }
-    setIsResourcesOpen(true);
-  };
-
-  const handleResourcesMouseLeave = () => {
-    resourcesCloseTimer.current = setTimeout(() => {
-      setIsResourcesOpen(false);
-    }, 200);
-  };
+  const resourceDropdownItems: DropdownItem[] = resourcesNavItems.map(
+    (item) => ({
+      id: item.id,
+      label: item.label,
+      href: item.href,
+      icon: item.icon,
+      description: item.description,
+    }),
+  );
 
   return (
     <header
@@ -171,168 +135,18 @@ const Header = () => {
             })}
 
           {/* Services Dropdown */}
-          <div
-            className={styles.servicesDropdown}
-            ref={dropdownRef}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button
-              className={`${styles.navLink} ${styles.servicesTrigger} ${
-                isServiceActive() ? styles.active : ""
-              } ${isServicesOpen ? styles.triggerOpen : ""}`}
-              aria-haspopup="true"
-              aria-expanded={isServicesOpen}
-              type="button"
-              onClick={handleServicesClick}
-            >
-              Services
-              <ChevronDown
-                size={16}
-                className={cn(
-                  styles.servicesChevron,
-                  isServicesOpen && styles.chevronOpen,
-                )}
-              />
-            </button>
-
-            <AnimatePresence>
-              {isServicesOpen && (
-                <motion.div
-                  className={styles.servicesMenu}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                >
-                  <button
-                    className={styles.closeButton}
-                    onClick={closeDropdown}
-                    aria-label="Close services menu"
-                    type="button"
-                  >
-                    <X size={22} />
-                  </button>
-
-                  <div className={styles.servicesGrid}>
-                    {servicesNavItems.map((service) => {
-                      const active = pathname.startsWith(service.href);
-                      const Icon = ServiceIcons[service.icon];
-                      return (
-                        <Link
-                          key={service.id}
-                          href={service.href}
-                          className={`${styles.serviceCard} ${
-                            active ? styles.serviceCardActive : ""
-                          }`}
-                          onClick={closeDropdown}
-                        >
-                          <div className={styles.serviceCardHeader}>
-                            <div className={styles.serviceIconWrap}>
-                              <Icon size={20} strokeWidth={1.8} />
-                            </div>
-                          </div>
-                          <h3 className={styles.serviceTitle}>
-                            {service.label}
-                          </h3>
-                          <ul className={styles.subServicesList}>
-                            <li className={styles.subServiceItem}>
-                              {service.tagline}
-                            </li>
-                          </ul>
-                          <span className={styles.serviceLink}>
-                            View {service.label}
-                            <ArrowRight size={14} />
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          <Dropdown
+            label="Services"
+            items={serviceDropdownItems}
+            isActive={isServiceActive}
+          />
 
           {/* Resources Dropdown */}
-          <div
-            className={styles.servicesDropdown}
-            ref={resourcesDropdownRef}
-            onMouseEnter={handleResourcesMouseEnter}
-            onMouseLeave={handleResourcesMouseLeave}
-          >
-            <button
-              className={`${styles.navLink} ${styles.servicesTrigger} ${
-                isResourceActive() ? styles.active : ""
-              } ${isResourcesOpen ? styles.triggerOpen : ""}`}
-              aria-haspopup="true"
-              aria-expanded={isResourcesOpen}
-              type="button"
-              onClick={handleResourcesClick}
-            >
-              Resources
-              <ChevronDown
-                size={16}
-                className={cn(
-                  styles.servicesChevron,
-                  isResourcesOpen && styles.chevronOpen,
-                )}
-              />
-            </button>
-
-            <AnimatePresence>
-              {isResourcesOpen && (
-                <motion.div
-                  className={styles.servicesMenu}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                >
-                  <button
-                    className={styles.closeButton}
-                    onClick={closeResourcesDropdown}
-                    aria-label="Close resources menu"
-                    type="button"
-                  >
-                    <X size={22} />
-                  </button>
-
-                  <div className={styles.servicesGrid}>
-                    {resourcesNavItems.map((item) => {
-                      const active =
-                        pathname === item.href ||
-                        pathname.startsWith(item.href + "/");
-                      const Icon = item.icon;
-                      return (
-                        <Link
-                          key={item.id}
-                          href={item.href}
-                          className={`${styles.serviceCard} ${
-                            active ? styles.serviceCardActive : ""
-                          }`}
-                          onClick={closeResourcesDropdown}
-                        >
-                          <div className={styles.serviceCardHeader}>
-                            <div className={styles.serviceIconWrap}>
-                              <Icon size={20} strokeWidth={1.8} />
-                            </div>
-                          </div>
-                          <h3 className={styles.serviceTitle}>{item.label}</h3>
-                          <p className={styles.subServiceItem}>
-                            {item.description}
-                          </p>
-                          <span className={styles.serviceLink}>
-                            View {item.label}
-                            <ArrowRight size={14} />
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          <Dropdown
+            label="Resources"
+            items={resourceDropdownItems}
+            isActive={isResourceActive}
+          />
         </div>
 
         {/* Desktop Actions (phone + quote) */}

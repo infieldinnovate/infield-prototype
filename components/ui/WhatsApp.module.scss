@@ -42,7 +42,7 @@
 
 /* Panel styles */
 .panel {
-  width: 18rem;
+  width: 220px;
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
@@ -79,7 +79,7 @@
 }
 
 .options {
-  padding: 0.5rem;
+  padding: 0 0.5rem;
 }
 
 .options ul {
@@ -88,8 +88,7 @@
   padding: 0;
 }
 
-.options li {
-  margin-bottom: 0.5rem;
+.options li {font-size: 1rem;
 }
 
 .options button {

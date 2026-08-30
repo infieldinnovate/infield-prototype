@@ -5,33 +5,28 @@ export interface ChatOption {
 
 export const chatOptions: ChatOption[] = [
   {
-    label: "Solar Solutions",
-    message:
-      "Hello — I'm interested in Infield Innovations' solar solutions (design, installation, battery storage). Can you share a quote and next steps?",
-  },
-  {
-    label: "Electrical Installations",
-    message:
-      "Hi — I need information on electrical installation services for a residential/commercial project. Please share availability and pricing.",
-  },
-  {
-    label: "Plumbing Services",
-    message:
-      "Hello — I'm enquiring about plumbing services (repairs, installations, emergency). Could you advise on next steps and rates?",
-  },
-  {
-    label: "Borehole Solutions",
-    message:
-      "Hi — I'd like a quote and timeline for borehole drilling, pump installation and water testing from Infield Innovations.",
-  },
-  {
-    label: "Irrigation Systems",
-    message:
-      "Hello — I'm interested in irrigation system design and installation (drip/sprinkler). Could you send info and sample proposals?",
-  },
-  {
     label: "Get a Quote",
     message:
-      "Hi — I'd like a tailored quote. My project: [brief description]. Please advise required steps and documentation.",
+      "Hello Infield Innovations, I'd like to get a quote. Please let me know how I can share my project requirements.",
+  },
+  {
+    label: "Request a Site Visit",
+    message:
+      "Hello Infield Innovations, I'd like to request a site visit. Please let me know the next steps.",
+  },
+  {
+    label: "Speak to an Expert",
+    message:
+      "Hello Infield Innovations, I'd like to speak with an expert about my project. Please assist me.",
+  },
+  {
+    label: "Solar & Electrical",
+    message:
+      "Hello Infield Innovations, I'm interested in solar and electrical solutions. I'd like to discuss my project requirements.",
+  },
+  {
+    label: "Water & Borehole",
+    message:
+      "Hello Infield Innovations, I'm interested in water or borehole solutions. I'd like to discuss my project requirements.",
   },
 ];

@@ -85,7 +85,9 @@ export default function WhatsApp() {
           <div className={styles.header}>
             <div>
               <h3 id="whatsapp-panel-title">How can we help you?</h3>
-              <p>Select a service to start a WhatsApp chat</p>
+              <p>
+                Tell us what you need and our team will help you get started.
+              </p>
             </div>
             <button
               onClick={toggleOpen}
@@ -104,10 +106,8 @@ export default function WhatsApp() {
                     onClick={() => handleOption(opt)}
                     aria-label={`Chat: ${opt.label}`}
                   >
-                    <span>
-                      <strong>{opt.label}</strong>
-                    </span>
-                    <HiChevronRight size={20} />
+                    <span>{opt.label}</span>
+                    <HiChevronRight size={15} />
                   </button>
                 </li>
               ))}

@@ -9,6 +9,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { HiChevronRight } from "react-icons/hi2";
 import { MdOutlineClose } from "react-icons/md";
 import { ChatOption, chatOptions } from "@/data/whatsappOptions";
+import { siteConfig } from "@/data/site.config";
 
 export default function WhatsApp() {
   const [open, setOpen] = useState(false);
@@ -55,7 +56,7 @@ export default function WhatsApp() {
     playPop();
 
     // Normalize phone digits, keep leading country code
-    const phone = option.customerCare.replace(/\D/g, "");
+    const phone = siteConfig.whatsapp.replace(/\D/g, "");
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(option.message)}`;
 
     // Use an anchor to ensure rel="noopener noreferrer"

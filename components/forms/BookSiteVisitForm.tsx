@@ -1,16 +1,21 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { CircleCheck as CheckCircle2, CircleAlert as AlertCircle, Send, Calendar } from 'lucide-react';
-import { siteVisitSchema, type SiteVisitFormData } from '@/lib/validations';
-import { submitSiteVisitForm, type SubmissionResult } from '@/lib/services';
-import { SITE_VISIT_SERVICES, SITE_VISIT_TIMES } from '@/lib/constants';
-import { Button } from '@/components/ui/Button';
-import InputField from '@/components/forms/form_elements/input';
-import SelectField from '@/components/forms/form_elements/select';
-import styles from './ContactForm.module.scss';
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  CircleCheck as CheckCircle2,
+  CircleAlert as AlertCircle,
+  Send,
+  Calendar,
+} from "lucide-react";
+import { siteVisitSchema, type SiteVisitFormData } from "@/lib/validations";
+import { submitSiteVisitForm, type SubmissionResult } from "@/lib/services";
+import { SITE_VISIT_SERVICES, SITE_VISIT_TIMES } from "@/data/quoteFormOptions";
+import { Button } from "@/components/ui/Button";
+import InputField from "@/components/forms/form_elements/input";
+import SelectField from "@/components/forms/form_elements/select";
+import styles from "./ContactForm.module.scss";
 
 export function BookSiteVisitForm() {
   const [result, setResult] = useState<SubmissionResult | null>(null);
@@ -22,8 +27,8 @@ export function BookSiteVisitForm() {
     formState: { errors, isSubmitting },
   } = useForm<SiteVisitFormData>({
     resolver: zodResolver(siteVisitSchema),
-    mode: 'onChange',
-    reValidateMode: 'onChange',
+    mode: "onChange",
+    reValidateMode: "onChange",
   });
 
   const onSubmit = async (data: SiteVisitFormData) => {
@@ -108,7 +113,10 @@ export function BookSiteVisitForm() {
           label="Preferred Time"
           required
           placeholder="Select a time slot"
-          options={SITE_VISIT_TIMES.map((t) => ({ value: t.value, label: t.label }))}
+          options={SITE_VISIT_TIMES.map((t) => ({
+            value: t.value,
+            label: t.label,
+          }))}
           error={errors.preferredTime}
         />
       </div>
@@ -144,7 +152,7 @@ export function BookSiteVisitForm() {
         fullWidth
         leftIcon={<Calendar size={18} />}
       >
-        {isSubmitting ? 'Booking...' : 'Book Site Visit'}
+        {isSubmitting ? "Booking..." : "Book Site Visit"}
       </Button>
     </form>
   );

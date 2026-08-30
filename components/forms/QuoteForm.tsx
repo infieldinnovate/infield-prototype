@@ -28,7 +28,7 @@ import {
   BUDGET_RANGES,
   CONTACT_METHODS,
   PREFERRED_TIMES,
-} from "@/lib/constants";
+} from "@/data/quoteFormOptions";
 import { Button } from "@/components/ui/Button";
 import InputField from "@/components/forms/form_elements/input";
 import SelectField from "@/components/forms/form_elements/select";

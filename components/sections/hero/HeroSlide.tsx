@@ -82,11 +82,11 @@ const HeroSlide = forwardRef<HTMLDivElement, HeroSlideProps>(
           </div>
 
           <div className={styles.panel}>
-            <span className={styles.panelDot} />
-            <div className={styles.panelContent}>
+            <div className={styles.panelDotContainer}>
+              <div className={styles.panelDot} />
               <span className={styles.panelLabel}>{slide.panelTitle}</span>
-              <span className={styles.panelMeta}>{slide.panelMeta}</span>
             </div>
+            <span className={styles.panelMeta}>{slide.panelMeta}</span>
           </div>
         </div>
       </div>

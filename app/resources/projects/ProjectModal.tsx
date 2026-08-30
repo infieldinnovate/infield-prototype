@@ -3,7 +3,15 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import { X, MapPin, Calendar, CircleCheck as CheckCircle2, Wrench, Quote, Camera } from "lucide-react";
+import {
+  X,
+  MapPin,
+  Calendar,
+  CircleCheck as CheckCircle2,
+  Wrench,
+  Quote,
+  Camera,
+} from "lucide-react";
 import type { Project, ProjectVideo } from "@/data/projectStats";
 import { useProjectImages } from "@/hooks/useProjectImages";
 import ImageSwiper from "@/components/ui/ImageSwiper";
@@ -84,15 +92,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       aria-modal="true"
       aria-labelledby="project-modal-title"
     >
+      <button
+        className={styles.modalClose}
+        onClick={onClose}
+        aria-label="Close project details"
+      >
+        <X size={50} />
+      </button>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <button
-          className={styles.modalClose}
-          onClick={onClose}
-          aria-label="Close project details"
-        >
-          <X size={20} />
-        </button>
-
         {/* Hero */}
         <div className={styles.modalHero}>
           <ImageSwiper

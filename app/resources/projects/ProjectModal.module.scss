@@ -8,7 +8,6 @@ $foreground: $color-project-foreground;
 $muted: $color-project-muted;
 $muted-foreground: $color-project-muted-foreground;
 $border: $color-project-border;
-$white: #fff;
 
 $shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
 $shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
@@ -23,7 +22,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .modalOverlay {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -41,35 +40,25 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: 900px;
   margin: auto;
   overflow: hidden;
-  background: $white;
-  border-radius: $radius-lg;
+  background: #fff;
+  border-radius: 0;
   box-shadow: $shadow-lg;
 }
 
-/* Close Button */
+// Close Button
 
 .modalClose {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: calc(2vw);
+  right: calc(2vw);
   z-index: 10;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 40px;
-  height: 40px;
-
-  color: $white;
+  color: #ffffff;
   cursor: pointer;
-
-  background: rgba(0, 0, 0, 0.5);
   border: none;
-  border-radius: 50%;
-
   transition: all $transition;
-
   &:hover {
     background: rgba(0, 0, 0, 0.7);
     transform: rotate(90deg);
@@ -104,7 +93,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 2;
 
   padding: 2rem;
-  color: $white;
+  color: #fff;
 }
 
 .modalCategory {
@@ -117,7 +106,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 
-  color: $white;
+  color: #fff;
   background: $primary;
   border-radius: 999px;
 }
@@ -221,7 +210,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   font-size: 0.8rem;
   font-weight: 600;
-  color: $white;
+  color: #fff;
 
   opacity: 0;
 
@@ -242,7 +231,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.05em;
   text-transform: uppercase;
 
-  color: $white;
+  color: #fff;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 999px;
 }
@@ -319,7 +308,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 24px;
   height: 24px;
 
-  color: $white;
+  color: #fff;
   background: $primary;
   border-radius: 50%;
 }
@@ -440,7 +429,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   font-size: 1.1rem;
   font-weight: 700;
 
-  color: $white;
+  color: #fff;
   background: $primary;
   border-radius: 50%;
 }

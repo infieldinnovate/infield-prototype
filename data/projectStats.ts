@@ -80,14 +80,14 @@ export const projects: Project[] = [
         phase: "before",
       },
       {
-        url: "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=800",
-        caption: "Completed rooftop solar installation",
-        phase: "after",
-      },
-      {
         url: "https://images.pexels.com/photos/9897190/pexels-photo-9897190.jpeg?auto=compress&cs=tinysrgb&w=800",
         caption: "Panel installation in progress",
         phase: "during",
+      },
+      {
+        url: "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=800",
+        caption: "Completed rooftop solar installation",
+        phase: "after",
       },
     ],
     testimonial: {
@@ -274,14 +274,14 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=800",
-        caption: "Completed distribution system",
-        phase: "after",
-      },
-      {
         url: "https://images.pexels.com/photos/8005366/pexels-photo-8005366.jpeg?auto=compress&cs=tinysrgb&w=800",
         caption: "Cable routing during installation",
         phase: "during",
+      },
+      {
+        url: "https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=800",
+        caption: "Completed distribution system",
+        phase: "after",
       },
     ],
     testimonial: {

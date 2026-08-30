@@ -1,7 +1,3 @@
-// ============================================
-// App Constants
-// ============================================
-
 export const QUOTE_STEPS = [
   { id: 1, title: "Service Details", description: "What do you need?" },
   { id: 2, title: "Property Info", description: "Where is the project?" },

@@ -5,7 +5,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, ChevronDown, ChevronRight } from "lucide-react";
+import {
+  Menu,
+  X,
+  Phone,
+  ChevronDown,
+  ChevronRight,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site.config";
 import { navLinks } from "@/data/links";
@@ -169,7 +175,7 @@ const Header = () => {
           aria-expanded={isMenuOpen}
           type="button"
         >
-          {isMenuOpen ? <X size={40} /> : <Menu size={40} />}
+          {isMenuOpen ? <X size={30} /> : <Menu size={40} />}
         </button>
       </nav>
 

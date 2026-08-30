@@ -6,7 +6,6 @@
 
 import {
   FaFacebook,
-  FaInstagram,
   FaLinkedin,
   FaTiktok,
   FaYoutube,
@@ -91,11 +90,6 @@ export const socialLinks = {
     link: "https://facebook.com/infieldinnovations",
     icon: FaFacebook,
     label: "Facebook",
-  },
-  instagram: {
-    link: "https://instagram.com/infieldinnovations",
-    icon: FaInstagram,
-    label: "Instagram",
   },
   linkedin: {
     link: "https://linkedin.com/company/infieldinnovations",

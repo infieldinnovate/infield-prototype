@@ -583,14 +583,6 @@ export default function ServiceDetailClient({
                     <Icon size={28} strokeWidth={1.8} />
                   </div>
                   <h3 className={styles.audienceName}>{industry.name}</h3>
-                  <p className={styles.audienceDesc}>{industry.description}</p>
-                  <ul className={styles.audienceServices}>
-                    {industry.services.slice(0, 3).map((s) => (
-                      <li key={s}>
-                        <Check size={12} /> {s}
-                      </li>
-                    ))}
-                  </ul>
                 </motion.div>
               );
             })}

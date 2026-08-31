@@ -25,7 +25,7 @@ import { SERVICES } from "@/data/services";
 import { ServiceIcons } from "@/data/service-icons";
 import { processSteps } from "@/data/process";
 import { certificationsList } from "@/data/certifications";
-import { safetyCommitments } from "@/data/equipment";
+import { safetyCommitments } from "@/data/safety";
 import { countiesServed } from "@/data/serviceAreas";
 
 export default function AboutHeroCarousel() {

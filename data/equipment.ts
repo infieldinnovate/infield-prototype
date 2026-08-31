@@ -5,19 +5,13 @@
 import {
   Activity,
   Camera,
-  ClipboardCheck,
   CloudRain,
   Drill,
   Droplets,
-  GraduationCap,
   Sun,
   ThermometerSun,
   Waves,
-  LucideIcon,
-  BadgeCheck,
-  FileCheck,
-  HardHat,
-  ShieldCheck,
+  type LucideIcon,
 } from "lucide-react";
 
 export interface Equipment {
@@ -33,23 +27,23 @@ export const equipment: Equipment[] = [
     id: "e1",
     name: "Thermal Imaging Cameras",
     description:
-      "Advanced thermal diagnostics for electrical panels, solar arrays, and plumbing systems.",
+      "Thermal inspection tools used to identify abnormal heat patterns in electrical panels, connections, solar equipment, and other systems.",
     icon: ThermometerSun,
     category: "Diagnostics",
   },
   {
     id: "e2",
-    name: "Borehole Drilling Rigs",
+    name: "Borehole Drilling Equipment",
     description:
-      "Heavy-duty drilling rigs capable of reaching depths up to 250 metres in any geology.",
+      "Professional drilling equipment used for borehole construction, casing, development, and groundwater projects according to site conditions.",
     icon: Drill,
     category: "Drilling",
   },
   {
     id: "e3",
-    name: "Solar Site Survey Tools",
+    name: "Solar Site Assessment Tools",
     description:
-      "Professional sun-path analysis and shading assessment equipment for optimal panel placement.",
+      "Tools and instruments used to assess solar exposure, shading, orientation, and site conditions during solar system planning.",
     icon: Sun,
     category: "Solar",
   },
@@ -57,7 +51,7 @@ export const equipment: Equipment[] = [
     id: "e4",
     name: "Pipe Inspection Cameras",
     description:
-      "High-resolution inspection cameras for drain and sewer line diagnostics.",
+      "Inspection cameras used to identify blockages, damage, and other conditions inside accessible drainage and pipework.",
     icon: Camera,
     category: "Plumbing",
   },
@@ -65,15 +59,15 @@ export const equipment: Equipment[] = [
     id: "e5",
     name: "Power Quality Analysers",
     description:
-      "Industrial-grade power quality monitoring for commercial electrical installations.",
+      "Electrical measurement equipment used to assess voltage, current, power quality, and operating conditions in electrical installations.",
     icon: Activity,
     category: "Electrical",
   },
   {
     id: "e6",
-    name: "Water Quality Testing Kits",
+    name: "Water Quality Testing Equipment",
     description:
-      "Comprehensive water testing equipment for borehole and irrigation water analysis.",
+      "Testing equipment used to assess key water-quality parameters and support appropriate treatment and water-system decisions.",
     icon: Droplets,
     category: "Water",
   },
@@ -81,7 +75,7 @@ export const equipment: Equipment[] = [
     id: "e7",
     name: "Smart Irrigation Controllers",
     description:
-      "Weather-based smart controllers with remote monitoring and zone management.",
+      "Programmable irrigation control technology used to manage watering schedules, zones, pumps, and automated irrigation systems.",
     icon: CloudRain,
     category: "Irrigation",
   },
@@ -89,60 +83,8 @@ export const equipment: Equipment[] = [
     id: "e8",
     name: "Leak Detection Equipment",
     description:
-      "Acoustic and tracer gas leak detection for precise underground pipe location.",
+      "Specialized diagnostic equipment used to help locate concealed leaks and identify faults in water-supply and pipework systems.",
     icon: Waves,
     category: "Plumbing",
-  },
-];
-
-export interface SafetyItem {
-  id: string;
-  title: string;
-  description: string;
-  icon: LucideIcon;
-}
-
-export const safetyCommitments: SafetyItem[] = [
-  {
-    id: "s1",
-    title: "Certified Safety Team",
-    description:
-      "All technicians are trained in occupational health and safety, with regular refresher courses.",
-    icon: HardHat,
-  },
-  {
-    id: "s2",
-    title: "Risk Assessment First",
-    description:
-      "Every project begins with a comprehensive risk assessment and site safety briefing.",
-    icon: ClipboardCheck,
-  },
-  {
-    id: "s3",
-    title: "Quality Materials Only",
-    description:
-      "We use certified, warrantied materials from trusted manufacturers — never substandard parts.",
-    icon: BadgeCheck,
-  },
-  {
-    id: "s4",
-    title: "Full Insurance Cover",
-    description:
-      "Comprehensive liability insurance and workmanship warranty on every project we undertake.",
-    icon: ShieldCheck,
-  },
-  {
-    id: "s5",
-    title: "Compliance Guaranteed",
-    description:
-      "All work meets or exceeds Kenyan regulatory standards and international best practices.",
-    icon: FileCheck,
-  },
-  {
-    id: "s6",
-    title: "Continuous Training",
-    description:
-      "Our team undergoes ongoing professional development to stay current with industry standards.",
-    icon: GraduationCap,
   },
 ];

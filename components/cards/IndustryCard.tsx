@@ -34,15 +34,7 @@ export function IndustryCard({ industry, index = 0 }: IndustryCardProps) {
 
       <p className={styles.description}>{industry.description}</p>
 
-      <ul className={styles.services}>
-        {industry.services.map((service) => (
-          <li key={service} className={styles.serviceItem}>
-            {service}
-          </li>
-        ))}
-      </ul>
-
-      <Link href={`/services/${industry.serviceSlug}`} className={styles.link}>
+      <Link href={`/services`} className={styles.link}>
         Explore Services
         <ArrowRight size={16} />
       </Link>

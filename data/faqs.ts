@@ -29,14 +29,14 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
 
 export const FAQs: FAQ[] = [
   // ============================================================
-  // GENERAL — 15 QUESTIONS
+  // GENERAL — 10 QUESTIONS
   // ============================================================
 
   {
     id: "general-1",
     question: "What services does Infield Innovations provide?",
     answer:
-      "Infield Innovations provides integrated water, energy, electrical and infrastructure solutions, including solar energy systems, electrical installations, plumbing, borehole drilling and water systems, irrigation, water storage, and rainwater harvesting. We serve homes, farms, businesses, institutions, and other properties.",
+      "Infield Innovations provides integrated water, energy, electrical and infrastructure solutions, including solar energy systems, electrical installations, plumbing, borehole drilling, water storage, irrigation, and rainwater harvesting. We serve homes, farms, businesses, institutions, and other properties.",
     category: "general",
   },
 
@@ -52,7 +52,7 @@ export const FAQs: FAQ[] = [
     id: "general-3",
     question: "How do I know which service I need?",
     answer:
-      "You do not need to diagnose the problem yourself. Tell us what is happening—for example, high electricity bills, frequent power interruptions, low water pressure, unreliable water supply, leaking pipes, poor irrigation coverage, or a planned construction project—and we can recommend the appropriate assessment or service.",
+      "You do not need to diagnose the problem yourself. Tell us what is happening—for example, high electricity bills, power interruptions, low water pressure, unreliable water supply, leaking pipes, poor irrigation coverage, or a planned project—and we can recommend the appropriate assessment or service.",
     category: "general",
   },
 
@@ -71,18 +71,11 @@ export const FAQs: FAQ[] = [
     answer:
       "Contact us with your location, the service you need, the problem you are experiencing, and any available information about your property or existing system. Where necessary, we arrange a site assessment before preparing an accurate quotation.",
     category: "general",
+    isPopular: true,
   },
 
   {
     id: "general-6",
-    question: "Are quotations free?",
-    answer:
-      "Quotation arrangements depend on the type and complexity of the project. Straightforward requirements can often be quoted from the information provided, while specialized projects may require a paid or chargeable site assessment. We confirm any assessment costs before proceeding.",
-    category: "general",
-  },
-
-  {
-    id: "general-7",
     question: "How long does a project take?",
     answer:
       "The timeline depends on the type, size, site conditions, materials, approvals, and scope of work. Small repairs may be completed quickly, while installations, boreholes, irrigation systems, and larger infrastructure projects require more planning. We provide an expected timeline during the quotation and planning stage.",
@@ -90,7 +83,7 @@ export const FAQs: FAQ[] = [
   },
 
   {
-    id: "general-8",
+    id: "general-7",
     question: "Do you work on existing systems or only new installations?",
     answer:
       "We can work on both new installations and existing systems, subject to assessment. This includes troubleshooting, repairs, upgrades, replacements, maintenance, and improvements to systems installed by other providers.",
@@ -98,7 +91,7 @@ export const FAQs: FAQ[] = [
   },
 
   {
-    id: "general-9",
+    id: "general-8",
     question: "Do you provide maintenance after installation?",
     answer:
       "Yes. We provide maintenance and servicing for eligible systems we install and, where practical, existing systems. Preventive maintenance can help identify faults early, maintain performance, and reduce unexpected breakdowns.",
@@ -107,16 +100,7 @@ export const FAQs: FAQ[] = [
   },
 
   {
-    id: "general-10",
-    question:
-      "Do you serve residential, commercial, and agricultural customers?",
-    answer:
-      "Yes. Our solutions can be designed for homes, farms, offices, shops, institutions, commercial properties, and other sites. System design and equipment selection depend on the property's specific requirements.",
-    category: "general",
-  },
-
-  {
-    id: "general-11",
+    id: "general-9",
     question: "Which areas do you serve?",
     answer:
       "We are based in Meru and serve customers in Meru and other locations depending on the project. For larger or specialized projects outside our regular service area, contact us to confirm availability and site requirements.",
@@ -124,23 +108,7 @@ export const FAQs: FAQ[] = [
   },
 
   {
-    id: "general-12",
-    question: "Do you supply equipment separately from installation?",
-    answer:
-      "Selected products and equipment may be available separately from installation. Availability, compatibility, warranty terms, and pricing depend on the specific product. We can also recommend equipment suitable for your existing system.",
-    category: "general",
-  },
-
-  {
-    id: "general-13",
-    question: "Do you help with permits, approvals, and compliance?",
-    answer:
-      "Where a project requires regulatory approvals, inspections, permits, or technical documentation, we can advise you on the applicable requirements and assist with the process within the scope of our services. Requirements vary by project and location.",
-    category: "general",
-  },
-
-  {
-    id: "general-14",
+    id: "general-10",
     question: "What warranty do I receive?",
     answer:
       "Warranty coverage depends on the product, manufacturer, installation, and agreed workmanship terms. We explain the applicable warranty conditions in your quotation or project documentation. Manufacturer warranties are separate from workmanship warranties.",
@@ -148,23 +116,15 @@ export const FAQs: FAQ[] = [
     isPopular: true,
   },
 
-  {
-    id: "general-15",
-    question: "What happens if I am not sure what is causing the problem?",
-    answer:
-      "Start with the symptoms rather than trying to identify the technical fault yourself. We can assess issues such as unexplained high electricity consumption, repeated electrical trips, low water pressure, pump failure, water shortages, leaks, poor irrigation coverage, or inconsistent system performance.",
-    category: "general",
-  },
-
   // ============================================================
-  // SOLAR
+  // SOLAR — 5 QUESTIONS
   // ============================================================
 
   {
     id: "solar-1",
     question: "How much can I save with solar?",
     answer:
-      "Savings depend on your electricity consumption, tariff, system size, solar resource, operating hours, equipment efficiency, and whether batteries are included. We calculate an estimate based on your actual energy usage rather than promising a fixed percentage.",
+      "Savings depend on your electricity consumption, tariff, system size, solar resource, operating hours, equipment efficiency, and whether batteries are included. We estimate potential savings using your actual energy usage rather than promising a fixed percentage.",
     category: "solar",
     isPopular: true,
   },
@@ -173,8 +133,9 @@ export const FAQs: FAQ[] = [
     id: "solar-2",
     question: "What size solar system do I need?",
     answer:
-      "System size should be based on your electricity consumption, peak demand, appliances, operating hours, available solar resource, roof or mounting space, backup requirements, and future expansion plans. We size the system around your actual requirements.",
+      "System size should be based on your electricity consumption, peak demand, appliances, operating hours, available solar resource, mounting space, backup requirements, and future expansion plans. We size the system around your actual requirements.",
     category: "solar",
+    isPopular: true,
   },
 
   {
@@ -195,15 +156,6 @@ export const FAQs: FAQ[] = [
 
   {
     id: "solar-5",
-    question: "How long do solar panels and batteries last?",
-    answer:
-      "Quality solar panels are designed for long-term operation and commonly have long performance warranties. Battery lifespan depends on battery chemistry, temperature, cycling, depth of discharge, and manufacturer specifications. We provide the applicable warranty and expected service-life information for the equipment selected.",
-    category: "solar",
-    isPopular: true,
-  },
-
-  {
-    id: "solar-6",
     question: "Why is my solar system producing less power than expected?",
     answer:
       "Possible causes include shading, dust or soiling, equipment faults, poor connections, inverter limitations, high temperatures, incorrect sizing, or changes in energy demand. We can inspect the system and identify the cause before recommending corrective work.",
@@ -211,7 +163,7 @@ export const FAQs: FAQ[] = [
   },
 
   // ============================================================
-  // ELECTRICAL
+  // ELECTRICAL — 5 QUESTIONS
   // ============================================================
 
   {
@@ -220,6 +172,7 @@ export const FAQs: FAQ[] = [
     answer:
       "Repeated tripping can be caused by overloaded circuits, short circuits, earth faults, faulty appliances, damaged wiring, or incorrectly rated protective devices. Do not repeatedly reset a breaker without identifying the cause. We can inspect and diagnose the electrical system.",
     category: "electrical",
+    isPopular: true,
   },
 
   {
@@ -249,14 +202,6 @@ export const FAQs: FAQ[] = [
 
   {
     id: "electrical-5",
-    question: "Do you provide electrical maintenance and inspections?",
-    answer:
-      "Yes. Preventive electrical maintenance can include inspection of distribution boards, connections, protective devices, earthing, lighting, equipment connections, and other system components according to the installation.",
-    category: "electrical",
-  },
-
-  {
-    id: "electrical-6",
     question:
       "Are your electrical installations compliant with Kenyan requirements?",
     answer:
@@ -265,7 +210,7 @@ export const FAQs: FAQ[] = [
   },
 
   // ============================================================
-  // BOREHOLES
+  // BOREHOLES — 5 QUESTIONS
   // ============================================================
 
   {
@@ -274,6 +219,7 @@ export const FAQs: FAQ[] = [
     answer:
       "Groundwater availability varies by location and geology. A professional hydrogeological assessment helps identify suitable drilling locations and provides information for planning the borehole. A survey cannot guarantee a particular water yield.",
     category: "boreholes",
+    isPopular: true,
   },
 
   {
@@ -282,7 +228,6 @@ export const FAQs: FAQ[] = [
     answer:
       "There is no universal depth. Borehole depth depends on local geology, aquifer conditions, groundwater levels, target yield, and site-specific findings. The required depth should be determined through professional assessment and drilling conditions.",
     category: "boreholes",
-    isPopular: true,
   },
 
   {
@@ -304,23 +249,14 @@ export const FAQs: FAQ[] = [
 
   {
     id: "boreholes-5",
-    question: "Is borehole water safe to drink?",
-    answer:
-      "Not necessarily. Groundwater quality varies from site to site and should be tested before being used for drinking. Where treatment is required, we can recommend an appropriate water-treatment approach based on the test results.",
-    category: "boreholes",
-  },
-
-  {
-    id: "boreholes-6",
     question: "Can you install and power my borehole pump with solar?",
     answer:
       "Yes. We can design borehole pumping solutions around the required water volume, pumping head, borehole conditions, power availability, and intended use. Solar-powered pumping can be particularly useful for farms, remote sites, and properties seeking to reduce electricity or fuel costs.",
     category: "boreholes",
-    isPopular: true,
   },
 
   // ============================================================
-  // PLUMBING
+  // PLUMBING — 5 QUESTIONS
   // ============================================================
 
   {
@@ -329,6 +265,7 @@ export const FAQs: FAQ[] = [
     answer:
       "Low pressure can be caused by undersized pipes, blocked filters, leaking pipes, pump problems, inadequate tank elevation, faulty valves, restrictions in the supply, or insufficient incoming pressure. We can inspect the system to identify the cause.",
     category: "plumbing",
+    isPopular: true,
   },
 
   {
@@ -353,19 +290,10 @@ export const FAQs: FAQ[] = [
     answer:
       "Yes. We can replace sections of damaged pipework or undertake larger plumbing upgrades where the existing installation is no longer reliable or suitable for the property's requirements.",
     category: "plumbing",
-    isPopular: true,
   },
 
   {
     id: "plumbing-5",
-    question: "Can you install water heaters?",
-    answer:
-      "Yes, where the required equipment is within our service scope. We can assist with suitable water-heating solutions based on hot-water demand, available power, space, and energy requirements.",
-    category: "plumbing",
-  },
-
-  {
-    id: "plumbing-6",
     question: "Can you install plumbing for a new house or building?",
     answer:
       "Yes. We can provide plumbing installation according to the building's design, water demand, fixtures, storage arrangement, drainage requirements, and applicable project specifications.",
@@ -373,7 +301,7 @@ export const FAQs: FAQ[] = [
   },
 
   // ============================================================
-  // IRRIGATION
+  // IRRIGATION — 5 QUESTIONS
   // ============================================================
 
   {
@@ -412,24 +340,15 @@ export const FAQs: FAQ[] = [
 
   {
     id: "irrigation-5",
-    question: "Can you repair an existing irrigation system?",
-    answer:
-      "Yes. We can troubleshoot and repair issues such as leaking pipes, blocked emitters, damaged sprinklers, faulty valves, pump problems, poor pressure, and control-system faults.",
-    category: "irrigation",
-  },
-
-  {
-    id: "irrigation-6",
     question:
       "Can irrigation run from a borehole, tank, or solar-powered pump?",
     answer:
       "Yes. Irrigation can be designed around boreholes, storage tanks, harvested rainwater, mains supply, or solar-powered pumping systems. The design must account for available water, flow, pressure, filtration, pumping requirements, and irrigation demand.",
     category: "irrigation",
-    isPopular: true,
   },
 
   // ============================================================
-  // WATER STORAGE
+  // WATER STORAGE — 5 QUESTIONS
   // ============================================================
 
   {
@@ -474,16 +393,8 @@ export const FAQs: FAQ[] = [
     category: "water-storage",
   },
 
-  {
-    id: "water-storage-6",
-    question: "How do I keep my stored water clean and safe?",
-    answer:
-      "Proper tank installation, covered storage, clean inlet arrangements, suitable filtration, inspection, and periodic cleaning help maintain water quality. Drinking-water systems require additional attention to hygiene, treatment, and water-quality testing.",
-    category: "water-storage",
-  },
-
   // ============================================================
-  // WATER HARVESTING
+  // WATER HARVESTING — 5 QUESTIONS
   // ============================================================
 
   {
@@ -492,6 +403,7 @@ export const FAQs: FAQ[] = [
     answer:
       "Yes. Roof rainwater harvesting can collect water for suitable domestic, agricultural, cleaning, irrigation, or other uses. The system should be designed around roof area, rainfall, collection efficiency, storage capacity, water demand, and intended use.",
     category: "water-harvesting",
+    isPopular: true,
   },
 
   {
@@ -508,6 +420,7 @@ export const FAQs: FAQ[] = [
     answer:
       "Rainwater should not automatically be assumed to be potable. Drinking-water use requires appropriate collection hygiene, filtration, disinfection, and suitable water-quality testing. The treatment required depends on the source and intended use.",
     category: "water-harvesting",
+    isPopular: true,
   },
 
   {
@@ -525,15 +438,8 @@ export const FAQs: FAQ[] = [
       "Yes. A complete system can include roof collection, gutters, first-flush arrangements, filtration, storage, pumps, distribution, and appropriate treatment depending on the intended use.",
     category: "water-harvesting",
   },
-
-  {
-    id: "water-harvesting-6",
-    question: "Can harvested rainwater be used for irrigation?",
-    answer:
-      "Yes. Rainwater can be a useful irrigation source when the collection and storage system is appropriately designed. Filtration and water-quality considerations depend on the irrigation equipment and intended application.",
-    category: "water-harvesting",
-  },
 ];
+
 export function getFAQsByCategory(category: FAQSlug): FAQ[] {
   return FAQs.filter((f) => f.category === category);
 }

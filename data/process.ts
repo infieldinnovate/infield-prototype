@@ -1,3 +1,5 @@
+// data/process.ts
+
 import {
   CheckCircle2,
   FileText,
@@ -26,56 +28,63 @@ export const processSteps: ProcessStep[] = [
     step: 1,
     title: "Consultation",
     description:
-      "We discuss your needs, goals, and project scope to understand exactly what you require.",
+      "We discuss your needs, goals, budget, and project scope to understand the right solution for your requirements.",
     icon: MessageCircle,
   },
+
   {
     step: 2,
     title: "Site Visit",
     description:
-      "Our engineers visit your property to assess conditions, take measurements, and identify challenges.",
+      "Our engineers assess the site, take measurements, review existing conditions, and identify technical requirements and challenges.",
     icon: MapPin,
   },
+
   {
     step: 3,
     title: "Design",
     description:
-      "We create a detailed system design tailored to your property and requirements.",
+      "We develop a practical system design tailored to your site, requirements, performance needs, and applicable standards.",
     icon: PenTool,
   },
+
   {
     step: 4,
-    title: "Quotation",
+    title: "Proposal & Quotation",
     description:
-      "You receive a transparent, itemised quote with no hidden costs or surprises.",
+      "You receive a clear proposal and itemised quotation outlining the recommended solution, scope of work, costs, and project expectations.",
     icon: FileText,
   },
+
   {
     step: 5,
     title: "Installation",
     description:
-      "Our certified technicians execute the installation efficiently and to the highest standards.",
+      "Our qualified team carries out the installation professionally, safely, and in accordance with the approved design and applicable requirements.",
     icon: Wrench,
   },
+
   {
     step: 6,
-    title: "Testing",
+    title: "Testing & Commissioning",
     description:
-      "Every system is thoroughly tested and commissioned to ensure safety and performance.",
+      "We test and commission the completed system to verify safety, functionality, performance, and readiness for use.",
     icon: CheckCircle2,
   },
+
   {
     step: 7,
     title: "Handover",
     description:
-      "We walk you through your new system, provide documentation, and answer all questions.",
+      "We guide you through the completed system, provide relevant documentation, and explain operation, care, and maintenance requirements.",
     icon: Handshake,
   },
+
   {
     step: 8,
-    title: "Maintenance",
+    title: "Maintenance & Support",
     description:
-      "Ongoing support and maintenance to keep your systems performing optimally for years.",
+      "We provide ongoing maintenance and technical support to help keep your system operating reliably and efficiently.",
     icon: Settings,
   },
 ];

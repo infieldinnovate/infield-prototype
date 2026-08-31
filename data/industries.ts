@@ -2,6 +2,8 @@
 // Industries We Serve Data
 // ============================================
 
+// data/industries.ts
+
 import {
   Building2,
   Factory,
@@ -20,8 +22,6 @@ export interface Industry {
   name: string;
   icon: LucideIcon;
   description: string;
-  services: string[];
-  serviceSlug: string;
 }
 
 export const industries: Industry[] = [
@@ -30,14 +30,7 @@ export const industries: Industry[] = [
     name: "Residential",
     icon: Home,
     description:
-      "Complete engineering services for homes, apartments, and residential estates.",
-    services: [
-      "Electrical wiring",
-      "Solar installation",
-      "Plumbing",
-      "Irrigation systems",
-    ],
-    serviceSlug: "electrical",
+      "Water, energy, electrical, plumbing, and irrigation solutions for homes, apartments, and residential estates.",
   },
 
   {
@@ -45,93 +38,62 @@ export const industries: Industry[] = [
     name: "Commercial",
     icon: Building2,
     description:
-      "Reliable solutions for offices, retail spaces, and commercial buildings.",
-    services: [
-      "Electrical fit-outs",
-      "Solar systems",
-      "Plumbing",
-      "Maintenance contracts",
-    ],
-    serviceSlug: "electrical",
+      "Reliable engineering solutions for offices, retail spaces, commercial buildings, and business facilities.",
   },
 
   {
     id: "i3",
-    name: "Schools",
+    name: "Education",
     icon: GraduationCap,
     description:
-      "Safe, efficient engineering for educational institutions and campuses.",
-    services: [
-      "Electrical safety",
-      "Solar energy",
-      "Plumbing",
-      "Water solutions",
-    ],
-    serviceSlug: "electrical",
+      "Safe and dependable water, energy, and electrical solutions for schools, colleges, and educational institutions.",
   },
 
   {
     id: "i4",
-    name: "Hospitals",
+    name: "Healthcare",
     icon: HeartPulse,
     description:
-      "Critical engineering services for healthcare facilities and clinics.",
-    services: [
-      "Backup power",
-      "Electrical systems",
-      "Plumbing",
-      "Water supply",
-    ],
-    serviceSlug: "electrical",
+      "Reliable engineering solutions for hospitals, clinics, and healthcare facilities where dependable power and water are essential.",
   },
 
   {
     id: "i5",
-    name: "Hotels",
+    name: "Hospitality",
     icon: Hotel,
     description:
-      "Premium engineering solutions for hospitality and tourism properties.",
-    services: ["Electrical", "Solar", "Plumbing", "Irrigation"],
-    serviceSlug: "electrical",
+      "Integrated water, energy, electrical, plumbing, and irrigation solutions for hotels, lodges, resorts, and hospitality properties.",
   },
 
   {
     id: "i6",
-    name: "Farms",
+    name: "Agriculture",
     icon: Wheat,
     description:
-      "Agricultural engineering — water supply, power, and irrigation solutions.",
-    services: ["Borehole drilling", "Solar pumps", "Irrigation", "Electrical"],
-    serviceSlug: "boreholes",
+      "Integrated water, pumping, energy, and irrigation solutions for farms, greenhouses, ranches, and agricultural operations.",
   },
 
   {
     id: "i7",
-    name: "Government",
+    name: "Government & Public Sector",
     icon: Landmark,
     description:
-      "Compliant engineering services for government and municipal projects.",
-    services: ["Electrical", "Solar", "Boreholes", "Infrastructure"],
-    serviceSlug: "electrical",
+      "Reliable engineering solutions for government facilities, public institutions, and public-sector projects.",
   },
 
   {
     id: "i8",
-    name: "NGOs",
+    name: "NGOs & Development Organizations",
     icon: HandHeart,
     description:
-      "Sustainable engineering solutions for non-profit and community projects.",
-    services: ["Solar", "Boreholes", "Water systems", "Electrical"],
-    serviceSlug: "solar",
+      "Sustainable water, energy, and electrical solutions for community, humanitarian, and development projects.",
   },
 
   {
     id: "i9",
-    name: "Manufacturing",
+    name: "Manufacturing & Industry",
     icon: Factory,
     description:
-      "Industrial-grade engineering for factories and manufacturing facilities.",
-    services: ["High-voltage electrical", "Solar", "Plumbing", "Maintenance"],
-    serviceSlug: "electrical",
+      "Industrial-grade water, energy, electrical, and plumbing solutions for factories, plants, and manufacturing facilities.",
   },
 ];

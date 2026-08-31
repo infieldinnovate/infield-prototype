@@ -24,15 +24,15 @@ import {
   articles,
   articleCategories,
   getArticlesByCategory,
-  type ArticleCategory,
 } from "@/data/articles";
+import { ServiceSlug } from "@/data/services";
 import { FAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
 import styles from "./page.module.scss";
 
 export default function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<ArticleCategory | "All">(
+  const [activeCategory, setActiveCategory] = useState<ServiceSlug | "All">(
     "All",
   );
   const filteredArticles = useMemo(() => {
@@ -109,7 +109,10 @@ export default function ResourcesPage() {
               />
             </div>
             <div className={styles.heroActions}>
-              <LinkButton href="/resources/downloads" leftIcon={<Download size={18} />}>
+              <LinkButton
+                href="/resources/downloads"
+                leftIcon={<Download size={18} />}
+              >
                 Download Company Profile
               </LinkButton>
               <LinkButton
@@ -227,15 +230,15 @@ export default function ResourcesPage() {
               </button>
               {articleCategories.map((cat) => (
                 <button
-                  key={cat}
+                  key={cat.slug}
                   className={cn(
                     styles.categoryChip,
-                    activeCategory === cat && styles.categoryChipActive,
+                    activeCategory === cat.slug && styles.categoryChipActive,
                   )}
-                  onClick={() => setActiveCategory(cat)}
+                  onClick={() => setActiveCategory(cat.slug)}
                   type="button"
                 >
-                  {cat}
+                  {cat.label}
                 </button>
               ))}
             </div>
@@ -263,9 +266,7 @@ export default function ResourcesPage() {
                   <Download size={16} />
                   Downloads
                 </span>
-                <h2 className={styles.downloadsCtaTitle}>
-                  Resource Library
-                </h2>
+                <h2 className={styles.downloadsCtaTitle}>Resource Library</h2>
                 <p className={styles.downloadsCtaDesc}>
                   Download brochures, technical datasheets, warranty
                   information, and maintenance guides — all in one place.
@@ -281,7 +282,6 @@ export default function ResourcesPage() {
           </div>
         </section>
       )}
-
     </>
   );
 }

@@ -1,3 +1,5 @@
+// data\whatsappOptions.ts
+
 export interface ChatOption {
   label: string;
   message: string;

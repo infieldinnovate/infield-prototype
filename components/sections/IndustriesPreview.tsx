@@ -6,7 +6,7 @@ import { industries } from "@/data/industries";
 import styles from "./IndustriesPreview.module.scss";
 
 export function IndustriesPreview() {
-  const preview = industries.slice(0, 6);
+  const preview = industries;
 
   return (
     <section className={styles.section} aria-labelledby="industries-heading">
@@ -27,7 +27,7 @@ export function IndustriesPreview() {
             return (
               <Link
                 key={industry.id}
-                href={`/services/${industry.serviceSlug}`}
+                href={"/services"}
                 className={styles.card}
               >
                 <div className={styles.iconWrap}>

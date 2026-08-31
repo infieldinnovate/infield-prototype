@@ -1164,35 +1164,10 @@
 }
 .audienceName {
   font-size: $fs-lg;
-  font-weight: $fw-bold;
+  font-weight: normal;
   color: $color-slate-900;
 }
-.audienceDesc {
-  font-size: $fs-sm;
-  color: $color-slate-600;
-  line-height: $lh-relaxed;
-  flex: 1;
-}
-.audienceServices {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.audienceServices li {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  background: $color-white;
-  border: 1px solid $color-gray-200;
-  border-radius: 999px;
-  font-size: $fs-xs;
-  color: $color-slate-600;
-  font-weight: $fw-medium;
-}
+
 .audienceServices svg {
   color: $color-secondary;
 }

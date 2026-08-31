@@ -10,7 +10,8 @@ import { ProcessTimeline } from "@/components/sections/ProcessTimeline";
 import AboutHeroCarousel from "@/components/sections/AboutHeroCarousel";
 import { IndustryCard } from "@/components/cards/IndustryCard";
 import { certificationsList } from "@/data/certifications";
-import { equipment, safetyCommitments } from "@/data/equipment";
+import { equipment } from "@/data/equipment";
+import { safetyCommitments } from "@/data/safety";
 import { industries } from "@/data/industries";
 import {
   CircleCheck as CheckCircle2,

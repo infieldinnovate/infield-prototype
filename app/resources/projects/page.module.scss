@@ -120,11 +120,11 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 .sectionTitle {
   font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
   color: $foreground;
   line-height: 1.15;
   letter-spacing: -0.02em;
   margin: 0 0 1rem;
+  text-transform: uppercase;
 }
 
 .sectionDescription {

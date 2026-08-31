@@ -58,6 +58,7 @@ export default function HomePage() {
         eyebrow="Our Impact"
         title="Delivering Measurable Results"
         description="Over a decade of engineering excellence across Kenya — the numbers speak for themselves."
+        scroll={true}
       />
 
       <ServicesOverview />

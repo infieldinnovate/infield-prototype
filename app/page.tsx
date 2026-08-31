@@ -65,14 +65,14 @@ export default function HomePage() {
 
       <WhyChooseUs />
 
+      {/* Industries Served Preview */}
+      <IndustriesPreview />
+
       {/* Featured Case Studies */}
       <ProjectsShowcase projects={getFeaturedProjects()} />
 
       {/* Before & After Slider */}
       <BeforeAfterSlider />
-
-      {/* Industries Served Preview */}
-      <IndustriesPreview />
 
       {/* Certifications & Licences */}
       <CertificationsSection />

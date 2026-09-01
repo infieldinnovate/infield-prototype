@@ -12,12 +12,10 @@ export const metadata: Metadata = {
   description:
     "Get in touch with Infield Innovations for electrical, plumbing, solar, irrigation, and borehole services across Kenya. Call us, email us, WhatsApp us, or send a message through our contact form.",
   keywords: [
-    "contact Infield Innovations",
-    "engineering contact Kenya",
-    "emergency electrician Kenya",
-    "emergency plumber Kenya",
-    "site visit booking Kenya",
-    "WhatsApp engineering services",
+    "contact infield innovations",
+    "engineering services contact",
+    "engineering company kenya",
+    "contact engineering company kenya",
   ],
   alternates: {
     canonical: "/contact",

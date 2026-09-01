@@ -6,13 +6,12 @@ export const metadata: Metadata = {
   description:
     'Explore our completed solar, borehole, irrigation, plumbing, and electrical projects across Kenya. See the real-world impact of our engineering solutions.',
   keywords: [
-    "engineering projects Kenya",
-    "solar installations Kenya",
-    "borehole projects Kenya",
-    "irrigation projects Kenya",
-    "electrical projects Kenya",
-    "plumbing projects Kenya",
-    "case studies Kenya engineering",
+    "engineering projects kenya",
+    "completed engineering projects",
+    "engineering case studies kenya",
+    "solar installations kenya",
+    "borehole projects kenya",
+    "water projects kenya",
   ],
   alternates: {
     canonical: '/resources/projects',

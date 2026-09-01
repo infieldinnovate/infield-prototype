@@ -7,13 +7,12 @@ export const metadata: Metadata = {
   description:
     "Explore Infield Innovations' knowledge hub — expert articles, technical guides, product brochures, warranty information, maintenance guides, industry insights, and our complete project process.",
   keywords: [
-    "engineering articles Kenya",
-    "solar guides Kenya",
-    "borehole drilling guide",
-    "irrigation guide Kenya",
-    "electrical tips Kenya",
-    "plumbing maintenance Kenya",
-    "water harvesting guide",
+    "engineering knowledge centre",
+    "engineering articles kenya",
+    "technical engineering guides",
+    "solar guides",
+    "borehole guides",
+    "irrigation guides",
   ],
   alternates: {
     canonical: "/resources/knowledge-centre",

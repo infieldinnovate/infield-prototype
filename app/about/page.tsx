@@ -7,12 +7,11 @@ export const metadata: Metadata = {
   description:
     "Learn about Infield Innovations — our mission, values, and the team of certified professionals dedicated to delivering exceptional electrical, plumbing, solar, irrigation, and borehole services across Kenya.",
   keywords: [
-    "about Infield Innovations",
-    "engineering company Kenya",
-    "certified engineers Kenya",
-    "solar company Meru",
-    "borehole drilling company",
-    "electrical contractor Kenya",
+    "about infield innovations",
+    "engineering company kenya",
+    "engineering company in kenya",
+    "certified technicians",
+    "company history",
   ],
   alternates: {
     canonical: "/about",

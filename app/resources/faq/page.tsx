@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   description:
     "Find answers to common questions about Infield Innovations' services, products, installation, maintenance, warranties, and payment options. Get help via WhatsApp, phone, or email.",
   keywords: [
-    "engineering FAQ Kenya",
-    "solar questions Kenya",
-    "borehole drilling FAQ",
-    "electrical FAQ Kenya",
-    "plumbing FAQ Kenya",
-    "irrigation FAQ Kenya",
+    "engineering faq",
+    "engineering frequently asked questions",
+    "solar faq",
+    "borehole faq",
+    "water solutions faq",
+    "irrigation faq",
   ],
   alternates: {
     canonical: "/resources/faq",

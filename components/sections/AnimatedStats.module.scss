@@ -1,5 +1,5 @@
-@use '../../styles/abstracts/variables' as *;
-@use '../../styles/abstracts/mixins' as *;
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
 
 // ============================================
 // Section
@@ -16,16 +16,20 @@
 // ============================================
 
 .dark {
-  background: linear-gradient(135deg, var(--color-primary-900), var(--color-primary-700));
+  background: $color-gray-900;
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -50%;
     right: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(45, 212, 191, 0.12), transparent 70%);
+    background: radial-gradient(
+      circle,
+      rgba(45, 212, 191, 0.12),
+      transparent 70%
+    );
     border-radius: 50%;
     pointer-events: none;
   }
@@ -58,9 +62,11 @@
   gap: var(--space-4);
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 
-  &[data-inview='true'] {
+  &[data-inview="true"] {
     opacity: 1;
     transform: translateY(0);
   }
@@ -85,7 +91,7 @@
     transform: translateY(-4px);
   }
 
-  &[data-inview='true'] {
+  &[data-inview="true"] {
     transform: translateY(0);
   }
 }
@@ -135,13 +141,21 @@
 
 // Dark theme icon
 .dark .statIcon {
-  background: linear-gradient(135deg, rgba(45, 212, 191, 0.15), rgba(15, 108, 189, 0.15));
+  background: linear-gradient(
+    135deg,
+    rgba(45, 212, 191, 0.15),
+    rgba(15, 108, 189, 0.15)
+  );
   color: var(--color-secondary-light);
   border: 1px solid rgba(45, 212, 191, 0.2);
 }
 
 .dark .grid .stat:hover .statIcon {
-  background: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary),
+    var(--color-primary)
+  );
   color: var(--color-white);
   border-color: transparent;
   transform: scale(1.08);
@@ -149,12 +163,20 @@
 
 // Light theme icon
 .light .statIcon {
-  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-50),
+    var(--color-secondary-50)
+  );
   color: var(--color-primary);
 }
 
 .light .grid .stat:hover .statIcon {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
   color: var(--color-white);
   transform: scale(1.08);
 }
@@ -164,7 +186,7 @@
   font-weight: var(--fw-extrabold);
   line-height: 1;
 
-  @include breakpoint-down('sm') {
+  @include breakpoint-down("sm") {
     font-size: var(--fs-3xl);
   }
 }
@@ -178,7 +200,11 @@
 
 // Dark theme text colors
 .dark .value {
-  background: linear-gradient(135deg, var(--color-white), var(--color-secondary-light));
+  background: linear-gradient(
+    135deg,
+    var(--color-white),
+    var(--color-secondary-light)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -205,9 +231,9 @@
   @include flex-column;
   align-items: flex-start;
   text-align: left;
-  min-width: 240px;
-  padding: var(--space-6) var(--space-8);
-  gap: var(--space-3);
+  min-width: 200px;
+  padding: 0;
+  gap: var(--space-2);
 }
 
 // Dark theme scroll icon
@@ -219,7 +245,11 @@
 
 // Light theme scroll icon
 .light .statScroll .statIcon {
-  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-50),
+    var(--color-secondary-50)
+  );
   color: var(--color-primary);
 }
 
@@ -285,7 +315,7 @@
 
   @include focus-visible;
 
-  @include breakpoint-down('sm') {
+  @include breakpoint-down("sm") {
     display: none;
   }
 }

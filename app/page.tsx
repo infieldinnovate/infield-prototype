@@ -1,3 +1,5 @@
+// app\page.tsx
+
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";

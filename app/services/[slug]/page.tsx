@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getServiceBySlug, getServiceSlugs } from "@/data/services";
+import { buildServiceSchema } from "@/lib/structured-data";
 import ServiceDetailClient from "./ServiceDetailClient";
 
 interface ServicePageProps {
@@ -38,5 +39,15 @@ export default function ServicePage({ params }: ServicePageProps) {
     notFound();
   }
 
-  return <ServiceDetailClient service={service} />;
+  const jsonLd = buildServiceSchema(service);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ServiceDetailClient service={service} />
+    </>
+  );
 }

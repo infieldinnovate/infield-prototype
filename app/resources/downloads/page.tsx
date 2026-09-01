@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   title: "Downloads & Resource Library",
   description:
     "Download brochures, technical datasheets, warranty information, and maintenance guides from Infield Innovations. Everything you need to make informed decisions about your engineering projects.",
+  keywords: [
+    "engineering brochures Kenya",
+    "solar datasheets Kenya",
+    "borehole technical specs Kenya",
+    "warranty information Kenya",
+    "maintenance guides Kenya",
+    "product catalogues Kenya",
+  ],
   alternates: {
     canonical: "/resources/downloads",
   },

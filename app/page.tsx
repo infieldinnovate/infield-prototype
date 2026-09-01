@@ -23,6 +23,16 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "engineering services Kenya",
+    "solar installation Kenya",
+    "borehole drilling Kenya",
+    "electrical services Kenya",
+    "plumbing services Kenya",
+    "irrigation systems Kenya",
+    "water solutions Kenya",
+    "Infield Innovations",
+  ],
   alternates: {
     canonical: "/",
   },

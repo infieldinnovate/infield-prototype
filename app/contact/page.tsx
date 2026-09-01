@@ -4,22 +4,21 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ContactFormSection } from "@/components/forms/ContactFormSection";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { siteConfig } from "@/data/site.config";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Clock,
-  MessageSquare,
-  AlertCircle,
-  MessageCircle,
-  ExternalLink,
-} from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageSquare, CircleAlert as AlertCircle, MessageCircle, ExternalLink } from "lucide-react";
 import styles from "./contact.module.scss";
 
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Get in touch with Infield Innovations for electrical, plumbing, solar, irrigation, and borehole services across Kenya. Call us, email us, WhatsApp us, or send a message through our contact form.",
+  keywords: [
+    "contact Infield Innovations",
+    "engineering contact Kenya",
+    "emergency electrician Kenya",
+    "emergency plumber Kenya",
+    "site visit booking Kenya",
+    "WhatsApp engineering services",
+  ],
   alternates: {
     canonical: "/contact",
   },

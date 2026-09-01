@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Page Not Found",
   description:
     "The page you are looking for could not be found. Browse our services or return to the home page.",
+  keywords: ["page not found", "404", "Infield Innovations"],
   robots: { index: false, follow: true },
   alternates: {
     canonical: "/404",

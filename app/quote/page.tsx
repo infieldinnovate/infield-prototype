@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: 'Request a Quote',
   description:
     'Request a free, no-obligation quote for electrical, plumbing, solar, irrigation, or borehole services. Our team will respond within 1 business day.',
+  keywords: [
+    "free quote engineering Kenya",
+    "solar installation quote Kenya",
+    "borehole drilling quote Kenya",
+    "electrical quote Kenya",
+    "plumbing quote Kenya",
+    "irrigation quote Kenya",
+  ],
   alternates: {
     canonical: '/quote',
   },

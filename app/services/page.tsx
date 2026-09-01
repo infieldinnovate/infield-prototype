@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/site.config";
+import { SERVICES } from "@/data/services";
+import { buildServiceListSchema } from "@/lib/structured-data";
 import ServicesPageClient from "./ServicesPageClient";
 
 export const metadata: Metadata = {
@@ -26,5 +28,15 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
-  return <ServicesPageClient />;
+  const jsonLd = buildServiceListSchema(SERVICES);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ServicesPageClient />
+    </>
+  );
 }

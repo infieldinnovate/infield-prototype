@@ -151,3 +151,38 @@ export function buildFAQSchema(
     })),
   };
 }
+
+export function buildServiceListSchema(
+  services: { name: string; description: string; slug: string; image: string }[],
+): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Engineering Services",
+    description:
+      "Integrated water, energy, and engineering solutions offered by Infield Innovations across Kenya.",
+    itemListElement: services.map((service, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: service.name,
+      url: `${siteConfig.url}/services/${service.slug}`,
+      item: {
+        "@type": "Service",
+        name: service.name,
+        description: service.description,
+        image: service.image,
+        url: `${siteConfig.url}/services/${service.slug}`,
+        provider: {
+          "@type": "LocalBusiness",
+          name: siteConfig.name,
+          url: siteConfig.url,
+          telephone: siteConfig.phone,
+        },
+        areaServed: {
+          "@type": "Country",
+          name: "Kenya",
+        },
+      },
+    })),
+  };
+}

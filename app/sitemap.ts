@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { siteConfig } from '@/data/site.config';
 import { getServiceSlugs } from '@/data/services';
+import { getArticleSlugs } from '@/data/articles';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
@@ -23,7 +24,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
   }));
 
-  return [...staticPages, ...servicePages].map((page) => ({
+  const articlePages = getArticleSlugs().map((slug) => ({
+    url: `/resources/knowledge-centre/${slug}`,
+    priority: 0.6,
+    changeFrequency: 'monthly' as const,
+  }));
+
+  return [...staticPages, ...servicePages, ...articlePages].map((page) => ({
     url: `${siteConfig.url}${page.url}`,
     lastModified: new Date(),
     changeFrequency: page.changeFrequency,

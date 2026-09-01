@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getServiceBySlug, getServiceSlugs } from "@/data/services";
+import { siteConfig } from "@/data/site.config";
 import { buildServiceSchema } from "@/lib/structured-data";
 import ServiceDetailClient from "./ServiceDetailClient";
 
@@ -24,10 +25,22 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
   return {
     title: service.name,
     description: service.description,
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
     openGraph: {
-      title: `${service.name} | Infield Innovations`,
+      title: `${service.name} | ${siteConfig.name}`,
       description: service.description,
+      url: `${siteConfig.url}/services/${service.slug}`,
+      siteName: siteConfig.name,
+      type: "website",
       images: [{ url: service.image, alt: service.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.name} | ${siteConfig.name}`,
+      description: service.description,
+      images: [service.image],
     },
   };
 }

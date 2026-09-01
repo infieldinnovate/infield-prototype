@@ -28,7 +28,8 @@ export function buildLocalBusinessSchema(): JsonLd {
     },
     geo: {
       "@type": "GeoCoordinates",
-      address: siteConfig.address.city,
+      latitude: 0.0599,
+      longitude: 37.643,
     },
     openingHoursSpecification: [
       {

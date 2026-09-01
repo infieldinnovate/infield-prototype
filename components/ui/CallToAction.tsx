@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Phone,
@@ -8,14 +9,17 @@ import {
   CircleCheck as CheckCircle,
   Minus,
   Calendar,
+  Star,
 } from "lucide-react";
 import Link from "next/link";
 import styles from "./CallToAction.module.scss";
 import { SectionHeading } from "./SectionHeading";
 import { siteConfig } from "@/data/site.config";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";
+import { ReviewModal } from "@/components/forms/ReviewModal";
 
 const CallToAction = () => {
+  const [reviewOpen, setReviewOpen] = useState(false);
   const benefits = [
     "Free consultation and site visit",
     "Transparent pricing with no hidden costs",
@@ -24,6 +28,7 @@ const CallToAction = () => {
   ];
 
   return (
+    <>
     <section className={styles.ctaSection}>
       <div className={styles.container}>
         <div className={styles.content}>
@@ -110,8 +115,41 @@ const CallToAction = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Review Us Section */}
+        <motion.div
+          className={styles.reviewSection}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className={styles.reviewCard}>
+            <div className={styles.reviewIcon}>
+              <Star size={28} fill="currentColor" />
+            </div>
+            <div className={styles.reviewContent}>
+              <h3 className={styles.reviewTitle}>Been happy with our work?</h3>
+              <p className={styles.reviewDesc}>
+                Share your experience with Infield Innovations. Your review
+                helps us improve and helps others find the right partner.
+              </p>
+            </div>
+            <button
+              type="button"
+              className={styles.reviewButton}
+              onClick={() => setReviewOpen(true)}
+            >
+              <Star size={18} />
+              Review Us
+            </button>
+          </div>
+        </motion.div>
       </div>
     </section>
+
+    <ReviewModal open={reviewOpen} onClose={() => setReviewOpen(false)} />
+    </>
   );
 };
 

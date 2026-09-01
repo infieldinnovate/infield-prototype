@@ -12,8 +12,8 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { reviewSchema, type ReviewFormData } from "@/lib/review-validations";
-import { supabase } from "@/lib/supabase-client";
 import { SERVICES } from "@/data/services";
+import { FORM_SUBMISSION_DELAY } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import InputField from "@/components/forms/form_elements/input";
 import SelectField from "@/components/forms/form_elements/select";
@@ -75,16 +75,7 @@ export function ReviewModal({ open, onClose }: ReviewModalProps) {
   const onSubmit = async (data: ReviewFormData) => {
     setSubmitError(null);
     try {
-      const { error } = await supabase.from("reviews").insert({
-        name: data.name,
-        email: data.email,
-        rating: data.rating,
-        service: data.service,
-        title: data.title,
-        body: data.body,
-      });
-
-      if (error) throw error;
+      await new Promise((resolve) => setTimeout(resolve, FORM_SUBMISSION_DELAY));
 
       setSubmitted(true);
       reset();

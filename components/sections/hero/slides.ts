@@ -24,8 +24,8 @@ export const slides: HeroSlideData[] = [
       "Wide-angle view of a large-scale construction site with cranes under a vibrant blue sky",
     panelTitle: "SOLAR ENERGY",
     panelMeta: "Clean Power \u2022 Storage \u2022 Installation",
-    primaryCta: { label: "Get a Quote", href: "#quote" },
-    secondaryCta: { label: "Explore Our Services", href: "#services" },
+    primaryCta: { label: "Get Free Consultation", href: "/quote" },
+    secondaryCta: { label: "Explore Our Services", href: "/services" },
   },
   {
     id: "solar",
@@ -39,7 +39,7 @@ export const slides: HeroSlideData[] = [
       "A large field of solar panels capturing renewable energy under a clear sky",
     panelTitle: "SOLAR ENERGY",
     panelMeta: "Clean Power \u2022 Storage \u2022 Installation",
-    primaryCta: { label: "Explore Solar", href: "#solar" },
+    primaryCta: { label: "Solars - How We Do It", href: "/services/solar" },
   },
   {
     id: "water",
@@ -53,7 +53,10 @@ export const slides: HeroSlideData[] = [
       "Aerial shot of a sunlit construction site highlighting a deep borehole",
     panelTitle: "WATER SOLUTIONS",
     panelMeta: "Boreholes \u2022 Storage \u2022 Harvesting",
-    primaryCta: { label: "Explore Water Solutions", href: "#water" },
+    primaryCta: {
+      label: "Explore Water Solutions",
+      href: "/services/water-storage",
+    },
   },
   {
     id: "electrical",
@@ -67,7 +70,7 @@ export const slides: HeroSlideData[] = [
       "Professional engineer inspecting industrial electrical circuit board",
     panelTitle: "ELECTRICAL",
     panelMeta: "Installation \u2022 Maintenance \u2022 Upgrades",
-    primaryCta: { label: "Explore Electrical", href: "#electrical" },
+    primaryCta: { label: "Explore Electrical", href: "/services/electrical" },
   },
   {
     id: "irrigation",
@@ -81,6 +84,6 @@ export const slides: HeroSlideData[] = [
       "Drone shot of a circular irrigation system watering a green agricultural field",
     panelTitle: "IRRIGATION",
     panelMeta: "Design \u2022 Installation \u2022 Efficiency",
-    primaryCta: { label: "Explore Irrigation", href: "#irrigation" },
+    primaryCta: { label: "Explore Irrigation", href: "/services/irrigation" },
   },
 ];

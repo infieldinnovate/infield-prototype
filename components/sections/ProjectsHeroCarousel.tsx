@@ -39,8 +39,8 @@ export default function ProjectsHeroCarousel() {
           { icon: Calendar, text: project.completionDate },
         ],
         primaryButton: {
-          label: "View Project",
-          href: `/resources/projects-${project.id}`,
+          label: "View Projects",
+          href: `/resources/projects`,
         },
         secondaryButton: {
           label: "Explore Service",

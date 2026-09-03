@@ -14,8 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/resources/faq', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/quote', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/contact', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/privacy', priority: 0.3, changeFrequency: 'yearly' as const },
-    { url: '/terms', priority: 0.3, changeFrequency: 'yearly' as const },
   ];
 
   const servicePages = getServiceSlugs().map((slug) => ({

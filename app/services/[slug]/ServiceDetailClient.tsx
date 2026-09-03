@@ -202,7 +202,7 @@ export default function ServiceDetailClient({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
             >
-              <Link href="/" className={styles.backLink}>
+              <Link href="/services" className={styles.backLink}>
                 <ArrowLeft size={16} />
                 All services
               </Link>

@@ -856,7 +856,7 @@ export default function ServiceDetailClient({
               </div>
               <h2>One challenge rarely stands alone.</h2>
             </div>
-            <Link href="/" className={styles.textLink}>
+            <Link href="/services" className={styles.textLink}>
               View all services <ArrowRight size={17} />
             </Link>
           </div>

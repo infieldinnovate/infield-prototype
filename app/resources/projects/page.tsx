@@ -3,29 +3,16 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Link from "next/link";
-import {
-  MapPin,
-  Sun,
-  Droplet,
-  Sprout,
-  Smile,
-  Star,
-  Phone,
-  Calendar,
-  Mail,
-  Filter,
-} from "lucide-react";
+import { MapPin, Star, Filter } from "lucide-react";
 import { countiesServed } from "@/data/serviceAreas";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
-import { SERVICE_CATEGORIES, type ServiceSlug } from "@/data/services";
+import { SERVICE_CATEGORIES, ServiceSlug } from "@/data/services";
 import { projects, type Project } from "@/data/projectStats";
 import ProjectModal from "./ProjectModal";
 import ProjectMap from "../../../components/ui/ProjectMap";
 import styles from "./page.module.scss";
 import ProjectCard from "@/components/cards/ProjectCard";
 import ProjectsHeroCarousel from "@/components/sections/ProjectsHeroCarousel";
-// Breadcrumbs and ImageWithFallback are now handled inside ProjectsHeroCarousel
 
 type FilterCategory = "All Projects" | ServiceSlug;
 

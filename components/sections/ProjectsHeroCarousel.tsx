@@ -1,23 +1,17 @@
 "use client";
 
-// ============================================
-// ProjectsHeroCarousel — Built on PremiumCarousel
-// ============================================
-// Uses the shared carousel shell with real project data.
-// Photography dominates; metadata is restrained.
-// No AnimatedStats bar — removed per design brief.
-// ============================================
-
 import { useMemo } from "react";
 import { MapPin, Calendar, Tag, ArrowRight, CircleCheck } from "lucide-react";
-import { PremiumCarousel, type PremiumSlide } from "@/components/sections/PremiumCarousel";
+import {
+  PremiumCarousel,
+  type PremiumSlide,
+} from "@/components/sections/PremiumCarousel";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { projects } from "@/data/projectStats";
 import { ServiceIcons } from "@/data/service-icons";
 
 export default function ProjectsHeroCarousel() {
   const slides: PremiumSlide[] = useMemo(() => {
-    // Filter to featured, fall back to all if fewer than 3
     const featured = projects.filter((p) => p.featured);
     const pool = featured.length >= 3 ? featured : projects;
 
@@ -27,10 +21,8 @@ export default function ProjectsHeroCarousel() {
         project.gallery[0]?.url ||
         "";
 
-      const badgeIcon =
-        ServiceIcons[project.category] || CircleCheck;
+      const badgeIcon = ServiceIcons[project.category] || CircleCheck;
 
-      // Use the first result as the outcome-focused description, fall back to challenge
       const description = project.results[0] || project.challenge;
 
       return {
@@ -48,11 +40,11 @@ export default function ProjectsHeroCarousel() {
         ],
         primaryButton: {
           label: "View Project",
-          href: `/resources/projects#project-${project.id}`,
+          href: `/resources/projects-${project.id}`,
         },
         secondaryButton: {
-          label: "Explore Projects",
-          href: "/resources/projects",
+          label: "Explore Service",
+          href: `/services/${project.category}`,
         },
       };
     });

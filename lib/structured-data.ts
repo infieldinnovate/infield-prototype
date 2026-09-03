@@ -52,7 +52,7 @@ export function buildLocalBusinessSchema(): JsonLd {
       ratingValue: reviewSummary.averageRating,
       reviewCount: reviewSummary.totalReviews,
       bestRating: 5,
-      worstRating: 1,
+      worstRating: 14,
     },
   };
 }

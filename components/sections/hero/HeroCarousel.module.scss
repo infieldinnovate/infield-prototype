@@ -20,12 +20,6 @@
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
-  font-family:
-    var(--font-manrope),
-    var(--font-inter),
-    system-ui,
-    -apple-system,
-    sans-serif;
 
   &:active {
     cursor: grabbing;

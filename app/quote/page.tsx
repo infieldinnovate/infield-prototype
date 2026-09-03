@@ -3,6 +3,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs';
 import { QuoteForm } from '@/components/forms/QuoteForm';
 import { siteConfig } from '@/data/site.config';
+import { getServiceBySlug } from '@/data/services';
 import styles from './quote.module.scss';
 
 export const metadata: Metadata = {
@@ -36,7 +37,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function QuotePage() {
+export default async function QuotePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ service?: string }>;
+}) {
+  const params = await searchParams;
+  const service = params.service ? getServiceBySlug(params.service) : undefined;
+  const defaultServiceType = service?.shortName;
+
   return (
     <>
       <section className={styles.hero}>
@@ -54,7 +63,7 @@ export default function QuotePage() {
       <section className={styles.section}>
         <div className={styles.container}>
           <div className={styles.formWrapper}>
-            <QuoteForm />
+            <QuoteForm defaultServiceType={defaultServiceType} />
           </div>
         </div>
       </section>

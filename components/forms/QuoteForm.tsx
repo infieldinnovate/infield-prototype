@@ -37,7 +37,11 @@ import styles from "./QuoteForm.module.scss";
 
 const stepIcons = [FileText, Building, User, CheckCheck];
 
-export function QuoteForm() {
+interface QuoteFormProps {
+  defaultServiceType?: string;
+}
+
+export function QuoteForm({ defaultServiceType }: QuoteFormProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [result, setResult] = useState<SubmissionResult | null>(null);
 
@@ -51,6 +55,9 @@ export function QuoteForm() {
     resolver: zodResolver(quoteFullSchema),
     mode: "onChange",
     reValidateMode: "onChange",
+    defaultValues: defaultServiceType
+      ? { serviceType: defaultServiceType }
+      : undefined,
   });
 
   const watchedValues = watch();

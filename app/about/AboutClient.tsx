@@ -136,6 +136,7 @@ function AboutTimeline() {
 export default function AboutClient() {
   return (
     <>
+      <h1 className="sr-only">About {siteConfig.name} — Engineering Excellence Across Kenya</h1>
       {/* Hero */}
       <AboutHeroCarousel />
 

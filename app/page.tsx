@@ -63,6 +63,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <h1 className="sr-only">
+        {siteConfig.name} — Water, Energy &amp; Engineering Solutions in Kenya
+      </h1>
       <HomeCarousel />
 
       {/* Animated Stats Section */}

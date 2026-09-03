@@ -90,6 +90,7 @@ export default async function ContactPage({
             items={[{ label: "Home", href: "/" }, { label: "Contact" }]}
           />
           <SectionHeading
+            level="h1"
             eyebrow="Get in Touch"
             title="We're Here to Help"
             description="Have a question or ready to start a project? Reach out to us through any of the channels below, or send us a message using the form."

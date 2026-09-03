@@ -43,6 +43,7 @@ export default function QuotePage() {
         <div className={styles.container}>
           <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Quote Request' }]} />
           <SectionHeading
+            level="h1"
             eyebrow="Free Quote"
             title="Request a Free Quote"
             description="Tell us about your project and we'll provide a detailed, no-obligation quote. The more details you provide, the more accurate your estimate will be."

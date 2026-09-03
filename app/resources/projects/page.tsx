@@ -39,6 +39,7 @@ export default function ProjectsPage() {
 
   return (
     <div className={styles.page}>
+      <h1 className="sr-only">Our Projects — Engineering Installations Across Kenya</h1>
       {/* Hero Carousel */}
       <ProjectsHeroCarousel />
 

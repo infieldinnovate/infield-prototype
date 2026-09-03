@@ -19,6 +19,7 @@ import {
   Download,
   type LucideIcon,
 } from "lucide-react";
+import { siteConfig } from "./site.config";
 
 export const navLinks = [
   { label: "Home", href: "/" },
@@ -107,7 +108,7 @@ export const socialLinks = {
     label: "YouTube",
   },
   whatsapp: {
-    link: "https://wa.me/254702393677",
+    link: `https://wa.me/${siteConfig.whatsapp}`,
     icon: FaWhatsapp,
     label: "WhatsApp",
   },

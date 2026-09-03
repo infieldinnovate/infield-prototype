@@ -25,13 +25,6 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
   return {
     title: service.name,
     description: service.description,
-    keywords: [
-      service.name,
-      `${service.shortName} Kenya`,
-      `${service.shortName} services Kenya`,
-      `${service.shortName} installation Kenya`,
-      `${service.shortName} Meru`,
-    ],
     alternates: {
       canonical: `/services/${service.slug}`,
     },

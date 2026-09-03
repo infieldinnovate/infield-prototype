@@ -8,14 +8,6 @@ export const metadata: Metadata = {
   title: "Frequently Asked Questions",
   description:
     "Find answers to common questions about Infield Innovations' services, products, installation, maintenance, warranties, and payment options. Get help via WhatsApp, phone, or email.",
-  keywords: [
-    "engineering faq",
-    "engineering frequently asked questions",
-    "solar faq",
-    "borehole faq",
-    "water solutions faq",
-    "irrigation faq",
-  ],
   alternates: {
     canonical: "/resources/faq",
   },

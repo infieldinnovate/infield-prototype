@@ -8,15 +8,6 @@ export const metadata: Metadata = {
   title: "Our Services",
   description:
     "Explore Infield Innovations' full range of engineering services — solar energy, electrical, plumbing, borehole drilling, water storage, water harvesting, and irrigation systems across Kenya.",
-  keywords: [
-    "engineering services kenya",
-    "solar installation kenya",
-    "borehole drilling kenya",
-    "electrical services kenya",
-    "plumbing services kenya",
-    "irrigation systems kenya",
-    "water solutions kenya",
-  ],
   alternates: {
     canonical: "/services",
   },

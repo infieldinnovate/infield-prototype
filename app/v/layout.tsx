@@ -5,11 +5,6 @@ export const metadata: Metadata = {
   title: 'Employee Verification',
   description:
     'Verify Infield Innovations employee credentials using a unique verification code or QR scanner.',
-  keywords: [
-    "employee verification Kenya",
-    "staff verification Infield Innovations",
-    "QR code verification Kenya",
-  ],
   alternates: {
     canonical: '/v',
   },

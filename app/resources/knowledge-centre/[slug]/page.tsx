@@ -29,7 +29,6 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
   return {
     title: article.title,
     description: article.excerpt,
-    keywords: article.tags,
     alternates: {
       canonical: `/resources/knowledge-centre/${article.slug}`,
     },

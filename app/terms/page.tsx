@@ -7,11 +7,6 @@ export const metadata: Metadata = {
   title: 'Terms of Service',
   description:
     'Read the Infield Innovations terms of service — the terms and conditions governing use of our website and engineering services.',
-  keywords: [
-    "terms of service Kenya",
-    "terms and conditions Kenya",
-    "Infield Innovations terms",
-  ],
   alternates: {
     canonical: '/terms',
   },

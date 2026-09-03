@@ -7,11 +7,6 @@ export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
     'Read the Infield Innovations privacy policy — how we collect, use, and safeguard your personal information when you use our website and services.',
-  keywords: [
-    "privacy policy Kenya",
-    "data protection Kenya",
-    "Infield Innovations privacy",
-  ],
   alternates: {
     canonical: '/privacy',
   },

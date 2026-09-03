@@ -26,19 +26,6 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "electrical services",
-    "plumbing services",
-    "solar installation",
-    "irrigation systems",
-    "borehole drilling",
-    "electrician",
-    "plumber",
-    "solar panels",
-    "water well drilling",
-    "residential services",
-    "commercial services",
-  ],
   authors: [{ name: siteConfig.name }],
   creator: siteConfig.name,
   publisher: siteConfig.name,
@@ -115,7 +102,6 @@ export default function RootLayout({
         sizes="16x16"
         href="/favicon_io/favicon-16x16.png"
       />
-      <link rel="manifest" href="/favicon_io/site.webmanifest" />
 
       <body className={styles.body}>
         <a href="#main-content" className="skip-link">

@@ -7,6 +7,8 @@ import {
 } from "@/data/articles";
 import { getEmployeeById, type Employee } from "@/data/teamData";
 import { siteConfig } from "@/data/site.config";
+import { getArticleAuthorName } from "@/data/articles";
+import { buildArticleSchema } from "@/lib/structured-data";
 import ArticleDetailClient from "./ArticleDetailClient";
 
 interface ArticlePageProps {
@@ -58,11 +60,26 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   const author = getEmployeeById(article.authorId) as Employee | undefined;
   const relatedArticles = getRelatedArticles(article, 3);
 
+  const jsonLd = buildArticleSchema({
+    title: article.title,
+    excerpt: article.excerpt,
+    slug: article.slug,
+    image: article.image,
+    publishDate: article.publishDate,
+    authorName: getArticleAuthorName(article),
+  });
+
   return (
-    <ArticleDetailClient
-      article={article}
-      author={author ?? null}
-      relatedArticles={relatedArticles}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ArticleDetailClient
+        article={article}
+        author={author ?? null}
+        relatedArticles={relatedArticles}
+      />
+    </>
   );
 }

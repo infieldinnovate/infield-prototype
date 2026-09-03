@@ -152,6 +152,39 @@ export function buildFAQSchema(
   };
 }
 
+export function buildArticleSchema(article: {
+  title: string;
+  excerpt: string;
+  slug: string;
+  image: string;
+  publishDate: string;
+  authorName: string;
+}): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.excerpt,
+    image: article.image,
+    datePublished: article.publishDate,
+    dateModified: article.publishDate,
+    url: `${siteConfig.url}/resources/knowledge-centre/${article.slug}`,
+    author: {
+      "@type": "Person",
+      name: article.authorName,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}${siteConfig.ogImage}`,
+      },
+    },
+  };
+}
+
 export function buildServiceListSchema(
   services: { name: string; description: string; slug: string; image: string }[],
 ): JsonLd {

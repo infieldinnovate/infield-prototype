@@ -10,7 +10,6 @@ import {
 } from "framer-motion";
 import {
   ArrowDownRight,
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   Building2,
@@ -37,6 +36,7 @@ import {
 } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { getServiceBySlug, SERVICES, Service } from "@/data/services";
 import { industries } from "@/data/industries";
 import { getProjectsByService } from "@/data/projectStats";
@@ -202,10 +202,13 @@ export default function ServiceDetailClient({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, ease: "easeOut" }}
             >
-              <Link href="/services" className={styles.backLink}>
-                <ArrowLeft size={16} />
-                All services
-              </Link>
+              <Breadcrumbs
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: "Services", href: "/services" },
+                  { label: service.shortName },
+                ]}
+              />
               <div className={styles.eyebrow}>
                 <span /> What we do
               </div>

@@ -2,7 +2,6 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Chrome as Home, ArrowLeft, Search, Wrench } from "lucide-react";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { siteConfig } from "@/data/site.config";
 import { navLinks, resourcesNavItems } from "@/data/links";
 import styles from "./not-found.module.scss";
 
@@ -12,16 +11,6 @@ export const metadata: Metadata = {
     "The page you are looking for could not be found. Browse our services or return to the home page.",
   keywords: ["page not found", "404", "Infield Innovations"],
   robots: { index: false, follow: true },
-  alternates: {
-    canonical: "/404",
-  },
-  openGraph: {
-    title: `Page Not Found | ${siteConfig.name}`,
-    description: "The page you are looking for could not be found.",
-    url: `${siteConfig.url}/404`,
-    siteName: siteConfig.name,
-    type: "website",
-  },
 };
 
 export default function NotFound() {

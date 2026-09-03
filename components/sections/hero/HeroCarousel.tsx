@@ -143,16 +143,6 @@ export default function HomeCarousel() {
       {/* ---------- Controls overlay ---------- */}
       <div className={styles.controls}>
         <div className={styles.counterRow}>
-          <span className={styles.counter}>
-            <span className={styles.counterActive}>
-              {String(activeIndex + 1).padStart(2, "0")}
-            </span>
-            <span className={styles.counterDivider}> / </span>
-            <span className={styles.counterTotal}>
-              {String(total).padStart(2, "0")}
-            </span>
-          </span>
-
           <div className={styles.progressTrack}>
             <div
               key={progressKey}

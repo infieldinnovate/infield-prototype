@@ -185,6 +185,43 @@ export function buildArticleSchema(article: {
   };
 }
 
+export function buildProjectListSchema(
+  projects: { id: string; title: string; category: string; county: string }[],
+): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Completed Projects",
+    description:
+      "Completed solar, borehole, irrigation, plumbing, and electrical installations delivered by Infield Innovations across Kenya.",
+    itemListElement: projects.map((project, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: project.title,
+      url: `${siteConfig.url}/resources/projects#${project.id}`,
+      item: {
+        "@type": "CreativeWork",
+        name: project.title,
+        creator: {
+          "@type": "Organization",
+          name: siteConfig.name,
+          url: siteConfig.url,
+        },
+        about: project.category,
+        contentLocation: {
+          "@type": "Place",
+          name: project.county,
+          address: {
+            "@type": "PostalAddress",
+            addressCountry: "Kenya",
+            addressRegion: project.county,
+          },
+        },
+      },
+    })),
+  };
+}
+
 export function buildServiceListSchema(
   services: { name: string; description: string; slug: string; image: string }[],
 ): JsonLd {

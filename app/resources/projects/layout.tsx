@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/data/site.config';
+import { projects } from '@/data/projectStats';
+import { buildProjectListSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
   title: 'Our Projects',
@@ -29,5 +31,15 @@ export default function ProjectsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  const jsonLd = buildProjectListSchema(projects);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

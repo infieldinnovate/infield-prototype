@@ -6,6 +6,10 @@ import type { BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 type JsonLd = Record<string, unknown>;
 
+const sameAsLinks = Object.values(socialLinks)
+  .filter((social) => social.label !== "WhatsApp")
+  .map((social) => social.link);
+
 export function buildLocalBusinessSchema(): JsonLd {
   return {
     "@context": "https://schema.org",
@@ -46,7 +50,7 @@ export function buildLocalBusinessSchema(): JsonLd {
       },
     ],
     areaServed: serviceAreaNames,
-    sameAs: Object.values(socialLinks).map((social) => social.link),
+    sameAs: sameAsLinks,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: reviewSummary.averageRating,
@@ -106,7 +110,7 @@ export function buildOrganizationSchema(): JsonLd {
       postalCode: siteConfig.address.zip,
       addressCountry: siteConfig.address.country,
     },
-    sameAs: Object.values(socialLinks).map((social) => social.link),
+    sameAs: sameAsLinks,
   };
 }
 

@@ -10,6 +10,7 @@ import { BeforeAfterSlider } from "@/components/sections/BeforeAfterSlider";
 import { GoogleReviews } from "@/components/sections/GoogleReviews";
 import { getPopularFAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
+import { buildFAQSchema } from "@/lib/structured-data";
 import styles from "./page.module.scss";
 import ServicesOverview from "@/components/sections/ServicesOverview";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
@@ -51,8 +52,17 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  const popularFAQs = getPopularFAQs();
+  const faqJsonLd = buildFAQSchema(
+    popularFAQs.map((f) => ({ question: f.question, answer: f.answer })),
+  );
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <h1 className="sr-only">
         {siteConfig.name} — Water, Energy &amp; Engineering Solutions in Kenya
       </h1>
@@ -93,7 +103,7 @@ export default function HomePage() {
             title="Frequently Asked Questions"
             description="Find answers to common questions about our services and process."
           />
-          <FAQAccordion faqs={getPopularFAQs()} />
+          <FAQAccordion faqs={popularFAQs} />
         </div>
       </section>
     </>

@@ -38,7 +38,9 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
       url: `${siteConfig.url}/resources/knowledge-centre/${article.slug}`,
       siteName: siteConfig.name,
       type: "article",
-      images: [{ url: article.image, alt: article.title, width: 1200, height: 630 }],
+      images: [
+        { url: article.image, alt: article.title, width: 1200, height: 630 },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -65,7 +67,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     slug: article.slug,
     image: article.image,
     publishDate: article.publishDate,
-    updatedDate: article.updatedDate,
+    updatedDate: article.updatedDate ?? article.publishDate,
     authorName: getArticleAuthorName(article),
   });
 

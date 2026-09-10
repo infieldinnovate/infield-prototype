@@ -6,7 +6,6 @@ import {
   PremiumCarousel,
   type PremiumSlide,
 } from "@/components/sections/PremiumCarousel";
-import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { projects } from "@/data/projectStats";
 import { ServiceIcons } from "@/data/service-icons";
 
@@ -51,21 +50,10 @@ export default function ProjectsHeroCarousel() {
   }, []);
 
   return (
-    <>
-      <div className="container" style={{ paddingTop: "1.5rem" }}>
-        <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "Resources", href: "/resources/knowledge-centre" },
-            { label: "Projects", href: "/resources/projects" },
-          ]}
-        />
-      </div>
-      <PremiumCarousel
-        slides={slides}
-        autoplayDelay={6000}
-        loop={slides.length > 1}
-      />
-    </>
+    <PremiumCarousel
+      slides={slides}
+      autoplayDelay={6000}
+      loop={slides.length > 1}
+    />
   );
 }

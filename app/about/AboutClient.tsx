@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/data/site.config";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import styles from "./about.module.scss";
 
 const values = [
@@ -137,6 +138,15 @@ export default function AboutClient() {
   return (
     <>
       <h1 className="sr-only">About {siteConfig.name} — Engineering Excellence Across Kenya</h1>
+      {/* Breadcrumbs */}
+      <div className={styles.container}>
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "About" },
+          ]}
+        />
+      </div>
       {/* Hero */}
       <AboutHeroCarousel />
 

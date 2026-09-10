@@ -13,6 +13,7 @@ import ProjectMap from "../../../components/ui/ProjectMap";
 import styles from "./page.module.scss";
 import ProjectCard from "@/components/cards/ProjectCard";
 import ProjectsHeroCarousel from "@/components/sections/ProjectsHeroCarousel";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 type FilterCategory = "All Projects" | ServiceSlug;
 
@@ -40,6 +41,16 @@ export default function ProjectsPage() {
   return (
     <div className={styles.page}>
       <h1 className="sr-only">Our Projects — Engineering Installations Across Kenya</h1>
+      {/* Breadcrumbs */}
+      <div className={styles.container}>
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Resources", href: "/resources/knowledge-centre" },
+            { label: "Projects" },
+          ]}
+        />
+      </div>
       {/* Hero Carousel */}
       <ProjectsHeroCarousel />
 

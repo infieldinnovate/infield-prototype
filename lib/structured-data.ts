@@ -28,8 +28,8 @@ export function buildLocalBusinessSchema(): JsonLd {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 0.0599,
-      longitude: 37.643,
+      latitude: siteConfig.geo.latitude,
+      longitude: siteConfig.geo.longitude,
     },
     openingHoursSpecification: [
       {
@@ -158,6 +158,7 @@ export function buildArticleSchema(article: {
   slug: string;
   image: string;
   publishDate: string;
+  updatedDate?: string;
   authorName: string;
 }): JsonLd {
   return {
@@ -167,7 +168,7 @@ export function buildArticleSchema(article: {
     description: article.excerpt,
     image: article.image,
     datePublished: article.publishDate,
-    dateModified: article.publishDate,
+    dateModified: article.updatedDate ?? article.publishDate,
     url: `${siteConfig.url}/resources/knowledge-centre/${article.slug}`,
     author: {
       "@type": "Person",

@@ -19,6 +19,7 @@ export interface Article {
   image: string;
   readingTime: string;
   publishDate: string;
+  updatedDate?: string;
   authorId: string;
   featured: boolean;
   content: ArticleSection[];

@@ -34,7 +34,7 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
       url: `${siteConfig.url}/services/${service.slug}`,
       siteName: siteConfig.name,
       type: "website",
-      images: [{ url: service.image, alt: service.name }],
+      images: [{ url: service.image, alt: service.name, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

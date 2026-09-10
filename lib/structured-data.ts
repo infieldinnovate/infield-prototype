@@ -52,8 +52,22 @@ export function buildLocalBusinessSchema(): JsonLd {
       ratingValue: reviewSummary.averageRating,
       reviewCount: reviewSummary.totalReviews,
       bestRating: 5,
-      worstRating: 14,
+      worstRating: 1,
     },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: siteConfig.phone,
+        contactType: "customer service",
+        availableLanguage: "English",
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: siteConfig.emergencyPhone,
+        contactType: "emergency",
+        availableLanguage: "English",
+      },
+    ],
   };
 }
 
@@ -64,9 +78,26 @@ export function buildOrganizationSchema(): JsonLd {
     "@id": `${siteConfig.url}#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}${siteConfig.ogImage}`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteConfig.url}${siteConfig.ogImage}`,
+    },
     email: siteConfig.email,
     telephone: siteConfig.phone,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: siteConfig.phone,
+        contactType: "customer service",
+        availableLanguage: "English",
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: siteConfig.emergencyPhone,
+        contactType: "emergency",
+        availableLanguage: "English",
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,

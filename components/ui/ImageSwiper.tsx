@@ -105,8 +105,8 @@ export default function ImageSwiper({
           }}
           className={clsx(styles.swiper, swiperClassName)}
         >
-          {images.map((img) => (
-            <SwiperSlide key={img.src}>
+          {images.map((img, index) => (
+            <SwiperSlide key={index}>
               <div className={clsx(styles.slide, slideClassName)}>
                 <ImageWithFallback
                   src={img.src}

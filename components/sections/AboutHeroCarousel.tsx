@@ -33,7 +33,7 @@ export default function AboutHeroCarousel() {
     // ── 01 Who We Are ──
     const slide1: PremiumSlide = {
       image:
-        "https://images.pexels.com/photos/13005576/pexels-photo-13005576.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "/placeholder-image.jpg",
       imageAlt: "Infield Innovations team at work",
       imagePriority: true,
       badge: "Who We Are",
@@ -54,7 +54,7 @@ export default function AboutHeroCarousel() {
     const serviceNames = SERVICES.map((s) => s.shortName).join(" · ");
     const slide2: PremiumSlide = {
       image:
-        "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "/placeholder-image.jpg",
       imageAlt: "Solar and engineering installations",
       imagePriority: false,
       badge: "What We Do",
@@ -75,7 +75,7 @@ export default function AboutHeroCarousel() {
     // Map from process.ts steps (Consultation/Site Visit → Design → Installation → Maintenance)
     const slide3: PremiumSlide = {
       image:
-        "https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "/placeholder-image.jpg",
       imageAlt: "Engineers assessing and installing systems",
       imagePriority: false,
       badge: "How We Work",
@@ -102,7 +102,7 @@ export default function AboutHeroCarousel() {
     // Reliability (Full Insurance Cover + workmanship warranty), Professional Expertise (Continuous Training)
     const slide4: PremiumSlide = {
       image:
-        "https://images.pexels.com/photos/4226796/pexels-photo-4226796.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "/placeholder-image.jpg",
       imageAlt: "Quality engineering and safety on site",
       imagePriority: false,
       badge: "Why Choose Us",
@@ -124,7 +124,7 @@ export default function AboutHeroCarousel() {
     const countyCount = countiesServed.length;
     const slide5: PremiumSlide = {
       image:
-        "https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        "/placeholder-image.jpg",
       imageAlt: "Projects across Kenya",
       imagePriority: false,
       badge: "Our Reach",

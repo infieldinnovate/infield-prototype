@@ -19,7 +19,7 @@ export const slides: HeroSlideData[] = [
     description:
       "Integrated water, energy and engineering solutions designed for homes, businesses and institutions.",
     image:
-      "https://images.pexels.com/photos/12109677/pexels-photo-12109677.jpeg?auto=compress&cs=tinysrgb&w=2400",
+      "/placeholder-image.jpg",
     imageAlt:
       "Wide-angle view of a large-scale construction site with cranes under a vibrant blue sky",
     panelTitle: "SOLAR ENERGY",
@@ -34,7 +34,7 @@ export const slides: HeroSlideData[] = [
     description:
       "Custom solar systems, battery storage and energy solutions designed around your power needs.",
     image:
-      "https://images.pexels.com/photos/15751130/pexels-photo-15751130.jpeg?auto=compress&cs=tinysrgb&w=2400",
+      "/placeholder-image.jpg",
     imageAlt:
       "A large field of solar panels capturing renewable energy under a clear sky",
     panelTitle: "SOLAR ENERGY",
@@ -48,7 +48,7 @@ export const slides: HeroSlideData[] = [
     description:
       "From borehole drilling to water storage and harvesting, we develop dependable water systems for homes, businesses and institutions.",
     image:
-      "https://images.pexels.com/photos/36926327/pexels-photo-36926327.jpeg?auto=compress&cs=tinysrgb&w=2400",
+      "/placeholder-image.jpg",
     imageAlt:
       "Aerial shot of a sunlit construction site highlighting a deep borehole",
     panelTitle: "WATER SOLUTIONS",
@@ -65,7 +65,7 @@ export const slides: HeroSlideData[] = [
     description:
       "Safe, reliable electrical installations and engineering solutions built for modern properties and demanding environments.",
     image:
-      "https://images.pexels.com/photos/17842843/pexels-photo-17842843.jpeg?auto=compress&cs=tinysrgb&w=2400",
+      "/placeholder-image.jpg",
     imageAlt:
       "Professional engineer inspecting industrial electrical circuit board",
     panelTitle: "ELECTRICAL",
@@ -79,7 +79,7 @@ export const slides: HeroSlideData[] = [
     description:
       "Efficient irrigation systems designed to deliver the right amount of water where it matters most.",
     image:
-      "https://images.pexels.com/photos/17765487/pexels-photo-17765487.jpeg?auto=compress&cs=tinysrgb&w=2400",
+      "/placeholder-image.jpg",
     imageAlt:
       "Drone shot of a circular irrigation system watering a green agricultural field",
     panelTitle: "IRRIGATION",

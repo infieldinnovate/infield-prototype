@@ -35,7 +35,7 @@ export const articles: Article[] = [
       "Everything you need to know about residential solar — from system sizing and roof assessment to choosing the right panels and inverters for maximum efficiency.",
     category: "solar",
     image:
-      "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "8 min read",
     publishDate: "2024-06-15",
     authorId: "tm4",
@@ -94,7 +94,7 @@ export const articles: Article[] = [
       "Upgrading your electrical panel? Learn about amperage requirements, smart panels, and how to future-proof your home or business for solar and backup power.",
     category: "electrical",
     image:
-      "https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "6 min read",
     publishDate: "2024-05-28",
     authorId: "tm1",
@@ -146,7 +146,7 @@ export const articles: Article[] = [
       "A step-by-step walkthrough of the borehole drilling process — geological surveys, permitting, drilling, casing, pump installation, and water quality testing.",
     category: "boreholes",
     image:
-      "https://images.pexels.com/photos/4226796/pexels-photo-4226796.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "10 min read",
     publishDate: "2024-05-10",
     authorId: "tm2",
@@ -212,7 +212,7 @@ export const articles: Article[] = [
       "From leaking taps to burst pipes, discover the most common plumbing issues homeowners face and practical tips to prevent costly repairs.",
     category: "plumbing",
     image:
-      "https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "5 min read",
     publishDate: "2024-04-22",
     authorId: "tm5",
@@ -264,7 +264,7 @@ export const articles: Article[] = [
       "Explore how WiFi-enabled controllers, weather sensors, and drip systems can cut your water usage by up to 50% while keeping your landscape thriving.",
     category: "irrigation",
     image:
-      "https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "7 min read",
     publishDate: "2024-04-05",
     authorId: "tm6",
@@ -323,7 +323,7 @@ export const articles: Article[] = [
       "A deep dive into solar battery systems — capacity sizing, lithium vs lead-acid, cost analysis, and how battery backup can provide energy independence.",
     category: "solar",
     image:
-      "https://images.pexels.com/photos/9823144/pexels-photo-9823144.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "9 min read",
     publishDate: "2024-03-18",
     authorId: "tm4",
@@ -382,7 +382,7 @@ export const articles: Article[] = [
       "Considering a backup generator for your home or business? Learn about generator sizing, fuel options, transfer switches, and maintenance best practices.",
     category: "electrical",
     image:
-      "https://images.pexels.com/photos/3779457/pexels-photo-3779457.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "6 min read",
     publishDate: "2024-03-01",
     authorId: "tm1",
@@ -434,7 +434,7 @@ export const articles: Article[] = [
       "After drilling your borehole, water quality testing is essential. Learn what we test for, how treatment systems work, and maintaining water safety.",
     category: "boreholes",
     image:
-      "https://images.pexels.com/photos/4226796/pexels-photo-4226796.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "7 min read",
     publishDate: "2024-02-14",
     authorId: "tm2",
@@ -486,7 +486,7 @@ export const articles: Article[] = [
       "Keep your landscape thriving through the dry season. Learn how to adjust your irrigation system, conserve water, and protect your investment during Kenya's dry months.",
     category: "irrigation",
     image:
-      "https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     readingTime: "5 min read",
     publishDate: "2024-01-20",
     authorId: "tm6",

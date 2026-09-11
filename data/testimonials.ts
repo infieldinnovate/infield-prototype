@@ -28,7 +28,7 @@ export const testimonials: Testimonial[] = [
     service: "Electrical",
     date: "2024-02-15",
     avatar:
-      "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "/placeholder-image.jpg",
   },
   {
     id: "t2",
@@ -41,7 +41,7 @@ export const testimonials: Testimonial[] = [
     service: "Solar",
     date: "2024-03-20",
     avatar:
-      "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "/placeholder-image.jpg",
   },
   {
     id: "t3",
@@ -54,7 +54,7 @@ export const testimonials: Testimonial[] = [
     service: "Plumbing",
     date: "2024-01-10",
     avatar:
-      "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "/placeholder-image.jpg",
   },
   {
     id: "t4",
@@ -67,7 +67,7 @@ export const testimonials: Testimonial[] = [
     service: "Borehole",
     date: "2023-09-15",
     avatar:
-      "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "/placeholder-image.jpg",
   },
   {
     id: "t5",
@@ -80,7 +80,7 @@ export const testimonials: Testimonial[] = [
     service: "Irrigation",
     date: "2023-11-20",
     avatar:
-      "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "/placeholder-image.jpg",
   },
   {
     id: "t6",
@@ -93,7 +93,7 @@ export const testimonials: Testimonial[] = [
     service: "Plumbing",
     date: "2023-07-25",
     avatar:
-      "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=200",
+      "/placeholder-image.jpg",
   },
 ];
 

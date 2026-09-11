@@ -75,17 +75,17 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/9897190/pexels-photo-9897190.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Site before solar installation",
         phase: "before",
       },
       {
-        url: "https://images.pexels.com/photos/9897190/pexels-photo-9897190.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Panel installation in progress",
         phase: "during",
       },
       {
-        url: "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Completed rooftop solar installation",
         phase: "after",
       },
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/2932274/pexels-photo-2932274.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Borehole drilling operations",
         phase: "during",
       },
@@ -177,12 +177,12 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/2625162/pexels-photo-2625162.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Completed drip irrigation system",
         phase: "after",
       },
       {
-        url: "https://images.pexels.com/photos/4403932/pexels-photo-4403932.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Filtration and control unit",
         phase: "after",
       },
@@ -228,7 +228,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/433308/pexels-photo-433308.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Completed solar pumping installation",
         phase: "after",
       },
@@ -274,12 +274,12 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/8005366/pexels-photo-8005366.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Cable routing during installation",
         phase: "during",
       },
       {
-        url: "https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Completed distribution system",
         phase: "after",
       },
@@ -325,7 +325,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Industrial plumbing installation",
         phase: "during",
       },
@@ -371,7 +371,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/2625928/pexels-photo-2625928.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Completed elevated water storage system",
         phase: "after",
       },
@@ -417,7 +417,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Completed commercial solar installation",
         phase: "after",
       },
@@ -463,7 +463,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/4750254/pexels-photo-4750254.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Completed agricultural borehole",
         phase: "after",
       },
@@ -509,7 +509,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "https://images.pexels.com/photos/4403932/pexels-photo-4403932.jpeg?auto=compress&cs=tinysrgb&w=800",
+        url: "/placeholder-image.jpg",
         caption: "Completed greenhouse irrigation system",
         phase: "after",
       },

@@ -253,7 +253,7 @@ export default function AboutClient() {
           <ScrollReveal>
             <div className={styles.teamGroupPhoto}>
               <ImageWithFallback
-                src="https://images.pexels.com/photos/13005576/pexels-photo-13005576.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="/placeholder-image.jpg"
                 alt="Infield Innovations team"
                 fill
                 sizes="(max-width: 768px) 100vw, 1200px"

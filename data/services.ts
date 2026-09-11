@@ -65,7 +65,7 @@ export const SERVICES: Service[] = [
     icon: "Sun",
     color: "#fbbf24",
     image:
-      "https://images.pexels.com/photos/371900/pexels-photo-371900.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     startingPrice: "KSh 450,000",
     infographicTitle: "Integrated Solar Energy Flow",
     infographicSubtitle:
@@ -166,7 +166,7 @@ export const SERVICES: Service[] = [
     icon: "Zap",
     color: "#f59e0b",
     image:
-      "https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     startingPrice: "KSh 15,000",
     infographicTitle: "Integrated Electrical Power Flow",
     infographicSubtitle:
@@ -265,7 +265,7 @@ export const SERVICES: Service[] = [
     icon: "Droplets",
     color: "#1e40af",
     image:
-      "https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     startingPrice: "KSh 5,000",
     infographicTitle: "Integrated Water Plumbing Flow",
     infographicSubtitle:
@@ -360,7 +360,7 @@ export const SERVICES: Service[] = [
     icon: "Drill",
     color: "#0891b2",
     image:
-      "https://images.pexels.com/photos/4226796/pexels-photo-4226796.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     startingPrice: "KSh 650,000",
     infographicTitle: "Integrated Borehole Water Flow",
     infographicSubtitle:
@@ -464,7 +464,7 @@ export const SERVICES: Service[] = [
     icon: "Database",
     color: "#0ea5e9",
     image:
-      "https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     startingPrice: "KSh 8,500",
     infographicTitle: "Integrated Water Storage Flow",
     infographicSubtitle: "From capture to reserve — secure water availability",
@@ -566,7 +566,7 @@ export const SERVICES: Service[] = [
     icon: "CloudRain",
     color: "#0d9488",
     image:
-      "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     startingPrice: "KSh 25,000",
     infographicTitle: "Integrated Water Harvesting Flow",
     infographicSubtitle:
@@ -673,7 +673,7 @@ export const SERVICES: Service[] = [
     icon: "Sprout",
     color: "#10b981",
     image:
-      "https://images.pexels.com/photos/2933243/pexels-photo-2933243.jpeg?auto=compress&cs=tinysrgb&w=1200",
+      "/placeholder-image.jpg",
     startingPrice: "KSh 45,000",
     infographicTitle: "Integrated Irrigation Flow",
     infographicSubtitle:

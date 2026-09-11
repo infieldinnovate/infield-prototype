@@ -11,8 +11,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "About Infield Innovations",
-    description:
-      "For over 15 years, Infield Innovations has been the trusted name in electrical, plumbing, solar, irrigation, and borehole services across Kenya.",
+    description: `For over ${new Date().getFullYear() - Number(siteConfig.foundedYear)} years, Infield Innovations has been the trusted name in electrical, plumbing, solar, irrigation, and borehole services across Kenya.`,
     url: `${siteConfig.url}/about`,
     siteName: siteConfig.name,
     type: "website",
@@ -20,8 +19,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "About Infield Innovations",
-    description:
-      "For over 15 years, Infield Innovations has been the trusted name in electrical, plumbing, solar, irrigation, and borehole services across Kenya.",
+    description: `For over ${new Date().getFullYear() - Number(siteConfig.foundedYear)} years, Infield Innovations has been the trusted name in electrical, plumbing, solar, irrigation, and borehole services across Kenya.`,
   },
 };
 

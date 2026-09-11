@@ -12,15 +12,16 @@ import { buildArticleSchema } from "@/lib/structured-data";
 import ArticleDetailClient from "./ArticleDetailClient";
 
 interface ArticlePageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return getArticleSlugs().map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: ArticlePageProps): Metadata {
-  const article = getArticleBySlug(params.slug);
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
 
   if (!article) {
     return { title: "Article not found" };
@@ -51,8 +52,9 @@ export function generateMetadata({ params }: ArticlePageProps): Metadata {
   };
 }
 
-export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = getArticleBySlug(params.slug);
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
 
   if (!article) {
     notFound();

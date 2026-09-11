@@ -5,11 +5,11 @@ import { lookupEmployee } from '@/data/teamData';
 import styles from '../page.module.scss';
 
 interface PageProps {
-  params: { verificationCode: string };
+  params: Promise<{ verificationCode: string }>;
 }
 
-export default function VerificationCodePage({ params }: PageProps) {
-  const { verificationCode } = params;
+export default async function VerificationCodePage({ params }: PageProps) {
+  const { verificationCode } = await params;
   const result = lookupEmployee(verificationCode);
 
   return (

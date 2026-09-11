@@ -6,17 +6,16 @@ import { buildServiceSchema } from "@/lib/structured-data";
 import ServiceDetailClient from "./ServiceDetailClient";
 
 interface ServicePageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return getServiceSlugs().map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: ServicePageProps): Metadata {
-  const service = getServiceBySlug(params.slug);
+export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
 
   if (!service) {
     return { title: "Service not found" };
@@ -45,8 +44,9 @@ export function generateMetadata({ params }: ServicePageProps): Metadata {
   };
 }
 
-export default function ServicePage({ params }: ServicePageProps) {
-  const service = getServiceBySlug(params.slug);
+export default async function ServicePage({ params }: ServicePageProps) {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
 
   if (!service) {
     notFound();

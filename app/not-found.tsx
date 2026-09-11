@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Chrome as Home, ArrowLeft, Search, Wrench } from "lucide-react";
+import { Home, Wrench } from "lucide-react";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { navLinks, resourcesNavItems } from "@/data/links";
 import styles from "./not-found.module.scss";

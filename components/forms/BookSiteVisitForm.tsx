@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   CircleCheck as CheckCircle2,
   CircleAlert as AlertCircle,
-  Send,
   Calendar,
 } from "lucide-react";
 import { siteVisitSchema, type SiteVisitFormData } from "@/lib/validations";

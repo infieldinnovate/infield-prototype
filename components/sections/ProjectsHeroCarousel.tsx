@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import { MapPin, Calendar, Tag, ArrowRight, CircleCheck } from "lucide-react";
+import { MapPin, Calendar, CircleCheck } from "lucide-react";
 import {
   PremiumCarousel,
   type PremiumSlide,

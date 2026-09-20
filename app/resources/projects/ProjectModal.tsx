@@ -231,37 +231,33 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </section>
           )}
 
+          {/* Video */}
           {project.video && (
             <section className={styles.modalSection}>
-              {/* Video */}
-              {project.video && (
-                <section className={styles.modalSection}>
-                  <h3 className={styles.modalSectionTitle}>Project Video</h3>
+              <h3 className={styles.modalSectionTitle}>Project Video</h3>
 
-                  {getEmbedUrl(project.video) ? (
-                    <div className={styles.videoWrapper}>
-                      <iframe
-                        src={getEmbedUrl(project.video)!}
-                        title={project.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : (
-                    <a
-                      href={project.video.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.videoLink}
-                    >
-                      View on{" "}
-                      {project.video.platform.charAt(0).toUpperCase() +
-                        project.video.platform.slice(1)}
-                    </a>
-                  )}
-                </section>
+              {getEmbedUrl(project.video) ? (
+                <div className={styles.videoWrapper}>
+                  <iframe
+                    src={getEmbedUrl(project.video)!}
+                    title={project.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <a
+                  href={project.video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.videoLink}
+                >
+                  View on{" "}
+                  {project.video.platform.charAt(0).toUpperCase() +
+                    project.video.platform.slice(1)}
+                </a>
               )}
             </section>
           )}

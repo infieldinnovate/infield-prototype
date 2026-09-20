@@ -8,10 +8,9 @@ import styles from "./ServiceCard.module.scss";
 import { SectionHeading } from "../ui/SectionHeading";
 import { ServiceIcons } from "@/data/service-icons";
 
-export interface ServiceCardProps {
+interface ServiceCardProps {
   id: string;
   title: string;
-  // description: string;
   image: string;
   icon: string;
   features: string[];
@@ -21,7 +20,6 @@ export interface ServiceCardProps {
 export const ServiceCard = ({
   id,
   title,
-  // description,
   image,
   icon,
   features,

@@ -2,7 +2,7 @@
 
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useSound from "../../hooks/useSound";
 import styles from "./WhatsApp.module.scss";
 import { FaWhatsapp } from "react-icons/fa";

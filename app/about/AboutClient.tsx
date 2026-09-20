@@ -137,14 +137,13 @@ function AboutTimeline() {
 export default function AboutClient() {
   return (
     <>
-      <h1 className="sr-only">About {siteConfig.name} — Engineering Excellence Across Kenya</h1>
+      <h1 className="sr-only">
+        About {siteConfig.name} — Engineering Excellence Across Kenya
+      </h1>
       {/* Breadcrumbs */}
       <div className={styles.container}>
         <Breadcrumbs
-          items={[
-            { label: "Home", href: "/" },
-            { label: "About" },
-          ]}
+          items={[{ label: "Home", href: "/" }, { label: "About" }]}
         />
       </div>
       {/* Hero */}

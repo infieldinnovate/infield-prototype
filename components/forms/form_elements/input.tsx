@@ -14,7 +14,7 @@ import {
 import clsx from "clsx";
 import styles from "./formElement.module.scss";
 
-export type InputFieldProps<TFieldValues extends FieldValues = FieldValues> = {
+type InputFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   label?: string;
   type?: string;
   as?: "input" | "textarea";

@@ -14,7 +14,6 @@ export default function HomeCarousel() {
   const [isReducedMotion, setIsReducedMotion] = useState(false);
   const [progressKey, setProgressKey] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-  const [hasInteracted, setHasInteracted] = useState(false);
 
   const dragStartX = useRef<number | null>(null);
   const dragDelta = useRef(0);
@@ -43,11 +42,9 @@ export default function HomeCarousel() {
 
   const next = useCallback(() => {
     goTo(activeIndex + 1);
-    setHasInteracted(true);
   }, [activeIndex, goTo]);
   const prev = useCallback(() => {
     goTo(activeIndex - 1);
-    setHasInteracted(true);
   }, [activeIndex, goTo]);
 
   /* ----- scrollSnaps ----- */
@@ -163,7 +160,6 @@ export default function HomeCarousel() {
                 className={`${styles.dot} ${idx === activeIndex ? styles.dotActive : ""}`}
                 onClick={() => {
                   goTo(idx);
-                  setHasInteracted(true);
                 }}
                 aria-label={`Go to slide ${idx + 1}`}
               />

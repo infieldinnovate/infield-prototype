@@ -27,8 +27,7 @@ export const testimonials: Testimonial[] = [
       "Infield rewired our entire home and the experience was exceptional. The team was professional, punctual, and incredibly clean. They explained everything and the final inspection passed without a single issue.",
     service: "Electrical",
     date: "2024-02-15",
-    avatar:
-      "/placeholder-image.jpg",
+    avatar: "/placeholder-image.jpg",
   },
   {
     id: "t2",
@@ -40,8 +39,7 @@ export const testimonials: Testimonial[] = [
       "The commercial solar installation has been a game-changer for our facility. We're saving 85% on energy costs and the ROI is ahead of schedule. Infield handled everything from design to commissioning seamlessly.",
     service: "Solar",
     date: "2024-03-20",
-    avatar:
-      "/placeholder-image.jpg",
+    avatar: "/placeholder-image.jpg",
   },
   {
     id: "t3",
@@ -53,8 +51,7 @@ export const testimonials: Testimonial[] = [
       "We use Infield for all our plumbing needs across 12 properties. Their response time is incredible and they always provide clear pricing upfront. The quality of work is consistently excellent.",
     service: "Plumbing",
     date: "2024-01-10",
-    avatar:
-      "/placeholder-image.jpg",
+    avatar: "/placeholder-image.jpg",
   },
   {
     id: "t4",
@@ -66,8 +63,7 @@ export const testimonials: Testimonial[] = [
       "Having our own borehole has transformed our farm operations. The Infield team was knowledgeable, efficient, and the water quality is excellent. They handled all the permits and testing professionally.",
     service: "Borehole",
     date: "2023-09-15",
-    avatar:
-      "/placeholder-image.jpg",
+    avatar: "/placeholder-image.jpg",
   },
   {
     id: "t5",
@@ -79,8 +75,7 @@ export const testimonials: Testimonial[] = [
       "The smart irrigation system Infield installed has cut our water bill by 40% and the landscape has never looked better. The mobile app makes it so easy to manage everything from anywhere.",
     service: "Irrigation",
     date: "2023-11-20",
-    avatar:
-      "/placeholder-image.jpg",
+    avatar: "/placeholder-image.jpg",
   },
   {
     id: "t6",
@@ -92,14 +87,9 @@ export const testimonials: Testimonial[] = [
       "Infield handled all the plumbing for our new restaurant. They worked around our tight schedule and delivered on time. The health inspector commented on the quality of the installation. Highly recommend.",
     service: "Plumbing",
     date: "2023-07-25",
-    avatar:
-      "/placeholder-image.jpg",
+    avatar: "/placeholder-image.jpg",
   },
 ];
-
-export function getFeaturedTestimonials(limit = 3): Testimonial[] {
-  return testimonials.slice(0, limit);
-}
 
 export const reviewSummary = {
   averageRating: 4.9,

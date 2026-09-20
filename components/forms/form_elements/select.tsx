@@ -15,9 +15,9 @@ import clsx from "clsx";
 import { FaCaretDown } from "react-icons/fa";
 import styles from "./formElement.module.scss";
 
-export type SelectOption = { value: string | number; label: string };
+type SelectOption = { value: string | number; label: string };
 
-export type SelectFieldProps<TFieldValues extends FieldValues = FieldValues> = {
+type SelectFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   label?: string;
   /** Option A: uncontrolled/register usage */
   register?: UseFormRegister<TFieldValues>;

@@ -4,10 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Phone,
-  Mail,
   ArrowRight,
   CircleCheck as CheckCircle,
-  Minus,
   Calendar,
   Star,
 } from "lucide-react";

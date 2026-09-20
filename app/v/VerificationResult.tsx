@@ -10,13 +10,11 @@ import {
   Briefcase,
   Users,
   Hash,
-  Building2,
   ArrowLeft,
   X,
   Phone,
   IdCard,
 } from "lucide-react";
-import Link from "next/link";
 import type { Employee, LookupResult } from "@/data/teamData";
 import styles from "./page.module.scss";
 
@@ -43,10 +41,7 @@ export default function VerificationResult({
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      <div
-        className={styles.modalContent}
-        onClick={(e) => e.stopPropagation()}
-      >
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <button
           className={styles.modalCloseBtn}
           onClick={onClose}
@@ -54,7 +49,11 @@ export default function VerificationResult({
         >
           <X size={20} />
         </button>
-        {!result.found ? <NotFound onClose={onClose} /> : <EmployeeCard employee={result.employee} />}
+        {!result.found ? (
+          <NotFound onClose={onClose} />
+        ) : (
+          <EmployeeCard employee={result.employee} />
+        )}
       </div>
     </div>
   );
@@ -118,7 +117,11 @@ function EmployeeCard({ employee }: { employee: Employee }) {
           <DetailRow label="Employee No." value={employee.employeeNumber}>
             <IdCard size={14} />
           </DetailRow>
-          <DetailRow label="Verification Code" value={employee.verificationCode} code>
+          <DetailRow
+            label="Verification Code"
+            value={employee.verificationCode}
+            code
+          >
             <Hash size={14} />
           </DetailRow>
           <DetailRow label="Job Title" value={employee.jobTitle}>
@@ -178,15 +181,11 @@ function NotFound({ onClose }: { onClose?: () => void }) {
         </div>
         <h2 className={styles.notFoundTitle}>EMPLOYEE NOT VERIFIED</h2>
         <p className={styles.notFoundText}>
-          The information you entered does not match any employee in our
-          system. Please check the details and try again, or contact your
-          administrator for assistance.
+          The information you entered does not match any employee in our system.
+          Please check the details and try again, or contact your administrator
+          for assistance.
         </p>
-        <button
-          type="button"
-          className={styles.backBtn}
-          onClick={onClose}
-        >
+        <button type="button" className={styles.backBtn} onClick={onClose}>
           <ArrowLeft size={18} />
           Try Again
         </button>

@@ -2,7 +2,7 @@
 
 "use client";
 
-import { ArrowRight, CheckCircle2, MapPin, Star } from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
 import type { Project } from "@/data/projectStats";
 import styles from "./ProjectCard.module.scss";
 import { useProjectImages } from "@/hooks/useProjectImages";

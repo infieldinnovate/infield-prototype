@@ -12,7 +12,7 @@ import {
   RegisterOptions,
 } from "react-hook-form";
 import clsx from "clsx";
-import { FaCaretDown } from "react-icons/fa";
+import { ChevronDown, type LucideIcon } from "lucide-react";
 import styles from "./formElement.module.scss";
 
 type SelectOption = { value: string | number; label: string };
@@ -32,7 +32,7 @@ type SelectFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   hidden?: boolean;
   selectProps?: React.SelectHTMLAttributes<HTMLSelectElement>;
   options: SelectOption[];
-  icon?: React.ReactNode;
+  icon?: LucideIcon;
   placeholder?: string;
   disabled?: boolean;
   required?: boolean;
@@ -64,7 +64,7 @@ export default function SelectField<
   hidden = false,
   selectProps,
   options,
-  icon = <FaCaretDown />,
+  icon = ChevronDown,
   placeholder,
   disabled = false,
   required = false,
@@ -86,12 +86,15 @@ export default function SelectField<
       </label>
     ) : null;
 
-  const renderIcon = () =>
-    icon ? (
+  const renderIcon = () => {
+    if (!icon) return null;
+    const Icon = icon;
+    return (
       <span aria-hidden="true" className={styles.icon}>
-        {icon}
+        <Icon size={18} />
       </span>
-    ) : null;
+    );
+  };
 
   const renderError = () =>
     error?.message ? (

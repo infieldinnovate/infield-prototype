@@ -96,13 +96,13 @@ export default function DownloadsPage() {
               />
             </div>
             <div className={styles.heroActions}>
-              <LinkButton href="/quote" leftIcon={<Download size={18} />}>
+              <LinkButton href="/quote" leftIcon={Download}>
                 Download Company Profile
               </LinkButton>
               <LinkButton
                 href="/quote"
                 variant="outline"
-                leftIcon={<FileText size={18} />}
+                leftIcon={FileText}
               >
                 Request Quote
               </LinkButton>
@@ -200,7 +200,7 @@ export default function DownloadsPage() {
               help with any technical documentation or project details you need.
             </p>
             <div className={styles.ctaActions}>
-              <LinkButton href="/contact" rightIcon={<ArrowRight size={18} />}>
+              <LinkButton href="/contact" rightIcon={ArrowRight}>
                 Contact Us
               </LinkButton>
               <LinkButton href="/resources/knowledge-centre" variant="outline">

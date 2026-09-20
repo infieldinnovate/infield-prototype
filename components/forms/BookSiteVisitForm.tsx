@@ -149,7 +149,7 @@ export function BookSiteVisitForm() {
         size="lg"
         loading={isSubmitting}
         fullWidth
-        leftIcon={<Calendar size={18} />}
+        leftIcon={Calendar}
       >
         {isSubmitting ? "Booking..." : "Book Site Visit"}
       </Button>

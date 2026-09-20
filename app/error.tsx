@@ -5,7 +5,7 @@
 // ============================================
 
 import { useEffect } from 'react';
-import { AlertCircle, RotateCcw, Home } from 'lucide-react';
+import { CircleAlert as AlertCircle, RotateCcw, Dome as Home } from 'lucide-react';
 import { LinkButton } from '@/components/ui/LinkButton';
 import { Button } from '@/components/ui/Button';
 import styles from './error.module.scss';
@@ -36,10 +36,10 @@ export default function Error({ error, reset }: ErrorProps) {
           <p className={styles.digest}>Error ID: {error.digest}</p>
         )}
         <div className={styles.actions}>
-          <Button size="lg" onClick={reset} leftIcon={<RotateCcw size={18} />}>
+          <Button size="lg" onClick={reset} leftIcon={RotateCcw}>
             Try Again
           </Button>
-          <LinkButton href="/" variant="outline" size="lg" leftIcon={<Home size={18} />}>
+          <LinkButton href="/" variant="outline" size="lg" leftIcon={Home}>
             Back to Home
           </LinkButton>
         </div>

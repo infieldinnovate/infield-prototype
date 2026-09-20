@@ -111,14 +111,14 @@ export default function ResourcesPage() {
             <div className={styles.heroActions}>
               <LinkButton
                 href="/resources/downloads"
-                leftIcon={<Download size={18} />}
+                leftIcon={Download}
               >
                 Download Company Profile
               </LinkButton>
               <LinkButton
                 href="/quote"
                 variant="outline"
-                leftIcon={<FileText size={18} />}
+                leftIcon={FileText}
               >
                 Request Quote
               </LinkButton>
@@ -274,7 +274,7 @@ export default function ResourcesPage() {
               </div>
               <LinkButton
                 href="/resources/downloads"
-                rightIcon={<ArrowRight size={18} />}
+                rightIcon={ArrowRight}
               >
                 Browse Downloads
               </LinkButton>

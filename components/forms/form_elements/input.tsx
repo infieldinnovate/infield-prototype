@@ -11,6 +11,7 @@ import {
   Control,
   Controller,
 } from "react-hook-form";
+import { type LucideIcon } from "lucide-react";
 import clsx from "clsx";
 import styles from "./formElement.module.scss";
 
@@ -31,7 +32,7 @@ type InputFieldProps<TFieldValues extends FieldValues = FieldValues> = {
   inputProps?: React.InputHTMLAttributes<
     HTMLInputElement | HTMLTextAreaElement
   >;
-  icon?: React.ReactNode; // render only if provided
+  icon?: LucideIcon;
   datalistOptions?: string[];
   placeholder?: string;
   disabled?: boolean;
@@ -75,8 +76,7 @@ export default function InputField<
   const errorId = `${inputId}-error`;
   const datalistId = datalistOptions ? `${inputId}-datalist` : undefined;
 
-  // Icon is optional — only render if provided
-  const displayIcon = icon ?? null;
+  const Icon = icon;
 
   const commonProps: React.InputHTMLAttributes<
     HTMLInputElement | HTMLTextAreaElement
@@ -108,9 +108,9 @@ export default function InputField<
     ) : null;
 
   const renderIcon = () =>
-    displayIcon ? (
+    Icon ? (
       <span aria-hidden="true" className={styles.icon}>
-        {displayIcon}
+        <Icon size={18} />
       </span>
     ) : null;
 

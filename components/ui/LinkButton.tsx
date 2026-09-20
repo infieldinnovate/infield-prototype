@@ -3,6 +3,7 @@
 // ============================================
 
 import Link from 'next/link';
+import { type LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import styles from './Button.module.scss';
 
@@ -14,8 +15,8 @@ interface LinkButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> 
   variant?: ButtonVariant;
   size?: ButtonSize;
   fullWidth?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  leftIcon?: LucideIcon;
+  rightIcon?: LucideIcon;
 }
 
 export function LinkButton({
@@ -23,8 +24,8 @@ export function LinkButton({
   variant = 'primary',
   size = 'md',
   fullWidth = false,
-  leftIcon,
-  rightIcon,
+  leftIcon: LeftIcon,
+  rightIcon: RightIcon,
   className,
   children,
   ...props
@@ -41,9 +42,9 @@ export function LinkButton({
       )}
       {...props}
     >
-      {leftIcon && <span className={styles.icon}>{leftIcon}</span>}
+      {LeftIcon && <span className={styles.icon}><LeftIcon size={18} /></span>}
       <span>{children}</span>
-      {rightIcon && <span className={styles.icon}>{rightIcon}</span>}
+      {RightIcon && <span className={styles.icon}><RightIcon size={18} /></span>}
     </Link>
   );
 }

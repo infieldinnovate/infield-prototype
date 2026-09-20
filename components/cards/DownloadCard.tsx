@@ -86,7 +86,7 @@ export function DownloadCard({ download, index = 0 }: DownloadCardProps) {
         variant="outline"
         fullWidth
         onClick={handleDownload}
-        leftIcon={<DownloadIcon size={18} />}
+        leftIcon={DownloadIcon}
         className={styles.downloadButton}
       >
         Download

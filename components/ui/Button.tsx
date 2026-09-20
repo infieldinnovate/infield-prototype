@@ -3,7 +3,7 @@
 // ============================================
 
 import { forwardRef } from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, type LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import styles from './Button.module.scss';
 
@@ -14,8 +14,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   loading?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  leftIcon?: LucideIcon;
+  rightIcon?: LucideIcon;
   fullWidth?: boolean;
 }
 
@@ -28,8 +28,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       variant = 'primary',
       size = 'md',
       loading = false,
-      leftIcon,
-      rightIcon,
+      leftIcon: LeftIcon,
+      rightIcon: RightIcon,
       fullWidth = false,
       className,
       children,
@@ -52,9 +52,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading && <Loader2 className={styles.spinner} size={16} aria-hidden="true" />}
-        {!loading && leftIcon && <span className={styles.icon}>{leftIcon}</span>}
+        {!loading && LeftIcon && <span className={styles.icon}><LeftIcon size={18} /></span>}
         <span>{children}</span>
-        {!loading && rightIcon && <span className={styles.icon}>{rightIcon}</span>}
+        {!loading && RightIcon && <span className={styles.icon}><RightIcon size={18} /></span>}
       </button>
     );
   }

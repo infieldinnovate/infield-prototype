@@ -7,7 +7,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CheckCircle2, AlertCircle, Send } from 'lucide-react';
+import { CircleCheck as CheckCircle2, CircleAlert as AlertCircle, Send } from 'lucide-react';
 import { contactSchema, type ContactFormData } from '@/lib/validations';
 import { submitContactForm, type SubmissionResult } from '@/lib/services';
 import { Button } from '@/components/ui/Button';
@@ -112,7 +112,7 @@ export function ContactForm() {
         </div>
       )}
 
-      <Button type="submit" size="lg" loading={isSubmitting} fullWidth leftIcon={<Send size={18} />}>
+      <Button type="submit" size="lg" loading={isSubmitting} fullWidth leftIcon={Send}>
         {isSubmitting ? 'Sending...' : 'Send Message'}
       </Button>
     </form>

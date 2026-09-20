@@ -135,7 +135,7 @@ export default function ArticleDetailClient({
                 </div>
                 <LinkButton
                   href="/quote"
-                  rightIcon={<ArrowRight size={18} />}
+                  rightIcon={ArrowRight}
                 >
                   Get a Free Quote
                 </LinkButton>

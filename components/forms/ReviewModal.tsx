@@ -259,7 +259,7 @@ export function ReviewModal({ open, onClose }: ReviewModalProps) {
                   size="lg"
                   loading={isSubmitting}
                   fullWidth
-                  leftIcon={<Send size={18} />}
+                  leftIcon={Send}
                 >
                   {isSubmitting ? "Submitting..." : "Submit Review"}
                 </Button>

@@ -8,32 +8,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import {
-  ArrowDownRight,
-  ArrowRight,
-  ArrowUpRight,
-  Building2,
-  Check,
-  CheckCircle2,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  CircleDot,
-  Clock3,
-  Database,
-  Drill,
-  Droplets,
-  Lightbulb,
-  MapPin,
-  Quote,
-  Settings2,
-  ShieldCheck,
-  Sprout,
-  Star,
-  Sun,
-  Users,
-  Wrench,
-} from "lucide-react";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Building2, Check, CircleCheck as CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, CircleDot, Clock3, Database, Drill, Droplets, Lightbulb, MapPin, Quote, Settings2, ShieldCheck, Sprout, Star, Sun, Users, Wrench } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -221,7 +196,7 @@ export default function ServiceDetailClient({
                 <LinkButton
                   href="/quote"
                   size="lg"
-                  rightIcon={<ArrowUpRight size={18} />}
+                  rightIcon={ArrowUpRight}
                 >
                   Get a Free Assessment
                 </LinkButton>
@@ -635,7 +610,7 @@ export default function ServiceDetailClient({
               <LinkButton
                 href="/quote"
                 size="lg"
-                rightIcon={<ArrowUpRight size={18} />}
+                rightIcon={ArrowUpRight}
               >
                 Get a Free Assessment
               </LinkButton>
@@ -740,7 +715,7 @@ export default function ServiceDetailClient({
               <LinkButton
                 href="/contact"
                 variant="outline"
-                rightIcon={<ArrowRight size={17} />}
+                rightIcon={ArrowRight}
               >
                 Talk to an expert
               </LinkButton>

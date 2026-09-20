@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Home, Wrench } from "lucide-react";
+import { Dome as Home, Wrench } from "lucide-react";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { navLinks, resourcesNavItems } from "@/data/links";
 import styles from "./not-found.module.scss";
@@ -28,7 +28,7 @@ export default function NotFound() {
           for doesn&apos;t exist or has been moved.
         </p>
         <div className={styles.actions}>
-          <LinkButton href="/" size="lg" leftIcon={<Home size={18} />}>
+          <LinkButton href="/" size="lg" leftIcon={Home}>
             Back to Home
           </LinkButton>
         </div>

@@ -7,17 +7,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  CheckCircle2,
-  ChevronLeft,
-  ChevronRight,
-  Send,
-  AlertCircle,
-  FileText,
-  Building,
-  User,
-  CheckCheck,
-} from "lucide-react";
+import { CircleCheck as CheckCircle2, ChevronLeft, ChevronRight, Send, CircleAlert as AlertCircle, FileText, Building, User, CheckCheck } from "lucide-react";
 import { quoteFullSchema, type QuoteFullData } from "@/lib/validations";
 import { submitQuoteForm, type SubmissionResult } from "@/lib/services";
 import {
@@ -468,7 +458,7 @@ export function QuoteForm({ defaultServiceType }: QuoteFormProps) {
               type="button"
               variant="outline"
               onClick={handleBack}
-              leftIcon={<ChevronLeft size={18} />}
+              leftIcon={ChevronLeft}
             >
               Back
             </Button>
@@ -477,7 +467,7 @@ export function QuoteForm({ defaultServiceType }: QuoteFormProps) {
             <Button
               type="button"
               onClick={handleNext}
-              rightIcon={<ChevronRight size={18} />}
+              rightIcon={ChevronRight}
             >
               Continue
             </Button>
@@ -485,7 +475,7 @@ export function QuoteForm({ defaultServiceType }: QuoteFormProps) {
             <Button
               type="submit"
               loading={isSubmitting}
-              leftIcon={<Send size={18} />}
+              leftIcon={Send}
             >
               {isSubmitting ? "Submitting..." : "Submit Request"}
             </Button>

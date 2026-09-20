@@ -11,6 +11,7 @@ import {
   Phone,
   ChevronDown,
   ChevronRight,
+  ArrowRight,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/data/site.config";
@@ -162,7 +163,7 @@ const Header = () => {
           href="/quote"
           size="sm"
           className={styles.quoteBtn}
-          rightIcon={<span>→</span>}
+          rightIcon={ArrowRight}
         >
           Get a Quote
         </LinkButton>

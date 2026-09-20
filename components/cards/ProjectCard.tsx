@@ -7,6 +7,7 @@ import type { Project } from "@/data/projectStats";
 import styles from "./ProjectCard.module.scss";
 import { useProjectImages } from "@/hooks/useProjectImages";
 import ImageSwiper from "../ui/ImageSwiper";
+import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { useMemo } from "react";
 
 interface ProjectCardProps {
@@ -15,14 +16,19 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
-  const imageUrls = useMemo(
-    () => project.gallery.map((img) => img.url),
+  const afterImageUrls = useMemo(
+    () =>
+      project.gallery
+        .filter((img) => img.phase === "after")
+        .map((img) => img.url),
     [project.gallery],
   );
 
   const { images, loading, error } = useProjectImages({
-    images: imageUrls,
+    images: afterImageUrls,
   });
+
+  const hasMultipleAfterImages = afterImageUrls.length > 1;
 
   return (
     <article
@@ -38,12 +44,22 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
       }}
     >
       <div className={styles.imageContainer}>
-        <ImageSwiper
-          images={images}
-          loading={loading}
-          error={error}
-          alt={project.title}
-        />
+        {hasMultipleAfterImages ? (
+          <ImageSwiper
+            images={images}
+            loading={loading}
+            error={error}
+            alt={project.title}
+          />
+        ) : (
+          <ImageWithFallback
+            src={afterImageUrls[0] ?? ""}
+            alt={project.title}
+            fill
+            sizes="(max-width:768px)100vw,50vw"
+            className={styles.cardImage}
+          />
+        )}
       </div>
 
       <div className={styles.cardBody}>

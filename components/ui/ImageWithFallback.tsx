@@ -5,6 +5,8 @@ import Image, { type ImageProps } from "next/image";
 import clsx from "clsx";
 import styles from "./ImageWithFallback.module.scss";
 
+export type ImageAnimation = "none" | "kenburns" | "fadeUp";
+
 type ImageWithFallbackProps = {
   src: string;
   alt: string;
@@ -17,6 +19,7 @@ type ImageWithFallbackProps = {
   placeholder?: "blur" | "empty";
   blurDataURL?: string;
   loading?: "eager" | "lazy";
+  animation?: ImageAnimation;
 } & Omit<
   ImageProps,
   | "src"
@@ -46,6 +49,7 @@ export function ImageWithFallback({
   placeholder = "empty",
   blurDataURL,
   loading,
+  animation = "none",
   ...rest
 }: ImageWithFallbackProps) {
   const [status, setStatus] = useState<"loading" | "loaded" | "error">(
@@ -63,6 +67,9 @@ export function ImageWithFallback({
       className={clsx(
         styles.wrapper,
         fill ? styles.fill : styles.dimensions,
+        animation === "kenburns" && styles.animateKenburns,
+        animation === "fadeUp" && styles.animateFadeUp,
+        status === "loaded" && animation === "fadeUp" && styles.fadeUpVisible,
         className
       )}
       style={

@@ -49,7 +49,7 @@ export function ImageWithFallback({
   placeholder = "empty",
   blurDataURL,
   loading,
-  animation = "none",
+  animation = "kenburns",
   ...rest
 }: ImageWithFallbackProps) {
   const [status, setStatus] = useState<"loading" | "loaded" | "error">(

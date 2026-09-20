@@ -53,7 +53,7 @@ export function ImageWithFallback({
   ...rest
 }: ImageWithFallbackProps) {
   const [status, setStatus] = useState<"loading" | "loaded" | "error">(
-    "loading"
+    "loading",
   );
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export function ImageWithFallback({
         animation === "kenburns" && styles.animateKenburns,
         animation === "fadeUp" && styles.animateFadeUp,
         status === "loaded" && animation === "fadeUp" && styles.fadeUpVisible,
-        className
+        className,
       )}
       style={
         !fill && width && height

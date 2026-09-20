@@ -4,21 +4,16 @@
 
 import { useRef, useState, useCallback } from "react";
 import { MoveHorizontal } from "lucide-react";
-import { projects } from "@/data/projectStats";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import styles from "./BeforeAfterSlider.module.scss";
+
+const beforeImage = "/placeholder-image.jpg";
+const afterImage = "/placeholder-image.jpg";
 
 export function BeforeAfterSlider() {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
-
-  const project = projects[0];
-
-  const beforeImage = project.gallery.find(
-    (image) => image.phase === "before" || "during",
-  );
-  const afterImage = project.gallery.find((image) => image.phase === "after");
 
   const updatePosition = useCallback((clientX: number) => {
     const el = containerRef.current;
@@ -45,10 +40,6 @@ export function BeforeAfterSlider() {
     isDragging.current = false;
   };
 
-  if (!beforeImage || !afterImage) {
-    return null;
-  }
-
   return (
     <section className={styles.section} aria-labelledby="ba-heading">
       <div className={styles.container}>
@@ -60,7 +51,6 @@ export function BeforeAfterSlider() {
 
         <p className={styles.description}>
           Drag the slider to see the difference our work makes.
-          <br /> {project.title}.
         </p>
 
         <div
@@ -73,8 +63,8 @@ export function BeforeAfterSlider() {
         >
           <div className={styles.imageWrap}>
             <ImageWithFallback
-              src={afterImage.url}
-              alt={`${project.title} after completion`}
+              src={afterImage}
+              alt="After completion"
               fill
               sizes="(max-width: 1024px) 100vw, 1024px"
               className={styles.image}
@@ -88,8 +78,8 @@ export function BeforeAfterSlider() {
           <div className={styles.beforeWrap} style={{ width: `${position}%` }}>
             <div className={styles.beforeInner}>
               <ImageWithFallback
-                src={beforeImage.url}
-                alt={`${project.title} before work`}
+                src={beforeImage}
+                alt="Before work"
                 fill
                 sizes="(max-width: 1024px) 100vw, 1024px"
                 className={styles.image}

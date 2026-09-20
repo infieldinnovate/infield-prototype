@@ -53,7 +53,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           />
         ) : (
           <ImageWithFallback
-            src={afterImageUrls[0] ?? ""}
+            src={afterImageUrls[0]}
             alt={project.title}
             fill
             sizes="(max-width:768px)100vw,50vw"

@@ -18,7 +18,7 @@ export const slides: HeroSlideData[] = [
     title: "Powering Progress.\nBuilding What Matters.",
     description:
       "Integrated water, energy and engineering solutions designed for homes, businesses and institutions.",
-    image: "/pages/solar_64576898000.jpg",
+    image: "/home/solar_64576898001.jpg",
     imageAlt:
       "Wide-angle view of a large-scale construction site with cranes under a vibrant blue sky",
     panelTitle: "SOLAR ENERGY",
@@ -32,7 +32,7 @@ export const slides: HeroSlideData[] = [
     title: "Turn Sunshine Into\nReliable Power.",
     description:
       "Custom solar systems, battery storage and energy solutions designed around your power needs.",
-    image: "/pages/solar_pumping_645836459.jpg",
+    image: "/home/solar_pumping_645836459.jpg",
     imageAlt:
       "A large field of solar panels capturing renewable energy under a clear sky",
     panelTitle: "SOLAR ENERGY",
@@ -45,7 +45,7 @@ export const slides: HeroSlideData[] = [
     title: "Reliable Water\nStarts Here.",
     description:
       "From borehole drilling to water storage and harvesting, we develop dependable water systems for homes, businesses and institutions.",
-    image: "/pages/borehole_456453045.jpg",
+    image: "/home/borehole_456453045.jpg",
     imageAlt:
       "Aerial shot of a sunlit construction site highlighting a deep borehole",
     panelTitle: "WATER SOLUTIONS",
@@ -61,7 +61,7 @@ export const slides: HeroSlideData[] = [
     title: "Power Systems\nBuilt To Perform.",
     description:
       "Safe, reliable electrical installations and engineering solutions built for modern properties and demanding environments.",
-    image: "/pages/electrical_47625345235.jpg",
+    image: "/home/electrical_47625345235.jpg",
     imageAlt:
       "Professional engineer inspecting industrial electrical circuit board",
     panelTitle: "ELECTRICAL",
@@ -74,7 +74,7 @@ export const slides: HeroSlideData[] = [
     title: "Smarter Water.\nBetter Growth.",
     description:
       "Efficient irrigation systems designed to deliver the right amount of water where it matters most.",
-    image: "/pages/irrigation_7486789098.jpg",
+    image: "/home/irrigation_7486789098.jpg",
     imageAlt:
       "Drone shot of a circular irrigation system watering a green agricultural field",
     panelTitle: "IRRIGATION",

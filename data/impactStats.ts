@@ -45,7 +45,7 @@ export const COMMON_IMPACT_STATS: Record<string, ImpactStat> = {
   // ── Shared across all categories ──
   projectsCompleted: {
     label: "Projects Completed",
-    value: "150+",
+    value: "100+",
     icon: CheckCircle2,
     categories: ["all"],
   },

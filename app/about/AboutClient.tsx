@@ -56,12 +56,12 @@ const milestones = [
       "Started with a vision to provide quality water and energy solutions",
   },
   {
-    year: "2016",
+    year: "2019",
     event: "First Major Project",
     description: "Completed our first large-scale solar installation",
   },
   {
-    year: "2018",
+    year: "2019",
     event: "10 Projects Milestone",
     description: "Reached 10 successful project completions",
   },
@@ -166,7 +166,7 @@ export default function AboutClient() {
           <div className={styles.storyGrid}>
             <div className={styles.storyImage}>
               <ImageWithFallback
-                src="/solar/solar-52634168903q.jpg"
+                src="/about/borehole-132108_3625.jpg"
                 alt="Infield Innovations team at work"
                 fill
                 className={styles.image}
@@ -242,7 +242,7 @@ export default function AboutClient() {
       </section>
 
       {/* Team */}
-      <section className={styles.teamSection}>
+      {/* <section className={styles.teamSection}>
         <div className={styles.container}>
           <SectionHeading
             eyebrow="Our People"
@@ -271,7 +271,7 @@ export default function AboutClient() {
             </div>
           </ScrollReveal>
         </div>
-      </section>
+      </section> */}
 
       {/* Industries We Serve */}
       <section className={styles.industriesSection}>

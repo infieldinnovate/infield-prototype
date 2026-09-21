@@ -34,6 +34,7 @@ import CallToAction from "../ui/CallToAction";
 import { BrandsCarousel } from "../sections/BrandsCarousel";
 import { ServiceIcons } from "@/data/service-icons";
 import { AutoScroll } from "@/components/ui/AutoScroll";
+import { ImageWithFallback } from "../ui/ImageWithFallback";
 
 const trustItems = [
   {
@@ -87,10 +88,15 @@ export function Footer() {
                 className={styles.logo}
                 aria-label={`${siteConfig.name} home`}
               >
-                <span className={styles.logoIcon}>
-                  <Zap size={24} strokeWidth={2.5} />
-                </span>
-                <span className={styles.logoText}>{siteConfig.name}</span>
+                <ImageWithFallback
+                  src="/logo.png"
+                  alt="Infield Innovations Limited"
+                  width={200}
+                  height={90}
+                  className={styles.logo}
+                  loading="eager"
+                  priority
+                />
               </Link>
               <p className={styles.description}>{siteConfig.description}</p>
               <p className={styles.mission}>{siteConfig.mission}</p>

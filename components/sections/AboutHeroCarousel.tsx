@@ -37,7 +37,7 @@ export default function AboutHeroCarousel() {
         "From a three-person operation to a multi-disciplinary engineering company — we combine technical expertise with genuine care for every project we deliver.",
       meta: [
         { icon: Users, text: "28 certified professionals" },
-        { icon: CheckCircle2, text: "150+ projects completed" },
+        { icon: CheckCircle2, text: "100+ projects completed" },
       ],
       primaryButton: { label: "Our Story", href: "/about" },
       secondaryButton: { label: "Contact Us", href: "/contact" },
@@ -118,7 +118,7 @@ export default function AboutHeroCarousel() {
       description: `We have delivered projects across ${countyCount} counties — from Meru to Marsabit, Nairobi to Garissa. Wherever you are, we can help.`,
       meta: [
         { icon: MapPin, text: `${countyCount} counties served` },
-        { icon: CheckCircle2, text: "150+ installations" },
+        { icon: CheckCircle2, text: "100+ installations" },
       ],
       primaryButton: { label: "View Projects", href: "/resources/projects" },
       secondaryButton: { label: "Get a Quote", href: "/quote" },

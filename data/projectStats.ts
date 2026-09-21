@@ -75,17 +75,17 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Site before solar installation",
         phase: "before",
       },
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Panel installation in progress",
         phase: "during",
       },
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Completed rooftop solar installation",
         phase: "after",
       },
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Borehole drilling operations",
         phase: "during",
       },
@@ -177,12 +177,12 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Completed drip irrigation system",
         phase: "after",
       },
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Filtration and control unit",
         phase: "after",
       },
@@ -228,7 +228,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Completed solar pumping installation",
         phase: "after",
       },
@@ -274,12 +274,12 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Cable routing during installation",
         phase: "during",
       },
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Completed distribution system",
         phase: "after",
       },
@@ -325,7 +325,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Industrial plumbing installation",
         phase: "during",
       },
@@ -371,7 +371,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Completed elevated water storage system",
         phase: "after",
       },
@@ -417,7 +417,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Completed commercial solar installation",
         phase: "after",
       },
@@ -463,7 +463,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Completed agricultural borehole",
         phase: "after",
       },
@@ -509,7 +509,7 @@ export const projects: Project[] = [
     ],
     gallery: [
       {
-        url: "/placeholder-image.jpg",
+        url: "/placeholder_image.jpg",
         caption: "Completed greenhouse irrigation system",
         phase: "after",
       },

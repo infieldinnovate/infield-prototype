@@ -26,7 +26,7 @@ export default function AboutHeroCarousel() {
   const slides: PremiumSlide[] = useMemo(() => {
     // ── 01 Who We Are ──
     const slide1: PremiumSlide = {
-      image: "/placeholder-image.jpg",
+      image: "/about/solar-structure-155821_747.jpg",
       imageAlt: "Infield Innovations team at work",
       imagePriority: true,
       badge: "Who We Are",
@@ -46,7 +46,7 @@ export default function AboutHeroCarousel() {
     // ── 02 What We Do ──
     const serviceNames = SERVICES.map((s) => s.shortName).join(" · ");
     const slide2: PremiumSlide = {
-      image: "/placeholder-image.jpg",
+      image: "/placeholder_image.jpg",
       imageAlt: "Solar and engineering installations",
       imagePriority: false,
       badge: "What We Do",
@@ -63,10 +63,8 @@ export default function AboutHeroCarousel() {
     };
 
     // ── 03 How We Work ──
-    // Brief: Assess → Design → Install → Support
-    // Map from process.ts steps (Consultation/Site Visit → Design → Installation → Maintenance)
     const slide3: PremiumSlide = {
-      image: "/placeholder-image.jpg",
+      image: "/placeholder_image.jpg",
       imageAlt: "Engineers assessing and installing systems",
       imagePriority: false,
       badge: "How We Work",
@@ -88,11 +86,8 @@ export default function AboutHeroCarousel() {
     };
 
     // ── 04 Why Choose Us ──
-    // Trust points drawn ONLY from existing claims in certifications.ts + equipment.ts
-    // Quality (ISO 9001 cert), Safety (Occupational Health & Safety + safetyCommitments),
-    // Reliability (Full Insurance Cover + workmanship warranty), Professional Expertise (Continuous Training)
     const slide4: PremiumSlide = {
-      image: "/placeholder-image.jpg",
+      image: "/placeholder_image.jpg",
       imageAlt: "Quality engineering and safety on site",
       imagePriority: false,
       badge: "Why Choose Us",
@@ -113,7 +108,7 @@ export default function AboutHeroCarousel() {
     // ── 05 Our Reach ──
     const countyCount = countiesServed.length;
     const slide5: PremiumSlide = {
-      image: "/placeholder-image.jpg",
+      image: "/placeholder_image.jpg",
       imageAlt: "Projects across Kenya",
       imagePriority: false,
       badge: "Our Reach",

@@ -34,8 +34,7 @@ export const articles: Article[] = [
     excerpt:
       "Everything you need to know about residential solar — from system sizing and roof assessment to choosing the right panels and inverters for maximum efficiency.",
     category: "solar",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "8 min read",
     publishDate: "2024-06-15",
     authorId: "tm4",
@@ -93,8 +92,7 @@ export const articles: Article[] = [
     excerpt:
       "Upgrading your electrical panel? Learn about amperage requirements, smart panels, and how to future-proof your home or business for solar and backup power.",
     category: "electrical",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "6 min read",
     publishDate: "2024-05-28",
     authorId: "tm1",
@@ -145,8 +143,7 @@ export const articles: Article[] = [
     excerpt:
       "A step-by-step walkthrough of the borehole drilling process — geological surveys, permitting, drilling, casing, pump installation, and water quality testing.",
     category: "boreholes",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "10 min read",
     publishDate: "2024-05-10",
     authorId: "tm2",
@@ -211,8 +208,7 @@ export const articles: Article[] = [
     excerpt:
       "From leaking taps to burst pipes, discover the most common plumbing issues homeowners face and practical tips to prevent costly repairs.",
     category: "plumbing",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "5 min read",
     publishDate: "2024-04-22",
     authorId: "tm5",
@@ -263,8 +259,7 @@ export const articles: Article[] = [
     excerpt:
       "Explore how WiFi-enabled controllers, weather sensors, and drip systems can cut your water usage by up to 50% while keeping your landscape thriving.",
     category: "irrigation",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "7 min read",
     publishDate: "2024-04-05",
     authorId: "tm6",
@@ -322,8 +317,7 @@ export const articles: Article[] = [
     excerpt:
       "A deep dive into solar battery systems — capacity sizing, lithium vs lead-acid, cost analysis, and how battery backup can provide energy independence.",
     category: "solar",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "9 min read",
     publishDate: "2024-03-18",
     authorId: "tm4",
@@ -381,8 +375,7 @@ export const articles: Article[] = [
     excerpt:
       "Considering a backup generator for your home or business? Learn about generator sizing, fuel options, transfer switches, and maintenance best practices.",
     category: "electrical",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "6 min read",
     publishDate: "2024-03-01",
     authorId: "tm1",
@@ -433,8 +426,7 @@ export const articles: Article[] = [
     excerpt:
       "After drilling your borehole, water quality testing is essential. Learn what we test for, how treatment systems work, and maintaining water safety.",
     category: "boreholes",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "7 min read",
     publishDate: "2024-02-14",
     authorId: "tm2",
@@ -485,8 +477,7 @@ export const articles: Article[] = [
     excerpt:
       "Keep your landscape thriving through the dry season. Learn how to adjust your irrigation system, conserve water, and protect your investment during Kenya's dry months.",
     category: "irrigation",
-    image:
-      "/placeholder-image.jpg",
+    image: "/placeholder_image.jpg",
     readingTime: "5 min read",
     publishDate: "2024-01-20",
     authorId: "tm6",

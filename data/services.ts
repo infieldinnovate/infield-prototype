@@ -64,7 +64,7 @@ export const SERVICES: Service[] = [
       "Transition to clean energy with our comprehensive solar solutions. We handle every aspect from initial assessment and system design to installation, permitting, and ongoing maintenance. Our solar systems are designed to maximize energy production and savings, with battery storage options for energy independence.",
     icon: "Sun",
     color: "#fbbf24",
-    image: "/placeholder_image.jpg",
+    image: "/services/solar-154910_690.jpg",
     startingPrice: "KSh 450,000",
     infographicTitle: "Integrated Solar Energy Flow",
     infographicSubtitle:
@@ -164,7 +164,7 @@ export const SERVICES: Service[] = [
       "Our certified electricians handle everything from routine maintenance to complex installations. We specialize in residential and commercial electrical systems, ensuring every project meets or exceeds local codes and safety standards. Whether you need a new circuit installed, a panel upgrade, or 24/7 emergency repairs, our team responds quickly and works efficiently.",
     icon: "Zap",
     color: "#f59e0b",
-    image: "/placeholder_image.jpg",
+    image: "/services/electrical_151924_026.jpg",
     startingPrice: "KSh 15,000",
     infographicTitle: "Integrated Electrical Power Flow",
     infographicSubtitle:
@@ -262,7 +262,7 @@ export const SERVICES: Service[] = [
       "Our expert plumbers tackle everything from minor leaks to major pipe replacements. We use the latest diagnostic tools to identify issues quickly and provide lasting solutions. Our services cover residential and commercial properties, with a commitment to clean, professional work that respects your property.",
     icon: "Droplets",
     color: "#1e40af",
-    image: "/placeholder_image.jpg",
+    image: "/services/plumbing_113735_651.jpg",
     startingPrice: "KSh 5,000",
     infographicTitle: "Integrated Water Plumbing Flow",
     infographicSubtitle:
@@ -356,7 +356,7 @@ export const SERVICES: Service[] = [
       "Access your own reliable water supply with our professional borehole drilling services. We handle the entire process from geological survey and site selection through drilling, casing, pump installation, and water quality testing. Our boreholes provide a sustainable, independent water source for homes, farms, and businesses.",
     icon: "Drill",
     color: "#0891b2",
-    image: "/placeholder_image.jpg",
+    image: "/services/borehole_132109_705.jpg",
     startingPrice: "KSh 650,000",
     infographicTitle: "Integrated Borehole Water Flow",
     infographicSubtitle:
@@ -459,7 +459,7 @@ export const SERVICES: Service[] = [
       "Ensure a reliable water supply with our comprehensive water storage solutions. We supply and install plastic, steel, GRP, and concrete storage systems for domestic, agricultural, and commercial applications. From small household tanks to large-capacity elevated towers and underground reservoirs, we design storage systems that guarantee water availability when you need it most.",
     icon: "Database",
     color: "#0ea5e9",
-    image: "/placeholder_image.jpg",
+    image: "/services/tank_7465893.jpg",
     startingPrice: "KSh 8,500",
     infographicTitle: "Integrated Water Storage Flow",
     infographicSubtitle: "From capture to reserve — secure water availability",
@@ -560,7 +560,7 @@ export const SERVICES: Service[] = [
       "Maximize your water security with our comprehensive water harvesting solutions. We design and install rainwater collection systems, surface water capture, farm pans, ponds, and small dams that turn seasonal rainfall into a reliable year-round water supply. Our systems integrate seamlessly with storage and irrigation for a complete water management solution.",
     icon: "CloudRain",
     color: "#0d9488",
-    image: "/placeholder_image.jpg",
+    image: "/services/dam_84567984.jpg",
     startingPrice: "KSh 25,000",
     infographicTitle: "Integrated Water Harvesting Flow",
     infographicSubtitle:
@@ -666,7 +666,7 @@ export const SERVICES: Service[] = [
       "A well-designed irrigation system is essential for maintaining a healthy landscape while conserving water. We design and install custom irrigation solutions tailored to your property's unique needs, incorporating smart controllers, efficient sprinkler heads, and drip systems for optimal water distribution.",
     icon: "Sprout",
     color: "#10b981",
-    image: "/placeholder_image.jpg",
+    image: "/services/irrigation_54865165.jpg",
     startingPrice: "KSh 45,000",
     infographicTitle: "Integrated Irrigation Flow",
     infographicSubtitle:

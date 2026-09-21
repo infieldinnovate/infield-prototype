@@ -128,6 +128,7 @@
   position: relative;
   min-height: 370px;
 }
+
 .heroImageFrame {
   position: absolute;
   inset: 0 var(--space-4) var(--space-8) 0;
@@ -147,6 +148,7 @@
     rgba(3, 22, 36, 0.05),
     rgba(3, 22, 36, 0.78)
   );
+  z-index: 1;
 }
 .visualLabel {
   position: absolute;
@@ -157,6 +159,7 @@
   align-items: center;
   gap: var(--space-3);
   color: $color-white;
+  z-index: 1;
 }
 .visualLabel span:last-child {
   display: grid;

@@ -8,7 +8,32 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Building2, Check, CircleCheck as CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, CircleDot, Clock3, Database, Drill, Droplets, Lightbulb, MapPin, Quote, Settings2, ShieldCheck, Sprout, Star, Sun, Users, Wrench } from "lucide-react";
+import {
+  ArrowDownRight,
+  ArrowRight,
+  ArrowUpRight,
+  Building2,
+  Check,
+  CircleCheck as CheckCircle2,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  CircleDot,
+  Clock3,
+  Database,
+  Drill,
+  Droplets,
+  Lightbulb,
+  MapPin,
+  Quote,
+  Settings2,
+  ShieldCheck,
+  Sprout,
+  Star,
+  Sun,
+  Users,
+  Wrench,
+} from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -193,11 +218,7 @@ export default function ServiceDetailClient({
                 {service.longDescription}
               </p>
               <div className={styles.heroActions}>
-                <LinkButton
-                  href="/quote"
-                  size="lg"
-                  rightIcon={ArrowUpRight}
-                >
+                <LinkButton href="/quote" size="lg" rightIcon={ArrowUpRight}>
                   Get a Free Assessment
                 </LinkButton>
                 <a className={styles.textLink} href="#services">
@@ -607,11 +628,7 @@ export default function ServiceDetailClient({
                 We do not sell products. We design, build and maintain systems
                 that keep working long after installation day.
               </p>
-              <LinkButton
-                href="/quote"
-                size="lg"
-                rightIcon={ArrowUpRight}
-              >
+              <LinkButton href="/quote" size="lg" rightIcon={ArrowUpRight}>
                 Get a Free Assessment
               </LinkButton>
             </div>

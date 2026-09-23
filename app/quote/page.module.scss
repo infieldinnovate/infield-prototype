@@ -1,0 +1,23 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.container {
+  @include container;
+}
+
+.hero {
+  @include section;
+  background: var(--color-gray-50);
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-12);
+}
+
+.section {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-24);
+}
+
+.formWrapper {
+  max-width: 840px;
+  margin-inline: auto;
+}

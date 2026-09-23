@@ -1,0 +1,155 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+// ============================================
+// Single fixed container — bottom-right
+// WhatsApp sits at the top of the stack (always
+// visible). Quote and back-to-top collapse in
+// below it on scroll, pushing WhatsApp upward.
+// ============================================
+.container {
+  position: fixed;
+  bottom: var(--space-5);
+  right: var(--space-2);
+  z-index: var(--z-sticky);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  @include breakpoint-down("sm") {
+    bottom: var(--space-4);
+    right: var(--space-4);
+  }
+}
+
+// WhatsApp — always rendered, no transition needed
+.whatsappSlot {
+  position: relative;
+}
+
+// ============================================
+// Collapsible slot for quote + back-to-top
+// Expands from 0 height → pushes WhatsApp up
+// ============================================
+.actionSlot {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  margin-top: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition:
+    max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    margin-top 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.actionSlotVisible {
+    max-height: 60px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: var(--space-3);
+    pointer-events: auto;
+    overflow: visible;
+  }
+}
+
+// ============================================
+// Shared button base — consistent 48×48 circle
+// ============================================
+.btn {
+  @include flex-center;
+  @include button-reset;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  color: var(--color-white);
+  box-shadow: var(--shadow-lg);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+
+  &:hover {
+    transform: scale(1.08);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  @include focus-visible;
+}
+
+// ============================================
+// Quote button
+// ============================================
+.quote {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(15, 108, 189, 0.4);
+  }
+}
+
+// ============================================
+// Tooltip (quote button)
+// ============================================
+.tooltip {
+  position: absolute;
+  right: calc(100% + var(--space-3));
+  top: 50%;
+  transform: translateY(-50%);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-gray-900);
+  color: var(--color-white);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-left-color: var(--color-gray-900);
+  }
+
+  .quote:hover & {
+    opacity: 1;
+  }
+
+  @include breakpoint-down("sm") {
+    display: none;
+  }
+}
+
+// ============================================
+// Back to Top
+// ============================================
+.backToTop {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.05em;
+
+  &:hover {
+    box-shadow: 0 12px 28px rgba(15, 108, 189, 0.5);
+  }
+}

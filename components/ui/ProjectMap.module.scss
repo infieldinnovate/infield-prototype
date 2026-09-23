@@ -1,0 +1,72 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+$primary: $color-project-primary;
+$foreground: $color-project-foreground;
+$white: $color-white;
+
+$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
+
+$radius: 0.75rem;
+$radius-lg: 1rem;
+
+$transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+.mapWrap {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-lg;
+  background: linear-gradient(135deg, #e8f5ee 0%, #d4ede0 100%);
+  aspect-ratio: 16 / 11;
+}
+
+.mapSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mapPin {
+  position: absolute;
+  cursor: pointer;
+  transition: transform $transition;
+
+  &:hover {
+    transform: scale(1.3);
+  }
+}
+
+.mapPinDot {
+  fill: $primary;
+  stroke: $white;
+  stroke-width: 2;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.mapPinTooltip {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  background: $foreground;
+  color: $white;
+  padding: 0.35rem 0.75rem;
+  border-radius: $radius;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: $foreground;
+  }
+}

@@ -1,0 +1,83 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.formWrapper {
+  @include card;
+  padding: var(--space-8);
+}
+
+// Toggle group
+.toggleGroup {
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-8);
+
+  @include breakpoint-down('sm') {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+}
+
+.toggleBtn {
+  @include flex-center;
+  gap: var(--space-2);
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+
+  &:hover:not(.toggleBtnActive) {
+    color: var(--color-primary);
+    background: var(--color-white);
+  }
+
+  @include focus-visible;
+
+  @include breakpoint-down('sm') {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.toggleBtnActive {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+
+  &:hover {
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  }
+}
+
+// Form header
+.formHeader {
+  @include flex-column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+
+  svg {
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+}
+
+.formTitle {
+  @include heading-3;
+}
+
+.formDescription {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+}

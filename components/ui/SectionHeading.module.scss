@@ -1,0 +1,132 @@
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  // background-color: rgb(255, 226, 226);
+
+  &.left {
+    align-items: flex-start;
+    text-align: left;
+
+    .eyebrow {
+      justify-content: flex-start;
+    }
+  }
+
+  .eyebrow,
+  .title,
+  .description {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: var(--space-3);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-secondary-dark);
+  }
+
+  // ======================
+  // H1
+  // ======================
+  &.h1 {
+    margin-bottom: var(--space-12);
+    .eyebrow {
+      font-size: var(--fs-base);
+    }
+    .title {
+      @include heading-1;
+    }
+    .description {
+      font-size: var(--fs-xl);
+    }
+  }
+
+  // ======================
+  // H2
+  // ======================
+  &.h2 {
+    margin-bottom: var(--space-12);
+    .eyebrow {
+      font-size: var(--fs-sm);
+    }
+    .title {
+      @include heading-2;
+    }
+
+    .description {
+      font-size: var(--fs-lg);
+    }
+  }
+
+  // ======================
+  // H3
+  // ======================
+  &.h3 {
+    margin-bottom: var(--space-6);
+    .eyebrow {
+      font-size: var(--fs-xs);
+    }
+    .title {
+      @include heading-3;
+      color: #006f9e;
+    }
+    .description {
+      font-size: var(--fs-base);
+    }
+  }
+
+  // ======================
+  // H4
+  // ======================
+  &.h4 {
+    margin-bottom: var(--space-4);
+    .eyebrow {
+      font-size: var(--fs-xs);
+    }
+    .title {
+      @include heading-4;
+    }
+    .description {
+      font-size: var(--fs-sm);
+    }
+  }
+
+  // White/light version
+  &.light {
+    .eyebrow,
+    .title,
+    .description {
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  // Primary theme
+  &.primary {
+    .eyebrow,
+    .title,
+    .description {
+      color: var(--color-primary);
+    }
+  }
+
+  // Secondary theme
+  &.secondary {
+    .eyebrow,
+    .title,
+    .description {
+      color: var(--color-secondary);
+    }
+  }
+}

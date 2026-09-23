@@ -1,0 +1,58 @@
+@use '../styles/abstracts/variables' as *;
+@use '../styles/abstracts/mixins' as *;
+
+.container {
+  @include flex-center;
+  min-height: calc(100vh - var(--header-height));
+  padding: var(--space-16) var(--space-4);
+}
+
+.content {
+  @include flex-column;
+  @include flex-center;
+  text-align: center;
+  max-width: 560px;
+}
+
+.iconWrapper {
+  @include flex-center;
+  width: 96px;
+  height: 96px;
+  background: var(--color-error-light);
+  color: var(--color-error);
+  border-radius: var(--radius-2xl);
+  margin-bottom: var(--space-8);
+}
+
+.errorCode {
+  font-size: var(--fs-6xl);
+  font-weight: var(--fw-extrabold);
+  color: var(--color-error);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  @include heading-2;
+  margin-bottom: var(--space-4);
+}
+
+.description {
+  font-size: var(--fs-lg);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.digest {
+  font-size: var(--fs-xs);
+  color: var(--color-text-light);
+  font-family: var(--font-mono);
+  margin-bottom: var(--space-8);
+}
+
+.actions {
+  @include flex-center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}

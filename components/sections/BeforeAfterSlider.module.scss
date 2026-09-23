@@ -1,0 +1,160 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.section {
+  padding: var(--space-16) 0;
+  background: var(--color-gray-900);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(15, 108, 189, 0.15), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+}
+
+.container {
+  @include container;
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.eyebrow {
+  text-align: center;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-secondary-light);
+  margin-bottom: var(--space-2);
+}
+
+.title {
+  text-align: center;
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-white);
+  margin-bottom: var(--space-3);
+
+  @include breakpoint-down('sm') {
+    font-size: var(--fs-2xl);
+  }
+}
+
+.description {
+  text-align: center;
+  font-size: var(--fs-base);
+  color: var(--color-gray-400);
+  max-width: 600px;
+  margin: 0 auto var(--space-10);
+  line-height: var(--lh-relaxed);
+}
+
+.slider {
+  position: relative;
+  max-width: 1024px;
+  margin: 0 auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  touch-action: pan-y;
+  box-shadow: var(--shadow-2xl);
+}
+
+.imageWrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.beforeWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.beforeInner {
+  position: relative;
+  width: 100vw;
+  max-width: 1024px;
+  height: 100%;
+}
+
+.badge {
+  position: absolute;
+  top: var(--space-4);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.badgeBefore {
+  left: var(--space-4);
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--color-white);
+}
+
+.badgeAfter {
+  right: var(--space-4);
+  background: rgba(15, 108, 189, 0.85);
+  color: var(--color-white);
+}
+
+.handle {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: var(--color-white);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.handleIcon {
+  @include flex-center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  background: var(--color-white);
+  color: var(--color-primary);
+  border-radius: var(--radius-full);
+  transform: translate(-50%, -50%);
+  box-shadow: var(--shadow-lg);
+}
+
+.rangeInput {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  margin: 0;
+}

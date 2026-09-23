@@ -1,0 +1,111 @@
+@use "../styles/abstracts/variables" as *;
+@use "../styles/abstracts/mixins" as *;
+
+.container {
+  @include container;
+}
+
+.section {
+  @include section;
+}
+
+.statsSection {
+  padding-block: var(--space-12);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.servicesGrid {
+  @include responsive-grid(1, 2, 3, var(--space-6));
+  margin-bottom: var(--space-12);
+}
+
+.sectionCta {
+  @include flex-center;
+}
+
+// Why Choose Us
+.whySection {
+  @include section;
+  background: var(--color-gray-50);
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: center;
+
+  @include breakpoint-up("lg") {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+  }
+}
+
+.whyContent {
+  max-width: 560px;
+}
+
+.whyList {
+  @include flex-column;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+}
+
+.whyItem {
+  @include flex-center;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.whyIcon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.whyTitle {
+  @include heading-4;
+  margin-bottom: var(--space-2);
+}
+
+.whyDescription {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+}
+
+.whyImage {
+  @include flex-center;
+}
+
+.imageCard {
+  @include card;
+  padding: var(--space-3);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 480px;
+}
+
+.image {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+// Projects
+.projectsGrid {
+  @include responsive-grid(1, 2, 3, var(--space-6));
+  margin-bottom: var(--space-12);
+}
+
+// Testimonials
+.testimonialsSection {
+  @include section;
+  background: var(--color-gray-50);
+}
+
+.testimonialsGrid {
+  @include responsive-grid(1, 2, 3, var(--space-6));
+}

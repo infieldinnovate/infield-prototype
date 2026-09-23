@@ -1,0 +1,93 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.card {
+  @include card;
+  @include flex-column;
+  padding: var(--space-6);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  @include card-hover;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    opacity: 0;
+    transition: opacity var(--transition-base);
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.topRow {
+  @include flex-between;
+  margin-bottom: var(--space-5);
+}
+
+.iconWrapper {
+  @include flex-center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-base);
+
+  .card:hover & {
+    transform: scale(1.08);
+  }
+}
+
+.fileType {
+  @include flex-center;
+  padding: var(--space-1) var(--space-3);
+  color: var(--color-white);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+}
+
+.title {
+  @include heading-4;
+  margin-bottom: var(--space-3);
+}
+
+.description {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  line-height: var(--lh-relaxed);
+  margin-bottom: var(--space-5);
+  flex-grow: 1;
+  @include text-clamp(3);
+}
+
+.meta {
+  @include flex-center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.metaItem {
+  @include flex-center;
+  gap: var(--space-1);
+  font-size: var(--fs-xs);
+  color: var(--color-text-light);
+
+  svg {
+    color: var(--color-text-muted);
+  }
+}
+
+.downloadButton {
+  margin-top: auto;
+}

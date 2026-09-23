@@ -80,12 +80,12 @@ export const projects: Project[] = [
         phase: "before",
       },
       {
-        url: "/placeholder_image.jpg",
+        url: "/projects/solar_1157095251.jpg",
         caption: "Panel installation in progress",
         phase: "during",
       },
       {
-        url: "/placeholder_image.jpg",
+        url: "/projects/solar_546864652.jpg",
         caption: "Completed rooftop solar installation",
         phase: "after",
       },

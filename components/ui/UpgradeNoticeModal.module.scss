@@ -354,7 +354,7 @@
   width: 0;
   background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
   border-radius: var(--radius-full);
-  animation: progressFill 5s linear forwards;
+  animation: progressFill 15s linear forwards;
 }
 
 @keyframes progressFill {

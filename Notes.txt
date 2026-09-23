@@ -59,8 +59,15 @@ Force Push ------------------------------------> git push -u origin main --force
 Get-ChildItem -Path public -Recurse -File | Where-Object { $_.Extension -eq ".JPG" } | ForEach-Object {
     Rename-Item $_.FullName ($_.BaseName + ".jpg")
 }
+
+
 # Change all .JPEG → .jpeg
 
 Get-ChildItem -Path public -Recurse -File | Where-Object { $_.Extension -eq ".JPEG" } | ForEach-Object {
     Rename-Item $_.FullName ($_.BaseName + ".jpeg")
 }
+
+
+#Check  Git contains
+
+git ls-files | findstr /i "components/ui"

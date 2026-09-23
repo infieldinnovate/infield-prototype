@@ -159,7 +159,7 @@ export function UpgradeNoticeModal() {
               className={styles.dismissBtn}
               onClick={handleClose}
             >
-              Got it
+              Continue to Site
             </button>
           </div>
         </div>

@@ -54,5 +54,13 @@ Commit changes.--------------------------------> git commit -m 'update'
 
 Force Push ------------------------------------> git push -u origin main --force
 
+# Change all .JPG extensions to .jpg inside public:
 
+Get-ChildItem -Path public -Recurse -File | Where-Object { $_.Extension -eq ".JPG" } | ForEach-Object {
+    Rename-Item $_.FullName ($_.BaseName + ".jpg")
+}
+# Change all .JPEG → .jpeg
 
+Get-ChildItem -Path public -Recurse -File | Where-Object { $_.Extension -eq ".JPEG" } | ForEach-Object {
+    Rename-Item $_.FullName ($_.BaseName + ".jpeg")
+}

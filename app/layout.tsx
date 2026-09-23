@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Header from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingActions } from "@/components/ui/FloatingActions";
+import { UpgradeNoticeModal } from "@/components/ui/UpgradeNoticeModal";
 import { siteConfig } from "@/data/site.config";
 import {
   buildLocalBusinessSchema,
@@ -175,6 +176,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingActions />
+        <UpgradeNoticeModal />
         {jsonLd.map((schema, i) => (
           <script
             key={i}

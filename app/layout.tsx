@@ -20,62 +20,6 @@ const inter = Inter({
   display: "swap",
 });
 
-// export const metadata: Metadata = {
-//   metadataBase: new URL(siteConfig.url),
-//   title: {
-//     default: `${siteConfig.name} — ${siteConfig.tagline}`,
-//     template: `%s | ${siteConfig.name}`,
-//   },
-//   description: siteConfig.description,
-//   authors: [{ name: siteConfig.name }],
-//   creator: siteConfig.name,
-//   publisher: siteConfig.name,
-//   themeColor: "#0f6cbd",
-//   viewport: {
-//     width: "device-width",
-//     initialScale: 1,
-//   },
-//   openGraph: {
-//     type: "website",
-//     locale: "en_KE",
-//     url: siteConfig.url,
-//     siteName: siteConfig.name,
-//     title: `${siteConfig.name} — ${siteConfig.tagline}`,
-//     description: siteConfig.description,
-//     images: [
-//       {
-//         url: siteConfig.ogImage,
-//         width: 1200,
-//         height: 630,
-//         alt: siteConfig.name,
-//       },
-//     ],
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: `${siteConfig.name} — ${siteConfig.tagline}`,
-//     description: siteConfig.description,
-//     images: [siteConfig.ogImage],
-//   },
-//   robots: {
-//     index: true,
-//     follow: true,
-//     googleBot: {
-//       index: true,
-//       follow: true,
-//       "max-image-preview": "large",
-//       "max-snippet": -1,
-//       "max-video-preview": -1,
-//     },
-//   },
-//   alternates: {
-//     canonical: "/",
-//   },
-//   verification: {
-//     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-//   },
-// };
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {

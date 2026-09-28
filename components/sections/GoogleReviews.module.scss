@@ -28,12 +28,12 @@
 }
 
 .title {
-  font-size: var(--fs-3xl);
+  font-size: var(--fs-2xl);
   font-weight: var(--fw-bold);
   color: var(--color-text);
 
-  @include breakpoint-down('sm') {
-    font-size: var(--fs-2xl);
+  @include breakpoint-up('sm') {
+    font-size: var(--fs-3xl);
   }
 }
 
@@ -180,8 +180,10 @@
 
   @include focus-visible;
 
-  @include breakpoint-down('sm') {
-    display: none;
+  display: none;
+
+  @include breakpoint-up('sm') {
+    display: flex;
   }
 }
 

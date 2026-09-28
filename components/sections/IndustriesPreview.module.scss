@@ -22,13 +22,13 @@
 
 .title {
   text-align: center;
-  font-size: var(--fs-3xl);
+  font-size: var(--fs-2xl);
   font-weight: var(--fw-bold);
   color: var(--color-text);
   margin-bottom: var(--space-3);
 
-  @include breakpoint-down('sm') {
-    font-size: var(--fs-2xl);
+  @include breakpoint-up('sm') {
+    font-size: var(--fs-3xl);
   }
 }
 

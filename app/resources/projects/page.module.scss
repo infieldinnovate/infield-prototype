@@ -26,14 +26,14 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 /* Hero Section */
 .hero {
   position: relative;
-  min-height: 70vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   text-align: center;
   color: $white;
-  padding: 6rem 1.5rem 4rem;
+  padding: 4rem 1rem 3rem;
 
   &::before {
     content: "";
@@ -46,6 +46,11 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       rgba(0, 0, 0, 0.75) 100%
     );
     z-index: 1;
+  }
+
+  @include breakpoint-up("md") {
+    min-height: 70vh;
+    padding: 6rem 1.5rem 4rem;
   }
 }
 
@@ -87,7 +92,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 /* Section common */
 .section {
-  padding: 5rem 1.5rem;
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(1rem, 4vw, 1.5rem);
 }
 
 .sectionAlt {
@@ -112,7 +117,6 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: $primary;
-  // background: rgba(hsl(160 84% 27%), 0.1);
   padding: 0.35rem 0.9rem;
   border-radius: 999px;
   margin-bottom: 1rem;
@@ -156,6 +160,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   transition: all $transition;
   white-space: nowrap;
+  min-height: 44px;
 
   &:hover {
     border-color: $primary;
@@ -192,8 +197,12 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 /* Featured Projects */
 .featuredGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: 1fr;
   gap: 2rem;
+
+  @include breakpoint-up("sm") {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
 }
 
 .projectCard {
@@ -338,8 +347,16 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 /* Project Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
+
+  @include breakpoint-up("sm") {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  @include breakpoint-up("md") {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 }
 
 .gridCard {
@@ -355,6 +372,10 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
+
+  @include breakpoint-up("sm") {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .statCard {
@@ -622,7 +643,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 4rem 1rem;
+  padding: clamp(1rem, 5vw, 4rem) 1rem;
   overflow-y: auto;
 }
 
@@ -662,7 +683,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 .modalHero {
   position: relative;
-  height: 300px;
+  height: clamp(200px, 40vh, 300px);
   overflow: hidden;
 }
 
@@ -683,9 +704,13 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 2rem;
+  padding: 1.5rem;
   color: $white;
   z-index: 2;
+
+  @include breakpoint-up("md") {
+    padding: 2rem;
+  }
 }
 
 .modalCategory {
@@ -702,10 +727,14 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modalTitle {
-  font-size: 1.75rem;
+  font-size: 1.35rem;
   font-weight: 800;
   line-height: 1.2;
   margin: 0 0 0.5rem;
+
+  @include breakpoint-up("md") {
+    font-size: 1.75rem;
+  }
 }
 
 .modalMeta {
@@ -723,7 +752,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modalBody {
-  padding: 2rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
 }
 
 .modalSection {
@@ -756,6 +785,10 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 0.75rem;
+
+  @include breakpoint-up("sm") {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }
 
 .galleryItem {
@@ -987,53 +1020,28 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   margin-bottom: 0.5rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .section {
-    padding: 3.5rem 1rem;
-  }
+/* CTA buttons — mobile-first */
+.ctaButtons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 300px;
 
-  .hero {
-    min-height: 60vh;
-    padding: 4rem 1rem 3rem;
+  @include breakpoint-up("md") {
+    flex-direction: row;
+    width: auto;
+    max-width: none;
   }
+}
 
-  .heroStats {
-    gap: 1.5rem;
-  }
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
 
-  .heroStatValue {
-    font-size: 1.5rem;
-  }
-
-  .featuredGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .modalBody {
-    padding: 1.5rem;
-  }
-
-  .modalHero {
-    height: 220px;
-  }
-
-  .modalHeroInfo {
-    padding: 1.5rem;
-  }
-
-  .modalTitle {
-    font-size: 1.35rem;
-  }
-
-  .ctaButtons {
-    flex-direction: column;
-    width: 100%;
-    max-width: 300px;
-  }
-
-  .ctaBtn {
-    justify-content: center;
-    width: 100%;
+  @include breakpoint-up("md") {
+    width: auto;
   }
 }

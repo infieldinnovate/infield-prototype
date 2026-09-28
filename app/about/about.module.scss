@@ -135,69 +135,57 @@
   &::before {
     content: "";
     position: absolute;
-    left: 50%;
+    left: 20px;
     top: 0;
     bottom: 0;
     width: 2px;
     background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
     transform: translateX(-50%);
 
-    @media (max-width: 768px) {
-      left: 20px;
+    @include breakpoint-up("md") {
+      left: 50%;
     }
   }
 }
 
 .timelineItem {
   position: relative;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   display: flex;
+  flex-direction: row;
   align-items: center;
 
-  &:nth-child(even) {
-    flex-direction: row-reverse;
+  @include breakpoint-up("md") {
+    margin-bottom: 60px;
 
-    @media (max-width: 768px) {
-      flex-direction: row;
-    }
+    &:nth-child(even) {
+      flex-direction: row-reverse;
 
-    .timelineContent {
-      text-align: right;
-
-      @media (max-width: 768px) {
-        text-align: left;
+      .timelineContent {
+        text-align: right;
       }
     }
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: row;
-    margin-bottom: 40px;
   }
 }
 
 .timelineContent {
   flex: 1;
   background: white;
-  padding: 30px;
+  padding: 20px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  margin: 0 30px;
+  margin: 0 0 0 50px;
 
-  @media (max-width: 768px) {
-    margin: 0 0 0 50px;
-    padding: 20px;
+  @include breakpoint-up("md") {
+    margin: 0 30px;
+    padding: 30px;
   }
 
   h3 {
-    font-size: 20px;
+    font-size: clamp(18px, 4vw, 20px);
     font-weight: 700;
     color: #1f2937;
     margin-bottom: 10px;
-
-    @media (max-width: 768px) {
-      font-size: 18px;
-    }
   }
 
   p {
@@ -220,10 +208,10 @@
 
 .timelineDot {
   position: absolute;
-  left: 50%;
+  left: 20px;
   transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
   border-radius: 50%;
   display: flex;
@@ -232,14 +220,19 @@
   color: white;
   z-index: 2;
 
-  @media (max-width: 768px) {
-    left: 20px;
-    width: 30px;
-    height: 30px;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @include breakpoint-up("md") {
+    left: 50%;
+    width: 40px;
+    height: 40px;
 
     svg {
-      width: 16px;
-      height: 16px;
+      width: auto;
+      height: auto;
     }
   }
 }
@@ -253,16 +246,16 @@
 .teamGroupPhoto {
   position: relative;
   width: 100%;
-  aspect-ratio: 21 / 9;
-  max-height: 520px;
+  aspect-ratio: 16 / 10;
+  max-height: 360px;
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xl);
   background: var(--color-gray-200);
 
-  @media (max-width: 768px) {
-    aspect-ratio: 16 / 10;
-    max-height: 360px;
+  @include breakpoint-up("md") {
+    aspect-ratio: 21 / 9;
+    max-height: 520px;
   }
 }
 

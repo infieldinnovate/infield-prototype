@@ -56,20 +56,8 @@
 }
 
 .logoImage {
-  height: 44px;
+  height: clamp(44px, 10vw, 64px);
   width: auto;
-
-  @media (min-width: 380px) {
-    height: 50px;
-  }
-
-  @media (min-width: 480px) {
-    height: 56px;
-  }
-
-  @media (min-width: 768px) {
-    height: 64px;
-  }
 }
 
 // ============================================
@@ -82,31 +70,15 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 6px 10px;
-  font-size: 0.7rem;
+  padding: clamp(6px, 1.5vw, 9px) clamp(10px, 3vw, 22px);
+  font-size: clamp(0.7rem, 0.7rem + 0.15vw, 0.85rem);
   font-weight: 600;
   white-space: nowrap;
   flex-shrink: 0;
   border-radius: 9999px;
 
-  // Hide the arrow icon on very small screens to save space
   span {
     font-size: 0.75rem;
-  }
-
-  @media (min-width: 380px) {
-    padding: 7px 14px;
-    font-size: 0.75rem;
-  }
-
-  @media (min-width: 480px) {
-    padding: 8px 18px;
-    font-size: 0.8rem;
-  }
-
-  @media (min-width: 768px) {
-    padding: 9px 22px;
-    font-size: 0.85rem;
   }
 }
 
@@ -174,6 +146,7 @@
   height: calc(100vh - var(--header-height));
   overflow-y: auto;
   overflow-x: hidden;
+  overscroll-behavior: contain;
   background: rgb(255, 255, 255);
   border-top: 1px solid #e5e7eb;
   z-index: calc(var(--z-header) - 1);
@@ -197,7 +170,7 @@
 .mobileMenuContent {
   display: flex;
   flex-direction: column;
-  padding: 16px 20px 48px;
+  padding: clamp(1rem, 4vw, 1.25rem) 1.25rem 3rem;
   min-height: 100%;
 }
 
@@ -215,6 +188,7 @@
   border-bottom: 1px solid #f3f4f6;
   transition: color 0.22s ease;
   position: relative;
+  min-height: 44px;
 
   &:hover {
     color: #1e40af;
@@ -263,6 +237,7 @@
   border: none;
   cursor: pointer;
   transition: color 0.22s ease;
+  min-height: 44px;
 
   &:hover {
     color: #1e40af;
@@ -295,6 +270,7 @@
   font-weight: $fw-medium;
   border-radius: $radius-md;
   transition: all var(--transition-fast);
+  min-height: 44px;
 
   &:hover {
     background: $color-primary-50;
@@ -359,14 +335,14 @@
 }
 
 // ============================================
-// DESKTOP BREAKPOINT — min-width: 1045px
+// DESKTOP BREAKPOINT — lg (1024px)
 // ============================================
 
-@media (min-width: 1045px) {
+@include breakpoint-up("lg") {
   // Navbar switches to desktop layout
   .navbar {
     justify-content: space-evenly;
-    gap: 40px;
+    gap: clamp(20px, 3vw, 40px);
     padding: 0 20px;
     padding-right: 50px;
     height: var(--header-height);
@@ -387,7 +363,7 @@
   .desktopNav {
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: clamp(16px, 2.5vw, 40px);
     font-family: "Times New Roman", Times, serif;
     font-size: 1rem;
   }
@@ -506,13 +482,14 @@
     right: 0;
     margin: 0 auto;
     width: 100%;
-    max-width: 1280px;
+    max-width: min(100vw, 1280px);
     background: $color-white;
     border-bottom: 1px solid $color-border;
     box-shadow: $shadow-xl;
     padding: $space-6 $space-8;
     z-index: $z-dropdown;
     position: absolute;
+    overflow-x: hidden;
   }
 
   .closeButton {
@@ -541,15 +518,15 @@
 
   .servicesGrid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: $space-3;
 
-    @media (max-width: 1280px) {
+    @include breakpoint-up("xl") {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @media (max-width: 1100px) {
-      grid-template-columns: repeat(2, 1fr);
+    @media (min-width: 1400px) {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 

@@ -6,6 +6,10 @@ const nextConfig = {
   images: {
     remotePatterns: [],
   },
+  webpack: (config) => {
+    config.cache = false;
+    return config;
+  },
 };
 
 module.exports = nextConfig;

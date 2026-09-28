@@ -12,13 +12,14 @@
 
 .servicesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-  margin-bottom: 80px;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-bottom: 60px;
 
-  @include breakpoint-down(md) {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  @include breakpoint-up("md") {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 80px;
   }
 }
 
@@ -144,11 +145,11 @@
   text-align: center;
   @include gradient-primary;
   border-radius: 24px;
-  padding: 60px 40px;
+  padding: 40px 20px;
   color: $color-white;
 
-  @include breakpoint-down(md) {
-    padding: 40px 20px;
+  @include breakpoint-up("md") {
+    padding: 60px 40px;
   }
 }
 

@@ -211,6 +211,8 @@ body {
   background-color: var(--color-background);
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 // Typography
@@ -224,6 +226,16 @@ h6 {
   font-weight: var(--fw-bold);
   line-height: var(--lh-tight);
   color: var(--color-primary-900);
+}
+
+p,
+a,
+li,
+td,
+th,
+blockquote {
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 p {
@@ -274,12 +286,18 @@ button:focus-visible {
 
 img,
 picture,
-video,
-canvas,
 svg {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
 ul,
@@ -297,7 +315,7 @@ ol {
 
 .skip-link {
   position: absolute;
-  top: -100px;
+  top: -200px;
   left: 0;
   z-index: var(--z-toast);
   padding: var(--space-3) var(--space-4);
@@ -305,6 +323,7 @@ ol {
   color: var(--color-white);
   border-radius: 0 0 var(--radius-md) 0;
   font-weight: var(--fw-semibold);
+  white-space: nowrap;
   transition: top var(--transition-fast);
 
   &:focus {
@@ -324,11 +343,11 @@ ol {
 // ============================================
 
 .container {
-  @include container;
+  @include container-fluid;
 }
 
 .container-narrow {
-  @include container-narrow;
+  @include container-fluid($container-narrow);
 }
 
 .section {
@@ -421,4 +440,19 @@ body {
 ::selection {
   background: var(--color-primary-100);
   color: var(--color-primary-900);
+}
+
+// ============================================
+// Reduced motion — global kill switch
+// ============================================
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

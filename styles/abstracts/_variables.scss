@@ -145,6 +145,8 @@ $transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
 // Layout
 $container-max: 1280px;
 $container-narrow: 800px;
+// Both heights are 80px intentionally — the header does not shrink on scroll,
+// only the background/border change (see Header.tsx useScrollDirection).
 $header-height: 80px;
 $header-height-scrolled: 80px;
 $header-height-mobile: 64px;

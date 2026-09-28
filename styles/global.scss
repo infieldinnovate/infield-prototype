@@ -166,8 +166,12 @@
   // Layout
   --container-max: #{$container-max};
   --container-narrow: #{$container-narrow};
-  --header-height: #{$header-height};
+  --header-height: #{$header-height-mobile};
   --header-height-scrolled: #{$header-height-scrolled};
+
+  @include breakpoint-up("md") {
+    --header-height: #{$header-height};
+  }
 
   // Z-index
   --z-base: #{$z-base};

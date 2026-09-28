@@ -100,15 +100,15 @@
 }
 
 .heroDescription {
-  font-size: var(--fs-xl);
+  font-size: var(--fs-base);
   line-height: var(--lh-relaxed);
   color: var(--color-text-muted);
   margin-bottom: var(--space-8);
   max-width: 640px;
   margin-inline: auto;
 
-  @include breakpoint-down("sm") {
-    font-size: var(--fs-base);
+  @include breakpoint-up("sm") {
+    font-size: var(--fs-xl);
   }
 }
 
@@ -313,20 +313,24 @@
   background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
+  text-align: center;
+  justify-content: center;
 
-  @include breakpoint-down("md") {
-    text-align: center;
-    justify-content: center;
+  @include breakpoint-up("md") {
+    text-align: left;
+    justify-content: space-between;
   }
 }
 
 .downloadsCtaContent {
   @include flex-column;
   gap: var(--space-2);
+  align-items: center;
+  text-align: center;
 
-  @include breakpoint-down("md") {
-    align-items: center;
-    text-align: center;
+  @include breakpoint-up("md") {
+    align-items: flex-start;
+    text-align: left;
   }
 }
 
@@ -344,9 +348,10 @@
   color: var(--color-primary);
   width: fit-content;
   margin-bottom: var(--space-1);
+  margin-inline: auto;
 
-  @include breakpoint-down("md") {
-    margin-inline: auto;
+  @include breakpoint-up("md") {
+    margin-inline: 0;
   }
 }
 
@@ -360,8 +365,9 @@
   color: var(--color-text-muted);
   line-height: var(--lh-relaxed);
   max-width: 500px;
+  margin-inline: auto;
 
-  @include breakpoint-down("md") {
-    margin-inline: auto;
+  @include breakpoint-up("md") {
+    margin-inline: 0;
   }
 }

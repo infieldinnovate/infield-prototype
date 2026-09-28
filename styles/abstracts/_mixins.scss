@@ -169,17 +169,15 @@
 // Container (existing — kept for backward compat)
 // ============================================
 @mixin container {
-  width: 100%;
-  max-width: var(--container-max);
+  width: min(100% - 2rem, var(--container-max));
   margin-inline: auto;
-  padding-inline: var(--space-4);
 
-  @include breakpoint-up("sm") {
-    padding-inline: var(--space-6);
+  @include breakpoint-up("md") {
+    width: min(100% - 3rem, var(--container-max));
   }
 
   @include breakpoint-up("lg") {
-    padding-inline: var(--space-8);
+    width: min(100% - 4rem, var(--container-max));
   }
 }
 
@@ -252,49 +250,29 @@
 // Typography
 // ============================================
 @mixin heading-1 {
-  font-size: var(--fs-5xl);
+  font-size: clamp(1.875rem, 2rem + 3vw, 3rem);
   font-weight: var(--fw-extrabold);
   line-height: var(--lh-tight);
   letter-spacing: -0.02em;
-
-  @include breakpoint-down("md") {
-    font-size: var(--fs-4xl);
-  }
-
-  @include breakpoint-down("sm") {
-    font-size: var(--fs-3xl);
-  }
 }
 
 @mixin heading-2 {
-  font-size: var(--fs-4xl);
+  font-size: clamp(1.5rem, 1.5rem + 1.5vw, 2.25rem);
   font-weight: var(--fw-extrabold);
   line-height: var(--lh-tight);
   letter-spacing: -0.01em;
   margin-bottom: var(--space-4);
-
-  @include breakpoint-down("md") {
-    font-size: var(--fs-3xl);
-  }
-
-  @include breakpoint-down("sm") {
-    font-size: var(--fs-2xl);
-  }
 }
 
 @mixin heading-3 {
-  font-size: var(--fs-2xl);
+  font-size: clamp(1.25rem, 1.25rem + 1vw, 1.875rem);
   font-weight: var(--fw-bold);
   line-height: var(--lh-snug);
   letter-spacing: -0.01em;
-
-  @include breakpoint-down("sm") {
-    font-size: var(--fs-xl);
-  }
 }
 
 @mixin heading-4 {
-  font-size: var(--fs-xl);
+  font-size: clamp(1.125rem, 1.125rem + 0.5vw, 1.25rem);
   font-weight: var(--fw-semibold);
   line-height: var(--lh-snug);
 }
@@ -368,19 +346,11 @@
 // Section spacing
 // ============================================
 @mixin section {
-  padding-block: var(--space-16);
-
-  @include breakpoint-up("lg") {
-    padding-block: var(--space-24);
-  }
+  padding-block: clamp(3rem, 4rem + 2vw, 6rem);
 }
 
 @mixin section-tight {
-  padding-block: var(--space-12);
-
-  @include breakpoint-up("lg") {
-    padding-block: var(--space-16);
-  }
+  padding-block: clamp(2rem, 2.5rem + 1vw, 4rem);
 }
 
 // ============================================

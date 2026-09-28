@@ -614,6 +614,7 @@
   justify-items: center;
   gap: var(--space-2);
   text-align: center;
+  min-width: 0;
 }
 .diagramOrb {
   display: grid;
@@ -752,8 +753,12 @@
 }
 .relatedGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--space-3);
+
+  @include breakpoint-up("sm") {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .relatedCard {
   position: relative;
@@ -1274,6 +1279,7 @@
   border: 1px solid $color-gray-200;
   border-radius: var(--radius-lg);
   transition: all $transition-base;
+  min-width: 0;
 }
 .whyItem:hover {
   border-color: $color-secondary-100;

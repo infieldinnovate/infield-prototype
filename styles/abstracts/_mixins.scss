@@ -1,61 +1,173 @@
 // ============================================
 // SCSS Mixins
 // ============================================
+//
+// Breakpoint migration notes
+// ─────────────────────────────────────────────
+// The breakpoint map was re-aligned to the target ranges:
+//
+//   xs  →  320px  (small mobile floor)
+//   sm  →  375px  (standard mobile)
+//   md  →  768px  (tablet)
+//   lg  →  1024px (laptop)
+//   xl  →  1440px (desktop)
+//
+// Backward compatibility:
+//   • "sm" was 640px → now 375px. Every call site that relied on the old
+//     640px threshold has been audited. Files that used breakpoint-up("sm")
+//     for a 2-column grid or similar tablet-ish enhancement have been
+//     migrated to breakpoint-up("md") (768px) in the per-file refactor
+//     steps. Files that used it for a minor mobile enhancement (e.g.
+//     font-size bump) keep "sm" at its new 375px value.
+//   • "xl" was 1280px → now 1440px. No call sites used "xl" so no
+//     migration was needed.
+//   • "2xl" was 1536px → removed. No call sites used it.
+//
+// Use `mobile-first($bp)` as an explicit alias for `breakpoint-up($bp)`
+// to make mobile-first intent clear at call sites.
+// ============================================
 
 @use "variables" as *;
 
-// Breakpoints
+// ============================================
+// Strip unit helper (used by fluid mixins)
+// ============================================
+@function strip-unit($value) {
+  @return calc($value / ($value * 0 + 1));
+}
+
+// ============================================
+// Breakpoints — mobile-first
+// ============================================
 @mixin breakpoint-up($breakpoint) {
-  @if $breakpoint == "sm" {
-    @media (min-width: 640px) {
+  @if $breakpoint == "xs" {
+    @media (min-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $breakpoint == "sm" {
+    @media (min-width: $breakpoint-sm) {
       @content;
     }
   } @else if $breakpoint == "md" {
-    @media (min-width: 768px) {
+    @media (min-width: $breakpoint-md) {
       @content;
     }
   } @else if $breakpoint == "lg" {
-    @media (min-width: 1024px) {
+    @media (min-width: $breakpoint-lg) {
       @content;
     }
   } @else if $breakpoint == "xl" {
-    @media (min-width: 1280px) {
-      @content;
-    }
-  } @else if $breakpoint == "2xl" {
-    @media (min-width: 1536px) {
+    @media (min-width: $breakpoint-xl) {
       @content;
     }
   }
 }
 
 @mixin breakpoint-down($breakpoint) {
-  @if $breakpoint == "sm" {
-    @media (max-width: 639px) {
+  @if $breakpoint == "xs" {
+    @media (max-width: $breakpoint-xs - 1px) {
+      @content;
+    }
+  } @else if $breakpoint == "sm" {
+    @media (max-width: $breakpoint-sm - 1px) {
       @content;
     }
   } @else if $breakpoint == "md" {
-    @media (max-width: 767px) {
+    @media (max-width: $breakpoint-md - 1px) {
       @content;
     }
   } @else if $breakpoint == "lg" {
-    @media (max-width: 1023px) {
+    @media (max-width: $breakpoint-lg - 1px) {
       @content;
     }
   } @else if $breakpoint == "xl" {
-    @media (max-width: 1279px) {
+    @media (max-width: $breakpoint-xl - 1px) {
       @content;
     }
   }
 }
 
 @mixin breakpoint-between($min, $max) {
-  @media (min-width: $min) and (max-width: $max) {
+  $min-val: 0;
+  $max-val: 0;
+
+  @if $min == "xs" { $min-val: $breakpoint-xs; }
+    @else if $min == "sm" { $min-val: $breakpoint-sm; }
+    @else if $min == "md" { $min-val: $breakpoint-md; }
+    @else if $min == "lg" { $min-val: $breakpoint-lg; }
+    @else if $min == "xl" { $min-val: $breakpoint-xl; }
+    @else { $min-val: $min; }
+
+  @if $max == "xs" { $max-val: $breakpoint-xs - 1px; }
+    @else if $max == "sm" { $max-val: $breakpoint-sm - 1px; }
+    @else if $max == "md" { $max-val: $breakpoint-md - 1px; }
+    @else if $max == "lg" { $max-val: $breakpoint-lg - 1px; }
+    @else if $max == "xl" { $max-val: $breakpoint-xl - 1px; }
+    @else { $max-val: $max; }
+
+  @media (min-width: $min-val) and (max-width: $max-val) {
     @content;
   }
 }
 
-// Container
+// Explicit alias for mobile-first intent
+@mixin mobile-first($bp) {
+  @include breakpoint-up($bp) {
+    @content;
+  }
+}
+
+// ============================================
+// Fluid typography
+// ============================================
+@mixin fluid-type($min-size, $max-size, $min-vw: 320px, $max-vw: 1440px) {
+  $min-unitless: strip-unit($min-size);
+  $max-unitless: strip-unit($max-size);
+  $min-vw-unitless: strip-unit($min-vw);
+  $max-vw-unitless: strip-unit($max-vw);
+
+  font-size: clamp(
+    #{$min-size},
+    #{$min-unitless} + (#{$max-unitless} - #{$min-unitless}) * (100vw - #{$min-vw}) / (#{$max-vw-unitless} - #{$min-vw-unitless}),
+    #{$max-size}
+  );
+}
+
+// ============================================
+// Fluid spacing (margin/padding)
+// ============================================
+@mixin fluid-spacing($property, $min-size, $max-size, $min-vw: 320px, $max-vw: 1440px) {
+  $min-unitless: strip-unit($min-size);
+  $max-unitless: strip-unit($max-size);
+  $min-vw-unitless: strip-unit($min-vw);
+  $max-vw-unitless: strip-unit($max-vw);
+
+  #{$property}: clamp(
+    #{$min-size},
+    #{$min-unitless} + (#{$max-unitless} - #{$min-unitless}) * (100vw - #{$min-vw}) / (#{$max-vw-unitless} - #{$min-vw-unitless}),
+    #{$max-size}
+  );
+}
+
+// ============================================
+// Fluid container — no horizontal overflow
+// ============================================
+@mixin container-fluid($max: $container-max) {
+  width: min(100% - 2rem, #{$max});
+  margin-inline: auto;
+
+  @include breakpoint-up("md") {
+    width: min(100% - 3rem, #{$max});
+  }
+
+  @include breakpoint-up("lg") {
+    width: min(100% - 4rem, #{$max});
+  }
+}
+
+// ============================================
+// Container (existing — kept for backward compat)
+// ============================================
 @mixin container {
   width: 100%;
   max-width: var(--container-max);
@@ -82,7 +194,9 @@
   }
 }
 
+// ============================================
 // Flexbox helpers
+// ============================================
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -106,7 +220,9 @@
   flex-direction: column;
 }
 
+// ============================================
 // Grid
+// ============================================
 @mixin grid($columns: 1, $gap: var(--space-6)) {
   display: grid;
   grid-template-columns: repeat($columns, 1fr);
@@ -132,7 +248,9 @@
   }
 }
 
+// ============================================
 // Typography
+// ============================================
 @mixin heading-1 {
   font-size: var(--fs-5xl);
   font-weight: var(--fw-extrabold);
@@ -187,7 +305,9 @@
   color: var(--color-text-muted);
 }
 
+// ============================================
 // Visually hidden (accessibility)
+// ============================================
 @mixin visually-hidden {
   position: absolute;
   width: 1px;
@@ -200,7 +320,9 @@
   border: 0;
 }
 
+// ============================================
 // Focus visible (accessibility)
+// ============================================
 @mixin focus-visible {
   &:focus-visible {
     outline: 2px solid var(--color-primary);
@@ -209,7 +331,9 @@
   }
 }
 
+// ============================================
 // Card
+// ============================================
 @mixin card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -227,7 +351,9 @@
   }
 }
 
+// ============================================
 // Button reset
+// ============================================
 @mixin button-reset {
   appearance: none;
   border: none;
@@ -238,7 +364,9 @@
   text-decoration: none;
 }
 
+// ============================================
 // Section spacing
+// ============================================
 @mixin section {
   padding-block: var(--space-16);
 
@@ -255,7 +383,9 @@
   }
 }
 
+// ============================================
 // Text truncation
+// ============================================
 @mixin text-truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -269,7 +399,9 @@
   overflow: hidden;
 }
 
+// ============================================
 // Scrollbar
+// ============================================
 @mixin custom-scrollbar {
   &::-webkit-scrollbar {
     width: 8px;
@@ -290,14 +422,18 @@
   }
 }
 
+// ============================================
 // Reduced motion
+// ============================================
 @mixin reduced-motion {
   @media (prefers-reduced-motion: reduce) {
     @content;
   }
 }
 
-// Gradient backgrounds (used across hero, CTA, and section backgrounds)
+// ============================================
+// Gradient backgrounds
+// ============================================
 @mixin gradient-primary {
   background: linear-gradient(135deg, #{$color-blue-800} 0%, #{$color-cyan-600} 100%);
 }
@@ -314,7 +450,6 @@
   background: linear-gradient(to bottom, #{$color-gray-50}, #{$color-white});
 }
 
-// Section with standard padding and optional gradient background
 @mixin section-bg($bg: false) {
   @if $bg == "primary" {
     @include gradient-primary;
@@ -326,14 +461,18 @@
   @include section;
 }
 
+// ============================================
 // Glassmorphism card overlay
+// ============================================
 @mixin glass-overlay {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
+// ============================================
 // Text gradient
+// ============================================
 @mixin text-gradient {
   background: linear-gradient(135deg, #{$color-blue-800}, #{$color-cyan-600});
   -webkit-background-clip: text;

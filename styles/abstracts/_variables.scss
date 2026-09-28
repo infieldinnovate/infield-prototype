@@ -147,6 +147,16 @@ $container-max: 1280px;
 $container-narrow: 800px;
 $header-height: 80px;
 $header-height-scrolled: 80px;
+$header-height-mobile: 64px;
+
+// ============================================
+// Breakpoint system — mobile-first
+// ============================================
+$breakpoint-xs: 320px;   // small mobile floor
+$breakpoint-sm: 375px;   // standard mobile
+$breakpoint-md: 768px;   // tablet
+$breakpoint-lg: 1024px;  // laptop
+$breakpoint-xl: 1440px;  // desktop
 
 // Extended brand palette (used across hero/CTA/section backgrounds)
 $color-blue-800: #1e40af;

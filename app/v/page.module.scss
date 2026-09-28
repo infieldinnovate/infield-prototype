@@ -40,8 +40,12 @@ $expired-yellow-light: $color-expired-light;
 /* Hero */
 .hero {
   text-align: center;
-  padding: 4rem 1.5rem 2rem;
+  padding: 3rem 1rem 2rem;
   color: $white;
+
+  @include breakpoint-up("md") {
+    padding: 4rem 1.5rem 2rem;
+  }
   background: linear-gradient(
     135deg,
     hsl(160 84% 27%) 0%,
@@ -108,8 +112,12 @@ $expired-yellow-light: $color-expired-light;
 /* Main content */
 .main {
   flex: 1;
-  padding: 2rem 1.5rem 4rem;
+  padding: 1.5rem 1rem 3rem;
   max-width: 680px;
+
+  @include breakpoint-up("md") {
+    padding: 2rem 1.5rem 4rem;
+  }
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -141,15 +149,20 @@ $expired-yellow-light: $color-expired-light;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 0.5rem;
   background: transparent;
   color: $muted-foreground;
   border: none;
   border-radius: $radius;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   transition: all $transition;
+
+  @include breakpoint-up("md") {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
 
   &:hover:not(.methodBtnActive) {
     color: $foreground;
@@ -166,10 +179,14 @@ $expired-yellow-light: $color-expired-light;
 
 /* Input section */
 .inputSection {
-  padding: 2.5rem 2rem;
+  padding: 1.75rem 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+
+  @include breakpoint-up("md") {
+    padding: 2.5rem 2rem;
+  }
 }
 
 .inputLabel {
@@ -185,8 +202,13 @@ $expired-yellow-light: $color-expired-light;
 
 .inputWrap {
   display: flex;
+  flex-direction: column;
   gap: 0.75rem;
-  flex-wrap: wrap;
+
+  @include breakpoint-up("md") {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
 .inputIconWrap {
@@ -210,7 +232,7 @@ $expired-yellow-light: $color-expired-light;
   min-width: 200px;
   width: 100%;
   padding: 1rem 1.25rem 1rem 3rem;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 3vw, 1.1rem);
   font-weight: 600;
   letter-spacing: 0.05em;
   color: $foreground;
@@ -254,6 +276,11 @@ $expired-yellow-light: $color-expired-light;
   cursor: pointer;
   transition: all $transition;
   white-space: nowrap;
+  width: 100%;
+
+  @include breakpoint-up("md") {
+    width: auto;
+  }
 
   &:hover:not(:disabled) {
     background: $primary-dark;
@@ -332,17 +359,28 @@ $expired-yellow-light: $color-expired-light;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 0;
+
+  @include breakpoint-up("md") {
+    padding: 2rem;
+  }
 }
 
 .qrOverlayContent {
   position: relative;
   background: $white;
-  border-radius: $radius-lg;
+  border-radius: 0;
   overflow: hidden;
-  max-width: 480px;
+  max-width: 100%;
   width: 100%;
+  height: 100%;
   box-shadow: $shadow-lg;
+
+  @include breakpoint-up("md") {
+    border-radius: $radius-lg;
+    max-width: 480px;
+    height: auto;
+  }
 }
 
 .qrOverlayHeader {
@@ -449,12 +487,16 @@ $expired-yellow-light: $color-expired-light;
 
 // Header with status
 .resultHeader {
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+
+  @include breakpoint-up("md") {
+    padding: 1.5rem 2rem;
+  }
 }
 
 .resultHeaderVerified {
@@ -521,8 +563,8 @@ $expired-yellow-light: $color-expired-light;
 }
 
 .resultPhoto {
-  width: 140px;
-  height: 140px;
+  width: clamp(120px, 30vw, 140px);
+  height: clamp(120px, 30vw, 140px);
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid $white;
@@ -531,8 +573,8 @@ $expired-yellow-light: $color-expired-light;
 }
 
 .resultPhotoPlaceholder {
-  width: 140px;
-  height: 140px;
+  width: clamp(120px, 30vw, 140px);
+  height: clamp(120px, 30vw, 140px);
   border-radius: 50%;
   background: #bbfffe;
   display: flex;
@@ -545,10 +587,14 @@ $expired-yellow-light: $color-expired-light;
 
 // Body
 .resultBody {
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @include breakpoint-up("md") {
+    padding: 2rem;
+  }
 }
 
 // Employee info
@@ -563,8 +609,12 @@ $expired-yellow-light: $color-expired-light;
 
 .resultDetails {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1rem;
+
+  @include breakpoint-up("sm") {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
 }
 
 .detailRow {
@@ -670,8 +720,12 @@ $expired-yellow-light: $color-expired-light;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 1rem;
   animation: fadeIn 0.2s ease-out;
+
+  @include breakpoint-up("md") {
+    padding: 1.5rem;
+  }
 }
 
 @keyframes fadeIn {
@@ -701,7 +755,7 @@ $expired-yellow-light: $color-expired-light;
 
 .modalCloseBtn {
   position: absolute;
-  top: -3rem;
+  top: clamp(-3rem, -8vw, -2.5rem);
   right: 0;
   width: 40px;
   height: 40px;
@@ -736,72 +790,5 @@ $expired-yellow-light: $color-expired-light;
 
   p {
     margin: 0;
-  }
-}
-
-// Responsive
-@media (max-width: 768px) {
-  .hero {
-    padding: 3rem 1rem 2rem;
-  }
-
-  .main {
-    padding: 1.5rem 1rem 3rem;
-  }
-
-  .inputSection {
-    padding: 1.75rem 1.25rem;
-  }
-
-  .inputWrap {
-    flex-direction: column;
-  }
-
-  .input {
-    font-size: 1rem;
-  }
-
-  .verifyBtn {
-    width: 100%;
-  }
-
-  .resultHeader {
-    padding: 1.25rem 1.5rem;
-  }
-
-  .resultBody {
-    padding: 1.5rem;
-  }
-
-  .resultDetails {
-    grid-template-columns: 1fr;
-  }
-
-  .resultPhoto {
-    width: 120px;
-    height: 120px;
-  }
-
-  .qrOverlay {
-    padding: 0;
-  }
-
-  .qrOverlayContent {
-    border-radius: 0;
-    max-width: 100%;
-    height: 100%;
-  }
-
-  .modalOverlay {
-    padding: 1rem;
-  }
-
-  .modalCloseBtn {
-    top: -2.5rem;
-  }
-
-  .methodBtn {
-    font-size: 0.8rem;
-    padding: 0.6rem 0.5rem;
   }
 }

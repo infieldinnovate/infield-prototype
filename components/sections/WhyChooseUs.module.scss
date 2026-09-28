@@ -34,19 +34,19 @@
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px;
+  grid-template-columns: 1fr;
+  gap: 30px;
 
-  @include breakpoint-down(md) {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  @include breakpoint-up("md") {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
   }
 }
 
 .featureCard {
   background: $color-white;
   border-radius: 20px;
-  padding: 40px 30px;
+  padding: 30px 20px;
   text-align: center;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   border: 1px solid #f1f5f9;
@@ -57,8 +57,8 @@
     transform: translateY(-5px);
   }
 
-  @include breakpoint-down(md) {
-    padding: 30px 20px;
+  @include breakpoint-up("md") {
+    padding: 40px 30px;
   }
 }
 
@@ -66,8 +66,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   color: $color-white;
   margin-bottom: 25px;
@@ -84,26 +84,27 @@
     z-index: -1;
   }
 
-  @include breakpoint-down(md) {
-    width: 70px;
-    height: 70px;
+  svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  @include breakpoint-up("md") {
+    width: 90px;
+    height: 90px;
 
     svg {
-      width: 36px;
-      height: 36px;
+      width: auto;
+      height: auto;
     }
   }
 }
 
 .featureCard h3 {
-  font-size: 22px;
+  font-size: clamp(20px, 4vw, 22px);
   font-weight: 700;
   color: $color-gray-800;
   margin-bottom: 15px;
-
-  @include breakpoint-down(md) {
-    font-size: 20px;
-  }
 }
 
 .featureCard p {
@@ -131,8 +132,5 @@
       transparent 70%
     );
     pointer-events: none;
-  }
-
-  @include breakpoint-down(md) {
   }
 }

@@ -10,14 +10,14 @@
   width: 100%;
   overflow: hidden;
   background: $color-slate-900;
-  min-height: 70vh;
+  min-height: 50vh;
 
-  @include breakpoint-down(md) {
+  @include breakpoint-up("sm") {
     min-height: 60vh;
   }
 
-  @include breakpoint-down(sm) {
-    min-height: 50vh;
+  @include breakpoint-up("md") {
+    min-height: 70vh;
   }
 }
 
@@ -72,15 +72,15 @@
   height: 100%;
   display: flex;
   align-items: flex-end;
-  padding: 0 0 var(--space-20) 0;
+  padding: 0 0 var(--space-12) 0;
   z-index: 2;
 
-  @include breakpoint-down(md) {
+  @include breakpoint-up("sm") {
     padding: 0 0 var(--space-16) 0;
   }
 
-  @include breakpoint-down(sm) {
-    padding: 0 0 var(--space-12) 0;
+  @include breakpoint-up("md") {
+    padding: 0 0 var(--space-20) 0;
   }
 }
 
@@ -112,17 +112,17 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: $radius-xl;
-  padding: $space-8;
+  border-radius: $radius-lg;
+  padding: $space-5 $space-6;
   max-width: 580px;
 
-  @include breakpoint-up(md) {
-    padding: $space-10;
+  @include breakpoint-up("sm") {
+    padding: $space-8;
   }
 
-  @include breakpoint-down(sm) {
-    padding: $space-5 $space-6;
-    border-radius: $radius-lg;
+  @include breakpoint-up("md") {
+    padding: $space-10;
+    border-radius: $radius-xl;
   }
 }
 
@@ -142,58 +142,58 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   border-radius: $radius-full;
-  margin-bottom: $space-3;
+  margin-bottom: $space-2;
 
   svg {
     color: $color-amber-400;
     flex-shrink: 0;
   }
 
-  @include breakpoint-down(sm) {
-    margin-bottom: $space-2;
+  @include breakpoint-up("sm") {
+    margin-bottom: $space-3;
   }
 }
 
 .eyebrow {
   display: inline-block;
-  font-size: $fs-sm;
+  font-size: $fs-xs;
   font-weight: $fw-semibold;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: $color-secondary-light;
-  margin-bottom: $space-3;
+  margin-bottom: $space-2;
 
-  @include breakpoint-down(sm) {
-    font-size: $fs-xs;
-    margin-bottom: $space-2;
-  }
-}
-
-.title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: $fw-extrabold;
-  line-height: $lh-tight;
-  letter-spacing: -0.02em;
-  color: $color-white;
-  margin-bottom: $space-4;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-
-  @include breakpoint-down(sm) {
-    font-size: $fs-3xl;
+  @include breakpoint-up("sm") {
+    font-size: $fs-sm;
     margin-bottom: $space-3;
   }
 }
 
+.title {
+  font-size: $fs-3xl;
+  font-weight: $fw-extrabold;
+  line-height: $lh-tight;
+  letter-spacing: -0.02em;
+  color: $color-white;
+  margin-bottom: $space-3;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  @include breakpoint-up("sm") {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: $space-4;
+  }
+}
+
 .description {
-  font-size: $fs-lg;
+  font-size: $fs-base;
   line-height: $lh-relaxed;
   color: rgba(255, 255, 255, 0.88);
-  margin-bottom: $space-6;
+  margin-bottom: $space-5;
   max-width: 500px;
 
-  @include breakpoint-down(sm) {
-    font-size: $fs-base;
-    margin-bottom: $space-5;
+  @include breakpoint-up("sm") {
+    font-size: $fs-lg;
+    margin-bottom: $space-6;
   }
 }
 
@@ -205,10 +205,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: $space-2;
-  margin-bottom: $space-6;
+  margin-bottom: $space-5;
 
-  @include breakpoint-down(sm) {
-    margin-bottom: $space-5;
+  @include breakpoint-up("sm") {
+    margin-bottom: $space-6;
   }
 }
 
@@ -236,12 +236,14 @@
 
 .buttons {
   display: flex;
+  flex-direction: column;
+  width: 100%;
   gap: $space-3;
-  flex-wrap: wrap;
 
-  @include breakpoint-down(sm) {
-    flex-direction: column;
-    width: 100%;
+  @include breakpoint-up("sm") {
+    flex-direction: row;
+    width: auto;
+    flex-wrap: wrap;
   }
 }
 
@@ -267,9 +269,12 @@
 
   @include focus-visible;
 
-  @include breakpoint-down(sm) {
-    justify-content: center;
-    width: 100%;
+  justify-content: center;
+  width: 100%;
+
+  @include breakpoint-up("sm") {
+    justify-content: flex-start;
+    width: auto;
   }
 }
 
@@ -297,9 +302,12 @@
 
   @include focus-visible;
 
-  @include breakpoint-down(sm) {
-    justify-content: center;
-    width: 100%;
+  justify-content: center;
+  width: 100%;
+
+  @include breakpoint-up("sm") {
+    justify-content: flex-start;
+    width: auto;
   }
 }
 
@@ -309,21 +317,21 @@
 
 .controls {
   position: absolute;
-  bottom: $space-6;
-  right: $space-8;
-  display: flex;
+  display: none;
   align-items: center;
-  gap: $space-3;
   z-index: 4;
 
-  @include breakpoint-down(md) {
+  @include breakpoint-up("sm") {
+    display: flex;
     right: $space-4;
     bottom: $space-4;
     gap: $space-2;
   }
 
-  @include breakpoint-down(sm) {
-    display: none;
+  @include breakpoint-up("md") {
+    right: $space-8;
+    bottom: $space-6;
+    gap: $space-3;
   }
 }
 
@@ -408,22 +416,23 @@
 
 .pagination {
   position: absolute;
-  bottom: $space-6;
-  left: $space-8;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: $space-3;
   z-index: 4;
   display: flex;
   align-items: center;
   gap: $space-2;
 
-  @include breakpoint-down(md) {
+  @include breakpoint-up("sm") {
     left: $space-4;
     bottom: $space-4;
+    transform: none;
   }
 
-  @include breakpoint-down(sm) {
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: $space-3;
+  @include breakpoint-up("md") {
+    left: $space-8;
+    bottom: $space-6;
   }
 
   // Override global swiper-pagination styles

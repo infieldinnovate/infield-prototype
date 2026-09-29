@@ -10,11 +10,11 @@
 
 .step {
   display: flex;
-  gap: var(--space-6);
+  gap: var(--space-4);
   align-items: flex-start;
 
-  @include breakpoint-down('sm') {
-    gap: var(--space-4);
+  @include breakpoint-up('sm') {
+    gap: var(--space-6);
   }
 }
 
@@ -26,11 +26,11 @@
 
 .stepNumber {
   @include flex-center;
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
   color: var(--color-white);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-base);
   font-weight: var(--fw-extrabold);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-md);
@@ -38,10 +38,10 @@
   z-index: var(--z-base);
   position: relative;
 
-  @include breakpoint-down('sm') {
-    width: 40px;
-    height: 40px;
-    font-size: var(--fs-base);
+  @include breakpoint-up('sm') {
+    width: 48px;
+    height: 48px;
+    font-size: var(--fs-lg);
   }
 }
 

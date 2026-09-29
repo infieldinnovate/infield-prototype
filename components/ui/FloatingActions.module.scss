@@ -9,16 +9,16 @@
 // ============================================
 .container {
   position: fixed;
-  bottom: var(--space-5);
-  right: var(--space-2);
+  bottom: var(--space-4);
+  right: var(--space-4);
   z-index: var(--z-sticky);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 
-  @include breakpoint-down("sm") {
-    bottom: var(--space-4);
-    right: var(--space-4);
+  @include breakpoint-up("sm") {
+    bottom: var(--space-5);
+    right: var(--space-2);
   }
 }
 
@@ -131,8 +131,10 @@
     opacity: 1;
   }
 
-  @include breakpoint-down("sm") {
-    display: none;
+  display: none;
+
+  @include breakpoint-up("sm") {
+    display: block;
   }
 }
 

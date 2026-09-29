@@ -96,6 +96,7 @@
   @include flex-column;
   padding: var(--space-6);
   flex-grow: 1;
+  min-width: 0;
 }
 
 .meta {

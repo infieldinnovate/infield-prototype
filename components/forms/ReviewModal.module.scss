@@ -8,11 +8,15 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 4rem 1rem;
+  padding: 0;
   overflow-y: auto;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   animation: fadeIn 0.2s ease-out;
+
+  @include breakpoint-up('sm') {
+    padding: 4rem 1rem;
+  }
 }
 
 @keyframes fadeIn {
@@ -23,13 +27,20 @@
 .modal {
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 100%;
   margin: auto;
   background: var(--color-white);
-  border-radius: var(--radius-xl);
+  border-radius: 0;
+  min-height: 100vh;
   box-shadow: var(--shadow-xl);
   overflow: hidden;
   animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @include breakpoint-up('sm') {
+    max-width: 560px;
+    border-radius: var(--radius-xl);
+    min-height: 0;
+  }
 }
 
 @keyframes slideUp {
@@ -69,8 +80,12 @@
 }
 
 .header {
-  padding: var(--space-8) var(--space-8) var(--space-4);
+  padding: var(--space-6) var(--space-6) var(--space-4);
   text-align: center;
+
+  @include breakpoint-up('sm') {
+    padding: var(--space-8) var(--space-8) var(--space-4);
+  }
 }
 
 .headerIcon {
@@ -95,7 +110,11 @@
 }
 
 .body {
-  padding: var(--space-4) var(--space-8) var(--space-8);
+  padding: var(--space-4) var(--space-6) var(--space-8);
+
+  @include breakpoint-up('sm') {
+    padding: var(--space-4) var(--space-8) var(--space-8);
+  }
 }
 
 // Star rating
@@ -184,24 +203,4 @@
   @include flex-center;
   gap: var(--space-3);
   margin-top: var(--space-2);
-}
-
-@media (max-width: 640px) {
-  .modal {
-    max-width: 100%;
-    border-radius: 0;
-    min-height: 100vh;
-  }
-
-  .overlay {
-    padding: 0;
-  }
-
-  .header {
-    padding: var(--space-6) var(--space-6) var(--space-4);
-  }
-
-  .body {
-    padding: var(--space-4) var(--space-6) var(--space-8);
-  }
 }

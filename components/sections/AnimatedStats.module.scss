@@ -182,12 +182,12 @@
 }
 
 .value {
-  font-size: var(--fs-4xl);
+  font-size: var(--fs-3xl);
   font-weight: var(--fw-extrabold);
   line-height: 1;
 
-  @include breakpoint-down("sm") {
-    font-size: var(--fs-3xl);
+  @include breakpoint-up("sm") {
+    font-size: var(--fs-4xl);
   }
 }
 
@@ -315,8 +315,10 @@
 
   @include focus-visible;
 
-  @include breakpoint-down("sm") {
-    display: none;
+  display: none;
+
+  @include breakpoint-up("sm") {
+    display: flex;
   }
 }
 

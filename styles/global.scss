@@ -201,6 +201,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior: none;
 
   @include reduced-motion {
     scroll-behavior: auto;
@@ -214,6 +217,7 @@ body {
   // color: var(--color-text);
   background-color: var(--color-background);
   min-height: 100vh;
+  max-width: 100%;
   overflow-x: hidden;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -237,7 +241,13 @@ a,
 li,
 td,
 th,
-blockquote {
+blockquote,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   max-width: 100%;
   overflow-wrap: anywhere;
 }
@@ -290,17 +300,18 @@ button:focus-visible {
 
 img,
 picture,
-svg {
+svg,
+video,
+canvas,
+iframe,
+table {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-video,
-canvas {
-  display: block;
-  max-width: 100%;
-  height: auto;
+iframe,
+table {
   overflow: hidden;
 }
 
@@ -368,6 +379,10 @@ ol {
 
 .text-muted {
   color: var(--color-text-muted);
+}
+
+.min-w-0 {
+  min-width: 0;
 }
 
 // ============================================

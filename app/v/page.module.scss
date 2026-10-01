@@ -33,11 +33,12 @@ $expired-yellow-light: $color-expired-light;
 /* Hero */
 .hero {
   text-align: center;
-  padding: 3rem 1rem 2rem;
+  @include section;
+  padding-inline: 1rem;
   color: $white;
 
   @include breakpoint-up("md") {
-    padding: 4rem 1.5rem 2rem;
+    padding-inline: 1.5rem;
   }
   background: linear-gradient(
     135deg,
@@ -105,11 +106,12 @@ $expired-yellow-light: $color-expired-light;
 /* Main content */
 .main {
   flex: 1;
-  padding: 1.5rem 1rem 3rem;
+  @include section;
+  padding-inline: 1rem;
   max-width: 680px;
 
   @include breakpoint-up("md") {
-    padding: 2rem 1.5rem 4rem;
+    padding-inline: 1.5rem;
   }
   width: 100%;
   margin: 0 auto;
@@ -633,7 +635,8 @@ $expired-yellow-light: $color-expired-light;
 
 // Not found
 .notFound {
-  padding: 3rem 2rem;
+  @include section;
+  padding-inline: 2rem;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -749,7 +752,8 @@ $expired-yellow-light: $color-expired-light;
 
 .footer {
   text-align: center;
-  padding: 2rem 1.5rem 3rem;
+  @include section;
+  padding-inline: 1.5rem;
   color: $muted-foreground;
   font-size: 0.85rem;
   line-height: 1.6;

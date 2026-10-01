@@ -15,7 +15,8 @@
   animation: fadeIn 0.2s ease-out;
 
   @include breakpoint-up('sm') {
-    padding: 4rem 1rem;
+    @include section;
+    padding-inline: 1rem;
   }
 }
 

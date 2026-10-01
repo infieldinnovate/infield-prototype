@@ -136,7 +136,7 @@
 
 .starBtn {
   @include button-reset;
-  padding: 2px;
+  padding: 6px;
   color: var(--color-gray-300);
   transition: all var(--transition-fast);
 

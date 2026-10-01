@@ -45,8 +45,8 @@
 
 .clearButton {
   @include flex-center;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   color: var(--color-text-muted);
   border-radius: var(--radius-full);
   transition: background var(--transition-fast), color var(--transition-fast);

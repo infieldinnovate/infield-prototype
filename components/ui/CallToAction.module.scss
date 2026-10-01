@@ -71,18 +71,6 @@
   }
 }
 
-.subtitle {
-  font-size: 18px;
-  line-height: 1.6;
-  margin-bottom: 30px;
-  color: rgba(255, 255, 255, 0.9);
-
-  @include breakpoint-up("md") {
-    font-size: 20px;
-    margin-bottom: 40px;
-  }
-}
-
 .benefitsList {
   list-style: none;
   padding: 0;

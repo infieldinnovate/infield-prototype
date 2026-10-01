@@ -198,9 +198,3 @@
   border-radius: var(--radius-md);
   font-size: var(--fs-sm);
 }
-
-.formActions {
-  @include flex-center;
-  gap: var(--space-3);
-  margin-top: var(--space-2);
-}

@@ -588,15 +588,6 @@
     }
   }
 
-  .subServicesList {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
   .subServiceItem {
     font-size: $fs-xs;
     color: $color-gray-500;

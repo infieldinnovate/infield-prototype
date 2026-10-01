@@ -50,7 +50,7 @@
   text-align: center;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   border: 1px solid $color-gray-100;
-  transition: all 0.4s ease;
+  transition: all $transition-base;
 
   &:hover {
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);

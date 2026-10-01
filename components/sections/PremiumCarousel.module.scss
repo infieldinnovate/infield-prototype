@@ -456,7 +456,7 @@
     border-radius: $radius-full !important;
     opacity: 1 !important;
     margin: 0 !important;
-    transition: all 0.3s ease !important;
+    transition: all $transition-base !important;
     cursor: pointer;
   }
 

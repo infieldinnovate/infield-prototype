@@ -232,6 +232,6 @@
   font-size: $fs-sm;
   font-weight: $fw-semibold;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  transition: all $transition-base;
   align-self: flex-start;
 }

@@ -27,7 +27,7 @@
   width: 500px;
   height: 500px;
   background: radial-gradient(circle, rgba(15, 108, 189, 0.1), transparent 70%);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   animation: float 20s ease-in-out infinite;
 }
 
@@ -42,7 +42,7 @@
     rgba(13, 148, 136, 0.08),
     transparent 70%
   );
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   animation: float 25s ease-in-out infinite reverse;
 }
 

@@ -108,7 +108,7 @@ $border: $color-project-border;
 
   color: #fff;
   background: $primary;
-  border-radius: 999px;
+  border-radius: $radius-full;
 }
 
 .modalTitle {
@@ -237,7 +237,7 @@ $border: $color-project-border;
 
   color: #fff;
   background: rgba(0, 0, 0, 0.6);
-  border-radius: 999px;
+  border-radius: $radius-full;
 }
 
 /* Details */
@@ -314,7 +314,7 @@ $border: $color-project-border;
 
   color: #fff;
   background: $primary;
-  border-radius: 50%;
+  border-radius: $radius-full;
 }
 
 /* Services */
@@ -339,7 +339,7 @@ $border: $color-project-border;
   background: $muted;
 
   border: 1px solid $border;
-  border-radius: 999px;
+  border-radius: $radius-full;
 }
 
 /* Video */
@@ -435,7 +435,7 @@ $border: $color-project-border;
 
   color: #fff;
   background: $primary;
-  border-radius: 50%;
+  border-radius: $radius-full;
 }
 
 .testimonialName {

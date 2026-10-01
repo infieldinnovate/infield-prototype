@@ -207,7 +207,7 @@
   width: 30px;
   height: 30px;
   background: linear-gradient(135deg, $color-blue-800 0%, $color-cyan-600 100%);
-  border-radius: 50%;
+  border-radius: $radius-full;
   display: flex;
   align-items: center;
   justify-content: center;

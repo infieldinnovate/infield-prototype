@@ -33,7 +33,7 @@
   letter-spacing: 0.1em;
   color: $color-project-primary;
   padding: 0.35rem 0.9rem;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   margin-bottom: 1rem;
 }
 

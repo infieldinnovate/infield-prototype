@@ -143,7 +143,7 @@
   width: 280px;
   height: 280px;
   background: radial-gradient(circle, rgba(45, 212, 191, 0.22), transparent 70%);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   animation: orbFloat 18s ease-in-out infinite;
 }
 
@@ -154,7 +154,7 @@
   width: 220px;
   height: 220px;
   background: radial-gradient(circle, rgba(59, 158, 230, 0.18), transparent 70%);
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   animation: orbFloat 22s ease-in-out infinite reverse;
 }
 

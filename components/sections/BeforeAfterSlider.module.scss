@@ -15,7 +15,7 @@
     width: 500px;
     height: 500px;
     background: radial-gradient(circle, rgba(15, 108, 189, 0.15), transparent 70%);
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     pointer-events: none;
   }
 }

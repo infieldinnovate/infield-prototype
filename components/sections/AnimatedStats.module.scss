@@ -30,7 +30,7 @@
       rgba(45, 212, 191, 0.12),
       transparent 70%
     );
-    border-radius: 50%;
+    border-radius: $radius-full;
     pointer-events: none;
   }
 }

@@ -212,7 +212,7 @@
   height: 40px;
   background: $color-emerald-500;
   color: $color-white;
-  border-radius: 50%;
+  border-radius: $radius-full;
   font-weight: bold;
   font-size: 18px;
   flex-shrink: 0;
@@ -274,7 +274,7 @@
   height: 56px;
   background: linear-gradient(135deg, $color-amber-400, $color-amber-500);
   color: $color-white;
-  border-radius: 50%;
+  border-radius: $radius-full;
   flex-shrink: 0;
   box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
 }

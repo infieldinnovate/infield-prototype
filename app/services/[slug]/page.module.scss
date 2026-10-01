@@ -182,7 +182,7 @@
   height: 44px;
   color: $color-slate-900;
   background: $color-accent-light;
-  border-radius: 50%;
+  border-radius: $radius-full;
 }
 .floatingCard {
   position: absolute;
@@ -328,7 +328,7 @@
   height: 38px;
   color: $color-primary;
   background: $color-primary-50;
-  border-radius: 50%;
+  border-radius: $radius-full;
 }
 .serviceItemActive .serviceItemIcon {
   color: $color-primary-dark;
@@ -453,7 +453,7 @@
   color: $color-white;
   background: $color-primary-dark;
   border: 4px solid $color-gray-50;
-  border-radius: 50%;
+  border-radius: $radius-full;
   font-family: $font-mono;
   font-size: 10px;
   font-weight: $fw-bold;
@@ -624,7 +624,7 @@
   color: $color-primary;
   background: $color-primary-50;
   border: 1px solid $color-primary-100;
-  border-radius: 50%;
+  border-radius: $radius-full;
 }
 .diagramNumber {
   color: $color-secondary;
@@ -687,7 +687,7 @@
   height: 38px;
   color: $color-white;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
+  border-radius: $radius-full;
   transition: all $transition-fast;
 }
 .testimonialControls button:hover {
@@ -724,7 +724,7 @@
   width: 52px;
   height: 52px;
   overflow: hidden;
-  border-radius: 50%;
+  border-radius: $radius-full;
   object-fit: cover;
 }
 .testimonialPerson > span:not(.rating) {
@@ -785,7 +785,7 @@
   height: 42px;
   color: $color-primary;
   background: $color-primary-50;
-  border-radius: 50%;
+  border-radius: $radius-full;
 }
 .relatedCard:hover .relatedIcon {
   color: $color-primary-dark;
@@ -873,7 +873,7 @@
   color: $color-primary-dark;
   background: $color-primary-50;
   border: 1px solid $color-primary-100;
-  border-radius: 50%;
+  border-radius: $radius-full;
   box-shadow: 0 0 0 4px rgba(15, 108, 189, 0.06);
 }
 .heroSystemItem span {
@@ -1040,7 +1040,7 @@
   color: $color-secondary-light;
   background: rgba(45, 212, 191, 0.12);
   border: 1px solid rgba(45, 212, 191, 0.28);
-  border-radius: 50%;
+  border-radius: $radius-full;
   transition: all $transition-base;
 }
 .integrationStageActive .integrationStageIcon {

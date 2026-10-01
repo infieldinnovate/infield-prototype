@@ -5,12 +5,6 @@
   @include container;
 }
 
-.hero {
-  @include section;
-  background: var(--color-gray-50);
-  padding-top: var(--space-8);
-}
-
 .statsSection {
   padding-block: var(--space-12);
   background: var(--color-white);
@@ -235,76 +229,6 @@
       height: auto;
     }
   }
-}
-
-// Team
-.teamSection {
-  @include section;
-  background: var(--color-gray-50);
-}
-
-.teamGroupPhoto {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  max-height: 360px;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-xl);
-  background: var(--color-gray-200);
-
-  @include breakpoint-up("md") {
-    aspect-ratio: 21 / 9;
-    max-height: 520px;
-  }
-}
-
-.teamGroupImage {
-  object-fit: cover;
-  object-position: center;
-}
-
-.teamGroupOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: var(--space-8);
-  background: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 0.15) 0%,
-    rgba(0, 0, 0, 0.55) 100%
-  );
-  color: var(--color-white);
-}
-
-.teamGroupBadge {
-  @include flex-center;
-  width: 64px;
-  height: 64px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-full);
-  margin-bottom: var(--space-4);
-  backdrop-filter: blur(8px);
-}
-
-.teamGroupTitle {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: var(--fw-bold);
-  margin-bottom: var(--space-2);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-}
-
-.teamGroupSubtitle {
-  font-size: var(--fs-base);
-  max-width: 480px;
-  line-height: var(--lh-relaxed);
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 // Equipment

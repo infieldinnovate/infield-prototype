@@ -18,7 +18,6 @@ import {
   Target,
   Eye,
   Heart,
-  Users,
 } from "lucide-react";
 import { siteConfig } from "@/data/site.config";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";

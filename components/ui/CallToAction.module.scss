@@ -173,7 +173,7 @@
   color: $color-blue-800;
   text-decoration: none;
   padding: 12px 20px;
-  border: 2px solid #e5e7eb;
+  border: 2px solid $color-gray-200;
   border-radius: 50px;
   font-weight: 600;
   font-size: 14px;
@@ -230,7 +230,7 @@
   }
 
   span {
-    color: #6b7280;
+    color: $color-gray-500;
     font-size: 13px;
   }
 }

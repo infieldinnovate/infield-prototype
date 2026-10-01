@@ -128,7 +128,7 @@
   justify-content: center;
   background: none;
   border: none;
-  color: #374151;
+  color: $color-gray-700;
   cursor: pointer;
   padding: 4px;
   flex-shrink: 0;
@@ -148,7 +148,7 @@
   overflow-x: hidden;
   overscroll-behavior: contain;
   background: rgb(255, 255, 255);
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid $color-gray-200;
   z-index: calc(var(--z-header) - 1);
   -webkit-overflow-scrolling: touch;
 
@@ -180,18 +180,18 @@
 
 .mobileNavLink {
   display: block;
-  color: #374151;
+  color: $color-gray-700;
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
   padding: 16px 0;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid $color-gray-50;
   transition: color 0.22s ease;
   position: relative;
   min-height: 44px;
 
   &:hover {
-    color: #1e40af;
+    color: $color-blue-800;
   }
 
   &:last-of-type {
@@ -199,7 +199,7 @@
   }
 
   &.active {
-    color: #0b5394;
+    color: $color-primary-dark;
     font-weight: 600;
   }
 
@@ -211,7 +211,7 @@
     transform: translateY(-50%);
     width: 6px;
     height: 6px;
-    background: #1e40af;
+    background: $color-blue-800;
     border-radius: 50%;
   }
 }
@@ -221,7 +221,7 @@
 // ============================================
 
 .mobileServicesSection {
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid $color-gray-50;
 }
 
 .mobileServicesToggle {
@@ -230,7 +230,7 @@
   justify-content: space-between;
   width: 100%;
   padding: 16px 0;
-  color: #374151;
+  color: $color-gray-700;
   font-weight: 500;
   font-size: 1rem;
   background: none;
@@ -240,11 +240,11 @@
   min-height: 44px;
 
   &:hover {
-    color: #1e40af;
+    color: $color-blue-800;
   }
 
   &.active {
-    color: #0b5394;
+    color: $color-primary-dark;
     font-weight: 600;
   }
 }
@@ -317,7 +317,7 @@
 
 .mobileQuoteButton {
   display: block;
-  background: linear-gradient(135deg, #1e40af 0%, #0891b2 100%);
+  background: linear-gradient(135deg, $color-blue-800 0%, $color-cyan-600 100%);
   color: white;
   padding: 16px 20px;
   border-radius: 12px;
@@ -395,7 +395,7 @@
   // ============================================
 
   .navLink {
-    color: #374151;
+    color: $color-gray-700;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.22s ease;
@@ -403,7 +403,7 @@
     padding: 6px 0;
 
     &:hover {
-      color: #1e40af;
+      color: $color-blue-800;
     }
 
     &::after {
@@ -413,7 +413,7 @@
       height: 2px;
       bottom: -6px;
       left: 50%;
-      background: #1e40af;
+      background: $color-blue-800;
       transition: all 0.22s ease;
       border-radius: 2px;
     }
@@ -429,7 +429,7 @@
     }
 
     &.active {
-      color: #940b0b;
+      color: $color-primary-dark;
     }
 
     &.active::after {
@@ -458,7 +458,7 @@
 
     &:hover,
     &.triggerOpen {
-      color: #1e40af;
+      color: $color-blue-800;
     }
   }
 

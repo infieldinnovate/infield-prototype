@@ -295,14 +295,6 @@
   @include responsive-grid(1, 2, 3, var(--space-6));
 }
 
-.downloadsGrid {
-  @include responsive-grid(1, 2, 3, var(--space-6));
-}
-
-.industriesGrid {
-  @include responsive-grid(1, 2, 3, var(--space-6));
-}
-
 // Downloads CTA
 .downloadsCta {
   @include flex-between;

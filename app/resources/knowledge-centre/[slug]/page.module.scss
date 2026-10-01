@@ -303,6 +303,11 @@
   text-align: center;
 }
 
+.authorInfo {
+  @include flex-column;
+  gap: var(--space-1);
+}
+
 .authorPhotoWrap {
   position: relative;
   width: 120px;

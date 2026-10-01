@@ -81,7 +81,7 @@
   }
 
   .cardContent {
-    padding: 30px;
+    padding: var(--space-8);
 
     .featureList {
       list-style: none;

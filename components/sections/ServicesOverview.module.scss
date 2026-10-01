@@ -81,7 +81,7 @@
 }
 
 .cardContent {
-  padding: 30px;
+  padding: var(--space-8);
 }
 
 .cardContent h3 {
@@ -145,11 +145,11 @@
   text-align: center;
   @include gradient-primary;
   border-radius: 24px;
-  padding: 40px 20px;
+  padding: var(--space-10) var(--space-5);
   color: $color-white;
 
   @include breakpoint-up("md") {
-    padding: 60px 40px;
+    padding: var(--space-16) var(--space-10);
   }
 }
 

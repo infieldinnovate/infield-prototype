@@ -46,7 +46,7 @@
 .featureCard {
   background: $color-white;
   border-radius: 20px;
-  padding: 30px 20px;
+  padding: var(--space-8) var(--space-5);
   text-align: center;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   border: 1px solid #f1f5f9;
@@ -58,7 +58,7 @@
   }
 
   @include breakpoint-up("md") {
-    padding: 40px 30px;
+    padding: var(--space-10) var(--space-8);
   }
 }
 

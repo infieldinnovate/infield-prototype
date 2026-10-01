@@ -727,14 +727,10 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modalTitle {
-  font-size: 1.35rem;
+  font-size: clamp(1.35rem, 1.35rem + 0.5vw, 1.75rem);
   font-weight: 800;
   line-height: 1.2;
   margin: 0 0 0.5rem;
-
-  @include breakpoint-up("md") {
-    font-size: 1.75rem;
-  }
 }
 
 .modalMeta {

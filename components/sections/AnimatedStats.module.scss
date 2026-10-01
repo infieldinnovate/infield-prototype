@@ -182,13 +182,9 @@
 }
 
 .value {
-  font-size: var(--fs-3xl);
+  font-size: clamp(1.875rem, 1.875rem + 0.5vw, 2.25rem);
   font-weight: var(--fw-extrabold);
   line-height: 1;
-
-  @include breakpoint-up("sm") {
-    font-size: var(--fs-4xl);
-  }
 }
 
 .label {

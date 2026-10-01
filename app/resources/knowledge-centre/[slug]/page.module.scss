@@ -43,16 +43,12 @@
 }
 
 .title {
-  font-size: $fs-3xl;
+  font-size: clamp(1.875rem, 5vw, 3rem);
   font-weight: $fw-extrabold;
   line-height: $lh-tight;
   letter-spacing: -0.02em;
   color: $color-slate-900;
   margin-bottom: var(--space-4);
-
-  @include breakpoint-up("sm") {
-    font-size: clamp(2rem, 5vw, $fs-5xl);
-  }
 }
 
 .excerpt {

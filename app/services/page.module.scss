@@ -67,14 +67,14 @@
 }
 
 .heroDescription {
-  font-size: var(--fs-xl);
+  font-size: var(--fs-base);
   line-height: $lh-relaxed;
   color: $color-text-muted;
   max-width: 600px;
   margin: 0 auto;
 
-  @include breakpoint-down("sm") {
-    font-size: var(--fs-base);
+  @include breakpoint-up("sm") {
+    font-size: var(--fs-xl);
   }
 }
 

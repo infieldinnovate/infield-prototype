@@ -97,6 +97,15 @@
   --color-expired: #{$color-expired};
   --color-expired-light: #{$color-expired-light};
 
+  // Form element colors
+  --color-form-dark-blue: #{$color-form-dark-blue};
+  --color-form-error: #{$color-form-error};
+  --color-form-border: #{$color-form-border};
+  --color-form-placeholder: #{$color-form-placeholder};
+  --color-form-disabled-bg: #{$color-form-disabled-bg};
+  --color-form-input-bg: #{$color-form-input-bg};
+  --color-form-icon-bg: #{$color-form-icon-bg};
+
   // Typography
   --font-sans: #{$font-sans};
   --font-heading: #{$font-heading};
@@ -211,7 +220,7 @@ html {
 }
 
 body {
-  // font-family: var(--font-sans);
+  font-family: var(--font-sans);
   font-size: var(--fs-base);
   line-height: var(--lh-normal);
   // color: var(--color-text);
@@ -264,7 +273,7 @@ a {
   transition: color var(--transition-fast);
 
   &:hover {
-    color: var(--color-gray-300);
+    color: var(--color-primary-dark);
   }
 
   @include focus-visible;
@@ -473,5 +482,19 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+// ============================================
+// Very small mobile — reduce form element sizing
+// ============================================
+
+@include breakpoint-down("sm") {
+  fieldset {
+    padding: 1rem;
+  }
+
+  legend {
+    font-size: 0.8rem;
   }
 }

@@ -9,14 +9,6 @@ $muted: $color-project-muted;
 $muted-foreground: $color-project-muted-foreground;
 $border: $color-project-border;
 
-$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
-
-$radius: 0.75rem;
-$radius-lg: 1rem;
-
-$transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
 /* Overlay */
 
 .modalOverlay {
@@ -58,7 +50,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: #ffffff;
   cursor: pointer;
   border: none;
-  transition: all $transition;
+  transition: all $transition-base;
   &:hover {
     background: rgba(0, 0, 0, 0.7);
     transform: rotate(90deg);
@@ -194,7 +186,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   aspect-ratio: 4 / 3;
   cursor: pointer;
-  border-radius: $radius;
+  border-radius: $radius-lg;
 
   &:hover .galleryImage {
     transform: scale(1.08);
@@ -228,7 +220,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 
-  transition: opacity $transition;
+  transition: opacity $transition-base;
 }
 
 .galleryPhase {
@@ -261,7 +253,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   background: $muted;
   border-left: 3px solid $primary;
-  border-radius: $radius;
+  border-radius: $radius-lg;
 }
 
 .detailLabel {
@@ -307,7 +299,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   color: $foreground;
   background: rgba(hsl(160 84% 27%), 0.05);
-  border-radius: $radius;
+  border-radius: $radius-lg;
 }
 
 .resultCheck {
@@ -395,7 +387,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   );
 
   border-left: 4px solid $primary;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
 }
 
 .testimonialQuote {

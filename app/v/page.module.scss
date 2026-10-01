@@ -11,13 +11,6 @@ $muted: $color-project-muted;
 $muted-foreground: $color-project-muted-foreground;
 $border: $color-project-border;
 $white: $color-white;
-$shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.12);
-$radius: 0.75rem;
-$radius-lg: 1rem;
-$transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
 // Status colors
 $verified-green: $color-verified;
 $verified-green-light: $color-verified-light;
@@ -128,7 +121,7 @@ $expired-yellow-light: $color-expired-light;
 /* Card */
 .card {
   background: $white;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
   box-shadow: $shadow-lg;
   border: 1px solid $border;
   overflow: hidden;
@@ -153,11 +146,11 @@ $expired-yellow-light: $color-expired-light;
   background: transparent;
   color: $muted-foreground;
   border: none;
-  border-radius: $radius;
+  border-radius: $radius-lg;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all $transition;
+  transition: all $transition-base;
 
   @include breakpoint-up("md") {
     padding: 0.75rem 1rem;
@@ -237,9 +230,9 @@ $expired-yellow-light: $color-expired-light;
   letter-spacing: 0.05em;
   color: $foreground;
   border: 2px solid $border;
-  border-radius: $radius;
+  border-radius: $radius-lg;
   background: $muted;
-  transition: all $transition;
+  transition: all $transition-base;
   outline: none;
   text-transform: uppercase;
 
@@ -270,11 +263,11 @@ $expired-yellow-light: $color-expired-light;
   background: $primary;
   color: $white;
   border: none;
-  border-radius: $radius;
+  border-radius: $radius-lg;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  transition: all $transition;
+  transition: all $transition-base;
   white-space: nowrap;
   width: 100%;
 
@@ -302,7 +295,7 @@ $expired-yellow-light: $color-expired-light;
   padding: 0.75rem 1rem;
   background: hsl(0 84% 97%);
   border: 1px solid hsl(0 84% 85%);
-  border-radius: $radius;
+  border-radius: $radius-lg;
   color: hsl(0 84% 50%);
   font-size: 0.9rem;
   font-weight: 600;
@@ -335,11 +328,11 @@ $expired-yellow-light: $color-expired-light;
   background: $white;
   color: $foreground;
   border: 2px solid $border;
-  border-radius: $radius;
+  border-radius: $radius-lg;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all $transition;
+  transition: all $transition-base;
 
   &:hover {
     border-color: $primary;
@@ -377,7 +370,7 @@ $expired-yellow-light: $color-expired-light;
   box-shadow: $shadow-lg;
 
   @include breakpoint-up("md") {
-    border-radius: $radius-lg;
+    border-radius: $radius-xl;
     max-width: 480px;
     height: auto;
   }
@@ -412,7 +405,7 @@ $expired-yellow-light: $color-expired-light;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all $transition;
+  transition: all $transition-base;
 
   &:hover {
     background: hsl(0 84% 95%);
@@ -467,7 +460,7 @@ $expired-yellow-light: $color-expired-light;
 
 .resultCard {
   background: $white;
-  border-radius: $radius-lg;
+  border-radius: $radius-xl;
   box-shadow: $shadow-lg;
   border: 1px solid $border;
   overflow: hidden;
@@ -623,7 +616,7 @@ $expired-yellow-light: $color-expired-light;
   gap: 0.25rem;
   padding: 0.75rem 1rem;
   background: $muted;
-  border-radius: $radius;
+  border-radius: $radius-lg;
   border-left: 3px solid $primary;
 }
 
@@ -694,12 +687,12 @@ $expired-yellow-light: $color-expired-light;
   background: $muted;
   color: $foreground;
   border: none;
-  border-radius: $radius;
+  border-radius: $radius-lg;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  transition: all $transition;
+  transition: all $transition-base;
 
   &:hover {
     background: $border;
@@ -767,7 +760,7 @@ $expired-yellow-light: $color-expired-light;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all $transition;
+  transition: all $transition-base;
   z-index: 10;
   backdrop-filter: blur(4px);
 

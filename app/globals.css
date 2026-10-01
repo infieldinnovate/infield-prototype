@@ -11,8 +11,8 @@
   transform: translateY(-50% -50%);
   color: rgb(226, 226, 226, 0.3) !important;
   background: none !important;
-  width: clamp(36px, 8vw, 60px) !important;
-  height: clamp(36px, 8vw, 60px) !important;
+  width: clamp(44px, 8vw, 60px) !important;
+  height: clamp(44px, 8vw, 60px) !important;
   border-radius: 50% !important;
   display: flex !important;
   align-items: center;

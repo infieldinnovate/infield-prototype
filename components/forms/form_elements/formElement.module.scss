@@ -21,7 +21,7 @@ $transitionDuration: 0.16s;
 }
 
 .label {
-  font-size: 13px;
+  font-size: $fs-xs;
   font-weight: 600;
   color: rgb(68, 68, 68);
 }
@@ -45,7 +45,7 @@ $transitionDuration: 0.16s;
 
   .element {
     flex: 1;
-    font-size: 0.9rem;
+    font-size: $fs-sm;
     border: 1px solid $borderColor;
     outline: none;
     padding: 7px 15px 7px calc($iconTotalWidth + 5px);
@@ -65,7 +65,7 @@ $transitionDuration: 0.16s;
     &::placeholder {
       color: $placeholderColor;
       font-style: italic;
-      font-size: 0.8rem;
+      font-size: $fs-xs;
     }
 
     &:disabled {
@@ -95,7 +95,7 @@ $transitionDuration: 0.16s;
 }
 
 .error {
-  font-size: 0.75rem;
+  font-size: $fs-xs;
   color: $errorColor;
 }
 

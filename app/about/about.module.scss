@@ -191,7 +191,7 @@
   p {
     color: #6b7280;
     line-height: 1.6;
-    font-size: 14px;
+    font-size: $fs-sm;
   }
 }
 
@@ -202,7 +202,7 @@
   padding: 6px 16px;
   border-radius: 20px;
   font-weight: 700;
-  font-size: 14px;
+  font-size: $fs-sm;
   margin-bottom: 15px;
 }
 

@@ -112,7 +112,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .sectionLabel {
   display: inline-flex;
   gap: 0.8rem;
-  font-size: 0.8rem;
+  font-size: $fs-xs;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -155,7 +155,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid $border;
   background: $white;
   color: $foreground;
-  font-size: 0.8rem;
+  font-size: $fs-xs;
   font-weight: 600;
   cursor: pointer;
   transition: all $transition;
@@ -296,7 +296,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.85rem;
+  font-size: $fs-sm;
   color: $muted-foreground;
   font-weight: 500;
 }
@@ -310,7 +310,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cardResult {
-  font-size: 0.9rem;
+  font-size: $fs-sm;
   color: $primary;
   font-weight: 600;
   display: flex;
@@ -331,7 +331,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: $white;
   border: none;
   border-radius: $radius;
-  font-size: 0.9rem;
+  font-size: $fs-sm;
   font-weight: 600;
   cursor: pointer;
   transition: all $transition;
@@ -415,7 +415,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .statLabel {
-  font-size: 0.9rem;
+  font-size: $fs-sm;
   color: $muted-foreground;
   font-weight: 500;
 }
@@ -459,7 +459,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0.35rem 0.85rem;
   background: rgba(0, 0, 0, 0.65);
   color: $white;
-  font-size: 0.8rem;
+  font-size: $fs-xs;
   font-weight: 700;
   border-radius: 999px;
   text-transform: uppercase;
@@ -520,7 +520,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 999px;
   background: $white;
   color: $foreground;
-  font-size: 0.85rem;
+  font-size: $fs-sm;
   font-weight: 600;
   cursor: pointer;
   transition: all $transition;
@@ -588,7 +588,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: $white;
   padding: 0.35rem 0.75rem;
   border-radius: $radius;
-  font-size: 0.8rem;
+  font-size: $fs-xs;
   font-weight: 600;
   white-space: nowrap;
   opacity: 0;
@@ -619,7 +619,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
+  font-size: $fs-sm;
   color: $muted-foreground;
   font-weight: 500;
 }
@@ -741,7 +741,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  font-size: 0.9rem;
+  font-size: $fs-sm;
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -822,7 +822,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0.75rem;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   color: $white;
-  font-size: 0.8rem;
+  font-size: $fs-xs;
   font-weight: 600;
   opacity: 0;
   transition: opacity $transition;
@@ -888,7 +888,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 1rem;
   background: rgba(hsl(160 84% 27%), 0.05);
   border-radius: $radius;
-  font-size: 0.95rem;
+  font-size: $fs-base;
   color: $foreground;
   font-weight: 500;
   line-height: 1.5;
@@ -938,7 +938,7 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background: $muted;
   border: 1px solid $border;
   border-radius: 999px;
-  font-size: 0.85rem;
+  font-size: $fs-sm;
   font-weight: 600;
   color: $foreground;
 }
@@ -998,11 +998,11 @@ $transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 .testimonialName {
   font-weight: 700;
   color: $foreground;
-  font-size: 0.95rem;
+  font-size: $fs-base;
 }
 
 .testimonialRole {
-  font-size: 0.85rem;
+  font-size: $fs-sm;
   color: $muted-foreground;
 }
 

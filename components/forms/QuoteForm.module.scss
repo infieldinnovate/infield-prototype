@@ -231,45 +231,18 @@
 
 // Error
 .error {
-  @include flex-center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-4);
-  background: var(--color-error-light);
-  color: var(--color-error);
-  border-radius: var(--radius-md);
-  font-size: var(--fs-sm);
+  @include error-banner;
 }
 
 // Success
-.success {
-  @include flex-column;
-  @include flex-center;
-  text-align: center;
-  padding: var(--space-16) var(--space-6);
-  gap: var(--space-4);
-}
-
-.successIcon {
-  @include flex-center;
-  width: 96px;
-  height: 96px;
-  background: var(--color-success-light);
-  color: var(--color-success);
-  border-radius: var(--radius-full);
-  margin-bottom: var(--space-4);
-}
-
-.successTitle {
-  @include heading-2;
-  color: var(--color-success);
-}
-
-.successMessage {
-  font-size: var(--fs-lg);
-  color: var(--color-text-muted);
-  line-height: var(--lh-relaxed);
-  max-width: 500px;
-}
+@include success-state(
+  $icon-size: 96px,
+  $padding-y: var(--space-16),
+  $icon-margin-bottom: var(--space-4),
+  $use-heading-2: true,
+  $message-size: var(--fs-lg),
+  $message-max-width: 500px
+);
 
 .referenceCard {
   @include flex-column;

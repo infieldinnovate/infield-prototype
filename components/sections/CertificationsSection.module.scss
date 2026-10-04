@@ -10,32 +10,7 @@
   @include container;
 }
 
-.eyebrow {
-  text-align: center;
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-primary);
-  margin-bottom: var(--space-2);
-}
-
-.title {
-  text-align: center;
-  font-size: clamp(1.5rem, 1.5rem + 0.5vw, 1.875rem);
-  font-weight: var(--fw-bold);
-  color: var(--color-text);
-  margin-bottom: var(--space-3);
-}
-
-.description {
-  text-align: center;
-  font-size: var(--fs-base);
-  color: var(--color-text-muted);
-  max-width: 640px;
-  margin: 0 auto var(--space-12);
-  line-height: var(--lh-relaxed);
-}
+@include section-header($desc-max-width: 640px);
 
 .grid {
   display: grid;
@@ -52,10 +27,7 @@
 }
 
 .card {
-  @include card;
-  @include flex-column;
-  padding: var(--space-6);
-  height: 100%;
+  @include card-base(var(--space-6));
   transition: all var(--transition-base);
   @include card-hover;
 
@@ -65,17 +37,8 @@
 }
 
 .iconWrap {
-  @include flex-center;
-  width: 56px;
-  height: 56px;
+  @include icon-bubble;
   margin-bottom: var(--space-4);
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-50),
-    var(--color-secondary-50)
-  );
-  color: var(--color-primary);
-  border-radius: var(--radius-lg);
   flex-shrink: 0;
 }
 

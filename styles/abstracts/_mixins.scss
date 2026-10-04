@@ -306,3 +306,135 @@
   }
   @include section;
 }
+
+// ============================================
+// Error banner — flex-center + error styling
+// ============================================
+@mixin error-banner {
+  @include flex-center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-error-light);
+  color: var(--color-error);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+}
+
+// ============================================
+// Success state — icon + title + message block
+// Accepts $icon-size, $padding-y, $title-mixin,
+// $message-size, $message-max-width
+// ============================================
+@mixin success-state(
+  $icon-size: 80px,
+  $padding-y: var(--space-12),
+  $padding-x: var(--space-6),
+  $icon-margin-bottom: var(--space-2),
+  $use-heading-2: false,
+  $message-size: var(--fs-base),
+  $message-max-width: 400px
+) {
+  .success {
+    @include flex-column;
+    @include flex-center;
+    text-align: center;
+    padding: $padding-y $padding-x;
+    gap: var(--space-4);
+  }
+
+  .successIcon {
+    @include flex-center;
+    width: $icon-size;
+    height: $icon-size;
+    background: var(--color-success-light);
+    color: var(--color-success);
+    border-radius: var(--radius-full);
+    margin-bottom: $icon-margin-bottom;
+  }
+
+  .successTitle {
+    @if $use-heading-2 {
+      @include heading-2;
+    } @else {
+      @include heading-3;
+    }
+    color: var(--color-success);
+  }
+
+  .successMessage {
+    font-size: $message-size;
+    color: var(--color-text-muted);
+    line-height: var(--lh-relaxed);
+    max-width: $message-max-width;
+  }
+}
+
+// ============================================
+// Card base — card + flex-column + padding + height
+// ============================================
+@mixin card-base($padding: var(--space-6)) {
+  @include card;
+  @include flex-column;
+  padding: $padding;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+// ============================================
+// Icon bubble — flex-center + fixed size + gradient
+// ============================================
+@mixin icon-bubble(
+  $size: 56px,
+  $radius: var(--radius-lg)
+) {
+  @include flex-center;
+  width: $size;
+  height: $size;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-50),
+    var(--color-secondary-50)
+  );
+  color: var(--color-primary);
+  border-radius: $radius;
+}
+
+// ============================================
+// Section header — eyebrow + title + description trio
+// Emits .eyebrow / .title / .description classes
+// ============================================
+@mixin section-header(
+  $eyebrow-color: var(--color-primary),
+  $title-color: var(--color-text),
+  $desc-color: var(--color-text-muted),
+  $desc-max-width: 600px,
+  $desc-margin-bottom: var(--space-12)
+) {
+  .eyebrow {
+    text-align: center;
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $eyebrow-color;
+    margin-bottom: var(--space-2);
+  }
+
+  .title {
+    text-align: center;
+    font-size: clamp(1.5rem, 1.5rem + 0.5vw, 1.875rem);
+    font-weight: var(--fw-bold);
+    color: $title-color;
+    margin-bottom: var(--space-3);
+  }
+
+  .description {
+    text-align: center;
+    font-size: var(--fs-base);
+    color: $desc-color;
+    max-width: $desc-max-width;
+    margin: 0 auto $desc-margin-bottom;
+    line-height: var(--lh-relaxed);
+  }
+}

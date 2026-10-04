@@ -2,12 +2,7 @@
 @use "../../styles/abstracts/mixins" as *;
 
 .serviceCard {
-  @include card;
-  @include flex-column;
-  padding: 0;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
+  @include card-base(0);
   @include card-hover;
 
   &::before {

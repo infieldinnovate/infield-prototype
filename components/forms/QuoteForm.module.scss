@@ -124,7 +124,7 @@
 
 // Form
 .form {
-  @include flex-column;
+  @include form-reset;
   gap: var(--space-6);
 }
 

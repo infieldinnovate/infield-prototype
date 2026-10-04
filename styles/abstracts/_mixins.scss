@@ -308,6 +308,45 @@
 }
 
 // ============================================
+// Form reset — scoped to form components only
+// ============================================
+@mixin form-reset {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  > * {
+    margin: 0;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: clamp(1rem, 4vw, 2rem);
+    border: none;
+    border-radius: var(--radius-md);
+  }
+
+  legend {
+    padding: var(--space-2) var(--space-3);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-sm);
+    color: var(--color-text);
+  }
+
+  @include breakpoint-down("sm") {
+    fieldset {
+      padding: 1rem;
+    }
+
+    legend {
+      font-size: var(--fs-xs);
+    }
+  }
+}
+
+// ============================================
 // Error banner — flex-center + error styling
 // ============================================
 @mixin error-banner {

@@ -211,7 +211,6 @@ html {
   scroll-behavior: smooth;
   text-rendering: optimizeLegibility;
   max-width: 100%;
-  overflow-x: hidden;
   overscroll-behavior: none;
 
   @include reduced-motion {
@@ -279,32 +278,10 @@ a {
   @include focus-visible;
 }
 
-input,
-select {
-  outline: none;
-}
-
-input:focus,
-select:focus {
-  outline: none;
-}
-
 button {
   cursor: pointer;
   border: none;
   background: none;
-}
-
-button:focus {
-  outline: none;
-}
-
-button:active {
-  outline: 2px solid var(--color-primary);
-}
-
-button:focus-visible {
-  outline: 2px solid var(--color-primary);
 }
 
 img,
@@ -602,82 +579,5 @@ body {
 }
 
 // ============================================
-// Global Form Styles
-// ============================================
-
-form {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  color: black;
-  background: none;
-  border: none;
-  outline: none;
-}
-
-form > * {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  background: none;
-  border: none;
-  outline: none;
-}
-
-fieldset {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-5);
-  margin: 0;
-  padding: clamp(1rem, 4vw, 2rem);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-}
-
-legend {
-  width: 80%;
-  max-width: 350px;
-  padding: var(--space-2) var(--space-3);
-  text-align: center;
-  font-weight: bold;
-  color: rgb(0, 0, 0);
-  font-size: 0.9rem;
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 0, 0, 0),
-    var(--color-gray-200) 10%,
-    var(--color-gray-200) 90%,
-    rgba(255, 0, 0, 0)
-  );
-}
-
-.inline_form_elements_container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  column-gap: clamp(0.5rem, 4vw, 2rem);
-  justify-content: space-between;
-  align-items: center;
-}
-
-// ============================================
 // Very small mobile — reduce form element sizing
-// ============================================
-
-@include breakpoint-down("sm") {
-  fieldset {
-    padding: 1rem;
-  }
-
-  legend {
-    font-size: 0.8rem;
-  }
-}
+// ==========================================

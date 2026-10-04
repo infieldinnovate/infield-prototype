@@ -226,15 +226,15 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 
   svg {
-    color: #f87171;
+    color: $color-form-error;
   }
 
   a {
-    color: #f87171;
+    color: $color-form-error;
     font-weight: var(--fw-semibold);
 
     &:hover {
-      color: #f87171;
+      color: $color-form-error;
     }
   }
 }

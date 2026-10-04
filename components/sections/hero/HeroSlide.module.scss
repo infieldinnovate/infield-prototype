@@ -163,7 +163,7 @@
   line-height: 0.95;
   font-weight: 700;
   letter-spacing: -0.025em;
-  color: #fff;
+  color: $color-white;
   margin: 0 0 1.5rem;
   text-wrap: balance;
   white-space: pre-line;
@@ -265,8 +265,8 @@
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #000;
-  background: #fff;
+  color: $color-black;
+  background: $color-white;
   border-radius: 9999px;
   text-decoration: none;
   transition:
@@ -281,7 +281,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid $color-white;
     outline-offset: 3px;
   }
 
@@ -311,7 +311,7 @@
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  color: #fff;
+  color: $color-white;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 9999px;
@@ -329,7 +329,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid $color-white;
     outline-offset: 3px;
   }
 

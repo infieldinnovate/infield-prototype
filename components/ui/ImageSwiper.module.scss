@@ -56,7 +56,7 @@
   :global(.swiper-button-next) {
     width: 44px !important;
     height: 44px !important;
-    color: rgb(226, 226, 226) !important;
+    color: $color-gray-300 !important;
 
     opacity: 0;
     transition:

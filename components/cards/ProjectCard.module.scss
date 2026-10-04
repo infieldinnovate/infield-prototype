@@ -86,7 +86,7 @@ $white: $color-white;
         color: $muted-foreground;
         font-size: 0.88rem;
         line-height: 1.45;
-        background-color: rgb(241, 241, 241);
+        background-color: $color-gray-100;
         padding: 5px 10px;
         border-radius: 50px;
 

@@ -87,7 +87,7 @@
   color: var(--color-white);
 
   &:hover:not(:disabled) {
-    background: #b91c1c;
+    background: $color-error-dark;
     color: var(--color-white);
   }
 }

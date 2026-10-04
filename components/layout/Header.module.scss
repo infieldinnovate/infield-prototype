@@ -40,7 +40,7 @@
   justify-content: space-between;
   gap: 8px;
   padding: 0 12px;
-  background-color: rgb(255, 255, 255);
+  background-color: $color-white;
   height: var(--header-height);
 }
 
@@ -147,7 +147,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
-  background: rgb(255, 255, 255);
+  background: $color-white;
   border-top: 1px solid $color-gray-200;
   z-index: calc(var(--z-header) - 1);
   -webkit-overflow-scrolling: touch;
@@ -318,7 +318,7 @@
 .mobileQuoteButton {
   display: block;
   background: linear-gradient(135deg, $color-blue-800 0%, $color-cyan-600 100%);
-  color: white;
+  color: $color-white;
   padding: 16px 20px;
   border-radius: 12px;
   text-decoration: none;

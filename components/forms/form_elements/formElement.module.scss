@@ -23,7 +23,7 @@ $transitionDuration: 0.16s;
 .label {
   font-size: $fs-xs;
   font-weight: 600;
-  color: rgb(68, 68, 68);
+  color: $color-gray-600;
 }
 
 .elementWrapper {
@@ -57,7 +57,7 @@ $transitionDuration: 0.16s;
     &:focus {
       border-color: rgba(0, 0, 0, 0.15);
       box-shadow: 0 0 6px rgba(78, 78, 78, 0.12);
-      background: #fff;
+      background: $color-white;
     }
 
     &::placeholder {
@@ -68,7 +68,7 @@ $transitionDuration: 0.16s;
 
     &:disabled {
       background-color: $disabledBg;
-      color: #3f3f3f;
+      color: $color-gray-600;
       font-style: italic;
       cursor: not-allowed;
     }
@@ -84,8 +84,8 @@ $transitionDuration: 0.16s;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(145, 145, 145);
-  color: #ffffff;
+  background-color: $color-form-icon-bg;
+  color: $color-white;
   padding-left: 6px;
   padding-right: 6px;
   border-radius: $radius 0 0 $radius;

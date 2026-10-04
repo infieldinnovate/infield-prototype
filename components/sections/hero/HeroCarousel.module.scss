@@ -16,7 +16,7 @@
   height: 92svh;
   min-height: 540px;
   overflow: hidden;
-  background: #000;
+  background: $color-black;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
@@ -70,7 +70,7 @@
 .progressBar {
   position: absolute;
   inset: 0;
-  background: #fff;
+  background: $color-white;
   transform-origin: left;
   transform: scaleX(0);
   animation-name: heroProgress;
@@ -118,7 +118,7 @@
 
 .dotActive {
   width: 2rem;
-  background: #fff;
+  background: $color-white;
 }
 
 .arrows {
@@ -132,7 +132,7 @@
   justify-content: center;
   width: clamp(36px, 8vw, 40px);
   height: clamp(36px, 8vw, 40px);
-  color: #fff;
+  color: $color-white;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 9999px;
@@ -150,7 +150,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid $color-white;
     outline-offset: 3px;
   }
 

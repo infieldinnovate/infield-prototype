@@ -76,7 +76,7 @@
     background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
   }
   .iconWrapper {
-    background: #fef3c7;
+    background: $color-warning-light;
     color: var(--color-accent-dark);
   }
   .action {

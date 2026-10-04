@@ -21,7 +21,7 @@ export default function VerificationNotFound() {
       </header>
 
       <main className={styles.main}>
-        <Link href="/v" className={styles.backBtn} style={{ alignSelf: 'flex-start' }}>
+        <Link href="/v" className={`${styles.backBtn} ${styles.backBtnStart}`}>
           <ChevronLeft size={18} />
           Back to Verification
         </Link>

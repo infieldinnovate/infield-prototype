@@ -690,10 +690,15 @@ $expired-yellow-light: $color-expired-light;
     background: $border;
     transform: translateY(-1px);
   }
+
+  &.backBtnStart {
+    align-self: flex-start;
+  }
 }
 
 // ============================================
 // MODAL STYLES
+// ============================================
 // ============================================
 
 .modalOverlay {

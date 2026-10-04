@@ -87,10 +87,9 @@ export default function ProjectsPage() {
 
           {/* Featured Projects */}
           {activeFilter === "All Projects" && featuredProjects.length > 0 && (
-            <div style={{ marginBottom: "4rem" }}>
+            <div className={styles.featuredSection}>
               <div
-                className={styles.sectionHeader}
-                style={{ marginBottom: "2rem" }}
+                className={`${styles.sectionHeader} ${styles.featuredHeader}`}
               >
                 <span className={styles.sectionLabel}>
                   <Star size={14} />
@@ -114,12 +113,7 @@ export default function ProjectsPage() {
           {filteredProjects.length > 0 ? (
             <>
               <div
-                className={styles.sectionHeader}
-                style={{
-                  marginBottom: "2rem",
-                  paddingTop: "2rem",
-                  borderTop: "1px solid rgb(0, 0, 0, 0.1)",
-                }}
+                className={`${styles.sectionHeader} ${styles.allProjectsHeader}`}
               >
                 <h2 className={styles.sectionTitle}>
                   {activeFilter === "All Projects"

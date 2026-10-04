@@ -121,6 +121,20 @@
   }
 }
 
+.featuredSection {
+  margin-bottom: 4rem;
+}
+
+.featuredHeader {
+  margin-bottom: 2rem;
+}
+
+.allProjectsHeader {
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .empty {
   text-align: center;
   @include section;

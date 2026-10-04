@@ -475,7 +475,7 @@
   }
 
   .servicesMenu {
-    position: fixed;
+    position: absolute;
     top: var(--header-height);
     left: 0;
     right: 0;
@@ -487,7 +487,6 @@
     box-shadow: $shadow-xl;
     padding: $space-6 $space-8;
     z-index: $z-dropdown;
-    position: absolute;
     overflow-x: hidden;
   }
 

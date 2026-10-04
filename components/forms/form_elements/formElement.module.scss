@@ -35,7 +35,6 @@ $transitionDuration: 0.16s;
   transition:
     box-shadow $transitionDuration ease-in-out,
     border-color $transitionDuration ease-in-out;
-  padding: 0;
 
   &.elementWrapperError {
     .element {
@@ -54,7 +53,6 @@ $transitionDuration: 0.16s;
     transition:
       box-shadow $transitionDuration ease-in-out,
       border-color $transitionDuration ease-in-out;
-    background: #f9fafb;
 
     &:focus {
       border-color: rgba(0, 0, 0, 0.15);

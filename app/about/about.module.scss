@@ -133,7 +133,11 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(135deg, $color-blue-800 0%, $color-cyan-600 100%);
+    background: linear-gradient(
+      135deg,
+      $color-blue-800 0%,
+      $color-cyan-600 100%
+    );
     transform: translateX(-50%);
 
     @include breakpoint-up("md") {
@@ -191,7 +195,11 @@
 
 .timelineYear {
   display: inline-block;
-  background: linear-gradient(135deg, $color-amber-400 0%, $color-amber-500 100%);
+  background: linear-gradient(
+    135deg,
+    $color-amber-400 0%,
+    $color-amber-500 100%
+  );
   color: $color-gray-800;
   padding: 6px 16px;
   border-radius: 20px;
@@ -258,10 +266,7 @@
   gap: var(--space-3);
   height: 100%;
   transition: all var(--transition-base);
-
-  &:hover {
-    @include card-hover;
-  }
+  @include card-hover;
 }
 
 .equipmentIcon {
@@ -330,9 +335,9 @@
   gap: var(--space-3);
   height: 100%;
   transition: all var(--transition-base);
+  @include card-hover;
 
   &:hover {
-    @include card-hover;
     border-color: var(--color-secondary-100);
   }
 }

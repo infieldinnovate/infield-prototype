@@ -1,5 +1,5 @@
-@use '../../styles/abstracts/variables' as *;
-@use '../../styles/abstracts/mixins' as *;
+@use "../../styles/abstracts/variables" as *;
+@use "../../styles/abstracts/mixins" as *;
 
 .section {
   padding: var(--space-16) 0;
@@ -42,11 +42,11 @@
   grid-template-columns: 1fr;
   gap: var(--space-6);
 
-  @include breakpoint-up('sm') {
+  @include breakpoint-up("sm") {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include breakpoint-up('lg') {
+  @include breakpoint-up("lg") {
     grid-template-columns: repeat(3, 1fr);
   }
 }
@@ -58,9 +58,9 @@
   gap: var(--space-3);
   height: 100%;
   transition: all var(--transition-base);
+  @include card-hover;
 
   &:hover {
-    @include card-hover;
     border-color: var(--color-primary-200);
   }
 }
@@ -69,14 +69,22 @@
   @include flex-center;
   width: 56px;
   height: 56px;
-  background: linear-gradient(135deg, var(--color-primary-50), var(--color-secondary-50));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary-50),
+    var(--color-secondary-50)
+  );
   color: var(--color-primary);
   border-radius: var(--radius-lg);
   margin-bottom: var(--space-2);
   transition: all var(--transition-base);
 
   .card:hover & {
-    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    background: linear-gradient(
+      135deg,
+      var(--color-primary),
+      var(--color-secondary)
+    );
     color: var(--color-white);
   }
 }

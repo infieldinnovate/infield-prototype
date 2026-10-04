@@ -1,5 +1,6 @@
 @use "../../styles/abstracts/variables" as *;
 @use "../../styles/abstracts/mixins" as *;
+@use "../../styles/abstracts/swiper" as *;
 
 .root {
   position: relative;
@@ -41,6 +42,27 @@
     transition: transform 0.4s ease;
   }
 
+  // Base Swiper nav button defaults from the shared partial
+  @include swiper-nav-buttons(
+    $color: $color-gray-300,
+    $hover-color: $color-gray-300,
+    $icon-size: 12px,
+    $btn-size: 44px,
+  );
+
+  // Carousel-specific overrides on top of the mixin defaults
+  :global(.swiper-button-prev),
+  :global(.swiper-button-next) {
+    opacity: 0;
+    transition:
+      opacity 0.25s ease,
+      background 0.25s ease;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.65);
+    }
+  }
+
   &:hover {
     .image {
       transform: scale(1.05);
@@ -52,28 +74,11 @@
     }
   }
 
-  :global(.swiper-button-prev),
-  :global(.swiper-button-next) {
-    width: 44px !important;
-    height: 44px !important;
-    color: $color-gray-300 !important;
-
-    opacity: 0;
-    transition:
-      opacity 0.25s ease,
-      background 0.25s ease;
-
-    &::after {
-      font-size: 12px !important;
-    }
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.65);
-    }
-  }
-
+  // Pagination — white-on-image style for this carousel
   :global(.swiper-pagination-bullet) {
     background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: $radius-full;
     opacity: 1;
   }
 

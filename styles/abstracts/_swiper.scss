@@ -1,0 +1,100 @@
+// ============================================
+// Shared Swiper Mixins
+// ============================================
+//
+// Provides reusable defaults for Swiper navigation
+// buttons and pagination bullets. Each carousel
+// module @uses this partial and calls the mixins
+// within its own wrapper class so :global() selectors
+// are scoped to that carousel only.
+//
+// Carousels with fully custom controls (e.g. PremiumCarousel)
+// can skip the mixins and write their own styles directly.
+// ============================================
+
+@use "variables" as *;
+
+// -----------------------------------------------
+// Navigation buttons (swiper-button-prev / next)
+// -----------------------------------------------
+@mixin swiper-nav-buttons(
+  $color: rgba($color-gray-300, 0.3),
+  $hover-color: rgba($color-gray-300, 0.8),
+  $icon-size: clamp(14px, 3vw, 20px),
+  $btn-size: clamp(44px, 8vw, 60px),
+  $icon-color: $color-white,
+) {
+  :global(.swiper-button-prev),
+  :global(.swiper-button-next) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color;
+    background: none;
+    width: $btn-size;
+    height: $btn-size;
+    border-radius: $radius-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    overflow: hidden;
+    padding: 10px;
+
+    &::after {
+      font-size: $icon-size;
+      color: $icon-color;
+    }
+
+    &:hover {
+      color: $hover-color;
+      transform: translateY(-50%) scale(1.5);
+    }
+
+    &:active {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-50%) scale(0.95);
+    }
+  }
+
+  :global(.swiper-button-prev) {
+    left: clamp(8px, 3vw, 20px);
+  }
+
+  :global(.swiper-button-next) {
+    right: clamp(8px, 3vw, 20px);
+  }
+}
+
+// -----------------------------------------------
+// Pagination bullets (swiper-pagination-bullet)
+// -----------------------------------------------
+@mixin swiper-pagination-bullets(
+  $inactive-bg: rgb(221, 221, 221),
+  $active-bg: rgb(114, 114, 114),
+  $bullet-size: 8px,
+  $active-scale: 1.8,
+  $border: 1px solid rgb(200, 200, 200),
+) {
+  :global(.swiper-pagination-bullet) {
+    width: $bullet-size;
+    height: $bullet-size;
+    background: $inactive-bg;
+    border: $border;
+    border-radius: $radius-full;
+    opacity: 1;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+  }
+
+  :global(.swiper-pagination-bullet-active) {
+    background: $active-bg;
+    transform: scale($active-scale);
+  }
+
+  :global(.swiper-pagination) {
+    bottom: 15px;
+    opacity: 1;
+  }
+}

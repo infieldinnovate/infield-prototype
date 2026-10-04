@@ -434,37 +434,37 @@
     bottom: $space-6;
   }
 
-  // Override global swiper-pagination styles
+  // Override Swiper's default pagination positioning
   &:global(.swiper-pagination) {
-    position: absolute !important;
-    bottom: auto !important;
-    left: auto !important;
-    top: auto !important;
-    right: auto !important;
-    width: auto !important;
-    opacity: 1 !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: $space-2 !important;
+    position: absolute;
+    bottom: auto;
+    left: auto;
+    top: auto;
+    right: auto;
+    width: auto;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    gap: $space-2;
   }
 
   :global(.swiper-pagination-bullet) {
-    width: 8px !important;
-    height: 8px !important;
-    background: rgba(255, 255, 255, 0.35) !important;
-    border: none !important;
-    border-radius: $radius-full !important;
-    opacity: 1 !important;
-    margin: 0 !important;
-    transition: all $transition-base !important;
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    border-radius: $radius-full;
+    opacity: 1;
+    margin: 0;
+    transition: all $transition-base;
     cursor: pointer;
   }
 
   :global(.swiper-pagination-bullet-active) {
-    background: $color-white !important;
-    width: 28px !important;
-    border-radius: $radius-full !important;
-    transform: none !important;
+    background: $color-white;
+    width: 28px;
+    border-radius: $radius-full;
+    transform: none;
   }
 }
 

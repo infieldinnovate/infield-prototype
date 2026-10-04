@@ -2,39 +2,15 @@
 // SCSS Mixins
 // ============================================
 //
-// Breakpoint migration notes
-// ─────────────────────────────────────────────
-// The breakpoint map was re-aligned to the target ranges:
-//
+// Breakpoint map:
 //   xs  →  320px  (small mobile floor)
 //   sm  →  375px  (standard mobile)
 //   md  →  768px  (tablet)
 //   lg  →  1024px (laptop)
 //   xl  →  1440px (desktop)
-//
-// Backward compatibility:
-//   • "sm" was 640px → now 375px. Every call site that relied on the old
-//     640px threshold has been audited. Files that used breakpoint-up("sm")
-//     for a 2-column grid or similar tablet-ish enhancement have been
-//     migrated to breakpoint-up("md") (768px) in the per-file refactor
-//     steps. Files that used it for a minor mobile enhancement (e.g.
-//     font-size bump) keep "sm" at its new 375px value.
-//   • "xl" was 1280px → now 1440px. No call sites used "xl" so no
-//     migration was needed.
-//   • "2xl" was 1536px → removed. No call sites used it.
-//
-// Use `mobile-first($bp)` as an explicit alias for `breakpoint-up($bp)`
-// to make mobile-first intent clear at call sites.
 // ============================================
 
 @use "variables" as *;
-
-// ============================================
-// Strip unit helper (used by fluid mixins)
-// ============================================
-@function strip-unit($value) {
-  @return calc($value / ($value * 0 + 1));
-}
 
 // ============================================
 // Breakpoints — mobile-first
@@ -87,86 +63,8 @@
   }
 }
 
-@mixin breakpoint-between($min, $max) {
-  $min-val: 0;
-  $max-val: 0;
-
-  @if $min == "xs" { $min-val: $breakpoint-xs; }
-    @else if $min == "sm" { $min-val: $breakpoint-sm; }
-    @else if $min == "md" { $min-val: $breakpoint-md; }
-    @else if $min == "lg" { $min-val: $breakpoint-lg; }
-    @else if $min == "xl" { $min-val: $breakpoint-xl; }
-    @else { $min-val: $min; }
-
-  @if $max == "xs" { $max-val: $breakpoint-xs - 1px; }
-    @else if $max == "sm" { $max-val: $breakpoint-sm - 1px; }
-    @else if $max == "md" { $max-val: $breakpoint-md - 1px; }
-    @else if $max == "lg" { $max-val: $breakpoint-lg - 1px; }
-    @else if $max == "xl" { $max-val: $breakpoint-xl - 1px; }
-    @else { $max-val: $max; }
-
-  @media (min-width: $min-val) and (max-width: $max-val) {
-    @content;
-  }
-}
-
-// Explicit alias for mobile-first intent
-@mixin mobile-first($bp) {
-  @include breakpoint-up($bp) {
-    @content;
-  }
-}
-
 // ============================================
-// Fluid typography
-// ============================================
-@mixin fluid-type($min-size, $max-size, $min-vw: 320px, $max-vw: 1440px) {
-  $min-unitless: strip-unit($min-size);
-  $max-unitless: strip-unit($max-size);
-  $min-vw-unitless: strip-unit($min-vw);
-  $max-vw-unitless: strip-unit($max-vw);
-
-  font-size: clamp(
-    #{$min-size},
-    #{$min-unitless} + (#{$max-unitless} - #{$min-unitless}) * (100vw - #{$min-vw}) / (#{$max-vw-unitless} - #{$min-vw-unitless}),
-    #{$max-size}
-  );
-}
-
-// ============================================
-// Fluid spacing (margin/padding)
-// ============================================
-@mixin fluid-spacing($property, $min-size, $max-size, $min-vw: 320px, $max-vw: 1440px) {
-  $min-unitless: strip-unit($min-size);
-  $max-unitless: strip-unit($max-size);
-  $min-vw-unitless: strip-unit($min-vw);
-  $max-vw-unitless: strip-unit($max-vw);
-
-  #{$property}: clamp(
-    #{$min-size},
-    #{$min-unitless} + (#{$max-unitless} - #{$min-unitless}) * (100vw - #{$min-vw}) / (#{$max-vw-unitless} - #{$min-vw-unitless}),
-    #{$max-size}
-  );
-}
-
-// ============================================
-// Fluid container — no horizontal overflow
-// ============================================
-@mixin container-fluid($max: $container-max) {
-  width: min(100% - 2rem, #{$max});
-  margin-inline: auto;
-
-  @include breakpoint-up("md") {
-    width: min(100% - 3rem, #{$max});
-  }
-
-  @include breakpoint-up("lg") {
-    width: min(100% - 4rem, #{$max});
-  }
-}
-
-// ============================================
-// Container (existing — kept for backward compat)
+// Container
 // ============================================
 @mixin container {
   width: min(100% - 2rem, var(--container-max));
@@ -221,12 +119,6 @@
 // ============================================
 // Grid
 // ============================================
-@mixin grid($columns: 1, $gap: var(--space-6)) {
-  display: grid;
-  grid-template-columns: repeat($columns, 1fr);
-  gap: $gap;
-}
-
 @mixin responsive-grid(
   $mobile: 1,
   $tablet: 2,
@@ -275,12 +167,6 @@
   font-size: clamp(1.125rem, 1.125rem + 0.5vw, 1.25rem);
   font-weight: var(--fw-semibold);
   line-height: var(--lh-snug);
-}
-
-@mixin text-lead {
-  font-size: var(--fs-lg);
-  line-height: var(--lh-relaxed);
-  color: var(--color-text-muted);
 }
 
 // ============================================
@@ -356,12 +242,6 @@
 // ============================================
 // Text truncation
 // ============================================
-@mixin text-truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 @mixin text-clamp($lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;
@@ -408,10 +288,6 @@
   background: linear-gradient(135deg, #{$color-blue-800} 0%, #{$color-cyan-600} 100%);
 }
 
-@mixin gradient-primary-light {
-  background: linear-gradient(135deg, #{$color-gray-50} 0%, #{$color-white} 100%);
-}
-
 @mixin gradient-light {
   background: linear-gradient(135deg, #{$color-white} 0%, #{$color-gray-50} 100%);
 }
@@ -429,24 +305,4 @@
     @include gradient-surface;
   }
   @include section;
-}
-
-// ============================================
-// Glassmorphism card overlay
-// ============================================
-@mixin glass-overlay {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-// ============================================
-// Text gradient
-// ============================================
-@mixin text-gradient {
-  background: linear-gradient(135deg, #{$color-blue-800}, #{$color-cyan-600});
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
 }

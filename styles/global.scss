@@ -367,11 +367,29 @@ ol {
 // ============================================
 
 .container {
-  @include container-fluid;
+  width: min(100% - 2rem, var(--container-max));
+  margin-inline: auto;
+
+  @include breakpoint-up("md") {
+    width: min(100% - 3rem, var(--container-max));
+  }
+
+  @include breakpoint-up("lg") {
+    width: min(100% - 4rem, var(--container-max));
+  }
 }
 
 .container-narrow {
-  @include container-fluid($container-narrow);
+  width: min(100% - 2rem, #{$container-narrow});
+  margin-inline: auto;
+
+  @include breakpoint-up("md") {
+    width: min(100% - 3rem, #{$container-narrow});
+  }
+
+  @include breakpoint-up("lg") {
+    width: min(100% - 4rem, #{$container-narrow});
+  }
 }
 
 .section {

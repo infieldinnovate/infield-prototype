@@ -125,7 +125,7 @@
 
 .content {
   position: relative;
-  z-index: 2;
+  z-index: $z-base;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

@@ -48,7 +48,7 @@
 }
 
 .infoItem {
-  @include flex-center;
+  display: flex;
   gap: var(--space-4);
   align-items: flex-start;
 }
@@ -197,7 +197,7 @@
 }
 
 .enquiryItem {
-  @include flex-center;
+  display: flex;
   gap: var(--space-3);
   align-items: flex-start;
   padding: var(--space-4);

@@ -246,17 +246,7 @@
 }
 
 .equipmentGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-5);
-
-  @include breakpoint-up("sm") {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include breakpoint-up("lg") {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  @include responsive-grid(1, 2, 4, var(--space-6));
 }
 
 .equipmentCard {
@@ -315,17 +305,7 @@
 }
 
 .safetyGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-
-  @include breakpoint-up("sm") {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include breakpoint-up("lg") {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  @include responsive-grid(1, 2, 3, var(--space-6));
 }
 
 .safetyCard {

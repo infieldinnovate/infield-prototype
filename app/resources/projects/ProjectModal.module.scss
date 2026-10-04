@@ -299,7 +299,7 @@ $border: $color-project-border;
   line-height: 1.5;
 
   color: $foreground;
-  background: rgba(hsl(160 84% 27%), 0.05);
+  background: rgba($primary, 0.05);
   border-radius: $radius-lg;
 }
 
@@ -383,8 +383,8 @@ $border: $color-project-border;
 
   background: linear-gradient(
     135deg,
-    rgba(hsl(160 84% 27%), 0.08),
-    rgba(hsl(45 93% 47%), 0.05)
+    rgba($primary, 0.08),
+    rgba($accent, 0.05)
   );
 
   border-left: 4px solid $primary;

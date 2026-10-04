@@ -1,3 +1,5 @@
+// app\services\page.tsx
+
 import type { Metadata } from "next";
 import { siteConfig } from "@/data/site.config";
 import { SERVICES } from "@/data/services";

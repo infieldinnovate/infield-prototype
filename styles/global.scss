@@ -222,13 +222,12 @@ body {
   font-family: var(--font-sans);
   font-size: var(--fs-base);
   line-height: var(--lh-normal);
-  // color: var(--color-text);
+  color: var(--color-text);
   background-color: var(--color-background);
   min-height: 100vh;
   max-width: 100%;
   overflow-x: hidden;
   overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 // Typography
@@ -245,19 +244,9 @@ h6 {
 }
 
 p,
-a,
-li,
-td,
-th,
-blockquote,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+a {
   max-width: 100%;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 p {

@@ -11,7 +11,6 @@
   @include button-reset;
   @include flex-between;
   width: 100%;
-  padding: 0.7rem 1rem;
   background: $color-white;
   border: 1px solid $color-gray-200;
   border-radius: $radius-md;
@@ -21,6 +20,7 @@
   cursor: pointer;
   transition: all $transition-fast;
   min-height: 48px;
+  overflow: hidden;
 
   &:hover {
     border-color: $color-primary;
@@ -36,6 +36,7 @@
 .triggerContent {
   @include flex-center;
   gap: 0.5rem;
+  padding: 0.7rem 1rem;
 }
 
 .triggerIcon {
@@ -49,12 +50,16 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-transform: uppercase;
 }
 
 .chevron {
+  height: 48px;
+  width: 48px;
   flex-shrink: 0;
-  color: $color-gray-500;
-  transition: transform $transition-fast;
+  color: $color-gray-400;
+  transition: transform $transition-slow;
+  padding: 0.2rem;
 }
 
 .chevronOpen {

@@ -23,7 +23,7 @@ export const PROJECT_GROUPS: ProjectGroupConfig[] = [
   { slug: "solar-electrical", label: "Solar & Electrical" },
   { slug: "plumbing", label: "Plumbing" },
   { slug: "boreholes", label: "Boreholes" },
-  { slug: "water-services", label: "Water Services" },
+  { slug: "water-services", label: "Water Harvesting & Storage" },
   { slug: "irrigation", label: "Irrigation" },
 ];
 

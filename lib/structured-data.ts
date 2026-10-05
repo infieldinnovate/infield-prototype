@@ -1,6 +1,6 @@
 import { siteConfig } from "@/data/site.config";
 import { socialLinks } from "@/data/links";
-import { reviewSummary } from "@/data/testimonials";
+// import { reviewSummary } from "@/data/testimonials";
 import { serviceAreaNames } from "@/data/serviceAreas";
 import type { BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 

@@ -166,23 +166,6 @@ export function buildServiceSchema(service: {
   };
 }
 
-export function buildFAQSchema(
-  faqs: { question: string; answer: string }[],
-): JsonLd {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-}
-
 export function buildArticleSchema(article: {
   title: string;
   excerpt: string;

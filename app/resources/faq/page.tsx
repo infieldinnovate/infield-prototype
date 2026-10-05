@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import FAQClient from "./FAQClient";
-import { FAQs } from "@/data/faqs";
 import { siteConfig } from "@/data/site.config";
-import { buildFAQSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
@@ -27,18 +25,6 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLd = buildFAQSchema(
-  FAQs.map((f) => ({ question: f.question, answer: f.answer })),
-);
-
 export default function FAQPage() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <FAQClient />
-    </>
-  );
+  return <FAQClient />;
 }

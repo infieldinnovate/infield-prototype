@@ -114,6 +114,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
+
         <Header />
         <main id="main-content" className={styles.main}>
           {children}

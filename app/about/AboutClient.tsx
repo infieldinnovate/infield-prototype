@@ -85,7 +85,7 @@ function AboutTimeline() {
           className={styles.timelineItem}
           initial={{
             opacity: 0,
-            x: index % 2 === 0 ? -60 : 60,
+            x: 0,
           }}
           whileInView={{
             opacity: 1,

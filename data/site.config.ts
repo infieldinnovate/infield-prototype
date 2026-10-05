@@ -12,6 +12,7 @@ export const siteConfig = {
   description:
     "Infield Innovations delivers professional electrical, plumbing, solar, irrigation, and borehole services across Kenya. Certified technicians, quality workmanship, and reliable solutions for residential and commercial properties.",
   url: "https://infieldinnovations.co.ke",
+  logo: "/logo.png",
   ogImage: "/og-image.jpg",
   email: "infieldinnovations@gmail.com",
   phone: "+254702393677",

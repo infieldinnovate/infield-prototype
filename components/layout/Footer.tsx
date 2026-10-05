@@ -89,7 +89,7 @@ export function Footer() {
                 aria-label={`${siteConfig.name} home`}
               >
                 <ImageWithFallback
-                  src="/logo.png"
+                  src={siteConfig.logo}
                   alt="Infield Innovations Limited"
                   width={200}
                   height={90}

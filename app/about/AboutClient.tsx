@@ -13,12 +13,7 @@ import { certificationsList } from "@/data/certifications";
 import { equipment } from "@/data/equipment";
 import { safetyCommitments } from "@/data/safety";
 import { industries } from "@/data/industries";
-import {
-  CircleCheck as CheckCircle2,
-  Target,
-  Eye,
-  Heart,
-} from "lucide-react";
+import { CircleCheck as CheckCircle2, Target, Eye, Heart } from "lucide-react";
 import { siteConfig } from "@/data/site.config";
 import { COMMON_IMPACT_STATS } from "@/data/impactStats";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -150,13 +145,7 @@ export default function AboutClient() {
 
       {/* AnimatedStats */}
       <section className={styles.statsSection}>
-        <div className={styles.container}>
-          <AnimatedStats
-            eyebrow="Our Track Record"
-            title="A Decade of Engineering Excellence"
-            description="The results behind our reputation — built project by project across Kenya."
-          />
-        </div>
+        <AnimatedStats theme="light" />
       </section>
 
       {/* Our Story */}

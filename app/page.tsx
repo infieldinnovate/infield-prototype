@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
-import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { IndustriesPreview } from "@/components/sections/IndustriesPreview";
 import { BeforeAfterSlider } from "@/components/sections/BeforeAfterSlider";
 import { GoogleReviews } from "@/components/sections/GoogleReviews";
@@ -59,14 +58,6 @@ export default function HomePage() {
         {siteConfig.name} — Water, Energy &amp; Engineering Solutions in Kenya
       </h1>
       <HomeCarousel />
-
-      {/* Animated Stats Section */}
-      <AnimatedStats
-        eyebrow="Our Impact"
-        title="Delivering Measurable Results"
-        description="Over a decade of engineering excellence across Kenya — the numbers speak for themselves."
-        scroll={true}
-      />
 
       <ServicesOverview />
 

@@ -42,7 +42,7 @@
   max-width: 640px;
 }
 .textLink,
-.panelLink{
+.panelLink {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -236,10 +236,6 @@
     $color-accent
   );
 }
-.statStrip {
-  background: $color-slate-900;
-  color: $color-white;
-}
 
 .section,
 .insightSection,
@@ -369,6 +365,21 @@
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+
+  Link {
+    // display: flex;
+    // flex-direction: row;
+    // align-items: center;
+    // gap: var(--space-2);
+    // color: $color-accent-light;
+    // font-family: $font-mono;
+    // font-size: 10px;
+    // letter-spacing: 0.08em;
+    // text-transform: uppercase;
+    // svg {
+    //   color: $color-accent-light;
+    // }
+  }
 }
 .servicePanel h3 {
   margin: var(--space-10) 0 var(--space-3);

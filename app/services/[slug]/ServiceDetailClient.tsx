@@ -370,10 +370,6 @@ export default function ServiceDetailClient({
         </div>
       </section>
 
-      <section className={styles.statStrip} aria-label="Company statistics">
-        <AnimatedStats scroll category={service.slug} />
-      </section>
-
       <section className={styles.section} id="services">
         <div className={styles.container}>
           <div className={styles.sectionIntro}>
@@ -439,7 +435,9 @@ export default function ServiceDetailClient({
               >
                 <div className={styles.panelTopline}>
                   <span>Selected service</span>
-                  <span>{selectedService.startingPrice} starting point</span>
+                  <Link href="">
+                    Price Range <ArrowUpRight size={17} />
+                  </Link>
                 </div>
                 <h3>{selectedService.name}</h3>
                 <p>{selectedService.description}</p>

@@ -62,7 +62,6 @@ export default function ResourcesPage() {
     );
   }, [searchQuery]);
 
-  const featuredArticles = articles.filter((a) => a.featured);
 
   return (
     <>
@@ -178,29 +177,6 @@ export default function ResourcesPage() {
         </section>
       )}
 
-      {/* Featured Articles */}
-      {!searchQuery.trim() && (
-        <section className={styles.section}>
-          <div className={styles.container}>
-            <SectionHeading
-              eyebrow="Featured"
-              title="Editor's Picks"
-              description="Hand-selected articles to help you get started with your project."
-            />
-            <div className={styles.featuredGrid}>
-              {featuredArticles.map((article, i) => (
-                <ArticleCard
-                  key={article.id}
-                  article={article}
-                  featured={i === 0}
-                  index={i}
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Knowledge Centre */}
       {!searchQuery.trim() && (
         <section className={styles.sectionAlt}>
@@ -248,7 +224,6 @@ export default function ResourcesPage() {
           </div>
         </section>
       )}
-
       {/* Downloads CTA */}
       {!searchQuery.trim() && (
         <section className={styles.section}>

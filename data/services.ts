@@ -33,7 +33,6 @@ export interface Service {
   image: string;
   features: ServiceFeature[];
   process: ServiceProcessStep[];
-  startingPrice: string;
   infographic: InfographicStep[];
   infographicTitle: string;
   infographicSubtitle: string;
@@ -65,7 +64,6 @@ export const SERVICES: Service[] = [
     icon: "Sun",
     color: "#fbbf24",
     image: "/services/solar-154910_690.jpg",
-    startingPrice: "KSh 450,000",
     infographicTitle: "Integrated Solar Energy Flow",
     infographicSubtitle:
       "From sunlight to power — a complete clean energy system",
@@ -165,7 +163,6 @@ export const SERVICES: Service[] = [
     icon: "Zap",
     color: "#f59e0b",
     image: "/services/electrical_151924_026.jpg",
-    startingPrice: "KSh 15,000",
     infographicTitle: "Integrated Electrical Power Flow",
     infographicSubtitle:
       "From grid to appliance — safe, reliable power distribution",
@@ -263,7 +260,6 @@ export const SERVICES: Service[] = [
     icon: "Droplets",
     color: "#1e40af",
     image: "/services/plumbing_113735_651.jpg",
-    startingPrice: "KSh 5,000",
     infographicTitle: "Integrated Water Plumbing Flow",
     infographicSubtitle:
       "From source to drain — a complete water management system",
@@ -357,7 +353,6 @@ export const SERVICES: Service[] = [
     icon: "Drill",
     color: "#0891b2",
     image: "/services/borehole_132109_705.jpg",
-    startingPrice: "KSh 650,000",
     infographicTitle: "Integrated Borehole Water Flow",
     infographicSubtitle:
       "From underground to irrigation — a complete water supply system",
@@ -460,7 +455,6 @@ export const SERVICES: Service[] = [
     icon: "Database",
     color: "#0ea5e9",
     image: "/services/tank_7465893.jpg",
-    startingPrice: "KSh 8,500",
     infographicTitle: "Integrated Water Storage Flow",
     infographicSubtitle: "From capture to reserve — secure water availability",
     infographic: [
@@ -561,7 +555,6 @@ export const SERVICES: Service[] = [
     icon: "CloudRain",
     color: "#0d9488",
     image: "/services/dam_84567984.jpg",
-    startingPrice: "KSh 25,000",
     infographicTitle: "Integrated Water Harvesting Flow",
     infographicSubtitle:
       "From rainfall to reserve — capturing nature's water supply",
@@ -667,7 +660,6 @@ export const SERVICES: Service[] = [
     icon: "Sprout",
     color: "#10b981",
     image: "/services/irrigation_54865165.jpg",
-    startingPrice: "KSh 45,000",
     infographicTitle: "Integrated Irrigation Flow",
     infographicSubtitle:
       "From source to root — efficient water delivery for every crop",

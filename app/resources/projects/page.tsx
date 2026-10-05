@@ -18,6 +18,7 @@ import styles from "./page.module.scss";
 import ProjectCard from "@/components/cards/ProjectCard";
 import ProjectsHeroCarousel from "@/components/sections/ProjectsHeroCarousel";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { Dropdown, type DropdownOption } from "@/components/ui/Dropdown";
 
 type FilterCategory = "All" | ProjectGroup;
 
@@ -26,18 +27,13 @@ export default function ProjectsPage() {
     useState<FilterCategory>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const filterCategories: FilterCategory[] = [
-    "All",
-    ...PROJECT_GROUPS.map((group) => group.slug),
+  const filterOptions: DropdownOption<FilterCategory>[] = [
+    { value: "All", label: "All Projects" },
+    ...PROJECT_GROUPS.map((group) => ({
+      value: group.slug,
+      label: group.label,
+    })),
   ];
-
-  const filterLabel = (slug: FilterCategory): string => {
-    if (slug === "All") return "All Projects";
-    return (
-      PROJECT_GROUPS.find((g) => g.slug === slug)?.label ??
-      String(slug)
-    );
-  };
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
@@ -82,18 +78,13 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          <div className={styles.filters}>
-            {filterCategories.map((cat) => (
-              <button
-                key={cat}
-                className={`${styles.filterBtn} ${
-                  activeFilter === cat ? styles.filterBtnActive : ""
-                }`}
-                onClick={() => setActiveFilter(cat)}
-              >
-                {filterLabel(cat)}
-              </button>
-            ))}
+          <div className={styles.filterBar}>
+            <Dropdown
+              options={filterOptions}
+              value={activeFilter}
+              onChange={setActiveFilter}
+              ariaLabel="Filter projects by category"
+            />
           </div>
 
           {/* Project Grid */}

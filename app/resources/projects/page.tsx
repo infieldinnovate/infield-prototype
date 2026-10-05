@@ -3,11 +3,15 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { MapPin, Filter } from "lucide-react";
+import { MapPin, ListFilter as Filter } from "lucide-react";
 import { countiesServed } from "@/data/serviceAreas";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
-import { SERVICE_CATEGORIES, ServiceSlug } from "@/data/services";
-import { projects, type Project } from "@/data/projectStats";
+import {
+  PROJECT_GROUPS,
+  type ProjectGroup,
+  projects,
+  type Project,
+} from "@/data/projectStats";
 import ProjectModal from "./ProjectModal";
 import ProjectMap from "../../../components/ui/ProjectMap";
 import styles from "./page.module.scss";
@@ -15,7 +19,7 @@ import ProjectCard from "@/components/cards/ProjectCard";
 import ProjectsHeroCarousel from "@/components/sections/ProjectsHeroCarousel";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
-type FilterCategory = "All" | ServiceSlug;
+type FilterCategory = "All" | ProjectGroup;
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] =
@@ -24,13 +28,23 @@ export default function ProjectsPage() {
 
   const filterCategories: FilterCategory[] = [
     "All",
-    ...SERVICE_CATEGORIES.map((category) => category.slug),
+    ...PROJECT_GROUPS.map((group) => group.slug),
   ];
+
+  const filterLabel = (slug: FilterCategory): string => {
+    if (slug === "All") return "All Projects";
+    return (
+      PROJECT_GROUPS.find((g) => g.slug === slug)?.label ??
+      String(slug)
+    );
+  };
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
 
-    return projects.filter((project) => project.category === activeFilter);
+    return projects.filter(
+      (project) => project.projectGroup === activeFilter,
+    );
   }, [activeFilter]);
 
   return (
@@ -59,7 +73,7 @@ export default function ProjectsPage() {
           <div className={styles.sectionHeader}>
             <span className={styles.sectionLabel}>
               <Filter size={14} />
-              Browse by Service
+              Browse by Category
             </span>
             <h2 className={styles.sectionTitle}>Featured Projects</h2>
             <p className={styles.sectionDescription}>
@@ -77,7 +91,7 @@ export default function ProjectsPage() {
                 }`}
                 onClick={() => setActiveFilter(cat)}
               >
-                {cat}
+                {filterLabel(cat)}
               </button>
             ))}
           </div>

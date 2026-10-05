@@ -6,7 +6,7 @@ import {
   PremiumCarousel,
   type PremiumSlide,
 } from "@/components/sections/PremiumCarousel";
-import { projects } from "@/data/projectStats";
+import { projects, getProjectGroupLabel } from "@/data/projectStats";
 import { ServiceIcons } from "@/data/service-icons";
 
 export default function ProjectsHeroCarousel() {
@@ -28,7 +28,7 @@ export default function ProjectsHeroCarousel() {
         image,
         imageAlt: project.title,
         imagePriority: false,
-        badge: project.category,
+        badge: getProjectGroupLabel(project.projectGroup),
         badgeIcon,
         eyebrow: "Featured Project",
         title: project.title,

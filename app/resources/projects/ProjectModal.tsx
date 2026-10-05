@@ -13,6 +13,7 @@ import {
   Camera,
 } from "lucide-react";
 import type { Project, ProjectVideo } from "@/data/projectStats";
+import { getProjectGroupLabel } from "@/data/projectStats";
 import { useProjectImages } from "@/hooks/useProjectImages";
 import ImageSwiper from "@/components/ui/ImageSwiper";
 import styles from "./ProjectModal.module.scss";
@@ -112,7 +113,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div className={styles.modalHeroOverlay} />
 
           <div className={styles.modalHeroInfo}>
-            <span className={styles.modalCategory}>{project.category}</span>
+            <span className={styles.modalCategory}>{getProjectGroupLabel(project.projectGroup)}</span>
 
             <h2 id="project-modal-title" className={styles.modalTitle}>
               {project.title}

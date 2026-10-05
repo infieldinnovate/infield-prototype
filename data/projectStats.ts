@@ -2,6 +2,35 @@
 
 import { ServiceSlug } from "./services";
 
+// ============================================
+// Project Groups — broader classification used
+// on the projects page for filtering/display
+// ============================================
+
+export type ProjectGroup =
+  | "solar-electrical"
+  | "plumbing"
+  | "boreholes"
+  | "water-services"
+  | "irrigation";
+
+export interface ProjectGroupConfig {
+  slug: ProjectGroup;
+  label: string;
+}
+
+export const PROJECT_GROUPS: ProjectGroupConfig[] = [
+  { slug: "solar-electrical", label: "Solar & Electrical" },
+  { slug: "plumbing", label: "Plumbing" },
+  { slug: "boreholes", label: "Boreholes" },
+  { slug: "water-services", label: "Water Services" },
+  { slug: "irrigation", label: "Irrigation" },
+];
+
+export function getProjectGroupLabel(slug: ProjectGroup): string {
+  return PROJECT_GROUPS.find((g) => g.slug === slug)?.label ?? slug;
+}
+
 export interface ProjectDetail {
   label: string;
   value: string;
@@ -28,6 +57,7 @@ export interface Project {
   id: string;
   title: string;
   category: ServiceSlug;
+  projectGroup: ProjectGroup;
   county: string;
   completionDate: string;
   featured: boolean;
@@ -46,6 +76,7 @@ export const projects: Project[] = [
     id: "meru-commercial-solar",
     title: "100kW Hybrid Commercial Solar System",
     category: "solar",
+    projectGroup: "solar-electrical",
     county: "Meru",
     completionDate: "October 2024",
     featured: true,
@@ -102,6 +133,7 @@ export const projects: Project[] = [
     id: "elgeyo-borehole",
     title: "Commercial Borehole Water Supply",
     category: "boreholes",
+    projectGroup: "boreholes",
     county: "Elgeyo Marakwet",
     completionDate: "January 2026",
     featured: false,
@@ -148,6 +180,7 @@ export const projects: Project[] = [
     id: "isiolo-drip-irrigation",
     title: "80-Acre Smart Drip Irrigation",
     category: "irrigation",
+    projectGroup: "irrigation",
     county: "Isiolo",
     completionDate: "September 2025",
     featured: true,
@@ -199,6 +232,7 @@ export const projects: Project[] = [
     id: "garissa-solar-pumping",
     title: "Solar Water Pumping for Livestock Ranch",
     category: "solar",
+    projectGroup: "solar-electrical",
     county: "Garissa",
     completionDate: "November 2025",
     featured: false,
@@ -245,6 +279,7 @@ export const projects: Project[] = [
     id: "nairobi-commercial-electrical",
     title: "Commercial Electrical Installation",
     category: "electrical",
+    projectGroup: "solar-electrical",
     county: "Nairobi",
     completionDate: "July 2024",
     featured: false,
@@ -296,6 +331,7 @@ export const projects: Project[] = [
     id: "muranga-industrial-plumbing",
     title: "Industrial Plumbing Upgrade",
     category: "plumbing",
+    projectGroup: "plumbing",
     county: "Murang'a",
     completionDate: "August 2024",
     featured: false,
@@ -342,6 +378,7 @@ export const projects: Project[] = [
     id: "kisumu-water-storage",
     title: "200,000L Elevated Water Storage System",
     category: "water-storage",
+    projectGroup: "water-services",
     county: "Kisumu",
     completionDate: "April 2025",
     featured: false,
@@ -388,6 +425,7 @@ export const projects: Project[] = [
     id: "kajiado-commercial-solar",
     title: "75kW Commercial Grid-Tied Solar System",
     category: "solar",
+    projectGroup: "solar-electrical",
     county: "Kajiado",
     completionDate: "August 2025",
     featured: false,
@@ -434,6 +472,7 @@ export const projects: Project[] = [
     id: "kirinyaga-irrigation-borehole",
     title: "Agricultural Borehole Water System",
     category: "boreholes",
+    projectGroup: "boreholes",
     county: "Kirinyaga",
     completionDate: "May 2025",
     featured: false,
@@ -480,6 +519,7 @@ export const projects: Project[] = [
     id: "embu-greenhouse-irrigation",
     title: "Automated Greenhouse Irrigation",
     category: "irrigation",
+    projectGroup: "irrigation",
     county: "Embu",
     completionDate: "December 2025",
     featured: false,
@@ -525,6 +565,10 @@ export const projects: Project[] = [
 
 export function getProjectsByService(slug: string): Project[] {
   return projects.filter((p) => p.category === slug);
+}
+
+export function getProjectsByGroup(group: ProjectGroup): Project[] {
+  return projects.filter((p) => p.projectGroup === group);
 }
 
 export function getFeaturedProjects(limit = 3): Project[] {

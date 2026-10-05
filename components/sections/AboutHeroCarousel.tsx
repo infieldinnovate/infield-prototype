@@ -32,7 +32,7 @@ export default function AboutHeroCarousel() {
         { icon: CheckCircle2, text: "100+ projects completed" },
       ],
       primaryButton: { label: "Our Story", href: "/about#our-story" },
-      secondaryButton: { label: "Contact Us", href: "/contact" },
+      secondaryButton: { label: "Contact Us", href: "/contact?tab=message#book-site-visit" },
     };
 
     // ── 02 What We Do ──

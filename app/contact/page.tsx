@@ -189,7 +189,7 @@ export default async function ContactPage({
             </div>
 
             {/* Contact Form */}
-            <div id="book-site-visit">
+            <div id="book-site-visit" className={styles.formAnchor}>
               <ContactFormSection initialTab={initialTab} />
             </div>
           </div>

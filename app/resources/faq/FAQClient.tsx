@@ -83,7 +83,7 @@ const supportCards = [
     title: "Book a Site Visit",
     description:
       "Schedule a professional site assessment with one of our engineers.",
-    href: "/contact",
+    href: "/contact?tab=visit#book-site-visit",
     action: "Book Now",
     accent: "primary" as const,
   },

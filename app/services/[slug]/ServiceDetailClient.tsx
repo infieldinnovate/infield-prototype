@@ -728,7 +728,7 @@ export default function ServiceDetailClient({
                 </li>
               </ul>
               <LinkButton
-                href="/contact"
+                href="/contact?tab=message#book-site-visit"
                 variant="outline"
                 rightIcon={ArrowRight}
               >

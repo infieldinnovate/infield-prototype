@@ -23,7 +23,7 @@ export const slides: HeroSlideData[] = [
       "Wide-angle view of a large-scale construction site with cranes under a vibrant blue sky",
     panelTitle: "SOLAR ENERGY",
     panelMeta: "Clean Power \u2022 Storage \u2022 Installation",
-    primaryCta: { label: "Get Free Consultation", href: "/quote" },
+    primaryCta: { label: "Get Free Consultation", href: "/contact?tab=visit#book-site-visit" },
     secondaryCta: { label: "Explore Our Services", href: "/services" },
   },
   {

@@ -14,6 +14,7 @@ export const siteConfig = {
   url: "https://infieldinnovations.co.ke",
   logo: "/logo.png",
   ogImage: "/og-image.jpg",
+  businessImage: "/infield-office.jpg",
   email: "infieldinnovations@gmail.com",
   phone: "+254702393677",
   phoneHref: "tel:+254702393677",

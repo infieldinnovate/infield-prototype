@@ -22,7 +22,7 @@ export function buildLocalBusinessSchema(): JsonLd {
     url: siteConfig.url,
     telephone: siteConfig.phone,
     email: siteConfig.email,
-    image: `${siteConfig.url}${siteConfig.ogImage}`,
+    image: `${siteConfig.url}${siteConfig.businessImage}`,
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,

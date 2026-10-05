@@ -3,7 +3,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { MapPin, Star, Filter } from "lucide-react";
+import { MapPin, Filter } from "lucide-react";
 import { countiesServed } from "@/data/serviceAreas";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import { SERVICE_CATEGORIES, ServiceSlug } from "@/data/services";
@@ -15,25 +15,20 @@ import ProjectCard from "@/components/cards/ProjectCard";
 import ProjectsHeroCarousel from "@/components/sections/ProjectsHeroCarousel";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
-type FilterCategory = "All Projects" | ServiceSlug;
+type FilterCategory = "All" | ServiceSlug;
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] =
-    useState<FilterCategory>("All Projects");
+    useState<FilterCategory>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const featuredProjects = useMemo(
-    () => projects.filter((p) => p.featured),
-    [],
-  );
-
   const filterCategories: FilterCategory[] = [
-    "All Projects",
+    "All",
     ...SERVICE_CATEGORIES.map((category) => category.slug),
   ];
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === "All Projects") return projects;
+    if (activeFilter === "All") return projects;
 
     return projects.filter((project) => project.category === activeFilter);
   }, [activeFilter]);
@@ -43,6 +38,7 @@ export default function ProjectsPage() {
       <h1 className="sr-only">
         Our Projects — Engineering Installations Across Kenya
       </h1>
+
       {/* Breadcrumbs */}
       <div className={styles.container}>
         <Breadcrumbs
@@ -53,6 +49,7 @@ export default function ProjectsPage() {
           ]}
         />
       </div>
+
       {/* Hero Carousel */}
       <ProjectsHeroCarousel />
 
@@ -64,7 +61,7 @@ export default function ProjectsPage() {
               <Filter size={14} />
               Browse by Service
             </span>
-            <h2 className={styles.sectionTitle}>Filter Our Projects</h2>
+            <h2 className={styles.sectionTitle}>Featured Projects</h2>
             <p className={styles.sectionDescription}>
               Find projects by the type of service delivered. Select a category
               to narrow down the results.
@@ -85,42 +82,12 @@ export default function ProjectsPage() {
             ))}
           </div>
 
-          {/* Featured Projects */}
-          {activeFilter === "All Projects" && featuredProjects.length > 0 && (
-            <div className={styles.featuredSection}>
-              <div
-                className={`${styles.sectionHeader} ${styles.featuredHeader}`}
-              >
-                <span className={styles.sectionLabel}>
-                  <Star size={14} />
-                  Flagship Work
-                </span>
-                <h2 className={styles.sectionTitle}>Featured Projects</h2>
-              </div>
-              <div className={styles.featuredGrid}>
-                {featuredProjects.map((project) => (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    onClick={() => setSelectedProject(project)}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
           {/* Project Grid */}
           {filteredProjects.length > 0 ? (
             <>
               <div
                 className={`${styles.sectionHeader} ${styles.allProjectsHeader}`}
-              >
-                <h2 className={styles.sectionTitle}>
-                  {activeFilter === "All Projects"
-                    ? "All Projects"
-                    : activeFilter}
-                </h2>
-              </div>
+              />
               <div className={styles.grid}>
                 {filteredProjects.map((project) => (
                   <ProjectCard

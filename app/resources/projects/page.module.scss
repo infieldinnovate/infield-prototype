@@ -97,16 +97,6 @@
   }
 }
 
-.featuredGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-
-  @include breakpoint-up("sm") {
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  }
-}
-
 .grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -119,14 +109,6 @@
   @include breakpoint-up("md") {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
-}
-
-.featuredSection {
-  margin-bottom: 4rem;
-}
-
-.featuredHeader {
-  margin-bottom: 2rem;
 }
 
 .allProjectsHeader {

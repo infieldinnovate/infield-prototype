@@ -19,7 +19,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { cn } from "@/lib/utils";
+import { Dropdown } from "@/components/ui/Dropdown";
 import {
   articles,
   articleCategories,
@@ -187,29 +187,18 @@ export default function ResourcesPage() {
               description="Browse our library of expert articles covering all our service areas."
             />
             <div className={styles.categoryFilters}>
-              <button
-                className={cn(
-                  styles.categoryChip,
-                  activeCategory === "All" && styles.categoryChipActive,
-                )}
-                onClick={() => setActiveCategory("All")}
-                type="button"
-              >
-                All Articles
-              </button>
-              {articleCategories.map((cat) => (
-                <button
-                  key={cat.slug}
-                  className={cn(
-                    styles.categoryChip,
-                    activeCategory === cat.slug && styles.categoryChipActive,
-                  )}
-                  onClick={() => setActiveCategory(cat.slug)}
-                  type="button"
-                >
-                  {cat.label}
-                </button>
-              ))}
+              <Dropdown
+                options={[
+                  { value: "All" as const, label: "All Articles" },
+                  ...articleCategories.map((cat) => ({
+                    value: cat.slug,
+                    label: cat.label,
+                  })),
+                ]}
+                value={activeCategory}
+                onChange={(value) => setActiveCategory(value)}
+                ariaLabel="Filter articles by category"
+              />
             </div>
             <div className={styles.articlesGrid}>
               {filteredArticles.map((article, i) => (

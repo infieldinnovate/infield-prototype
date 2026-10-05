@@ -19,7 +19,7 @@ import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { DownloadCard } from "@/components/cards/DownloadCard";
 import { LinkButton } from "@/components/ui/LinkButton";
-import { cn } from "@/lib/utils";
+import { Dropdown } from "@/components/ui/Dropdown";
 import {
   downloads,
   downloadCategories,
@@ -157,29 +157,18 @@ export default function DownloadsPage() {
               description="Download brochures, technical datasheets, warranty information, and maintenance guides."
             />
             <div className={styles.categoryFilters}>
-              <button
-                className={cn(
-                  styles.categoryChip,
-                  activeDownloadCategory === "All" && styles.categoryChipActive,
-                )}
-                onClick={() => setActiveDownloadCategory("All")}
-                type="button"
-              >
-                All Downloads
-              </button>
-              {downloadCategories.map((cat) => (
-                <button
-                  key={cat}
-                  className={cn(
-                    styles.categoryChip,
-                    activeDownloadCategory === cat && styles.categoryChipActive,
-                  )}
-                  onClick={() => setActiveDownloadCategory(cat)}
-                  type="button"
-                >
-                  {cat}
-                </button>
-              ))}
+              <Dropdown
+                options={[
+                  { value: "All", label: "All Downloads" },
+                  ...downloadCategories.map((cat) => ({
+                    value: cat,
+                    label: cat,
+                  })),
+                ]}
+                value={activeDownloadCategory}
+                onChange={(value) => setActiveDownloadCategory(value)}
+                ariaLabel="Filter downloads by category"
+              />
             </div>
             <div className={styles.downloadsGrid}>
               {filteredDownloads.map((download, i) => (

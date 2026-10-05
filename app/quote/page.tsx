@@ -48,7 +48,7 @@ export default async function QuotePage({
           <SectionHeading
             level="h1"
             eyebrow="Free Quote"
-            title="Request a Free Quote"
+            title="Request a Quick Estimate"
             description="Tell us about your project and we'll provide a detailed, no-obligation quote. The more details you provide, the more accurate your estimate will be."
           />
         </div>

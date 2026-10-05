@@ -1,5 +1,6 @@
 // ============================================
 // Site Configuration & Constants
+// data\site.config.ts
 // ============================================
 
 export const siteConfig = {

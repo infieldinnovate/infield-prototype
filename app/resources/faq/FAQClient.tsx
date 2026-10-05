@@ -22,6 +22,7 @@ import { SearchBar } from "@/components/ui/SearchBar";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
 import { SupportCard } from "@/components/ui/SupportCard";
 import { LinkButton } from "@/components/ui/LinkButton";
+import { Dropdown, type DropdownOption } from "@/components/ui/Dropdown";
 import { cn } from "@/lib/utils";
 import {
   FAQ_CATEGORIES,
@@ -209,20 +210,16 @@ export default function FAQPage() {
 
             {/* Quick Category Navigation */}
 
-            <div className={styles.heroQuickCats}>
-              {FAQ_CATEGORIES.map((category) => (
-                <button
-                  key={category.slug}
-                  className={cn(
-                    styles.quickCat,
-                    activeView === category.slug && styles.quickCatActive,
-                  )}
-                  onClick={() => handleCategoryChange(category.slug)}
-                  type="button"
-                >
-                  {category.label}
-                </button>
-              ))}
+            <div className={styles.heroDropdown}>
+              <Dropdown
+                options={FAQ_CATEGORIES.map((category) => ({
+                  value: category.slug,
+                  label: category.label,
+                }))}
+                value={activeView}
+                onChange={(slug) => handleCategoryChange(slug)}
+                ariaLabel="Filter FAQs by category"
+              />
             </div>
           </motion.div>
         </div>

@@ -122,9 +122,7 @@ export function buildWebSiteSchema(): JsonLd {
     name: siteConfig.name,
     description: siteConfig.description,
     publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
+      "@id": `${siteConfig.url}#organization`,
     },
     inLanguage: "en-KE",
   };
@@ -157,10 +155,7 @@ export function buildServiceSchema(service: {
     image: service.image,
     url: `${siteConfig.url}/services/${service.slug}`,
     provider: {
-      "@type": "LocalBusiness",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      telephone: siteConfig.phone,
+      "@id": `${siteConfig.url}#localbusiness`,
     },
     areaServed: {
       "@type": "Country",
@@ -209,13 +204,7 @@ export function buildArticleSchema(article: {
       name: article.authorName,
     },
     publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteConfig.url}${siteConfig.logo}`,
-      },
+      "@id": `${siteConfig.url}#organization`,
     },
   };
 }
@@ -238,9 +227,7 @@ export function buildProjectListSchema(
         "@type": "CreativeWork",
         name: project.title,
         creator: {
-          "@type": "Organization",
-          name: siteConfig.name,
-          url: siteConfig.url,
+          "@id": `${siteConfig.url}#organization`,
         },
         about: project.category,
         contentLocation: {
@@ -283,10 +270,7 @@ export function buildServiceListSchema(
         image: service.image,
         url: `${siteConfig.url}/services/${service.slug}`,
         provider: {
-          "@type": "LocalBusiness",
-          name: siteConfig.name,
-          url: siteConfig.url,
-          telephone: siteConfig.phone,
+          "@id": `${siteConfig.url}#localbusiness`,
         },
         areaServed: {
           "@type": "Country",

@@ -21,7 +21,6 @@ export function buildLocalBusinessSchema(): JsonLd {
     telephone: siteConfig.phone,
     email: siteConfig.email,
     image: `${siteConfig.url}${siteConfig.ogImage}`,
-    priceRange: "Varies by project",
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.street,

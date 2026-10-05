@@ -17,6 +17,7 @@ import {
   FolderKanban,
   CircleHelp,
   Download,
+  Images,
   type LucideIcon,
 } from "lucide-react";
 import { siteConfig } from "./site.config";
@@ -63,6 +64,13 @@ export const resourcesNavItems: ResourceNavItem[] = [
     href: "/resources/projects",
     icon: FolderKanban,
     description: "Completed installations and case studies across Kenya.",
+  },
+  {
+    id: "nav-gallery",
+    label: "Gallery",
+    href: "/resources/gallery",
+    icon: Images,
+    description: "Photos and videos from our completed projects.",
   },
   {
     id: "nav-faq",

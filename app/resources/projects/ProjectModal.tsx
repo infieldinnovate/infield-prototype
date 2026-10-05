@@ -80,6 +80,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           video.url,
         )}&show_text=false`;
 
+      case "local":
+        return video.url;
+
       default:
         return null;
     }
@@ -237,7 +240,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <section className={styles.modalSection}>
               <h3 className={styles.modalSectionTitle}>Project Video</h3>
 
-              {getEmbedUrl(project.video) ? (
+              {project.video.platform === "local" ? (
+                <div className={styles.videoWrapper}>
+                  <video
+                    src={project.video.url}
+                    title={project.title}
+                    controls
+                    preload="metadata"
+                    playsInline
+                  />
+                </div>
+              ) : getEmbedUrl(project.video) ? (
                 <div className={styles.videoWrapper}>
                   <iframe
                     src={getEmbedUrl(project.video)!}

@@ -49,7 +49,7 @@ export interface ProjectTestimonial {
 }
 
 export interface ProjectVideo {
-  platform: "youtube" | "tiktok" | "facebook";
+  platform: "youtube" | "tiktok" | "facebook" | "local";
   url: string;
 }
 
@@ -161,6 +161,10 @@ export const projects: Project[] = [
       "Pump Installation",
       "Commissioning",
     ],
+    video: {
+      platform: "local",
+      url: "/videos/borehole_20250709.mp4",
+    },
     gallery: [
       {
         url: "/placeholder_image.jpg",
@@ -582,7 +586,7 @@ export interface GalleryMediaItem {
   type: "image" | "video";
   projectTitle: string;
   projectCounty: string;
-  platform?: "youtube" | "tiktok" | "facebook";
+  platform?: "youtube" | "tiktok" | "facebook" | "local";
 }
 
 export function getAllGalleryMedia(): GalleryMediaItem[] {

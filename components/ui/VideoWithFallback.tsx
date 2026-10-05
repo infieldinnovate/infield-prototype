@@ -7,13 +7,13 @@ import styles from "./VideoWithFallback.module.scss";
 interface VideoWithFallbackProps {
   url: string;
   alt: string;
-  platform?: "youtube" | "tiktok" | "facebook";
+  platform?: "youtube" | "tiktok" | "facebook" | "local";
   className?: string;
 }
 
 function getEmbedUrl(
   url: string,
-  platform?: "youtube" | "tiktok" | "facebook",
+  platform?: "youtube" | "tiktok" | "facebook" | "local",
 ): string | null {
   if (!platform) {
     if (url.match(/\.(mp4|webm|mov|mkv)(\?.*)?$/i)) return url;
@@ -21,6 +21,8 @@ function getEmbedUrl(
   }
 
   switch (platform) {
+    case "local":
+      return url;
     case "youtube": {
       let id = "";
       if (url.includes("youtu.be/")) {
@@ -51,6 +53,20 @@ export function VideoWithFallback({
   const embedUrl = getEmbedUrl(url, platform);
 
   if (status === "playing" && embedUrl) {
+    if (platform === "local" || (!platform && embedUrl.match(/\.(mp4|webm|mov|mkv)(\?.*)?$/i))) {
+      return (
+        <div className={`${styles.videoFrame} ${className ?? ""}`}>
+          <video
+            src={embedUrl}
+            title={alt}
+            controls
+            autoPlay
+            playsInline
+            preload="metadata"
+          />
+        </div>
+      );
+    }
     return (
       <div className={`${styles.videoFrame} ${className ?? ""}`}>
         <iframe

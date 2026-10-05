@@ -285,11 +285,19 @@
 // Gradient backgrounds
 // ============================================
 @mixin gradient-primary {
-  background: linear-gradient(135deg, #{$color-blue-800} 0%, #{$color-cyan-600} 100%);
+  background: linear-gradient(
+    135deg,
+    #{$color-blue-800} 0%,
+    #{$color-cyan-600} 100%
+  );
 }
 
 @mixin gradient-light {
-  background: linear-gradient(135deg, #{$color-white} 0%, #{$color-gray-50} 100%);
+  background: linear-gradient(
+    135deg,
+    #{$color-white} 0%,
+    #{$color-gray-50} 100%
+  );
 }
 
 @mixin gradient-surface {
@@ -423,10 +431,7 @@
 // ============================================
 // Icon bubble — flex-center + fixed size + gradient
 // ============================================
-@mixin icon-bubble(
-  $size: 56px,
-  $radius: var(--radius-lg)
-) {
+@mixin icon-bubble($size: 56px, $radius: var(--radius-lg)) {
   @include flex-center;
   width: $size;
   height: $size;

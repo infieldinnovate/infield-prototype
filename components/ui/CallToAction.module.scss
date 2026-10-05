@@ -131,7 +131,11 @@
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, #{$color-amber-400} 0%, #{$color-amber-500} 100%);
+  background: linear-gradient(
+    135deg,
+    #{$color-amber-400} 0%,
+    #{$color-amber-500} 100%
+  );
   color: $color-gray-800;
   text-decoration: none;
   padding: 16px 28px;
@@ -260,7 +264,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
-  @include breakpoint-up("sm") {
+  @include breakpoint-up("md") {
     flex-direction: row;
     gap: 24px;
     padding: 32px 40px;

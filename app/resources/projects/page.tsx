@@ -23,8 +23,7 @@ import { Dropdown, type DropdownOption } from "@/components/ui/Dropdown";
 type FilterCategory = "All" | ProjectGroup;
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] =
-    useState<FilterCategory>("All");
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filterOptions: DropdownOption<FilterCategory>[] = [
@@ -38,9 +37,7 @@ export default function ProjectsPage() {
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") return projects;
 
-    return projects.filter(
-      (project) => project.projectGroup === activeFilter,
-    );
+    return projects.filter((project) => project.projectGroup === activeFilter);
   }, [activeFilter]);
 
   return (
@@ -124,13 +121,7 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          <div className={styles.statsGrid}>
-            <AnimatedStats
-              eyebrow="Project Impact"
-              title="Our Impact in Numbers"
-              description="Measurable outcomes from a decade of delivering water and energy solutions across Kenya."
-            />
-          </div>
+          <AnimatedStats theme="light" />
         </div>
       </section>
 

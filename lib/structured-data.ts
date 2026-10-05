@@ -84,7 +84,7 @@ export function buildOrganizationSchema(): JsonLd {
     url: siteConfig.url,
     logo: {
       "@type": "ImageObject",
-      url: `${siteConfig.url}${siteConfig.ogImage}`,
+      url: `${siteConfig.url}${siteConfig.logo}`,
     },
     email: siteConfig.email,
     telephone: siteConfig.phone,
@@ -215,7 +215,7 @@ export function buildArticleSchema(article: {
       url: siteConfig.url,
       logo: {
         "@type": "ImageObject",
-        url: `${siteConfig.url}${siteConfig.ogImage}`,
+        url: `${siteConfig.url}${siteConfig.logo}`,
       },
     },
   };

@@ -11,6 +11,10 @@
   grid-template-columns: 1fr;
   gap: var(--space-5);
 
+  & > * {
+    min-width: 0;
+  }
+
   @include breakpoint-up('sm') {
     grid-template-columns: 1fr 1fr;
   }

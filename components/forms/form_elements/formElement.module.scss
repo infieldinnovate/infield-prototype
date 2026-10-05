@@ -32,6 +32,7 @@ $transitionDuration: 0.16s;
   align-items: center;
   padding: 0;
   border-radius: $radius;
+  min-width: 0;
   transition:
     box-shadow $transitionDuration ease-in-out,
     border-color $transitionDuration ease-in-out;
@@ -44,6 +45,7 @@ $transitionDuration: 0.16s;
 
   .element {
     flex: 1;
+    min-width: 0;
     font-size: $fs-sm;
     border: 1px solid $borderColor;
     outline: none;

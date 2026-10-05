@@ -10,14 +10,14 @@
   width: 100%;
   overflow: hidden;
   background: $color-slate-900;
-  min-height: 50vh;
+  height: 50vh;
 
   @include breakpoint-up("sm") {
-    min-height: 60vh;
+    height: 60vh;
   }
 
   @include breakpoint-up("md") {
-    min-height: 70vh;
+    height: 70vh;
   }
 }
 
@@ -33,7 +33,6 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  min-height: 70vh;
   padding: (var(--space-12) var(--space-6));
 }
 
@@ -74,6 +73,8 @@
   align-items: flex-end;
   padding: 0 0 var(--space-12) 0;
   z-index: 2;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 
   @include breakpoint-up("sm") {
     padding: 0 0 var(--space-16) 0;

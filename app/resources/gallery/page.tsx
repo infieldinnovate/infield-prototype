@@ -79,7 +79,7 @@ export default function GalleryPage() {
   return (
     <div className={styles.page}>
       <section className={styles.hero}>
-        <div className={styles.container}>
+        {/* <div className={styles.container}> */}
           <Breadcrumbs
             items={[
               { label: "Home", href: "/" },
@@ -93,7 +93,7 @@ export default function GalleryPage() {
             title="Our Work in Pictures"
             description="Browse photos and videos from our completed solar, borehole, irrigation, plumbing, and electrical projects across Kenya."
           />
-        </div>
+        {/* </div> */}
       </section>
 
       <section className={styles.gallerySection}>

@@ -18,8 +18,8 @@ export const siteConfig = {
   email: "infieldinnovations@gmail.com",
   phone: "+254702393677",
   phoneHref: "tel:+254702393677",
-  emergencyPhone: "+254718338810",
-  emergencyPhoneHref: "tel:+254718338810",
+  emergencyPhone: "+254794894423",
+  emergencyPhoneHref: "tel:+254794894423",
   whatsapp: "+254702393677",
   address: {
     street: "Meru Makutano, C91, Opp. Equity Bank",

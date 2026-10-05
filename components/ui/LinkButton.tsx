@@ -2,13 +2,13 @@
 // LinkButton Component (Next.js Link styled as button)
 // ============================================
 
-import Link from 'next/link';
-import { type LucideIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import styles from './Button.module.scss';
+import Link from "next/link";
+import { type LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import styles from "./Button.module.scss";
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "danger";
+type ButtonSize = "sm" | "md" | "lg";
 
 interface LinkButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
@@ -21,8 +21,8 @@ interface LinkButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> 
 
 export function LinkButton({
   href,
-  variant = 'primary',
-  size = 'md',
+  variant = "primary",
+  size = "md",
   fullWidth = false,
   leftIcon: LeftIcon,
   rightIcon: RightIcon,
@@ -38,13 +38,21 @@ export function LinkButton({
         styles[variant],
         styles[size],
         fullWidth && styles.fullWidth,
-        className
+        className,
       )}
       {...props}
     >
-      {LeftIcon && <span className={styles.icon}><LeftIcon size={18} /></span>}
+      {LeftIcon && (
+        <span className={styles.icon}>
+          <LeftIcon size={18} />
+        </span>
+      )}
       <span>{children}</span>
-      {RightIcon && <span className={styles.icon}><RightIcon size={18} /></span>}
+      {RightIcon && (
+        <span className={styles.icon}>
+          <RightIcon size={18} />
+        </span>
+      )}
     </Link>
   );
 }

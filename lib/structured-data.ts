@@ -6,6 +6,8 @@ import type { BreadcrumbItem } from "@/components/ui/Breadcrumbs";
 
 type JsonLd = Record<string, unknown>;
 
+const absoluteUrl = (path: string) => new URL(path, siteConfig.url).toString();
+
 const sameAsLinks = Object.values(socialLinks)
   .filter((social) => social.label !== "WhatsApp")
   .map((social) => social.link);
@@ -152,7 +154,7 @@ export function buildServiceSchema(service: {
     "@type": "Service",
     name: service.name,
     description: service.description,
-    image: service.image,
+    image: absoluteUrl(service.image),
     url: `${siteConfig.url}/services/${service.slug}`,
     provider: {
       "@id": `${siteConfig.url}#localbusiness`,
@@ -195,7 +197,7 @@ export function buildArticleSchema(article: {
     "@type": "Article",
     headline: article.title,
     description: article.excerpt,
-    image: article.image,
+    image: absoluteUrl(article.image),
     datePublished: article.publishDate,
     dateModified: article.updatedDate ?? article.publishDate,
     url: `${siteConfig.url}/resources/knowledge-centre/${article.slug}`,
@@ -267,7 +269,7 @@ export function buildServiceListSchema(
         "@type": "Service",
         name: service.name,
         description: service.description,
-        image: service.image,
+        image: absoluteUrl(service.image),
         url: `${siteConfig.url}/services/${service.slug}`,
         provider: {
           "@id": `${siteConfig.url}#localbusiness`,

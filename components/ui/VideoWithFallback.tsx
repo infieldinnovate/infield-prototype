@@ -11,6 +11,18 @@ interface VideoWithFallbackProps {
   className?: string;
 }
 
+function getYouTubeId(url: string): string | null {
+  if (url.includes("youtu.be/")) {
+    return url.split("youtu.be/")[1].split("?")[0] || null;
+  }
+  try {
+    const u = new URL(url);
+    return u.searchParams.get("v");
+  } catch {
+    return null;
+  }
+}
+
 function getEmbedUrl(
   url: string,
   platform?: "youtube" | "tiktok" | "facebook" | "local",
@@ -24,12 +36,7 @@ function getEmbedUrl(
     case "local":
       return url;
     case "youtube": {
-      let id = "";
-      if (url.includes("youtu.be/")) {
-        id = url.split("youtu.be/")[1].split("?")[0];
-      } else {
-        id = new URL(url).searchParams.get("v") ?? "";
-      }
+      const id = getYouTubeId(url);
       return id ? `https://www.youtube.com/embed/${id}` : null;
     }
     case "tiktok": {
@@ -43,6 +50,20 @@ function getEmbedUrl(
   }
 }
 
+function getThumbnailUrl(
+  url: string,
+  platform?: "youtube" | "tiktok" | "facebook" | "local",
+): string | null {
+  if (platform === "youtube") {
+    const id = getYouTubeId(url);
+    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+  }
+  if (platform === "local" || (!platform && url.match(/\.(mp4|webm|mov|mkv)(\?.*)?$/i))) {
+    return url;
+  }
+  return null;
+}
+
 export function VideoWithFallback({
   url,
   alt,
@@ -51,9 +72,13 @@ export function VideoWithFallback({
 }: VideoWithFallbackProps) {
   const [status, setStatus] = useState<"idle" | "playing">("idle");
   const embedUrl = getEmbedUrl(url, platform);
+  const thumbnailUrl = getThumbnailUrl(url, platform);
+  const isLocalVideo =
+    platform === "local" ||
+    (!platform && !!embedUrl?.match(/\.(mp4|webm|mov|mkv)(\?.*)?$/i));
 
   if (status === "playing" && embedUrl) {
-    if (platform === "local" || (!platform && embedUrl.match(/\.(mp4|webm|mov|mkv)(\?.*)?$/i))) {
+    if (isLocalVideo) {
       return (
         <div className={`${styles.videoFrame} ${className ?? ""}`}>
           <video
@@ -81,6 +106,55 @@ export function VideoWithFallback({
     );
   }
 
+  // Local video: render the actual <video> element paused at first frame
+  if (isLocalVideo && thumbnailUrl) {
+    return (
+      <button
+        type="button"
+        className={`${styles.placeholder} ${className ?? ""}`}
+        onClick={() => setStatus("playing")}
+        aria-label={`Play video: ${alt}`}
+      >
+        <video
+          src={thumbnailUrl}
+          preload="metadata"
+          muted
+          playsInline
+          className={styles.thumbnailVideo}
+          onLoadedMetadata={(e) => {
+            const v = e.currentTarget;
+            try {
+              v.currentTime = 0.1;
+            } catch {
+              // some browsers may not allow seeking
+            }
+          }}
+        />
+        <div className={styles.playIcon}>
+          <Play size={36} fill="currentColor" />
+        </div>
+      </button>
+    );
+  }
+
+  // YouTube: use the platform thumbnail as a cover image
+  if (platform === "youtube" && thumbnailUrl) {
+    return (
+      <button
+        type="button"
+        className={`${styles.placeholder} ${className ?? ""}`}
+        onClick={() => setStatus("playing")}
+        aria-label={`Play video: ${alt}`}
+        style={{ backgroundImage: `url(${thumbnailUrl})` }}
+      >
+        <div className={styles.playIcon}>
+          <Play size={36} fill="currentColor" />
+        </div>
+      </button>
+    );
+  }
+
+  // Fallback: gradient placeholder (TikTok / Facebook / unknown)
   return (
     <button
       type="button"

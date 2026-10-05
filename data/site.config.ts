@@ -5,7 +5,8 @@
 export const siteConfig = {
   name: "Infield Innovations",
   shortName: "Infield",
-  tagline: "Powering Homes & Businesses with Expert Engineering",
+  tagline:
+    "Your go to for; Solar, Borehole, Electrical & Plumbing Services in Kenya",
   foundedYear: "2018",
   description:
     "Infield Innovations delivers professional electrical, plumbing, solar, irrigation, and borehole services across Kenya. Certified technicians, quality workmanship, and reliable solutions for residential and commercial properties.",

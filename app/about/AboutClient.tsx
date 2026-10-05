@@ -149,7 +149,7 @@ export default function AboutClient() {
       </section>
 
       {/* Our Story */}
-      <section className={styles.section}>
+      <section className={styles.section} id="our-story">
         <div className={styles.container}>
           <div className={styles.storyGrid}>
             <div className={styles.storyImage}>
@@ -278,7 +278,7 @@ export default function AboutClient() {
       </section>
 
       {/* Our Process */}
-      <section className={styles.section}>
+      <section className={styles.section} id="our-process">
         <div className={styles.container}>
           <SectionHeading
             eyebrow="How We Work"
@@ -322,7 +322,7 @@ export default function AboutClient() {
       </section>
 
       {/* Safety & Quality Commitment */}
-      <section className={styles.safetySection}>
+      <section className={styles.safetySection} id="certifications">
         <div className={styles.container}>
           <SectionHeading
             eyebrow="Our Commitment"

@@ -1,15 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import {
-  Building2,
-  CheckCircle2,
-  ClipboardCheck,
-  MapPin,
-  Settings,
-  ShieldCheck,
-  Users,
-} from "lucide-react";
+import { Building2, CircleCheck as CheckCircle2, ClipboardCheck, MapPin, Settings, ShieldCheck, Users } from "lucide-react";
 import {
   PremiumCarousel,
   type PremiumSlide,
@@ -39,7 +31,7 @@ export default function AboutHeroCarousel() {
         { icon: Users, text: "28 certified professionals" },
         { icon: CheckCircle2, text: "100+ projects completed" },
       ],
-      primaryButton: { label: "Our Story", href: "/about" },
+      primaryButton: { label: "Our Story", href: "/about#our-story" },
       secondaryButton: { label: "Contact Us", href: "/contact" },
     };
 
@@ -81,7 +73,7 @@ export default function AboutHeroCarousel() {
       ],
       primaryButton: {
         label: "See Our Process",
-        href: "/resources/knowledge-centre",
+        href: "/about#our-process",
       },
     };
 
@@ -102,7 +94,7 @@ export default function AboutHeroCarousel() {
         { icon: safetyCommitments[3].icon, text: "Insured & Warranted" },
         { icon: safetyCommitments[5].icon, text: "Expert Team" },
       ],
-      primaryButton: { label: "Our Certifications", href: "/about" },
+      primaryButton: { label: "Our Certifications", href: "/about#certifications" },
     };
 
     // ── 05 Our Reach ──

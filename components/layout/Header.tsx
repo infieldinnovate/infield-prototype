@@ -107,7 +107,7 @@ const Header = () => {
           aria-label="Infield Innovations home"
         >
           <ImageWithFallback
-            src="/logo.png"
+            src={siteConfig.logo}
             alt="Infield Innovations Limited"
             width={200}
             height={90}

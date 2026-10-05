@@ -103,7 +103,7 @@ export function UpgradeNoticeModal() {
           <div className={styles.visualContent}>
             <div className={styles.logoWrap}>
               <ImageWithFallback
-                src="/logo.png"
+                src={siteConfig.logo}
                 alt={siteConfig.name}
                 width={160}
                 height={72}

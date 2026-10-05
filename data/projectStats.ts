@@ -574,3 +574,44 @@ export function getProjectsByGroup(group: ProjectGroup): Project[] {
 export function getFeaturedProjects(limit = 3): Project[] {
   return projects.filter((p) => p.featured).slice(0, limit);
 }
+
+export interface GalleryMediaItem {
+  id: string;
+  url: string;
+  caption: string;
+  type: "image" | "video";
+  projectTitle: string;
+  projectCounty: string;
+  platform?: "youtube" | "tiktok" | "facebook";
+}
+
+export function getAllGalleryMedia(): GalleryMediaItem[] {
+  const media: GalleryMediaItem[] = [];
+
+  for (const project of projects) {
+    for (const galleryImage of project.gallery) {
+      media.push({
+        id: `${project.id}-img-${galleryImage.caption}`,
+        url: galleryImage.url,
+        caption: galleryImage.caption,
+        type: "image",
+        projectTitle: project.title,
+        projectCounty: project.county,
+      });
+    }
+
+    if (project.video) {
+      media.push({
+        id: `${project.id}-video`,
+        url: project.video.url,
+        caption: `${project.title} — Project Video`,
+        type: "video",
+        projectTitle: project.title,
+        projectCounty: project.county,
+        platform: project.video.platform,
+      });
+    }
+  }
+
+  return media;
+}

@@ -210,17 +210,15 @@ export default function FAQPage() {
 
             {/* Quick Category Navigation */}
 
-            <div className={styles.heroDropdown}>
-              <Dropdown
-                options={FAQ_CATEGORIES.map((category) => ({
-                  value: category.slug,
-                  label: category.label,
-                }))}
-                value={activeView}
-                onChange={(slug) => handleCategoryChange(slug)}
-                ariaLabel="Filter FAQs by category"
-              />
-            </div>
+            <Dropdown
+              options={FAQ_CATEGORIES.map((category) => ({
+                value: category.slug,
+                label: category.label,
+              }))}
+              value={activeView}
+              onChange={(slug) => handleCategoryChange(slug)}
+              ariaLabel="Filter FAQs by category"
+            />
           </motion.div>
         </div>
       </section>

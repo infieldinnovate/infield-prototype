@@ -9,7 +9,6 @@
 .hero {
   position: relative;
   padding: var(--space-8) 0 var(--space-16);
-  overflow: hidden;
   background: var(--color-gray-50);
 }
 
@@ -130,11 +129,6 @@
 .heroSearch {
   max-width: 600px;
   margin: 0 auto var(--space-6);
-}
-
-.heroDropdown {
-  max-width: 320px;
-  margin: 0 auto;
 }
 
 // Main Section

@@ -235,44 +235,58 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </section>
           )}
 
-          {/* Video */}
-          {project.video && (
+          {/* Videos */}
+          {project.videos && project.videos.length > 0 && (
             <section className={styles.modalSection}>
-              <h3 className={styles.modalSectionTitle}>Project Video</h3>
+              <h3 className={styles.modalSectionTitle}>
+                {project.videos.length > 1 ? "Project Videos" : "Project Video"}
+              </h3>
 
-              {project.video.platform === "local" ? (
-                <div className={styles.videoWrapper}>
-                  <video
-                    src={project.video.url}
-                    title={project.title}
-                    controls
-                    preload="metadata"
-                    playsInline
-                  />
-                </div>
-              ) : getEmbedUrl(project.video) ? (
-                <div className={styles.videoWrapper}>
-                  <iframe
-                    src={getEmbedUrl(project.video)!}
-                    title={project.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    loading="lazy"
-                  />
-                </div>
-              ) : (
-                <a
-                  href={project.video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.videoLink}
-                >
-                  View on{" "}
-                  {project.video.platform.charAt(0).toUpperCase() +
-                    project.video.platform.slice(1)}
-                </a>
-              )}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1.5rem",
+                }}
+              >
+                {project.videos.map((video, index) => (
+                  <div key={index}>
+                    {video.platform === "local" ? (
+                      <div className={styles.videoWrapper}>
+                        <video
+                          src={video.url}
+                          title={`${project.title} — Video ${index + 1}`}
+                          controls
+                          preload="metadata"
+                          playsInline
+                        />
+                      </div>
+                    ) : getEmbedUrl(video) ? (
+                      <div className={styles.videoWrapper}>
+                        <iframe
+                          src={getEmbedUrl(video)!}
+                          title={`${project.title} — Video ${index + 1}`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : (
+                      <a
+                        href={video.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.videoLink}
+                      >
+                        View on{" "}
+                        {video.platform.charAt(0).toUpperCase() +
+                          video.platform.slice(1)}
+                      </a>
+                    )}
+                  </div>
+                ))}
+              </div>
             </section>
           )}
 

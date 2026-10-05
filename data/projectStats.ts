@@ -67,7 +67,7 @@ export interface Project {
   results: string[];
   servicesDelivered: string[];
   gallery: ProjectGalleryImage[];
-  video?: ProjectVideo;
+  videos?: ProjectVideo[];
   testimonial?: ProjectTestimonial;
 }
 
@@ -161,10 +161,16 @@ export const projects: Project[] = [
       "Pump Installation",
       "Commissioning",
     ],
-    video: {
-      platform: "local",
-      url: "/videos/borehole_20250709.mp4",
-    },
+    videos: [
+      {
+        platform: "local",
+        url: "/videos/borehole_20250709.mp4",
+      },
+      {
+        platform: "youtube",
+        url: "https://youtu.be/vrTxUhGeFbQ",
+      },
+    ],
     gallery: [
       {
         url: "/placeholder_image.jpg",
@@ -604,16 +610,18 @@ export function getAllGalleryMedia(): GalleryMediaItem[] {
       });
     }
 
-    if (project.video) {
-      media.push({
-        id: `${project.id}-video`,
-        url: project.video.url,
-        caption: `${project.title} — Project Video`,
-        type: "video",
-        projectTitle: project.title,
-        projectCounty: project.county,
-        platform: project.video.platform,
-      });
+    if (project.videos) {
+      for (const video of project.videos) {
+        media.push({
+          id: `${project.id}-video-${video.platform}-${video.url}`,
+          url: video.url,
+          caption: `${project.title} — Project Video`,
+          type: "video",
+          projectTitle: project.title,
+          projectCounty: project.county,
+          platform: video.platform,
+        });
+      }
     }
   }
 

@@ -21,8 +21,6 @@ import { resourcesNavItems } from "@/data/links";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import styles from "./Header.module.scss";
-import { cn } from "@/lib/utils";
-import { useScrollDirection } from "@/hooks/use-scroll-direction";
 import { useLockBodyScroll } from "@/hooks/use-lock-body-scroll";
 import { ServiceIcons } from "@/data/service-icons";
 import { Dropdown, type DropdownItem } from "./Dropdown";
@@ -32,7 +30,6 @@ const Header = () => {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const pathname = usePathname() || "/";
-  const { scrolled } = useScrollDirection();
 
   useLockBodyScroll(isMenuOpen);
 
@@ -91,7 +88,7 @@ const Header = () => {
 
   return (
     <header
-      className={cn(styles.header, scrolled && styles.scrolled)}
+      className={styles.header}
       role="banner"
     >
       {/* Main Navigation */}

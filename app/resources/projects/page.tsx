@@ -75,14 +75,12 @@ export default function ProjectsPage() {
             </p>
           </div>
 
-          <div className={styles.filterBar}>
-            <Dropdown
-              options={filterOptions}
-              value={activeFilter}
-              onChange={setActiveFilter}
-              ariaLabel="Filter projects by category"
-            />
-          </div>
+          <Dropdown
+            options={filterOptions}
+            value={activeFilter}
+            onChange={setActiveFilter}
+            ariaLabel="Filter projects by category"
+          />
 
           {/* Project Grid */}
           {filteredProjects.length > 0 ? (

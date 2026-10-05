@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
 // ============================================
 // SearchBar Component
 // ============================================
 
-import { Search, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import styles from './SearchBar.module.scss';
+import { Search, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import styles from "./SearchBar.module.scss";
 
 interface SearchBarProps {
   value: string;
@@ -19,7 +19,7 @@ interface SearchBarProps {
 export function SearchBar({
   value,
   onChange,
-  placeholder = 'Search...',
+  placeholder = "Search...",
   className,
   autoFocus = false,
 }: SearchBarProps) {
@@ -38,7 +38,7 @@ export function SearchBar({
       {value && (
         <button
           className={styles.clearButton}
-          onClick={() => onChange('')}
+          onClick={() => onChange("")}
           aria-label="Clear search"
           type="button"
         >

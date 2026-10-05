@@ -156,20 +156,18 @@ export default function DownloadsPage() {
               title="Resource Library"
               description="Download brochures, technical datasheets, warranty information, and maintenance guides."
             />
-            <div className={styles.categoryFilters}>
-              <Dropdown
-                options={[
-                  { value: "All", label: "All Downloads" },
-                  ...downloadCategories.map((cat) => ({
-                    value: cat,
-                    label: cat,
-                  })),
-                ]}
-                value={activeDownloadCategory}
-                onChange={(value) => setActiveDownloadCategory(value)}
-                ariaLabel="Filter downloads by category"
-              />
-            </div>
+            <Dropdown
+              options={[
+                { value: "All", label: "All Downloads" },
+                ...downloadCategories.map((cat) => ({
+                  value: cat,
+                  label: cat,
+                })),
+              ]}
+              value={activeDownloadCategory}
+              onChange={(value) => setActiveDownloadCategory(value)}
+              ariaLabel="Filter downloads by category"
+            />
             <div className={styles.downloadsGrid}>
               {filteredDownloads.map((download, i) => (
                 <DownloadCard key={download.id} download={download} index={i} />

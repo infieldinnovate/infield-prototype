@@ -62,7 +62,6 @@ export default function ResourcesPage() {
     );
   }, [searchQuery]);
 
-
   return (
     <>
       {/* Hero */}
@@ -186,20 +185,18 @@ export default function ResourcesPage() {
               title="Articles & Guides"
               description="Browse our library of expert articles covering all our service areas."
             />
-            <div className={styles.categoryFilters}>
-              <Dropdown
-                options={[
-                  { value: "All" as const, label: "All Articles" },
-                  ...articleCategories.map((cat) => ({
-                    value: cat.slug,
-                    label: cat.label,
-                  })),
-                ]}
-                value={activeCategory}
-                onChange={(value) => setActiveCategory(value)}
-                ariaLabel="Filter articles by category"
-              />
-            </div>
+            <Dropdown
+              options={[
+                { value: "All" as const, label: "All Articles" },
+                ...articleCategories.map((cat) => ({
+                  value: cat.slug,
+                  label: cat.label,
+                })),
+              ]}
+              value={activeCategory}
+              onChange={(value) => setActiveCategory(value)}
+              ariaLabel="Filter articles by category"
+            />
             <div className={styles.articlesGrid}>
               {filteredArticles.map((article, i) => (
                 <ArticleCard key={article.id} article={article} index={i} />

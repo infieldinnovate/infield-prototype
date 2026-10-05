@@ -68,6 +68,7 @@ export function Dropdown<T extends string>({
 
   return (
     <div ref={containerRef} className={cn(styles.wrapper, className)}>
+      <span>Showing</span>
       <button
         type="button"
         className={styles.trigger}
@@ -87,7 +88,6 @@ export function Dropdown<T extends string>({
           className={cn(styles.chevron, open && styles.chevronOpen)}
         />
       </button>
-
       <AnimatePresence>
         {open && (
           <motion.ul

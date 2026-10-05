@@ -189,14 +189,6 @@
   font-size: var(--fs-base);
 }
 
-// Category filters
-.categoryFilters {
-  @include flex-center;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-  margin-bottom: var(--space-10);
-}
-
 .categoryChip {
   padding: var(--space-2) var(--space-5);
   background: var(--color-white);

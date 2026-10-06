@@ -165,10 +165,10 @@ export const projects: Project[] = [
       "Commissioning",
     ],
     videos: [
-      {
-        platform: "local",
-        url: "/videos/borehole_20250709.mp4",
-      },
+      // {
+      //   platform: "local",
+      //   url: "/videos/borehole_20250709.mp4",
+      // },
       {
         platform: "youtube",
         url: "https://youtu.be/vrTxUhGeFbQ",

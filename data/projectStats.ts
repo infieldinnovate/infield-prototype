@@ -614,7 +614,6 @@ export function getAllGalleryMedia(): GalleryMediaItem[] {
   const media: GalleryMediaItem[] = [];
 
   for (const project of projects) {
-    if (!project.approved) continue;
     for (const galleryImage of project.gallery) {
       media.push({
         id: `${project.id}-img-${galleryImage.caption}`,

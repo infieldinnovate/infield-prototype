@@ -1,5 +1,5 @@
 // ============================================
-// FAQs Data (Expanded)
+// FAQs Data
 // ============================================
 
 import { ServiceSlug, SERVICE_CATEGORIES } from "./services";
@@ -30,47 +30,53 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
 
 export const FAQs: FAQ[] = [
   // ============================================================
-  // GENERAL — 10 QUESTIONS
+  // GENERAL
   // ============================================================
 
   {
     id: "general-1",
-    question: "What services does Infield Innovations provide?",
+    question:
+      "Do you conduct a site assessment before recommending a solution?",
     answer:
-      "Infield Innovations provides integrated water, energy, electrical and infrastructure solutions, including solar energy systems, electrical installations, plumbing, borehole drilling, water storage, irrigation, and rainwater harvesting. We serve homes, farms, businesses, institutions, and other properties.",
+      "Yes. Where required, we conduct a site assessment to understand your energy needs, existing infrastructure, site conditions and project requirements. This allows us to recommend a solution that is properly sized, practical and safe.",
     category: "general",
   },
 
   {
     id: "general-2",
-    question: "Can you help me choose the right solution for my property?",
+    question:
+      "How do you assess my requirements and design the right solution?",
     answer:
-      "Yes. We assess your needs, existing infrastructure, site conditions, water or energy demand, budget, and future requirements before recommending a suitable solution. Where appropriate, we can combine systems such as solar, pumping, storage, and irrigation.",
+      "We assess your current and anticipated energy needs, consumption patterns, available infrastructure, site conditions and budget. Our engineers then develop a solution focused on reliability, performance, safety and long-term value.",
     category: "general",
+    isPopular: true,
   },
 
   {
     id: "general-3",
-    question: "How do I know which service I need?",
+    question:
+      "How do I request a quotation, and what information do you need?",
     answer:
-      "You do not need to diagnose the problem yourself. Tell us what is happening—for example, high electricity bills, power interruptions, low water pressure, unreliable water supply, leaking pipes, poor irrigation coverage, or a planned project—and we can recommend the appropriate assessment or service.",
+      "Simply contact us with details of your project and location. Depending on the scope, we may request electricity bills, equipment information, drawings, photographs or a site visit before preparing a detailed quotation.",
     category: "general",
   },
 
   {
     id: "general-4",
-    question: "Do you provide site assessments before starting a project?",
+    question:
+      "What does your process look like from consultation to project completion?",
     answer:
-      "For projects where site conditions affect the design or cost, we recommend an assessment before installation or construction. This may include evaluating electrical loads, roof conditions, water demand, groundwater conditions, irrigation requirements, or available space.",
+      "Our typical process is: Consultation → Site Assessment → Design → Quotation → Planning → Installation → Testing & Commissioning → Handover → After-Sales Support. We keep you informed at each important stage of the project.",
     category: "general",
     isPopular: true,
   },
 
   {
     id: "general-5",
-    question: "How do I request a quotation?",
+    question:
+      "Are there any certifications, permits, approvals or other documentation required for my project, and do you assist with obtaining or preparing them?",
     answer:
-      "Contact us with your location, the service you need, the problem you are experiencing, and any available information about your property or existing system. Where necessary, we arrange a site assessment before preparing an accurate quotation.",
+      "Yes. Requirements depend on the type and scale of the project. We identify the applicable regulatory, technical and project documentation requirements and assist with the preparation and coordination of the necessary documentation. For applicable solar PV projects, completion documentation and system information form part of the regulatory framework.",
     category: "general",
     isPopular: true,
   },
@@ -79,380 +85,572 @@ export const FAQs: FAQ[] = [
     id: "general-6",
     question: "How long does a project take?",
     answer:
-      "The timeline depends on the type, size, site conditions, materials, approvals, and scope of work. Small repairs may be completed quickly, while installations, boreholes, irrigation systems, and larger infrastructure projects require more planning. We provide an expected timeline during the quotation and planning stage.",
+      "Most residential installations can be completed within 1–4 working days, while larger/commercial and industrial projects may take longer depending on scope, approvals and site conditions. We provide a project-specific schedule before work begins.",
     category: "general",
+    isPopular: true,
   },
 
   {
     id: "general-7",
-    question: "Do you work on existing systems or only new installations?",
+    question:
+      "Do you provide testing, commissioning and handover after installation?",
     answer:
-      "We can work on both new installations and existing systems, subject to assessment. This includes troubleshooting, repairs, upgrades, replacements, maintenance, and improvements to systems installed by other providers.",
+      "Yes. We test and commission installations before handover to verify safe and proper operation. We also provide the relevant project documentation and user guidance applicable to the system. For solar PV installations, Kenyan regulations provide for completion documentation, system information and warranty documentation.",
     category: "general",
   },
 
   {
     id: "general-8",
-    question: "Do you provide maintenance after installation?",
+    question: "What warranty do you provide on equipment and workmanship?",
     answer:
-      "Yes. We provide maintenance and servicing for eligible systems we install and, where practical, existing systems. Preventive maintenance can help identify faults early, maintain performance, and reduce unexpected breakdowns.",
+      "Warranty coverage depends on the equipment and scope of work. Manufacturer warranties apply to eligible equipment, while our workmanship warranty is stated clearly in your quotation or contract. We make the applicable warranty terms clear before project commencement.",
     category: "general",
     isPopular: true,
   },
 
   {
     id: "general-9",
-    question: "Which areas do you serve?",
+    question: "What happens if I experience a problem after installation?",
     answer:
-      "We are based in Meru and serve customers in Meru and other locations depending on the project. For larger or specialized projects outside our regular service area, contact us to confirm availability and site requirements.",
+      "We remain available after installation. Contact our support team and we will assess the issue and recommend the appropriate solution. Where a site visit or corrective work is required, we will advise you on the next steps.",
     category: "general",
   },
 
   {
     id: "general-10",
-    question: "What warranty do I receive?",
+    question: "Do you provide maintenance and after-sales technical support?",
     answer:
-      "Warranty coverage depends on the product, manufacturer, installation, and agreed workmanship terms. We explain the applicable warranty conditions in your quotation or project documentation. Manufacturer warranties are separate from workmanship warranties.",
+      "Yes. We provide preventive maintenance and technical support to help keep your systems safe, reliable and operating efficiently. Maintenance can be arranged according to the type, size and operating requirements of your installation.",
     category: "general",
-    isPopular: true,
   },
 
   // ============================================================
-  // SOLAR — 5 QUESTIONS
+  // SOLAR ENERGY
   // ============================================================
 
   {
     id: "solar-1",
-    question: "How much can I save with solar?",
+    question: "How much does a solar system cost?",
     answer:
-      "Savings depend on your electricity consumption, tariff, system size, solar resource, operating hours, equipment efficiency, and whether batteries are included. We estimate potential savings using your actual energy usage rather than promising a fixed percentage.",
+      "There is no one-size-fits-all price. Cost depends on system capacity (kWp), battery storage (kWh), inverter type, equipment quality and installation requirements. After assessing your energy needs, we provide a detailed quotation showing the system specification, equipment and total project cost.",
     category: "solar",
-    isPopular: true,
     featured: true,
   },
 
   {
     id: "solar-2",
-    question: "What size solar system do I need?",
+    question:
+      "What size solar system do I need for my home, business or institution?",
     answer:
-      "System size should be based on your electricity consumption, peak demand, appliances, operating hours, available solar resource, mounting space, backup requirements, and future expansion plans. We size the system around your actual requirements.",
+      "The right size is based on your electricity consumption, peak demand, operating hours and available solar resource—not simply the size of the property. We review your electricity usage and site conditions to determine the appropriate solar capacity, inverter rating and, where required, battery capacity.",
     category: "solar",
-    isPopular: true,
     featured: true,
   },
 
   {
     id: "solar-3",
-    question: "Will solar work during a power outage?",
+    question: "Do I need batteries, and how much battery storage do I need?",
     answer:
-      "A standard grid-connected solar system normally shuts down during a grid outage for safety. To keep selected loads operating during an outage, the system needs an appropriate backup configuration, typically involving batteries and compatible power-control equipment.",
+      "Not necessarily. Batteries are recommended when you need backup power, evening/night-time energy use, greater energy independence or reduced reliance on the grid. We size battery storage in kWh based on the loads you want to support and the required backup duration.",
     category: "solar",
     featured: true,
   },
 
   {
     id: "solar-4",
-    question: "Do I need batteries with solar?",
+    question:
+      "Can solar power my borehole, water pump or irrigation system?",
     answer:
-      "Not necessarily. Batteries are useful when you need backup power, want to use more solar energy after sunset, or want greater independence from the grid. A battery-free system may be more suitable when most of your electricity demand occurs during daylight hours.",
+      "Yes. We design solar pumping systems for boreholes, water supply and irrigation applications. System sizing considers the pump power, water demand, borehole depth, required flow rate, pumping head and daily operating hours to ensure the system is appropriately matched to the application.",
     category: "solar",
+    featured: true,
   },
 
   {
     id: "solar-5",
-    question: "Why is my solar system producing less power than expected?",
+    question:
+      "Can you integrate solar with my existing electrical system, generator or grid supply?",
     answer:
-      "Possible causes include shading, dust or soiling, equipment faults, poor connections, inverter limitations, high temperatures, incorrect sizing, or changes in energy demand. We can inspect the system and identify the cause before recommending corrective work.",
+      "Yes. Depending on the system design, we can integrate solar with your existing electrical installation, utility grid and generator, including hybrid configurations with battery storage. We assess the existing system first to ensure proper capacity, protection, changeover and compatibility.",
+    category: "solar",
+  },
+
+  {
+    id: "solar-6",
+    question: "How much can I save on my electricity bill with solar?",
+    answer:
+      "Savings depend on your electricity consumption, tariff, solar system size, daytime load profile and operating hours. We use your actual consumption data where available to estimate expected solar generation, grid energy offset and potential savings rather than relying on a generic percentage.",
+    category: "solar",
+    featured: true,
+  },
+
+  {
+    id: "solar-7",
+    question: "Will my solar system work during cloudy or rainy weather?",
+    answer:
+      "Yes. Solar panels continue producing electricity under cloudy conditions, although output is lower because solar irradiance is reduced. A properly designed system accounts for local weather conditions, while battery storage can provide additional energy availability when solar production is limited.",
+    category: "solar",
+  },
+
+  {
+    id: "solar-8",
+    question: "How long will my solar system and batteries last?",
+    answer:
+      "Quality solar PV modules are designed for long-term operation, commonly 25 years or more, with gradual performance degradation over time. Battery life depends heavily on chemistry, operating temperature, depth of discharge, charging conditions and usage patterns. We recommend equipment based on the required application and expected operating life.",
+    category: "solar",
+  },
+
+  {
+    id: "solar-9",
+    question: "What maintenance does a solar system require?",
+    answer:
+      "Solar systems generally require low but important routine maintenance. This can include panel cleaning, visual inspections, electrical connection checks, battery and inverter checks, protection-system inspections and performance monitoring. We recommend periodic maintenance based on the system type, environment and operating conditions.",
     category: "solar",
   },
 
   // ============================================================
-  // ELECTRICAL — 5 QUESTIONS
+  // ELECTRICAL
   // ============================================================
 
   {
     id: "electrical-1",
-    question: "Why does my power keep tripping or going off?",
+    question:
+      "How do I know what size motor, pump and electrical supply I need?",
     answer:
-      "Repeated tripping can be caused by overloaded circuits, short circuits, earth faults, faulty appliances, damaged wiring, or incorrectly rated protective devices. Do not repeatedly reset a breaker without identifying the cause. We can inspect and diagnose the electrical system.",
+      "The correct size depends on the required flow, head, duty cycle, load demand, starting requirements and operating conditions. We assess these parameters and calculate the appropriate motor, pump, cable, protection and electrical supply rather than relying on standard sizing.",
     category: "electrical",
-    isPopular: true,
     featured: true,
   },
 
   {
     id: "electrical-2",
-    question:
-      "Can you inspect and repair electrical problems in an old building?",
+    question: "Why does my pump or motor keep tripping the circuit breaker?",
     answer:
-      "Yes. We can inspect existing wiring, distribution boards, protective devices, earthing, connections, and loads to identify problems. Where necessary, we can recommend targeted repairs, upgrades, or partial rewiring.",
+      "Frequent tripping can result from overload, short circuits, high starting current, low or unbalanced voltage, mechanical problems, incorrect protection settings or a poorly sized motor. We diagnose the electrical and mechanical causes before recommending corrective action.",
     category: "electrical",
     featured: true,
   },
 
   {
     id: "electrical-3",
-    question: "Can you handle new electrical installations and rewiring?",
+    question: "What is a VFD, and when should I use one for my pump or motor?",
     answer:
-      "Yes. We provide electrical installation and upgrade services for suitable residential, commercial, and other projects, including wiring, distribution, lighting, sockets, protection systems, and related electrical infrastructure.",
+      "A Variable Frequency Drive (VFD) controls an AC motor's speed and torque by varying its frequency and voltage. It is particularly useful where motor speed needs to vary with demand, such as water pumping, pressure control and variable-flow applications.",
     category: "electrical",
+    featured: true,
   },
 
   {
     id: "electrical-4",
-    question: "Can you install backup power systems?",
+    question:
+      "Can a VFD reduce energy consumption and improve pump or motor performance?",
     answer:
-      "Yes. Depending on your requirements, backup solutions can include generators, inverter systems, batteries, solar, or hybrid configurations. We assess your critical loads and operating requirements before recommending the appropriate solution.",
+      "Yes, where the application is suitable. For variable-flow centrifugal pumps, reducing motor speed can substantially reduce power demand; under ideal conditions, pump power varies approximately with the cube of speed. We assess the duty cycle and operating profile to determine whether a VFD is technically and economically worthwhile.",
     category: "electrical",
+    featured: true,
   },
 
   {
     id: "electrical-5",
     question:
-      "Are your electrical installations compliant with Kenyan requirements?",
+      "Why is my motor overheating, drawing excessive current or losing performance?",
     answer:
-      "Electrical work should be carried out in accordance with applicable Kenyan regulatory and technical requirements. We assess the project requirements and apply the relevant standards and compliance procedures within the scope of the work.",
+      "Common causes include overloading, phase imbalance, low or high voltage, poor ventilation, bearing problems, incorrect motor sizing, frequent starts or incorrect VFD settings. We measure electrical parameters and inspect the motor and driven equipment to identify the root cause rather than simply replacing components.",
+    category: "electrical",
+  },
+
+  {
+    id: "electrical-6",
+    question:
+      "Why do my circuit breakers, RCDs or other protection devices keep tripping?",
+    answer:
+      "Repeated tripping is a warning that should not be ignored. Possible causes include overloads, earth leakage, short circuits, insulation faults, incorrect protection ratings or equipment faults. We test the circuit, identify the cause and verify that protection is correctly coordinated with the installation.",
+    category: "electrical",
+  },
+
+  {
+    id: "electrical-7",
+    question:
+      "Can you diagnose voltage problems, phase imbalance and other electrical faults?",
+    answer:
+      "Yes. We can investigate issues such as under/over-voltage, phase imbalance, voltage drops, earth faults, nuisance tripping and abnormal motor currents using appropriate electrical measurements and diagnostic testing. We then recommend corrective action based on the measured condition.",
+    category: "electrical",
+    featured: true,
+  },
+
+  {
+    id: "electrical-8",
+    question:
+      "Can you design, install, test and maintain complete electrical distribution systems?",
+    answer:
+      "Yes. We provide end-to-end electrical engineering services covering load assessment, distribution design, cable sizing, switchgear and protection, installation, testing, commissioning and maintenance for residential, commercial and industrial applications. All applicable electrical works are undertaken in accordance with relevant Kenyan regulatory and technical requirements.",
     category: "electrical",
   },
 
   // ============================================================
-  // BOREHOLES — 5 QUESTIONS
-  // ============================================================
-
-  {
-    id: "boreholes-1",
-    question: "How do I know if I can drill a borehole on my property?",
-    answer:
-      "Groundwater availability varies by location and geology. A professional hydrogeological assessment helps identify suitable drilling locations and provides information for planning the borehole. A survey cannot guarantee a particular water yield.",
-    category: "boreholes",
-    isPopular: true,
-    featured: true,
-  },
-
-  {
-    id: "boreholes-2",
-    question: "How deep will my borehole need to be?",
-    answer:
-      "There is no universal depth. Borehole depth depends on local geology, aquifer conditions, groundwater levels, target yield, and site-specific findings. The required depth should be determined through professional assessment and drilling conditions.",
-    category: "boreholes",
-  },
-
-  {
-    id: "boreholes-3",
-    question: "Can you conduct a hydrogeological survey before drilling?",
-    answer:
-      "Yes. A professional groundwater assessment can help determine suitable drilling locations and inform borehole design. Depending on the site, the investigation may use hydrogeological and geophysical methods.",
-    category: "boreholes",
-  },
-
-  {
-    id: "boreholes-4",
-    question: "Can you guarantee that drilling will find water?",
-    answer:
-      "No responsible contractor should guarantee a specific water yield before drilling. Groundwater conditions vary naturally. Professional site assessment can improve decision-making and reduce drilling risk, but it cannot eliminate geological uncertainty.",
-    category: "boreholes",
-    isPopular: true,
-    featured: true,
-  },
-
-  {
-    id: "boreholes-5",
-    question: "Can you install and power my borehole pump with solar?",
-    answer:
-      "Yes. We can design borehole pumping solutions around the required water volume, pumping head, borehole conditions, power availability, and intended use. Solar-powered pumping can be particularly useful for farms, remote sites, and properties seeking to reduce electricity or fuel costs.",
-    category: "boreholes",
-  },
-
-  // ============================================================
-  // PLUMBING — 5 QUESTIONS
+  // PLUMBING
   // ============================================================
 
   {
     id: "plumbing-1",
-    question: "Why is my water pressure low?",
+    question: "How much does a plumbing installation or repair cost?",
     answer:
-      "Low pressure can be caused by undersized pipes, blocked filters, leaking pipes, pump problems, inadequate tank elevation, faulty valves, restrictions in the supply, or insufficient incoming pressure. We can inspect the system to identify the cause.",
+      "The cost depends on the scope of work, materials, pipe sizes, fittings, accessibility and site conditions. We assess the requirement first and provide a clear quotation outlining the work, materials and applicable costs before proceeding.",
     category: "plumbing",
-    isPopular: true,
     featured: true,
   },
 
   {
     id: "plumbing-2",
-    question: "Why do my pipes keep leaking?",
+    question: "Why is my water pressure low? How do I boost it?",
     answer:
-      "Recurring leaks may be caused by aging pipes, excessive pressure, poor joints, corrosion, movement, unsuitable materials, or previous poor-quality repairs. We can identify the source and recommend a durable repair or replacement.",
+      "Low pressure can result from undersized pipes, inadequate supply pressure, blocked pipes or filters, elevation differences, leaking systems or an incorrectly sized pump. We identify the cause first, then recommend the appropriate solution—such as pipe upgrades, pressure boosting or pump optimisation.",
     category: "plumbing",
+    featured: true,
   },
 
   {
     id: "plumbing-3",
-    question: "Can you repair burst pipes and major leaks?",
+    question: "Why do my pipes keep leaking or bursting?",
     answer:
-      "Yes. We can diagnose and repair common plumbing failures such as burst pipes, leaking joints, damaged valves, and other water-supply problems. If a leak is severe, shut off the water supply where possible to limit property damage.",
+      "Recurring leaks can indicate excessive pressure, poor-quality materials, unsuitable fittings, incorrect installation, corrosion or movement within the pipework. We inspect the system to identify the root cause and recommend a durable repair or replacement rather than repeatedly treating the same leak.",
     category: "plumbing",
-    featured: true,
   },
 
   {
     id: "plumbing-4",
-    question: "Can you replace old or damaged plumbing?",
+    question: "Why are my drains blocked or backing up?",
     answer:
-      "Yes. We can replace sections of damaged pipework or undertake larger plumbing upgrades where the existing installation is no longer reliable or suitable for the property's requirements.",
+      "Common causes include grease and debris, unsuitable items entering the drainage system, inadequate pipe gradients, undersized pipes, damaged pipework or insufficient ventilation. We diagnose the blockage and inspect the drainage arrangement where necessary before carrying out corrective work.",
     category: "plumbing",
+    featured: true,
   },
 
   {
     id: "plumbing-5",
-    question: "Can you install plumbing for a new house or building?",
+    question:
+      "Do you design and install complete plumbing systems for new buildings?",
     answer:
-      "Yes. We can provide plumbing installation according to the building's design, water demand, fixtures, storage arrangement, drainage requirements, and applicable project specifications.",
+      "Yes. We provide end-to-end plumbing services covering water supply, sanitary fittings, hot and cold-water systems, drainage, storage and pumping. We coordinate the design and installation with other building services and applicable requirements under Kenya's National Building Code 2024.",
+    category: "plumbing",
+    featured: true,
+  },
+
+  {
+    id: "plumbing-6",
+    question:
+      "Can you connect my plumbing system to a borehole, water tank or pump?",
+    answer:
+      "Yes. We can integrate water sources, storage tanks and pumping systems into your building's plumbing network. We consider flow requirements, pressure, elevation, pipe sizing, pump capacity and storage volume to deliver a reliable water supply.",
+    category: "plumbing",
+    featured: true,
+  },
+
+  {
+    id: "plumbing-7",
+    question: "Can you install hot-water systems and water heaters?",
+    answer:
+      "Yes. We install and integrate suitable hot-water systems, including electric water heaters and solar water-heating solutions, according to the property's hot-water demand. We size the system around the number of users, usage patterns and required hot-water volume.",
+    category: "plumbing",
+  },
+
+  {
+    id: "plumbing-8",
+    question: "Can you repair or upgrade an existing plumbing system?",
+    answer:
+      "Yes. We handle individual repairs as well as system upgrades, including leaking pipes, faulty valves, low-pressure problems, tank and pump connections, drainage issues and replacement of ageing pipework. Where appropriate, we assess the wider system so the repair addresses the underlying problem.",
+    category: "plumbing",
+  },
+
+  {
+    id: "plumbing-9",
+    question: "Do you provide plumbing maintenance and emergency repairs?",
+    answer:
+      "Yes. We provide scheduled maintenance and responsive repair services for residential, commercial and institutional plumbing systems. Maintenance can include leak detection, pressure checks, pump and tank inspections, valve checks, drainage inspection and preventive repairs to reduce unexpected failures.",
     category: "plumbing",
   },
 
   // ============================================================
-  // IRRIGATION — 5 QUESTIONS
+  // BOREHOLES
   // ============================================================
 
   {
-    id: "irrigation-1",
-    question: "Which irrigation system is best for my farm or garden?",
+    id: "boreholes-1",
+    question: "How much does it cost to drill and equip a borehole?",
     answer:
-      "The right system depends on crop or plant type, soil, water source, available pressure, field size, terrain, water quality, and budget. Options may include drip, sprinkler, micro-irrigation, or a combination.",
-    category: "irrigation",
-    isPopular: true,
+      "There is no standard borehole price because costs depend on location, anticipated depth, ground conditions, drilling diameter, casing requirements, test pumping, pump capacity and water-storage needs. We provide a project-specific quotation based on the recommended design and scope.",
+    category: "boreholes",
     featured: true,
   },
 
   {
-    id: "irrigation-2",
-    question: "Why is my irrigation system using too much water?",
+    id: "boreholes-2",
+    question: "How do I know if there is groundwater on my property?",
     answer:
-      "High water use can result from incorrect scheduling, leaks, poor sprinkler selection, excessive pressure, uneven distribution, evaporation, runoff, or watering areas that do not need the same amount of water. A system assessment can identify opportunities to improve efficiency.",
-    category: "irrigation",
-  },
-
-  {
-    id: "irrigation-3",
-    question: "Can you design an irrigation system from scratch?",
-    answer:
-      "Yes. We assess the water source, required flow, field or landscape layout, elevation, crop or plant requirements, and pumping conditions before designing the system.",
-    category: "irrigation",
-  },
-
-  {
-    id: "irrigation-4",
-    question: "Can you automate my irrigation system?",
-    answer:
-      "Yes. Depending on the project, irrigation can be automated using programmable controllers, valves, sensors, pumps, and other control equipment. Automation can improve scheduling and reduce unnecessary watering.",
-    category: "irrigation",
-    isPopular: true,
+      "A hydrogeological survey provides the professional basis for identifying suitable drilling targets. We assess available groundwater information, geology, hydrogeological conditions and site characteristics before recommending the most suitable drilling location.",
+    category: "boreholes",
     featured: true,
   },
 
   {
-    id: "irrigation-5",
+    id: "boreholes-3",
+    question: "Why is a hydrogeological survey necessary before drilling?",
+    answer:
+      "It reduces the risk of drilling in an unsuitable location and helps determine the most promising drilling point, expected geological conditions and groundwater potential. WRA identifies hydrogeological assessment and professional groundwater development as important measures for reducing borehole failure.",
+    category: "boreholes",
+  },
+
+  {
+    id: "boreholes-4",
+    question: "How deep is my borehole likely to be?",
+    answer:
+      "Depth varies significantly by location, geology and aquifer characteristics. A hydrogeological assessment can provide an informed estimate, but the actual depth is confirmed during drilling as geological formations and water-bearing zones are encountered.",
+    category: "boreholes",
+    featured: true,
+  },
+
+  {
+    id: "boreholes-5",
+    question: "Can you guarantee that we will find sufficient water?",
+    answer:
+      "No responsible groundwater professional can guarantee a specific water yield before drilling and testing. We use hydrogeological assessment and professional siting to reduce the risk, then verify the borehole's performance through testing before selecting the final pumping equipment.",
+    category: "boreholes",
+    featured: true,
+  },
+
+  {
+    id: "boreholes-6",
     question:
-      "Can irrigation run from a borehole, tank, or solar-powered pump?",
+      "How do you determine the yield and sustainable pumping rate of a borehole?",
     answer:
-      "Yes. Irrigation can be designed around boreholes, storage tanks, harvested rainwater, mains supply, or solar-powered pumping systems. The design must account for available water, flow, pressure, filtration, pumping requirements, and irrigation demand.",
-    category: "irrigation",
+      "After drilling and development, we conduct pumping and recovery tests to evaluate water levels, drawdown, borehole performance and aquifer response. The results help establish an appropriate abstraction rate rather than simply selecting a pump based on the borehole's maximum instantaneous yield. WRA provides specific codes of practice for borehole pumping tests and sustainable groundwater development.",
+    category: "boreholes",
+  },
+
+  {
+    id: "boreholes-7",
+    question:
+      "What happens if the borehole produces less water than expected?",
+    answer:
+      "We first evaluate the measured yield, water levels, drawdown and pumping-test results. Depending on the findings, options may include borehole development, adjusting the abstraction rate, selecting a suitably sized pump or reviewing storage requirements. We do not recommend over-pumping a low-yield borehole.",
+    category: "boreholes",
+  },
+
+  {
+    id: "boreholes-8",
+    question:
+      "Is borehole water safe for drinking, domestic use or irrigation?",
+    answer:
+      "Not automatically. Groundwater quality must be established through laboratory testing before deciding its intended use. We can arrange water-quality analysis for relevant physical, chemical and microbiological parameters and advise on appropriate treatment where required. Kenya has a potable-water standard covering water intended for direct human consumption and domestic use.",
+    category: "boreholes",
+    featured: true,
+  },
+
+  {
+    id: "boreholes-9",
+    question: "What pump and equipment will my borehole need?",
+    answer:
+      "Pump selection is based on the tested borehole yield, required flow rate, pumping head, water level, depth, operating hours and end-use requirements. We can design the complete system, including the submersible pump, rising main, controls, protection, power supply, solar system and water storage where applicable.",
+    category: "boreholes",
+  },
+
+  {
+    id: "boreholes-10",
+    question:
+      "Can you provide the complete borehole solution, including drilling, testing, pumping, solar and water storage?",
+    answer:
+      "Yes. We can coordinate the complete solution from hydrogeological assessment and drilling through borehole development, testing, water-quality analysis, pump selection, solar power, controls and water storage. Where applicable, we also support the documentation and water-use permitting process required by the Water Resources Authority. WRA's permitting process includes hydrogeological assessment, borehole completion records, water-quality analysis, inspection and issuance of the water-use permit.",
+    category: "boreholes",
   },
 
   // ============================================================
-  // WATER STORAGE — 5 QUESTIONS
+  // WATER STORAGE
   // ============================================================
 
   {
     id: "water-storage-1",
-    question: "What size water tank do I need?",
+    question: "What size water tank or reservoir do I need?",
     answer:
-      "Tank size depends on daily water demand, number of users, irrigation requirements, available water supply, reliability of the source, and how many days of storage you need. We calculate the appropriate capacity based on your requirements.",
+      "The right capacity depends on daily water demand, supply reliability, peak usage, available space and the required backup period. We assess your consumption and supply pattern to determine the appropriate storage volume rather than recommending a standard tank size.",
     category: "water-storage",
-    isPopular: true,
     featured: true,
   },
 
   {
     id: "water-storage-2",
-    question: "Why does my water tank run empty too quickly?",
+    question:
+      "How much water storage do I need for my home, farm, business or institution?",
     answer:
-      "The problem may be caused by insufficient tank capacity, high consumption, leaks, irrigation demand, pump problems, or an unreliable water source. We assess the complete water system rather than simply recommending a larger tank.",
+      "We size storage based on number of users, daily demand, operating requirements and expected supply interruptions. For larger facilities, we also consider peak demand, pumping capacity and required reserve levels to ensure storage supports actual operations.",
     category: "water-storage",
     featured: true,
   },
 
   {
     id: "water-storage-3",
-    question: "Can you design and install a complete water storage system?",
+    question: "How much does a complete water storage system cost?",
     answer:
-      "Yes. We can design storage arrangements around your water source, daily demand, available space, pumping requirements, and distribution system.",
+      "Cost depends on tank capacity, material, support structure, site conditions, pump capacity, pipework, controls and installation requirements. We provide a project-specific quotation with the equipment, installation scope and applicable costs clearly identified.",
     category: "water-storage",
+    featured: true,
   },
 
   {
     id: "water-storage-4",
     question:
-      "Can you connect a water tank to a borehole or rainwater harvesting system?",
+      "Which is best for my project — plastic, steel, GRP or concrete storage?",
     answer:
-      "Yes. Tanks can be integrated with suitable borehole pumps, rainwater harvesting systems, mains supply, pressure systems, and irrigation networks depending on the site configuration.",
+      "There is no universally best material. We select based on capacity, location, structural requirements, water quality, expected service life, installation conditions and budget. We can recommend and compare suitable options so you can make an informed decision.",
     category: "water-storage",
+    featured: true,
   },
 
   {
     id: "water-storage-5",
-    question: "Do you install elevated water tanks and towers?",
+    question:
+      "Should my tank be installed on the ground or on a water tower?",
     answer:
-      "Yes, where appropriate to the project. Elevated storage can provide gravity-assisted distribution, but the structure and tank arrangement must be designed for the required load, height, water demand, and site conditions.",
+      "It depends on the required water pressure and system design. Ground-level storage is generally simpler and can be paired with a booster pump, while elevated storage can provide gravity-fed pressure. We assess the site elevation, demand and distribution requirements before selecting the appropriate arrangement.",
+    category: "water-storage",
+  },
+
+  {
+    id: "water-storage-6",
+    question:
+      "How high should my storage tank be to achieve enough pressure?",
+    answer:
+      "Water pressure from an elevated tank depends primarily on the vertical difference between the water level and the point of use. Approximately 10 metres of water head provides about 1 bar of static pressure, before accounting for pipe friction and other losses. We calculate the required head depending on use and, where feasible, specify a booster pump.",
+    category: "water-storage",
+    featured: true,
+  },
+
+  {
+    id: "water-storage-7",
+    question:
+      "How can I prevent contamination, algae and sediment in my tank?",
+    answer:
+      "Good storage hygiene starts with a covered tank, secure access, suitable inlet and overflow arrangements, proper drainage and regular inspection and cleaning. For potable water, we also consider the quality of the incoming water and appropriate treatment requirements. Kenyan water-quality requirements emphasize protecting water quality throughout water-service systems.",
     category: "water-storage",
   },
 
   // ============================================================
-  // WATER HARVESTING — 5 QUESTIONS
+  // WATER HARVESTING
   // ============================================================
 
   {
     id: "water-harvesting-1",
-    question: "Can I collect rainwater from my roof?",
+    question: "How much rainwater can I harvest from my roof or property?",
     answer:
-      "Yes. Roof rainwater harvesting can collect water for suitable domestic, agricultural, cleaning, irrigation, or other uses. The system should be designed around roof area, rainfall, collection efficiency, storage capacity, water demand, and intended use.",
+      "Harvestable water depends mainly on catchment area, rainfall and collection efficiency. As a simple planning estimate, 1 mm of rainfall on 1 m² produces approximately 1 litre of water before collection losses. We use site-specific rainfall data and catchment characteristics to estimate realistic annual and seasonal yield.",
     category: "water-harvesting",
-    isPopular: true,
     featured: true,
   },
 
   {
     id: "water-harvesting-2",
-    question: "How much rainwater can I harvest?",
+    question: "How much does a rainwater harvesting system cost?",
     answer:
-      "Potential harvest depends mainly on roof catchment area, rainfall, runoff characteristics, and collection efficiency. Storage should be sized around local rainfall patterns and the property's actual water demand.",
+      "Cost depends on the catchment area, storage capacity, tank or reservoir type, earthworks, gutters, filtration, pumps and distribution requirements. We assess the site and provide a clear project-specific quotation covering the recommended system and installation scope.",
     category: "water-harvesting",
+    featured: true,
   },
 
   {
     id: "water-harvesting-3",
-    question: "Is harvested rainwater safe to drink?",
+    question: "What size storage tank or reservoir do I need?",
     answer:
-      "Rainwater should not automatically be assumed to be potable. Drinking-water use requires appropriate collection hygiene, filtration, disinfection, and suitable water-quality testing. The treatment required depends on the source and intended use.",
+      "We size storage using water demand, catchment yield, rainfall patterns, storage losses and the required reserve period. For applicable commercial, institutional and industrial buildings, current Kenyan regulations provide for storage equivalent to seven days of average water demand, subject to the applicable provisions and exceptions.",
     category: "water-harvesting",
-    isPopular: true,
     featured: true,
   },
 
   {
     id: "water-harvesting-4",
-    question: "Can rainwater harvesting reduce my water bills?",
+    question:
+      "Can you design and construct water pans, farm ponds and small reservoirs?",
     answer:
-      "It can reduce dependence on purchased or mains water for suitable applications, particularly irrigation, cleaning, and other non-potable uses. The financial benefit depends on rainfall, storage capacity, water demand, and the cost of alternative water supplies.",
+      "Yes. We can develop water-harvesting solutions ranging from farm ponds and water pans to larger storage reservoirs, based on catchment area, expected runoff, soil conditions, storage requirements and intended use. We also consider appropriate approvals and technical requirements for the project.",
     category: "water-harvesting",
+    featured: true,
   },
 
   {
     id: "water-harvesting-5",
-    question: "Can you design a complete rainwater harvesting system?",
+    question:
+      "How do you design a harvesting system to provide water through the dry season?",
     answer:
-      "Yes. A complete system can include roof collection, gutters, first-flush arrangements, filtration, storage, pumps, distribution, and appropriate treatment depending on the intended use.",
+      "We analyse rainfall patterns, catchment yield, water demand and available storage to determine how much water can realistically be captured and carried into the dry period. The design may combine roof harvesting, runoff collection, storage reservoirs, pumping and efficient irrigation to extend water availability between rainfall events.",
     category: "water-harvesting",
+    featured: true,
+  },
+
+  // ============================================================
+  // IRRIGATION
+  // ============================================================
+
+  {
+    id: "irrigation-1",
+    question: "How much does an irrigation system cost per acre?",
+    answer:
+      "There is no fixed cost per acre. Pricing depends on the irrigation method, crop, field layout, water source, pumping requirements, terrain, pipework and level of automation. We assess the farm and provide a project-specific design and quotation before installation.",
+    category: "irrigation",
+    featured: true,
+  },
+
+  {
+    id: "irrigation-2",
+    question:
+      "Which irrigation system is best for my farm — drip, sprinkler or another system?",
+    answer:
+      "The best system depends on your crop, soil, water availability, field size, terrain and budget. Drip is well suited to many high-value and row crops, while sprinklers can suit a wide range of field and tree crops. We select the method based on the farm's actual operating requirements rather than selling a standard package.",
+    category: "irrigation",
+    featured: true,
+  },
+
+  {
+    id: "irrigation-3",
+    question: "How much water does my crop and farm require?",
+    answer:
+      "Water requirements vary with crop type, growth stage, climate, soil and effective rainfall. We calculate irrigation demand using factors such as reference evapotranspiration (ETo) and crop coefficient (Kc), then account for system efficiency to determine the required irrigation volume.",
+    category: "irrigation",
+    featured: true,
+  },
+
+  {
+    id: "irrigation-4",
+    question:
+      "Can you design an irrigation system specifically for my crops and field?",
+    answer:
+      "Yes. We design systems around your crop, acreage, water source, soil, topography, required flow and irrigation schedule. The design determines pipe sizes, pump capacity, operating pressure, zones, emitters or sprinklers and control requirements.",
+    category: "irrigation",
+  },
+
+  {
+    id: "irrigation-5",
+    question: "Can solar power my irrigation pump?",
+    answer:
+      "Yes. Solar pumping can be used for boreholes, rivers, tanks and other suitable water sources. We size the solar array, pump, controller and storage based on the required flow, pumping head, operating hours and available solar resource, with battery storage included where the application requires it.",
+    category: "irrigation",
+    featured: true,
+  },
+
+  {
+    id: "irrigation-6",
+    question:
+      "Why do my drip emitters or sprinklers keep blocking or delivering unevenly?",
+    answer:
+      "Common causes include sediment, algae, poor filtration, inadequate pressure, blocked emitters/nozzles, incorrect pipe sizing or uneven terrain. We check water quality, filtration, pressure and hydraulic balance before recommending corrective measures. Proper filtration and pressure control are particularly important for drip and sprinkler systems.",
+    category: "irrigation",
+  },
+
+  {
+    id: "irrigation-7",
+    question:
+      "Can you automate irrigation and control different irrigation zones?",
+    answer:
+      "Yes. We can automate irrigation using timers, solenoid valves, controllers, sensors and zone-based control. This allows different crops or field sections to be irrigated according to their individual schedules and water requirements, while reducing unnecessary manual operation.",
+    category: "irrigation",
+    featured: true,
   },
 ];
 

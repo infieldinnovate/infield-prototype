@@ -61,6 +61,7 @@ export interface Project {
   county: string;
   completionDate: string;
   featured: boolean;
+  approved?: boolean;
   challenge: string;
   solution: string;
   details: ProjectDetail[];
@@ -80,6 +81,7 @@ export const projects: Project[] = [
     county: "Meru",
     completionDate: "October 2024",
     featured: true,
+    approved: true,
     challenge:
       "Escalating electricity costs and frequent grid outages were affecting business productivity and cold storage operations.",
     solution:
@@ -137,6 +139,7 @@ export const projects: Project[] = [
     county: "Elgeyo Marakwet",
     completionDate: "January 2026",
     featured: false,
+    approved: true,
     challenge:
       "Recurring water shortages disrupted tea processing and reduced production efficiency during dry seasons.",
     solution:
@@ -194,6 +197,7 @@ export const projects: Project[] = [
     county: "Isiolo",
     completionDate: "September 2025",
     featured: true,
+    approved: true,
     challenge:
       "Traditional flood irrigation consumed excessive water, increased labour costs, and produced uneven crop performance.",
     solution:
@@ -246,6 +250,7 @@ export const projects: Project[] = [
     county: "Garissa",
     completionDate: "November 2025",
     featured: false,
+    approved: true,
     challenge:
       "The ranch relied on diesel-powered pumping, resulting in high fuel costs, frequent breakdowns, and unreliable water supply for livestock.",
     solution:
@@ -293,6 +298,7 @@ export const projects: Project[] = [
     county: "Nairobi",
     completionDate: "July 2024",
     featured: false,
+    approved: true,
     challenge:
       "A new commercial facility required a compliant electrical installation capable of supporting continuous business operations.",
     solution:
@@ -345,6 +351,7 @@ export const projects: Project[] = [
     county: "Murang'a",
     completionDate: "August 2024",
     featured: false,
+    approved: true,
     challenge:
       "Frequent leaks, unstable pressure, and aging pipework were disrupting factory production and increasing maintenance costs.",
     solution:
@@ -392,6 +399,7 @@ export const projects: Project[] = [
     county: "Kisumu",
     completionDate: "April 2025",
     featured: false,
+    approved: true,
     challenge:
       "Frequent municipal water interruptions disrupted daily operations and reduced service reliability.",
     solution:
@@ -439,6 +447,7 @@ export const projects: Project[] = [
     county: "Kajiado",
     completionDate: "August 2025",
     featured: false,
+    approved: true,
     challenge:
       "Escalating electricity costs and unreliable grid supply were affecting production efficiency.",
     solution:
@@ -486,6 +495,7 @@ export const projects: Project[] = [
     county: "Kirinyaga",
     completionDate: "May 2025",
     featured: false,
+    approved: true,
     challenge:
       "Seasonal water shortages prevented year-round farming and limited crop productivity.",
     solution:
@@ -533,6 +543,7 @@ export const projects: Project[] = [
     county: "Embu",
     completionDate: "December 2025",
     featured: false,
+    approved: true,
     challenge:
       "The client required accurate irrigation and fertigation to maximize greenhouse productivity while minimizing water use.",
     solution:
@@ -573,16 +584,20 @@ export const projects: Project[] = [
   },
 ];
 
+export function getApprovedProjects(): Project[] {
+  return projects.filter((p) => p.approved === true);
+}
+
 export function getProjectsByService(slug: string): Project[] {
-  return projects.filter((p) => p.category === slug);
+  return projects.filter((p) => p.approved === true && p.category === slug);
 }
 
 export function getProjectsByGroup(group: ProjectGroup): Project[] {
-  return projects.filter((p) => p.projectGroup === group);
+  return projects.filter((p) => p.approved === true && p.projectGroup === group);
 }
 
 export function getFeaturedProjects(limit = 3): Project[] {
-  return projects.filter((p) => p.featured).slice(0, limit);
+  return projects.filter((p) => p.approved === true && p.featured).slice(0, limit);
 }
 
 export interface GalleryMediaItem {
@@ -599,6 +614,7 @@ export function getAllGalleryMedia(): GalleryMediaItem[] {
   const media: GalleryMediaItem[] = [];
 
   for (const project of projects) {
+    if (!project.approved) continue;
     for (const galleryImage of project.gallery) {
       media.push({
         id: `${project.id}-img-${galleryImage.caption}`,

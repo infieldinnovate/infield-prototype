@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/data/site.config';
-import { projects } from '@/data/projectStats';
+import { getApprovedProjects } from '@/data/projectStats';
 import { buildProjectListSchema } from '@/lib/structured-data';
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function ProjectsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = buildProjectListSchema(projects);
+  const jsonLd = buildProjectListSchema(getApprovedProjects());
 
   return (
     <>

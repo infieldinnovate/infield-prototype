@@ -9,7 +9,7 @@ import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import {
   PROJECT_GROUPS,
   type ProjectGroup,
-  projects,
+  getApprovedProjects,
   type Project,
 } from "@/data/projectStats";
 import ProjectModal from "./ProjectModal";
@@ -34,11 +34,15 @@ export default function ProjectsPage() {
     })),
   ];
 
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === "All") return projects;
+  const approvedProjects = useMemo(() => getApprovedProjects(), []);
 
-    return projects.filter((project) => project.projectGroup === activeFilter);
-  }, [activeFilter]);
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "All") return approvedProjects;
+
+    return approvedProjects.filter(
+      (project) => project.projectGroup === activeFilter,
+    );
+  }, [activeFilter, approvedProjects]);
 
   return (
     <div className={styles.page}>

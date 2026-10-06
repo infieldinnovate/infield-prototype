@@ -6,13 +6,17 @@ import {
   PremiumCarousel,
   type PremiumSlide,
 } from "@/components/sections/PremiumCarousel";
-import { projects, getProjectGroupLabel } from "@/data/projectStats";
+import {
+  projects,
+  getProjectGroupLabel,
+} from "@/data/projectStats";
 import { ServiceIcons } from "@/data/service-icons";
 
 export default function ProjectsHeroCarousel() {
   const slides: PremiumSlide[] = useMemo(() => {
-    const featured = projects.filter((p) => p.featured);
-    const pool = featured.length >= 3 ? featured : projects;
+    const approved = projects.filter((p) => p.approved === true);
+    const featured = approved.filter((p) => p.featured);
+    const pool = featured.length >= 3 ? featured : approved;
 
     return pool.slice(0, 6).map((project) => {
       const image =

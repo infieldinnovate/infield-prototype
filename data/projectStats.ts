@@ -594,6 +594,14 @@ export function getProjectsByGroup(group: ProjectGroup): Project[] {
   );
 }
 
+export function getProjectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => p.id === slug);
+}
+
+export function getProjectSlugs(): string[] {
+  return projects.map((p) => p.id);
+}
+
 export function getFeaturedProjects(limit = 3): Project[] {
   return projects
     .filter((p) => p.approved === true && p.featured)

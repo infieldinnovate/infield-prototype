@@ -121,15 +121,9 @@ $white: $color-white;
     background: $primary;
     color: $white;
 
-    cursor: pointer;
-
     font-size: 0.9rem;
     font-weight: 600;
 
     transition: all $transition-base;
-
-    &:hover {
-      background: $primary-dark;
-    }
   }
 }

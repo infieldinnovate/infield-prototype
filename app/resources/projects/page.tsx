@@ -10,9 +10,7 @@ import {
   PROJECT_GROUPS,
   type ProjectGroup,
   getApprovedProjects,
-  type Project,
 } from "@/data/projectStats";
-import ProjectModal from "./ProjectModal";
 import ProjectMap from "../../../components/ui/ProjectMap";
 import styles from "./page.module.scss";
 import ProjectCard from "@/components/cards/ProjectCard";
@@ -24,7 +22,6 @@ type FilterCategory = "All" | ProjectGroup;
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("All");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const filterOptions: DropdownOption<FilterCategory>[] = [
     { value: "All", label: "All Projects" },
@@ -94,11 +91,7 @@ export default function ProjectsPage() {
               />
               <div className={styles.grid}>
                 {filteredProjects.map((project) => (
-                  <ProjectCard
-                    key={project.id}
-                    project={project}
-                    onClick={() => setSelectedProject(project)}
-                  />
+                  <ProjectCard key={project.id} project={project} />
                 ))}
               </div>
             </>
@@ -144,14 +137,6 @@ export default function ProjectsPage() {
           <ProjectMap />
         </div>
       </section>
-
-      {/* Modal */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
     </div>
   );
 }

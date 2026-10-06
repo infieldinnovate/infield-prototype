@@ -2,7 +2,6 @@
 
 "use client";
 
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -11,15 +10,12 @@ import styles from "./ProjectsShowcase.module.scss";
 import { SectionHeading } from "../ui/SectionHeading";
 import ProjectCard from "../cards/ProjectCard";
 import { type Project } from "@/data/projectStats";
-import ProjectModal from "@/app/resources/projects/ProjectModal";
 
 interface ProjectsShowcaseProps {
   projects: Project[];
 }
 
 const ProjectsShowcase = ({ projects }: ProjectsShowcaseProps) => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
   return (
     <section className={styles.projectsSection}>
       <div className={styles.container}>
@@ -38,11 +34,7 @@ const ProjectsShowcase = ({ projects }: ProjectsShowcaseProps) => {
             transition={{ duration: 0.6 }}
           >
             {projects.map((project) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                onClick={() => setSelectedProject(project)}
-              />
+              <ProjectCard key={project.id} project={project} />
             ))}
           </motion.div>
         </AnimatePresence>
@@ -60,14 +52,6 @@ const ProjectsShowcase = ({ projects }: ProjectsShowcaseProps) => {
           </Link>
         </motion.div>
       </div>
-
-      {/* Modal */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
     </section>
   );
 };

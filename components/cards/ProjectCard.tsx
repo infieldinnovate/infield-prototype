@@ -1,7 +1,6 @@
-// components\cards\ProjectCard.tsx
-
 "use client";
 
+import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
 import type { Project } from "@/data/projectStats";
 import styles from "./ProjectCard.module.scss";
@@ -12,10 +11,9 @@ import { useMemo } from "react";
 
 interface ProjectCardProps {
   project: Project;
-  onClick: () => void;
 }
 
-export default function ProjectCard({ project, onClick }: ProjectCardProps) {
+export default function ProjectCard({ project }: ProjectCardProps) {
   const afterImageUrls = useMemo(
     () =>
       project.gallery
@@ -31,17 +29,9 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   const hasMultipleAfterImages = afterImageUrls.length > 1;
 
   return (
-    <article
+    <Link
+      href={`/resources/projects/${project.id}`}
       className={project.featured ? styles.projectCard : styles.gridCard}
-      onClick={onClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick();
-        }
-      }}
     >
       <div className={styles.imageContainer}>
         {hasMultipleAfterImages ? (
@@ -82,17 +72,11 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           </ul>
         </div>
 
-        <button
-          className={styles.cardBtn}
-          onClick={(e) => {
-            e.stopPropagation();
-            onClick();
-          }}
-        >
+        <span className={styles.cardBtn}>
           Read Case Study
           <ArrowRight size={16} />
-        </button>
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }

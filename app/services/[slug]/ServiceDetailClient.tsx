@@ -41,7 +41,7 @@ import { getServiceBySlug, SERVICES, Service } from "@/data/services";
 import { industries } from "@/data/industries";
 import { getProjectsByService } from "@/data/projectStats";
 import { testimonials } from "@/data/testimonials";
-import { getFAQsByCategory } from "@/data/faqs";
+import { getFeaturedFAQsByCategory } from "@/data/faqs";
 import { AnimatedStats } from "@/components/sections/AnimatedStats";
 import styles from "./page.module.scss";
 import { ServiceIcons } from "@/data/service-icons";
@@ -161,7 +161,7 @@ export default function ServiceDetailClient({
   const [selectedStageId, setSelectedStageId] = useState("source");
   const [testimonialIndex, setTestimonialIndex] = useState(0);
 
-  const serviceFaqs = getFAQsByCategory(service.slug);
+  const serviceFaqs = getFeaturedFAQsByCategory(service.slug);
 
   const [openFaqId, setOpenFaqId] = useState<string | null>(
     serviceFaqs[0]?.id ?? null,
@@ -931,6 +931,15 @@ export default function ServiceDetailClient({
                 </div>
               );
             })}
+          </div>
+          <div className={styles.faqMore}>
+            <LinkButton
+              href="/resources/faq"
+              variant="outline"
+              rightIcon={ArrowRight}
+            >
+              View All {service.shortName} FAQs
+            </LinkButton>
           </div>
         </div>
       </section>

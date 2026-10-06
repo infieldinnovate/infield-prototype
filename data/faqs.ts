@@ -12,6 +12,7 @@ export interface FAQ {
   answer: string;
   category: FAQSlug;
   isPopular?: boolean;
+  featured?: boolean;
 }
 
 type FAQCategory = {
@@ -127,6 +128,7 @@ export const FAQs: FAQ[] = [
       "Savings depend on your electricity consumption, tariff, system size, solar resource, operating hours, equipment efficiency, and whether batteries are included. We estimate potential savings using your actual energy usage rather than promising a fixed percentage.",
     category: "solar",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -136,6 +138,7 @@ export const FAQs: FAQ[] = [
       "System size should be based on your electricity consumption, peak demand, appliances, operating hours, available solar resource, mounting space, backup requirements, and future expansion plans. We size the system around your actual requirements.",
     category: "solar",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -144,6 +147,7 @@ export const FAQs: FAQ[] = [
     answer:
       "A standard grid-connected solar system normally shuts down during a grid outage for safety. To keep selected loads operating during an outage, the system needs an appropriate backup configuration, typically involving batteries and compatible power-control equipment.",
     category: "solar",
+    featured: true,
   },
 
   {
@@ -173,6 +177,7 @@ export const FAQs: FAQ[] = [
       "Repeated tripping can be caused by overloaded circuits, short circuits, earth faults, faulty appliances, damaged wiring, or incorrectly rated protective devices. Do not repeatedly reset a breaker without identifying the cause. We can inspect and diagnose the electrical system.",
     category: "electrical",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -182,6 +187,7 @@ export const FAQs: FAQ[] = [
     answer:
       "Yes. We can inspect existing wiring, distribution boards, protective devices, earthing, connections, and loads to identify problems. Where necessary, we can recommend targeted repairs, upgrades, or partial rewiring.",
     category: "electrical",
+    featured: true,
   },
 
   {
@@ -220,6 +226,7 @@ export const FAQs: FAQ[] = [
       "Groundwater availability varies by location and geology. A professional hydrogeological assessment helps identify suitable drilling locations and provides information for planning the borehole. A survey cannot guarantee a particular water yield.",
     category: "boreholes",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -245,6 +252,7 @@ export const FAQs: FAQ[] = [
       "No responsible contractor should guarantee a specific water yield before drilling. Groundwater conditions vary naturally. Professional site assessment can improve decision-making and reduce drilling risk, but it cannot eliminate geological uncertainty.",
     category: "boreholes",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -266,6 +274,7 @@ export const FAQs: FAQ[] = [
       "Low pressure can be caused by undersized pipes, blocked filters, leaking pipes, pump problems, inadequate tank elevation, faulty valves, restrictions in the supply, or insufficient incoming pressure. We can inspect the system to identify the cause.",
     category: "plumbing",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -282,6 +291,7 @@ export const FAQs: FAQ[] = [
     answer:
       "Yes. We can diagnose and repair common plumbing failures such as burst pipes, leaking joints, damaged valves, and other water-supply problems. If a leak is severe, shut off the water supply where possible to limit property damage.",
     category: "plumbing",
+    featured: true,
   },
 
   {
@@ -311,6 +321,7 @@ export const FAQs: FAQ[] = [
       "The right system depends on crop or plant type, soil, water source, available pressure, field size, terrain, water quality, and budget. Options may include drip, sprinkler, micro-irrigation, or a combination.",
     category: "irrigation",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -336,6 +347,7 @@ export const FAQs: FAQ[] = [
       "Yes. Depending on the project, irrigation can be automated using programmable controllers, valves, sensors, pumps, and other control equipment. Automation can improve scheduling and reduce unnecessary watering.",
     category: "irrigation",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -358,6 +370,7 @@ export const FAQs: FAQ[] = [
       "Tank size depends on daily water demand, number of users, irrigation requirements, available water supply, reliability of the source, and how many days of storage you need. We calculate the appropriate capacity based on your requirements.",
     category: "water-storage",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -366,6 +379,7 @@ export const FAQs: FAQ[] = [
     answer:
       "The problem may be caused by insufficient tank capacity, high consumption, leaks, irrigation demand, pump problems, or an unreliable water source. We assess the complete water system rather than simply recommending a larger tank.",
     category: "water-storage",
+    featured: true,
   },
 
   {
@@ -404,6 +418,7 @@ export const FAQs: FAQ[] = [
       "Yes. Roof rainwater harvesting can collect water for suitable domestic, agricultural, cleaning, irrigation, or other uses. The system should be designed around roof area, rainfall, collection efficiency, storage capacity, water demand, and intended use.",
     category: "water-harvesting",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -421,6 +436,7 @@ export const FAQs: FAQ[] = [
       "Rainwater should not automatically be assumed to be potable. Drinking-water use requires appropriate collection hygiene, filtration, disinfection, and suitable water-quality testing. The treatment required depends on the source and intended use.",
     category: "water-harvesting",
     isPopular: true,
+    featured: true,
   },
 
   {
@@ -442,6 +458,14 @@ export const FAQs: FAQ[] = [
 
 export function getFAQsByCategory(category: FAQSlug): FAQ[] {
   return FAQs.filter((f) => f.category === category);
+}
+
+export function getFeaturedFAQsByCategory(category: FAQSlug): FAQ[] {
+  const featured = FAQs.filter(
+    (f) => f.category === category && f.featured,
+  );
+  if (featured.length > 0) return featured;
+  return getFAQsByCategory(category);
 }
 
 export const getPopularFAQs = (count = 5) => {

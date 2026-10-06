@@ -1,8 +1,10 @@
 // app\page.tsx
 
 import type { Metadata } from "next";
+import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FAQAccordion } from "@/components/ui/FAQAccordion";
+import { LinkButton } from "@/components/ui/LinkButton";
 import { CertificationsSection } from "@/components/sections/CertificationsSection";
 import { IndustriesPreview } from "@/components/sections/IndustriesPreview";
 import { BeforeAfterSlider } from "@/components/sections/BeforeAfterSlider";
@@ -87,6 +89,11 @@ export default function HomePage() {
             description="Find answers to common questions about our services and process."
           />
           <FAQAccordion faqs={popularFAQs} />
+          <div className={styles.faqMoreLink}>
+            <LinkButton href="/resources/faq" variant="outline" rightIcon={ArrowRight}>
+              View All FAQs
+            </LinkButton>
+          </div>
         </div>
       </section>
     </>

@@ -8,3 +8,9 @@
 .section {
   @include section;
 }
+
+.faqMoreLink {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+}

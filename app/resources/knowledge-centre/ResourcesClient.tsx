@@ -165,6 +165,17 @@ export default function ResourcesPage() {
                     </div>
                   ))}
                 </div>
+                {filteredFAQs.length > 5 && (
+                  <div className={styles.faqMoreLink}>
+                    <LinkButton
+                      href="/resources/faq"
+                      variant="outline"
+                      rightIcon={ArrowRight}
+                    >
+                      View All FAQs
+                    </LinkButton>
+                  </div>
+                )}
               </div>
             )}
             {filteredArticles.length === 0 && filteredFAQs.length === 0 && (

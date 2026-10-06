@@ -233,6 +233,12 @@
   line-height: var(--lh-relaxed);
 }
 
+.faqMoreLink {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
 .noResults {
   @include flex-center;
   padding: var(--space-16);

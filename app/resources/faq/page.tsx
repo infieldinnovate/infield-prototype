@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import FAQClient from "./FAQClient";
 import { siteConfig } from "@/data/site.config";
 
@@ -26,5 +27,9 @@ export const metadata: Metadata = {
 };
 
 export default function FAQPage() {
-  return <FAQClient />;
+  return (
+    <Suspense>
+      <FAQClient />
+    </Suspense>
+  );
 }

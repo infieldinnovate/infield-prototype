@@ -4,7 +4,8 @@
 // FAQ Page
 // ============================================
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import {
   Phone,
@@ -105,7 +106,19 @@ export default function FAQPage() {
   // ------------------------------------------
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeView, setActiveView] = useState<FAQView>("general");
+  const searchParams = useSearchParams();
+  const initialCategory = searchParams.get("category") as FAQSlug | null;
+  const [activeView, setActiveView] = useState<FAQView>(
+    initialCategory ?? "general",
+  );
+
+  useEffect(() => {
+    const param = searchParams.get("category") as FAQSlug | null;
+    if (param && FAQ_CATEGORIES.some((c) => c.slug === param)) {
+      setSearchQuery("");
+      setActiveView(param);
+    }
+  }, [searchParams]);
 
   // ------------------------------------------
   // Current FAQ Results

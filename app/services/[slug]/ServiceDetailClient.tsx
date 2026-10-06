@@ -934,7 +934,7 @@ export default function ServiceDetailClient({
           </div>
           <div className={styles.faqMore}>
             <LinkButton
-              href="/resources/faq"
+              href={`/resources/faq?category=${service.slug}`}
               variant="outline"
               rightIcon={ArrowRight}
             >

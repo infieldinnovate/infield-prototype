@@ -165,13 +165,9 @@ export const projects: Project[] = [
       "Commissioning",
     ],
     videos: [
-      // {
-      //   platform: "local",
-      //   url: "/videos/borehole_20250709.mp4",
-      // },
       {
         platform: "youtube",
-        url: "https://youtu.be/vrTxUhGeFbQ",
+        url: "https://youtu.be/vrTxUhGeFbQ?rel=0",
       },
     ],
     gallery: [
@@ -593,11 +589,15 @@ export function getProjectsByService(slug: string): Project[] {
 }
 
 export function getProjectsByGroup(group: ProjectGroup): Project[] {
-  return projects.filter((p) => p.approved === true && p.projectGroup === group);
+  return projects.filter(
+    (p) => p.approved === true && p.projectGroup === group,
+  );
 }
 
 export function getFeaturedProjects(limit = 3): Project[] {
-  return projects.filter((p) => p.approved === true && p.featured).slice(0, limit);
+  return projects
+    .filter((p) => p.approved === true && p.featured)
+    .slice(0, limit);
 }
 
 export interface GalleryMediaItem {

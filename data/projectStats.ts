@@ -49,7 +49,7 @@ export interface ProjectTestimonial {
 }
 
 export interface ProjectVideo {
-  platform: "youtube" | "tiktok" | "facebook" | "local";
+  platform: "youtube" | "tiktok" | "facebook";
   url: string;
 }
 
@@ -607,7 +607,7 @@ export interface GalleryMediaItem {
   type: "image" | "video";
   projectTitle: string;
   projectCounty: string;
-  platform?: "youtube" | "tiktok" | "facebook" | "local";
+  platform?: "youtube" | "tiktok" | "facebook";
 }
 
 export function getAllGalleryMedia(): GalleryMediaItem[] {

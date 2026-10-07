@@ -39,11 +39,16 @@ function shuffle<T>(arr: T[]): T[] {
 export default function GalleryPage() {
   const sourceMedia = useMemo(() => getAllGalleryMedia(), []);
 
-  // Build an infinite feed by cycling through a shuffled copy of the source.
-  const shuffledPool = useMemo(() => shuffle(sourceMedia), [sourceMedia]);
+  // Start with source order (deterministic) so server and client match.
+  // Shuffle only after mount to avoid hydration mismatch from Math.random().
+  const [shuffledPool, setShuffledPool] = useState(sourceMedia);
+
+  useEffect(() => {
+    setShuffledPool(shuffle(sourceMedia));
+  }, [sourceMedia]);
 
   const [visibleCount, setVisibleCount] = useState(() =>
-    Math.min(BATCH_SIZE, shuffledPool.length),
+    Math.min(BATCH_SIZE, sourceMedia.length),
   );
   const [loading, setLoading] = useState(false);
   const [modalIndex, setModalIndex] = useState<number | null>(null);

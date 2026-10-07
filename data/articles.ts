@@ -2,12 +2,39 @@
 // Articles / Knowledge Centre Data
 // ============================================
 
-import { getEmployeeById } from "./teamData";
-import { ServiceSlug, SERVICE_CATEGORIES } from "@/data/services";
+import { getEmployeeById, type Employee } from "./teamData";
+import { ServiceSlug, SERVICE_CATEGORIES, getServiceBySlug } from "@/data/services";
 
 export interface ArticleSection {
   heading: string;
   paragraphs: string[];
+}
+
+export interface ArticleFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface ArticleCaseStudy {
+  challenge: string;
+  assessment: string;
+  solution: string;
+  implementation: string;
+  result: string;
+  projectLink?: string;
+  projectLinkLabel?: string;
+}
+
+export interface ArticleSource {
+  name: string;
+  url?: string;
+}
+
+export interface ArticleCTA {
+  title: string;
+  description: string;
+  buttonText: string;
+  href: string;
 }
 
 export interface Article {
@@ -21,9 +48,18 @@ export interface Article {
   publishDate: string;
   updatedDate?: string;
   authorId: string;
+  reviewerId?: string;
   featured: boolean;
   content: ArticleSection[];
   tags: string[];
+  keyTakeaways: string[];
+  tableOfContents?: string[];
+  faqs?: ArticleFAQ[];
+  caseStudy?: ArticleCaseStudy;
+  practicalSummary?: string[];
+  sources?: ArticleSource[];
+  relatedServiceSlugs?: ServiceSlug[];
+  cta?: ArticleCTA;
 }
 
 export const articles: Article[] = [
@@ -38,8 +74,71 @@ export const articles: Article[] = [
     readingTime: "8 min read",
     publishDate: "2024-06-15",
     authorId: "tm4",
+    reviewerId: "tm1",
     featured: true,
     tags: ["solar", "residential", "installation", "panels", "inverters"],
+    keyTakeaways: [
+      "System size is determined by your electricity consumption, not roof area.",
+      "Monocrystalline panels offer the highest efficiency when roof space is limited.",
+      "Lithium-ion (LiFePO4) batteries are the current standard for solar storage.",
+      "A professional site assessment is essential before final system design.",
+    ],
+    tableOfContents: [
+      "Why Go Solar?",
+      "Assessing Your Roof and Site",
+      "Sizing Your System",
+      "Choosing Panels and Inverters",
+      "Battery Storage: Do You Need It?",
+      "Installation and Commissioning",
+    ],
+    faqs: [
+      {
+        question: "How long does a residential solar installation take?",
+        answer: "A typical residential installation takes 1–3 days depending on system complexity, roof type, and whether battery storage is included.",
+      },
+      {
+        question: "How much can I save on my electricity bill with solar?",
+        answer: "A well-designed system can reduce your monthly power bill by 70% or more, depending on system size, consumption patterns, and whether battery storage is included.",
+      },
+      {
+        question: "Do I need battery storage for my solar system?",
+        answer: "Batteries are essential if you experience frequent power outages, want to use solar energy after sunset, or live off-grid. Without batteries, a grid-tied system shuts down during outages for safety reasons.",
+      },
+      {
+        question: "What maintenance does a solar system require?",
+        answer: "Solar systems require minimal maintenance — periodic panel cleaning, annual electrical inspections, and performance reviews. Most panels carry 25-year performance warranties.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A homeowner in Nakuru experienced frequent power outages and rising electricity costs, with no backup power solution.",
+      assessment: "Our team evaluated the household's energy consumption, roof orientation, and shading to determine optimal system size and configuration.",
+      solution: "A 6kW solar array with 10kWh lithium battery storage, providing daytime power and overnight backup for essential loads.",
+      implementation: "Installation completed in 2 days with minimal disruption. System commissioned with real-time monitoring enabled.",
+      result: "The homeowner reduced grid dependence by 85% and maintained power throughout outages, with annual savings of approximately KSh 180,000.",
+      projectLink: "/resources/projects",
+      projectLinkLabel: "View Solar Projects",
+    },
+    practicalSummary: [
+      "A verified site assessment including roof orientation, shading, and structural integrity",
+      "Correct system sizing based on 12 months of electricity consumption data",
+      "Tier-1 panels with 25-year performance warranties",
+      "Hybrid inverter if battery storage is planned now or in the future",
+      "Battery capacity sized to essential loads, not total consumption",
+      "Annual maintenance plan including panel cleaning and electrical inspection",
+    ],
+    sources: [
+      { name: "Energy and Petroleum Regulatory Authority (EPRA)" },
+      { name: "Kenya Bureau of Standards (KEBS) — KS IEC 6259" },
+      { name: "IEC 61730 — Photovoltaic module safety qualification" },
+      { name: "IEC 61215 — Crystalline silicon module quality" },
+    ],
+    relatedServiceSlugs: ["solar", "electrical"],
+    cta: {
+      title: "Need a Solar Energy Assessment?",
+      description: "Our engineers can assess your roof, energy consumption, and backup requirements to design a solar system tailored to your home.",
+      buttonText: "Talk to Our Solar Team",
+      href: "/quote",
+    },
     content: [
       {
         heading: "Why Go Solar?",
@@ -96,8 +195,70 @@ export const articles: Article[] = [
     readingTime: "6 min read",
     publishDate: "2024-05-28",
     authorId: "tm1",
+    reviewerId: "tm4",
     featured: true,
     tags: ["electrical", "panel", "upgrade", "distribution", "safety"],
+    keyTakeaways: [
+      "If your panel is over 20 years old or has fuses instead of breakers, it needs upgrading.",
+      "A 200-amp panel is recommended for homes planning solar, battery backup, or EV charging.",
+      "Smart panels offer real-time monitoring and integrate with solar and battery systems.",
+      "Every panel upgrade must meet EPRA requirements and Kenyan electrical codes.",
+    ],
+    tableOfContents: [
+      "Understanding Your Current Panel",
+      "Sizing: How Many Amps Do You Need?",
+      "Smart Panels: The Future of Distribution",
+      "Future-Proofing for Solar and Backup",
+      "Safety and Compliance",
+    ],
+    faqs: [
+      {
+        question: "How do I know if my electrical panel needs upgrading?",
+        answer: "Common signs include flickering lights, breakers that will not stay reset, burning smells near the panel, fuses instead of circuit breakers, or a panel over 20 years old.",
+      },
+      {
+        question: "What size electrical panel do I need for my home?",
+        answer: "Most modern Kenyan homes require 100–200 amps. A 200-amp panel is recommended for larger homes or those planning to add solar, battery backup, or EV charging.",
+      },
+      {
+        question: "Can I upgrade my panel before installing solar?",
+        answer: "Yes, and it is significantly cheaper to upgrade before solar installation than to retrofit later. Ensure the panel has sufficient breaker space and a compatible busbar rating.",
+      },
+      {
+        question: "Are smart electrical panels worth the investment?",
+        answer: "Smart panels provide real-time energy monitoring, remote circuit control, and automatic load management. They are particularly valuable when paired with solar and battery storage.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A commercial property in Eldoret had an outdated 60-amp fuse board that could not support modern equipment or a planned solar installation.",
+      assessment: "Our team performed a full load analysis and determined the property needed a 200-amp three-phase supply with spare capacity for future solar.",
+      solution: "A complete panel upgrade with RCD protection, surge protection, and 30% spare breaker capacity for future expansion.",
+      implementation: "Installation completed over 2 days with minimal downtime. All circuits labelled and compliance certificate issued.",
+      result: "The property now supports all equipment safely and is ready for solar integration without further panel work.",
+      projectLink: "/services/electrical",
+      projectLinkLabel: "View Electrical Services",
+    },
+    practicalSummary: [
+      "Panel amperage matched to current and planned loads",
+      "At least 20% spare breaker capacity for future expansion",
+      "RCD protection on all circuits",
+      "Surge protection installed at the distribution board",
+      "Proper earthing in compliance with Kenyan codes",
+      "Compliance certificate issued after installation",
+    ],
+    sources: [
+      { name: "Energy and Petroleum Regulatory Authority (EPRA)" },
+      { name: "Kenya Bureau of Standards (KEBS)" },
+      { name: "IEC 60364 — Low-voltage electrical installations" },
+      { name: "Kenya Power and Lighting Company (KPLC) connection standards" },
+    ],
+    relatedServiceSlugs: ["electrical", "solar"],
+    cta: {
+      title: "Planning an Electrical Installation or Upgrade?",
+      description: "Our certified electricians can assess your current system, calculate load requirements, and deliver a safe, compliant panel upgrade.",
+      buttonText: "Speak to an Electrical Engineer",
+      href: "/quote",
+    },
     content: [
       {
         heading: "Understanding Your Current Panel",
@@ -147,8 +308,72 @@ export const articles: Article[] = [
     readingTime: "10 min read",
     publishDate: "2024-05-10",
     authorId: "tm2",
+    reviewerId: "tm4",
     featured: true,
     tags: ["borehole", "drilling", "water", "groundwater", "pump"],
+    keyTakeaways: [
+      "A hydrogeological survey is required before any drilling begins.",
+      "Borehole drilling in Kenya requires WRA permits, which take 2–4 weeks.",
+      "Test pumping determines the sustainable yield and informs pump selection.",
+      "Water quality testing is essential — borehole water is not automatically safe to drink.",
+    ],
+    tableOfContents: [
+      "Step 1: Hydrogeological Survey",
+      "Step 2: Permits and Approvals",
+      "Step 3: Drilling",
+      "Step 4: Casing and Development",
+      "Step 5: Test Pumping and Yield Assessment",
+      "Step 6: Water Quality Testing",
+      "Step 7: Pump Installation and Commissioning",
+    ],
+    faqs: [
+      {
+        question: "How much does borehole drilling cost in Kenya?",
+        answer: "The cost depends on depth, geology, casing requirements, and pump selection. A typical residential borehole ranges from KSh 600,000 to KSh 1,500,000 including survey, drilling, casing, test pumping, and pump installation.",
+      },
+      {
+        question: "How long does the borehole drilling process take?",
+        answer: "The full process typically takes 4–6 weeks: 1–2 weeks for the survey and permits, 1–3 days for drilling, and 1–2 weeks for test pumping, water testing, and pump installation.",
+      },
+      {
+        question: "Can a borehole pump run entirely on solar?",
+        answer: "Yes. Solar-powered pumping systems can operate independently of the grid, eliminating electricity or fuel costs. The pump is sized based on test pumping results and daily water demand.",
+      },
+      {
+        question: "Is borehole water safe to drink?",
+        answer: "Not automatically. Borehole water must be tested by a certified laboratory for physical, chemical, and microbiological parameters. Treatment may be required depending on the results.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A 20-acre agricultural operation in Laikipia required a reliable water supply independent of unreliable municipal service.",
+      assessment: "Our team conducted a hydrogeological survey, drilled to 180m, and performed test pumping to determine sustainable yield.",
+      solution: "Borehole with solar-powered submersible pump, 10,000L storage tank, and drip irrigation distribution system.",
+      implementation: "Full installation completed in 3 weeks including drilling, casing, development, test pumping, and solar pump commissioning.",
+      result: "Reliable water supply with zero operating energy costs, supporting crop irrigation throughout the year.",
+      projectLink: "/resources/projects",
+      projectLinkLabel: "View Borehole Projects",
+    },
+    practicalSummary: [
+      "A completed hydrogeological survey identifying drilling location and target depth",
+      "WRA permits obtained before drilling begins",
+      "Proper casing and screen installation across the water-bearing zone",
+      "Test pumping to determine sustainable yield and inform pump selection",
+      "Certified laboratory water quality testing",
+      "Appropriate pump sizing based on yield and daily water demand",
+    ],
+    sources: [
+      { name: "Water Resources Authority (WRA), Kenya" },
+      { name: "World Health Organisation (WHO) Drinking Water Guidelines" },
+      { name: "Kenya Bureau of Standards (KEBS) — KS 05-459" },
+      { name: "Ministry of Water and Irrigation, Kenya" },
+    ],
+    relatedServiceSlugs: ["boreholes", "solar", "irrigation", "water-storage"],
+    cta: {
+      title: "Need a Borehole & Pumping Solution?",
+      description: "Our team can assess your site, determine the appropriate system requirements, and deliver a complete water supply solution from survey to commissioning.",
+      buttonText: "Request a Borehole Assessment",
+      href: "/quote",
+    },
     content: [
       {
         heading: "Step 1: Hydrogeological Survey",
@@ -212,8 +437,69 @@ export const articles: Article[] = [
     readingTime: "5 min read",
     publishDate: "2024-04-22",
     authorId: "tm5",
+    reviewerId: "tm1",
     featured: false,
     tags: ["plumbing", "leaks", "maintenance", "repairs", "prevention"],
+    keyTakeaways: [
+      "A single dripping tap can waste over 3,000 litres of water per year.",
+      "Knowing where your main shut-off valve is can prevent catastrophic water damage.",
+      "Annual plumbing inspections catch problems before they become expensive repairs.",
+      "High water pressure is a leading cause of premature fixture and pipe failure.",
+    ],
+    tableOfContents: [
+      "1. Leaking Taps and Fixtures",
+      "2. Burst Pipes",
+      "3. Blocked Drains",
+      "4. Low Water Pressure",
+      "5. Water Heater Problems",
+    ],
+    faqs: [
+      {
+        question: "How can I tell if I have a hidden water leak?",
+        answer: "Signs include unexpectedly high water bills, damp patches on walls or floors, reduced water pressure, or the sound of running water when all taps are off. A plumber can use pressure testing and camera inspection to locate hidden leaks.",
+      },
+      {
+        question: "What causes low water pressure?",
+        answer: "Common causes include undersized pipework, blocked filters, partially closed valves, leaks in the supply line, or an underperforming booster pump. Sometimes the issue is the municipal supply itself.",
+      },
+      {
+        question: "How often should I flush my water heater?",
+        answer: "Flush your water heater annually to remove sediment build-up. Have the anode rod inspected every 2–3 years to prevent tank corrosion.",
+      },
+      {
+        question: "Should I install a pressure-reducing valve?",
+        answer: "If your incoming water pressure exceeds 5 bar, a pressure-reducing valve protects fixtures and pipes from premature failure and extends their lifespan significantly.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A residential property in Nairobi experienced recurring burst pipes and high water bills due to excessive municipal pressure and ageing pipework.",
+      assessment: "Our team measured incoming pressure at 7 bar, identified corroded galvanised piping, and found multiple micro-leaks behind walls.",
+      solution: "Full repipe with PEX piping, pressure-reducing valve set to 3.5 bar, and new isolation valves throughout.",
+      implementation: "Completed in 4 days with minimal disruption. All walls restored and pressure tested.",
+      result: "Water bills dropped by 40%, no further burst pipes in 2 years, and improved pressure throughout the home.",
+      projectLink: "/services/plumbing",
+      projectLinkLabel: "View Plumbing Services",
+    },
+    practicalSummary: [
+      "Annual inspection of taps, fixtures, and visible pipework",
+      "Pressure regulator installed if incoming pressure exceeds 5 bar",
+      "Main shut-off valve location known and accessible",
+      "Drain strainers in all sinks and showers",
+      "Water heater flushed annually and anode rod inspected every 2–3 years",
+      "Pipework inspected for corrosion in homes over 15 years old",
+    ],
+    sources: [
+      { name: "Kenya Bureau of Standards (KEBS) — KS 06-670" },
+      { name: "World Health Organisation (WHO) — Water Safety in Buildings" },
+      { name: "Nairobi Water and Sewerage Company — Plumbing Guidelines" },
+    ],
+    relatedServiceSlugs: ["plumbing", "water-storage"],
+    cta: {
+      title: "Need a Plumbing Inspection or Repair?",
+      description: "Our plumbers can diagnose issues, provide lasting repairs, and install preventative measures to protect your property from water damage.",
+      buttonText: "Book a Plumbing Service",
+      href: "/quote",
+    },
     content: [
       {
         heading: "1. Leaking Taps and Fixtures",
@@ -263,8 +549,70 @@ export const articles: Article[] = [
     readingTime: "7 min read",
     publishDate: "2024-04-05",
     authorId: "tm6",
+    reviewerId: "tm4",
     featured: false,
     tags: ["irrigation", "smart", "water-saving", "drip", "automation"],
+    keyTakeaways: [
+      "Smart controllers adjust watering based on real-time weather data, eliminating unnecessary irrigation.",
+      "Drip irrigation can reduce water consumption by 50–70% compared to traditional methods.",
+      "Soil moisture sensors provide the most accurate data for irrigation scheduling.",
+      "Smart irrigation integrates with boreholes, rainwater harvesting, and solar power systems.",
+    ],
+    tableOfContents: [
+      "The Problem with Traditional Irrigation",
+      "Smart Controllers: The Brain of the System",
+      "Drip Irrigation: Precision Delivery",
+      "Soil Moisture Sensors",
+      "Integration with Water Sources",
+      "Getting Started",
+    ],
+    faqs: [
+      {
+        question: "How much water can smart irrigation save?",
+        answer: "A well-designed smart drip system can reduce water consumption by 50–70% compared to traditional sprinkler or flood irrigation while improving plant health.",
+      },
+      {
+        question: "Can smart irrigation work with my borehole?",
+        answer: "Yes. Smart irrigation integrates seamlessly with boreholes, rainwater harvesting systems, and storage tanks. The controller can prioritise harvested rainwater and switch to borehole supply when needed.",
+      },
+      {
+        question: "Do I need to replace my entire irrigation system to go smart?",
+        answer: "No. In many cases, we can retrofit existing sprinkler zones with drip lines, install a smart controller, and add soil moisture sensors to critical zones without replacing the entire system.",
+      },
+      {
+        question: "Can smart irrigation run on solar power?",
+        answer: "Yes. The irrigation schedule can be aligned with peak solar production hours, maximising the use of free energy while avoiding battery drain.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A 15-acre farm in Meru was spending heavily on diesel pumping and water bills with inconsistent crop yields due to irregular watering.",
+      assessment: "Our team evaluated the landscape, water source, existing infrastructure, and crop water requirements.",
+      solution: "Solar-powered smart drip irrigation system with soil moisture sensors, weather-connected controller, and fertigation injection.",
+      implementation: "Retrofit completed in 1 week. Existing sprinkler zones converted to drip lines with smart controller installed.",
+      result: "Water consumption reduced by 60%, fertiliser costs reduced by 30%, and crop yields improved by 25% within the first season.",
+      projectLink: "/resources/projects",
+      projectLinkLabel: "View Irrigation Projects",
+    },
+    practicalSummary: [
+      "Smart controller connected to local weather data",
+      "Drip lines replacing sprinkler zones where appropriate",
+      "Soil moisture sensors in representative zones",
+      "Filtration sized for the water source and emitter requirements",
+      "Integration with borehole, rainwater, or storage tank supply",
+      "Fertigation capability for farms requiring nutrient delivery",
+    ],
+    sources: [
+      { name: "Food and Agriculture Organization (FAO) — Irrigation and Drainage Paper 56" },
+      { name: "Kenya Agricultural and Livestock Research Organization (KALRO)" },
+      { name: "Ministry of Agriculture, Kenya — Irrigation Guidelines" },
+    ],
+    relatedServiceSlugs: ["irrigation", "solar", "boreholes"],
+    cta: {
+      title: "Planning a Smart Irrigation System?",
+      description: "Our team can assess your landscape, water source, and irrigation requirements to design a system that saves water and improves plant health.",
+      buttonText: "Explore Irrigation Solutions",
+      href: "/quote",
+    },
     content: [
       {
         heading: "The Problem with Traditional Irrigation",
@@ -321,8 +669,70 @@ export const articles: Article[] = [
     readingTime: "9 min read",
     publishDate: "2024-03-18",
     authorId: "tm4",
+    reviewerId: "tm1",
     featured: false,
     tags: ["solar", "battery", "storage", "backup", "lithium"],
+    keyTakeaways: [
+      "Lithium-ion (LiFePO4) batteries are the current standard, offering 4,000–8,000 charge cycles.",
+      "Battery capacity should be sized to essential loads, not total consumption.",
+      "A 10kWh lithium battery system in Kenya costs approximately KSh 350,000–600,000 installed.",
+      "Hybrid inverters simplify installation by combining solar, battery, and grid management in one unit.",
+    ],
+    tableOfContents: [
+      "Why Battery Storage Matters",
+      "Lithium-Ion vs Lead-Acid",
+      "Sizing Your Battery System",
+      "Cost Analysis and ROI",
+      "Hybrid Inverters: Simplifying the System",
+      "Maintenance and Longevity",
+    ],
+    faqs: [
+      {
+        question: "How long do lithium solar batteries last?",
+        answer: "Most LiFePO4 batteries retain 80% of their original capacity after 10 years of daily cycling, with 4,000–8,000 charge cycles. They require essentially no maintenance.",
+      },
+      {
+        question: "How much battery storage do I need?",
+        answer: "A typical Kenyan home needs 5–15kWh of battery storage to cover essential loads overnight. Size batteries based on your critical load profile, not total consumption.",
+      },
+      {
+        question: "Can I add batteries to my existing solar system later?",
+        answer: "Yes, but it is more cost-effective to install a hybrid inverter upfront. Retrofitting batteries requires a compatible inverter and may involve additional electrical work.",
+      },
+      {
+        question: "Are lead-acid batteries a viable option?",
+        answer: "While cheaper upfront, lead-acid batteries have 50% depth of discharge, 1,000–1,500 cycles, and require regular maintenance. Over 10 years, lithium is significantly cheaper per kWh of usable storage.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A small business in Kisumu lost KSh 10,000+ per day in revenue during frequent power outages, with perishable inventory at risk.",
+      assessment: "Our team calculated the critical load profile — refrigeration, lighting, security, and point-of-sale systems — and determined 10kWh of storage would cover a full day.",
+      solution: "5kW hybrid inverter with 10kWh LiFePO4 battery bank, integrated with existing solar array.",
+      implementation: "Installed and commissioned in 1 day with real-time monitoring configured.",
+      result: "Zero revenue loss during outages, investment recovered in under 6 months, with additional savings from peak-hour consumption shifting.",
+      projectLink: "/resources/projects",
+      projectLinkLabel: "View Solar Projects",
+    },
+    practicalSummary: [
+      "Essential loads identified and their daily consumption calculated",
+      "Battery capacity sized to cover essential loads for the expected outage duration",
+      "LiFePO4 chemistry selected for longevity and minimal maintenance",
+      "Hybrid inverter with sufficient continuous and surge power ratings",
+      "Battery management system (BMS) for cell balancing and protection",
+      "Annual system check to verify connections and review performance data",
+    ],
+    sources: [
+      { name: "IEC 62933 — Electrical Energy Storage Systems" },
+      { name: "Energy and Petroleum Regulatory Authority (EPRA)" },
+      { name: "IEEE 2030 — Energy Storage Integration Standards" },
+    ],
+    relatedServiceSlugs: ["solar", "electrical"],
+    cta: {
+      title: "Need a Solar Battery Storage System?",
+      description: "Our engineers can assess your energy needs, size a battery system to your critical loads, and integrate it with your solar installation.",
+      buttonText: "Talk to Our Solar Team",
+      href: "/quote",
+    },
     content: [
       {
         heading: "Why Battery Storage Matters",
@@ -379,8 +789,70 @@ export const articles: Article[] = [
     readingTime: "6 min read",
     publishDate: "2024-03-01",
     authorId: "tm1",
+    reviewerId: "tm4",
     featured: false,
     tags: ["generator", "backup", "power", "electrical", "installation"],
+    keyTakeaways: [
+      "Generator sizing must account for motor starting surge current, which can be 3–6 times running power.",
+      "An Automatic Transfer Switch (ATS) provides seamless backup within 10–30 seconds of an outage.",
+      "Diesel generators are the most common standby choice in Kenya — fuel-efficient, durable, and readily available.",
+      "Monthly test runs and annual servicing are essential for reliable generator performance.",
+    ],
+    tableOfContents: [
+      "Do You Need a Generator?",
+      "Sizing Your Generator",
+      "Fuel Options: Diesel, Petrol, or Gas?",
+      "Transfer Switches: Automatic vs Manual",
+      "Installation and Maintenance",
+    ],
+    faqs: [
+      {
+        question: "What size generator do I need for my home?",
+        answer: "For a typical Kenyan home with essential loads, a 5–10kVA generator is usually sufficient. We recommend a generator rated 20% above your calculated requirement to handle motor starting surge current.",
+      },
+      {
+        question: "Should I choose diesel or petrol?",
+        answer: "Diesel generators are fuel-efficient, durable, and best for standby power. Petrol generators are smaller and cheaper but less suitable for long runtimes or permanent installation.",
+      },
+      {
+        question: "Do I need an automatic transfer switch?",
+        answer: "For most homes and businesses, an ATS is worth the additional cost. It detects outages, starts the generator, and switches the load automatically within 10–30 seconds.",
+      },
+      {
+        question: "How often should I service my generator?",
+        answer: "Monthly test runs, oil and filter changes every 200–250 hours or annually, and a full service every two years. Neglected generators are the most common cause of backup system failure.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A medical clinic in Kakamega could not tolerate any power downtime — vaccine refrigeration and medical equipment required continuous supply.",
+      assessment: "Our team performed a detailed load analysis including motor starting currents and identified critical loads requiring 15kVA of backup power.",
+      solution: "15kVA sound-attenuated diesel generator with ATS, integrated with existing solar-battery system for hybrid backup.",
+      implementation: "Concrete pad prepared, generator installed, ATS wired, and system commissioned within 1 week.",
+      result: "Seamless power transition during outages with the generator supplementing the solar-battery system for extended events.",
+      projectLink: "/services/electrical",
+      projectLinkLabel: "View Electrical Services",
+    },
+    practicalSummary: [
+      "Load analysis including motor starting surge currents",
+      "Generator rated 20% above calculated requirement",
+      "Automatic Transfer Switch (ATS) for unattended operation",
+      "Level concrete pad with adequate ventilation",
+      "Monthly test run and annual oil/filter service",
+      "Integration with existing solar-battery system where applicable",
+    ],
+    sources: [
+      { name: "Energy and Petroleum Regulatory Authority (EPRA)" },
+      { name: "IEC 60034 — Rotating Electrical Machines" },
+      { name: "Kenya Bureau of Standards (KEBS)" },
+      { name: "ISO 8528 — Reciprocating Internal Combustion Engine Driven Generating Sets" },
+    ],
+    relatedServiceSlugs: ["electrical", "solar"],
+    cta: {
+      title: "Need a Backup Power Solution?",
+      description: "Our team can size a generator to your loads, install an ATS, and integrate it with your existing solar or battery system for seamless backup.",
+      buttonText: "Speak to an Electrical Engineer",
+      href: "/quote",
+    },
     content: [
       {
         heading: "Do You Need a Generator?",
@@ -430,8 +902,70 @@ export const articles: Article[] = [
     readingTime: "7 min read",
     publishDate: "2024-02-14",
     authorId: "tm2",
+    reviewerId: "tm4",
     featured: false,
     tags: ["borehole", "water-quality", "testing", "treatment", "safety"],
+    keyTakeaways: [
+      "Borehole water must be tested by a certified laboratory — clear water is not necessarily safe water.",
+      "Common Kenyan borehole issues include high iron, fluoride, salinity, and bacterial contamination.",
+      "Treatment systems are designed based on specific water quality test results.",
+      "Annual water testing is recommended for any borehole used for drinking water.",
+    ],
+    tableOfContents: [
+      "Why Test Borehole Water?",
+      "What We Test For",
+      "Understanding Your Results",
+      "Treatment Solutions",
+      "Maintaining Water Safety",
+    ],
+    faqs: [
+      {
+        question: "How often should I test my borehole water?",
+        answer: "Test at least once after drilling and annually thereafter, or whenever the water's taste, smell, or appearance changes.",
+      },
+      {
+        question: "What does a comprehensive water test cover?",
+        answer: "Physical parameters (pH, turbidity, TDS), chemical parameters (iron, fluoride, hardness, heavy metals), and microbiological parameters (coliforms, E. coli).",
+      },
+      {
+        question: "How is high fluoride in borehole water treated?",
+        answer: "Reverse osmosis is the most effective treatment for high fluoride. High fluoride causes dental fluorosis in children and is a genuine health concern.",
+      },
+      {
+        question: "Can I drink borehole water without treatment?",
+        answer: "Only if certified laboratory testing confirms all parameters are within WHO and Kenyan drinking water standards. Many boreholes require at least filtration and disinfection.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A school in Kajiado drilled a borehole but found the water had high fluoride levels, making it unsafe for students.",
+      assessment: "Laboratory testing confirmed fluoride at 4.2mg/L (WHO limit 1.5mg/L) and elevated salinity.",
+      solution: "Reverse osmosis treatment system sized for the school's daily demand, with pre-filtration and post-disinfection.",
+      implementation: "Treatment system installed and commissioned within 1 week of receiving test results.",
+      result: "Safe drinking water for 300 students with fluoride reduced to 0.3mg/L, well within WHO guidelines.",
+      projectLink: "/services/boreholes",
+      projectLinkLabel: "View Borehole Services",
+    },
+    practicalSummary: [
+      "Certified laboratory testing covering physical, chemical, and microbiological parameters",
+      "Results compared against WHO and Kenyan drinking water standards",
+      "Treatment system designed based on specific test results",
+      "UV sterilisation or chlorination for bacterial contamination",
+      "Reverse osmosis for high salinity or fluoride",
+      "Annual re-testing and treatment system maintenance",
+    ],
+    sources: [
+      { name: "World Health Organisation (WHO) — Guidelines for Drinking-Water Quality" },
+      { name: "Kenya Bureau of Standards (KEBS) — KS 05-459" },
+      { name: "Water Resources Authority (WRA), Kenya" },
+      { name: "Ministry of Health, Kenya — Water Quality Standards" },
+    ],
+    relatedServiceSlugs: ["boreholes", "water-storage"],
+    cta: {
+      title: "Need Borehole Water Testing or Treatment?",
+      description: "Our team can test your borehole water, interpret the results, and design a treatment system tailored to your specific water quality.",
+      buttonText: "Request Water Testing",
+      href: "/quote",
+    },
     content: [
       {
         heading: "Why Test Borehole Water?",
@@ -481,6 +1015,7 @@ export const articles: Article[] = [
     readingTime: "5 min read",
     publishDate: "2024-01-20",
     authorId: "tm6",
+    reviewerId: "tm4",
     featured: false,
     tags: [
       "irrigation",
@@ -489,6 +1024,66 @@ export const articles: Article[] = [
       "water-conservation",
       "preparation",
     ],
+    keyTakeaways: [
+      "Audit your irrigation system before the dry season to catch inefficiencies early.",
+      "Deep, infrequent watering encourages drought-resistant root growth.",
+      "Clean filters weekly during peak demand to prevent emitter clogging.",
+      "A 5–10cm layer of organic mulch can reduce water requirements by 25–50%.",
+    ],
+    tableOfContents: [
+      "Audit Before the Heat",
+      "Adjust Schedules for the Season",
+      "Clean and Replace Filters",
+      "Mulch and Soil Preparation",
+      "Plan for Water Supply Reliability",
+    ],
+    faqs: [
+      {
+        question: "Should I water more frequently during the dry season?",
+        answer: "Not necessarily. Deep, infrequent watering encourages deeper root growth, making plants more drought-resistant. Increase duration per zone by 20–30% while keeping frequency the same or reducing it slightly.",
+      },
+      {
+        question: "How often should I clean my irrigation filters?",
+        answer: "Clean screen and disc filters weekly during peak demand periods. If filters clog repeatedly, consider upgrading to a higher-capacity filter or adding a secondary filtration stage.",
+      },
+      {
+        question: "Does mulching really help with water conservation?",
+        answer: "Yes. A 5–10cm layer of organic mulch can reduce water requirements by 25–50% by reducing evaporation, moderating soil temperature, and suppressing weeds.",
+      },
+      {
+        question: "What should I do if my borehole yield is insufficient for dry season demand?",
+        answer: "Ensure the pump is serviced and consider adding storage capacity or a secondary water source as a buffer. The cost of a storage tank is modest compared to the cost of losing crops.",
+      },
+    ],
+    caseStudy: {
+      challenge: "A flower farm in Naivasha faced water restrictions during the dry season, threatening crop quality and delivery schedules.",
+      assessment: "Our team audited the existing irrigation system, finding 20% water waste through clogged emitters, misaligned sprinklers, and an outdated controller.",
+      solution: "System retrofit with smart controller, drip conversion for 60% of zones, filter upgrade, and mulching programme.",
+      implementation: "Completed in 2 weeks with no disruption to ongoing operations.",
+      result: "Water consumption reduced by 35% during peak dry season, with improved crop uniformity and no delivery interruptions.",
+      projectLink: "/resources/projects",
+      projectLinkLabel: "View Irrigation Projects",
+    },
+    practicalSummary: [
+      "Full system audit before the dry season begins",
+      "Watering schedule adjusted for deeper, less frequent irrigation",
+      "Filters cleaned weekly and upgraded if clogging recurs",
+      "5–10cm organic mulch applied around all plants",
+      "Potassium-rich fertiliser applied to improve drought tolerance",
+      "Water supply reliability confirmed — borehole, tank, or secondary source",
+    ],
+    sources: [
+      { name: "Food and Agriculture Organization (FAO) — Crop Water Requirements" },
+      { name: "Kenya Agricultural and Livestock Research Organization (KALRO)" },
+      { name: "Ministry of Agriculture, Kenya — Dryland Farming Guidelines" },
+    ],
+    relatedServiceSlugs: ["irrigation", "boreholes", "water-storage"],
+    cta: {
+      title: "Preparing Your Irrigation System for the Dry Season?",
+      description: "Our team can audit your system, upgrade components, and ensure your irrigation is ready for peak demand with minimal water waste.",
+      buttonText: "Explore Irrigation Solutions",
+      href: "/quote",
+    },
     content: [
       {
         heading: "Audit Before the Heat",
@@ -562,4 +1157,16 @@ export function getRelatedArticles(
 export function getArticleAuthorName(article: Article): string {
   const employee = getEmployeeById(article.authorId);
   return employee ? employee.fullName : "Infield Innovations";
+}
+
+export function getArticleReviewer(article: Article): Employee | null {
+  if (!article.reviewerId) return null;
+  return getEmployeeById(article.reviewerId) ?? null;
+}
+
+export function getArticleRelatedServices(article: Article) {
+  if (!article.relatedServiceSlugs) return [];
+  return article.relatedServiceSlugs
+    .map((slug) => getServiceBySlug(slug))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s));
 }

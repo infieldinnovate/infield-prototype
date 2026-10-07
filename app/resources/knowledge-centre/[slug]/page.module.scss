@@ -446,6 +446,487 @@
 }
 
 .relatedGrid {
+  @include responsive-grid(1, 2, 4, var(--space-6));
+}
+
+// ============================================
+// Key Takeaways
+// ============================================
+
+.takeawaysSection {
+  padding: var(--space-8) 0 var(--space-4);
+  background: $color-gray-50;
+}
+
+.takeaways {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-left: 4px solid $color-secondary;
+  border-radius: $radius-lg;
+  padding: var(--space-6);
+  box-shadow: $shadow-sm;
+
+  @include breakpoint-up("sm") {
+    padding: var(--space-8);
+  }
+}
+
+.takeawaysTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: $fs-lg;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+  margin-bottom: var(--space-4);
+}
+
+.takeawaysList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: $fs-base;
+    line-height: $lh-relaxed;
+    color: $color-slate-700;
+
+    svg {
+      color: $color-secondary;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+  }
+}
+
+// ============================================
+// Table of Contents
+// ============================================
+
+.toc {
+  background: $color-gray-50;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-10);
+}
+
+.tocTitle {
+  font-size: $fs-sm;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-muted;
+  margin-bottom: var(--space-3);
+}
+
+.tocList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+  counter-reset: toc-counter;
+
+  li {
+    counter-increment: toc-counter;
+    font-size: $fs-sm;
+    line-height: $lh-relaxed;
+
+    &::before {
+      content: counter(toc-counter) ".";
+      color: $color-primary;
+      font-weight: $fw-bold;
+      margin-right: var(--space-2);
+    }
+
+    a {
+      color: $color-slate-700;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+// ============================================
+// Practical Summary
+// ============================================
+
+.practicalSummary {
+  margin-top: var(--space-10);
+  padding: var(--space-6);
+  background: linear-gradient(135deg, $color-primary-50, $color-secondary-50);
+  border-radius: $radius-lg;
+
+  @include breakpoint-up("sm") {
+    padding: var(--space-8);
+  }
+}
+
+.practicalTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: $fs-xl;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+  margin-bottom: var(--space-3);
+}
+
+.practicalIntro {
+  font-size: $fs-base;
+  color: $color-slate-700;
+  margin-bottom: var(--space-4);
+}
+
+.practicalList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: $fs-base;
+    line-height: $lh-relaxed;
+    color: $color-slate-700;
+
+    svg {
+      color: $color-success;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+  }
+}
+
+// ============================================
+// Case Study
+// ============================================
+
+.caseStudy {
+  margin-top: var(--space-10);
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: var(--space-6);
+  box-shadow: $shadow-sm;
+
+  @include breakpoint-up("sm") {
+    padding: var(--space-8);
+  }
+}
+
+.caseStudyTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: $fs-xl;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+  margin-bottom: var(--space-6);
+}
+
+.caseStudyBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.caseStudyItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+
+  @include breakpoint-up("sm") {
+    flex-direction: row;
+    gap: var(--space-4);
+  }
+}
+
+.caseStudyLabel {
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-primary;
+  flex-shrink: 0;
+  width: 120px;
+
+  @include breakpoint-up("sm") {
+    width: 140px;
+  }
+}
+
+.caseStudyItem p {
+  font-size: $fs-base;
+  line-height: $lh-relaxed;
+  color: $color-slate-700;
+  margin: 0;
+}
+
+.caseStudyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  font-size: $fs-sm;
+  font-weight: $fw-semibold;
+  color: $color-primary;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+
+  @include focus-visible;
+}
+
+// ============================================
+// FAQ
+// ============================================
+
+.faqSection {
+  margin-top: var(--space-10);
+}
+
+.faqTitle {
+  font-size: $fs-2xl;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+  margin-bottom: var(--space-5);
+  letter-spacing: -0.01em;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faqItem {
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $color-white;
+  transition: box-shadow $transition-fast;
+
+  &[open] {
+    box-shadow: $shadow-sm;
+  }
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  font-size: $fs-base;
+  font-weight: $fw-semibold;
+  color: $color-slate-900;
+  cursor: pointer;
+  list-style: none;
+  transition: background $transition-fast;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  &::after {
+    content: "+";
+    font-size: $fs-lg;
+    font-weight: $fw-normal;
+    color: $color-text-light;
+    transition: transform $transition-fast;
+  }
+
+  &[open]::after,
+  details[open] &::after {
+    content: "−";
+  }
+}
+
+.faqAnswer {
+  padding: 0 var(--space-5) var(--space-5);
+  font-size: $fs-base;
+  line-height: $lh-relaxed;
+  color: $color-slate-700;
+  margin: 0;
+}
+
+// ============================================
+// Conclusion
+// ============================================
+
+.conclusion {
+  margin-top: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 2px solid $color-border;
+}
+
+.conclusionTitle {
+  font-size: $fs-2xl;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+}
+
+// ============================================
+// Sources & References
+// ============================================
+
+.sources {
+  margin-top: var(--space-10);
+  padding-top: var(--space-6);
+  border-top: 1px solid $color-border;
+}
+
+.sourcesTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: $fs-lg;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+  margin-bottom: var(--space-4);
+}
+
+.sourcesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+
+  li {
+    font-size: $fs-sm;
+    color: $color-slate-700;
+    line-height: $lh-relaxed;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+      color: $color-primary;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $color-primary-dark;
+      }
+    }
+  }
+}
+
+// ============================================
+// Reviewer Card
+// ============================================
+
+.reviewerCard {
+  @include card;
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.reviewerTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-muted;
+  margin-bottom: var(--space-2);
+}
+
+.reviewerName {
+  font-size: $fs-base;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+}
+
+.reviewerRole {
+  font-size: $fs-sm;
+  color: $color-primary;
+  font-weight: $fw-semibold;
+}
+
+// ============================================
+// Related Services
+// ============================================
+
+.servicesSection {
+  padding: var(--space-16) 0;
+  background: $color-white;
+}
+
+.servicesGrid {
   @include responsive-grid(1, 2, 3, var(--space-6));
+}
+
+.serviceCard {
+  @include card;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    box-shadow $transition-base,
+    transform $transition-base;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-4px);
+  }
+
+  @include focus-visible;
+}
+
+.serviceCardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.serviceIcon {
+  @include inline-flex-center;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-md;
+  flex-shrink: 0;
+}
+
+.serviceName {
+  font-size: $fs-lg;
+  font-weight: $fw-bold;
+  color: $color-slate-900;
+}
+
+.serviceDesc {
+  font-size: $fs-sm;
+  line-height: $lh-relaxed;
+  color: $color-text-muted;
+  flex: 1;
+}
+
+.serviceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: $fs-sm;
+  font-weight: $fw-semibold;
+  color: $color-primary;
+  margin-top: auto;
 }
 

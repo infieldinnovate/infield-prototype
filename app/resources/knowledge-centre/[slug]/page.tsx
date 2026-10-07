@@ -4,6 +4,8 @@ import {
   getArticleBySlug,
   getArticleSlugs,
   getRelatedArticles,
+  getArticleRelatedServices,
+  getArticleReviewer,
 } from "@/data/articles";
 import { getEmployeeById, type Employee } from "@/data/teamData";
 import { siteConfig } from "@/data/site.config";
@@ -61,7 +63,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const author = getEmployeeById(article.authorId) as Employee | undefined;
-  const relatedArticles = getRelatedArticles(article, 3);
+  const reviewer = getArticleReviewer(article);
+  const relatedArticles = getRelatedArticles(article, 4);
+  const relatedServices = getArticleRelatedServices(article);
 
   const jsonLd = buildArticleSchema({
     title: article.title,
@@ -82,7 +86,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <ArticleDetailClient
         article={article}
         author={author ?? null}
+        reviewer={reviewer}
         relatedArticles={relatedArticles}
+        relatedServices={relatedServices}
       />
     </>
   );

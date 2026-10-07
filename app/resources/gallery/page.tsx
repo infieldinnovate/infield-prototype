@@ -1,12 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { Loader2 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Loader as Loader2 } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { VideoWithFallback } from "@/components/ui/VideoWithFallback";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { GalleryModal } from "@/components/ui/GalleryModal";
 import { getAllGalleryMedia, GalleryMediaItem } from "@/data/projectStats";
 import styles from "./page.module.scss";
 
@@ -32,6 +33,7 @@ export default function GalleryPage() {
     Math.min(BATCH_SIZE, shuffledPool.length),
   );
   const [loading, setLoading] = useState(false);
+  const [modalIndex, setModalIndex] = useState<number | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
 
   const feed: GalleryMediaItem[] = useMemo(() => {
@@ -112,6 +114,7 @@ export default function GalleryPage() {
                       duration: 0.4,
                       delay: (index % BATCH_SIZE) * 0.04,
                     }}
+                    onClick={() => setModalIndex(index)}
                   >
                     <div className={styles.mediaWrapper}>
                       {item.type === "image" ? (
@@ -166,6 +169,15 @@ export default function GalleryPage() {
           )}
         </div>
       </section>
+
+      <AnimatePresence>
+        <GalleryModal
+          items={feed}
+          index={modalIndex}
+          onClose={() => setModalIndex(null)}
+          onNavigate={setModalIndex}
+        />
+      </AnimatePresence>
     </div>
   );
 }

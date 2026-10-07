@@ -2,7 +2,7 @@
 // Articles / Knowledge Centre Data
 // ============================================
 
-import { getEmployeeById, type Employee } from "./teamData";
+// Author/reviewer resolution now lives in teamData.ts (getEmployeeNameById, getEmployeeByIdNullable)
 import { ServiceSlug, SERVICE_CATEGORIES, getServiceBySlug } from "@/data/services";
 
 export interface ArticleSection {
@@ -1152,16 +1152,6 @@ export function getRelatedArticles(
         a.id !== currentArticle.id && a.category === currentArticle.category,
     )
     .slice(0, limit);
-}
-
-export function getArticleAuthorName(article: Article): string {
-  const employee = getEmployeeById(article.authorId);
-  return employee ? employee.fullName : "Infield Innovations";
-}
-
-export function getArticleReviewer(article: Article): Employee | null {
-  if (!article.reviewerId) return null;
-  return getEmployeeById(article.reviewerId) ?? null;
 }
 
 export function getArticleRelatedServices(article: Article) {

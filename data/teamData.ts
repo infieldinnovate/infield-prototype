@@ -276,3 +276,17 @@ export function lookupEmployeeByPhone(phone: string): LookupResult {
   }
   return { found: false, employee: null };
 }
+
+// ============================================
+// AUTHOR & REVIEWER RESOLUTION
+// ============================================
+
+export function getEmployeeNameById(id: string): string {
+  const employee = getEmployeeById(id);
+  return employee ? employee.fullName : "Infield Innovations";
+}
+
+export function getEmployeeByIdNullable(id?: string): Employee | null {
+  if (!id) return null;
+  return getEmployeeById(id) ?? null;
+}

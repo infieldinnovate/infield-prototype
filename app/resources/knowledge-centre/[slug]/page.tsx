@@ -5,11 +5,14 @@ import {
   getArticleSlugs,
   getRelatedArticles,
   getArticleRelatedServices,
-  getArticleReviewer,
 } from "@/data/articles";
-import { getEmployeeById, type Employee } from "@/data/teamData";
+import {
+  getEmployeeById,
+  getEmployeeNameById,
+  getEmployeeByIdNullable,
+  type Employee,
+} from "@/data/teamData";
 import { siteConfig } from "@/data/site.config";
-import { getArticleAuthorName } from "@/data/articles";
 import { buildArticleSchema } from "@/lib/structured-data";
 import ArticleDetailClient from "./ArticleDetailClient";
 
@@ -63,7 +66,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const author = getEmployeeById(article.authorId) as Employee | undefined;
-  const reviewer = getArticleReviewer(article);
+  const reviewer = getEmployeeByIdNullable(article.reviewerId);
   const relatedArticles = getRelatedArticles(article, 4);
   const relatedServices = getArticleRelatedServices(article);
 
@@ -74,7 +77,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     image: article.image,
     publishDate: article.publishDate,
     updatedDate: article.updatedDate ?? article.publishDate,
-    authorName: getArticleAuthorName(article),
+    authorName: getEmployeeNameById(article.authorId),
   });
 
   return (

@@ -9,7 +9,7 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { motion } from "framer-motion";
 import { Clock, Calendar, ArrowRight } from "lucide-react";
 import type { Article } from "@/data/articles";
-import { getArticleAuthorName } from "@/data/articles";
+import { getEmployeeNameById } from "@/data/teamData";
 import { formatDateShort } from "@/lib/utils";
 import styles from "./ArticleCard.module.scss";
 
@@ -66,7 +66,7 @@ export function ArticleCard({
           <p className={styles.excerpt}>{article.excerpt}</p>
           <div className={styles.footer}>
             <span className={styles.author}>
-              By {getArticleAuthorName(article)}
+              By {getEmployeeNameById(article.authorId)}
             </span>
             <span className={styles.readMore}>
               Read More <ArrowRight size={16} />

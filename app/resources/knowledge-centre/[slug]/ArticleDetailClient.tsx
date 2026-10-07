@@ -2,31 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowLeft,
-  Calendar,
-  Clock,
-  ArrowRight,
-  Tag,
-  User,
-  Briefcase,
-  CircleCheck as CheckCircle2,
-  Lightbulb,
-  ClipboardList,
-  FileSearch,
-  BookOpen,
-  ExternalLink,
-  CheckCircle2 as CheckIcon,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowLeft, Calendar, Clock, ArrowRight, Tag, User, Briefcase, CircleCheck as CheckCircle2, Lightbulb, ClipboardList, FileSearch, BookOpen, ExternalLink, CircleCheck as CheckIcon, ShieldCheck } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { LinkButton } from "@/components/ui/LinkButton";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ArticleCard } from "@/components/cards/ArticleCard";
 import type { Article } from "@/data/articles";
-import { getArticleAuthorName } from "@/data/articles";
-import type { Employee } from "@/data/teamData";
+import { getEmployeeNameById, type Employee } from "@/data/teamData";
 import type { Service } from "@/data/services";
 import { formatDateShort } from "@/lib/utils";
 import styles from "./page.module.scss";
@@ -75,7 +58,7 @@ export default function ArticleDetailClient({
             <div className={styles.meta}>
               <span className={styles.metaItem}>
                 <User size={16} />
-                {getArticleAuthorName(article)}
+                {getEmployeeNameById(article.authorId)}
               </span>
               <span className={styles.metaItem}>
                 <Calendar size={16} />
@@ -394,7 +377,7 @@ export default function ArticleDetailClient({
                   </div>
                   <div className={styles.infoItem}>
                     <dt>Author</dt>
-                    <dd>{getArticleAuthorName(article)}</dd>
+                    <dd>{getEmployeeNameById(article.authorId)}</dd>
                   </div>
                 </dl>
               </div>

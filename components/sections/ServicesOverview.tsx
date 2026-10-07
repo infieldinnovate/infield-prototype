@@ -16,8 +16,8 @@ const ServicesOverview = () => {
       <div className={styles.container}>
         <SectionHeading
           eyebrow="Our Services"
-          title="Comprehensive Solutions for You"
-          description="From electrical and plumbing to solar, irrigation, and borehole drilling, we deliver professional services you can trust."
+          title="Integrated Solutions. One Experienced Partner."
+          description="From design and installation to testing, commissioning and maintenance, we deliver complete solutions across water, energy and electrical infrastructure"
         />
         <div className={styles.servicesGrid}>
           {SERVICES.map((service, index) => (

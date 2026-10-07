@@ -52,13 +52,6 @@ export function buildLocalBusinessSchema(): JsonLd {
     ],
     areaServed: serviceAreaNames,
     sameAs: sameAsLinks,
-    // aggregateRating: {
-    //   "@type": "AggregateRating",
-    //   ratingValue: reviewSummary.averageRating,
-    //   reviewCount: reviewSummary.totalReviews,
-    //   bestRating: 5,
-    //   worstRating: 1,
-    // },
     contactPoint: [
       {
         "@type": "ContactPoint",

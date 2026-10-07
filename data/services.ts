@@ -343,7 +343,7 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "boreholes",
-    name: "Borehole Drilling",
+    name: "Borehole Services",
     shortName: "Boreholes",
     tagline: "Access clean groundwater with professional drilling",
     description:

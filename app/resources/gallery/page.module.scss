@@ -90,6 +90,33 @@
   pointer-events: none;
 }
 
+.videoPlaceholder {
+  position: absolute;
+  inset: 0;
+  @include flex-center;
+  background: linear-gradient(135deg, $color-gray-700, $color-gray-900);
+}
+
+.playBadge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 4;
+  @include flex-center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: $color-white;
+  font-size: $fs-xs;
+  font-weight: $fw-bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: $radius-full;
+  pointer-events: none;
+}
+
 // ============================================
 // Hover overlay (caption)
 // ============================================
@@ -122,6 +149,10 @@
     opacity: 0;
     transition: opacity var(--transition-base);
   }
+}
+
+.galleryItem:hover .overlay {
+  opacity: 1;
 }
 
 .galleryItem:hover .overlay::after {

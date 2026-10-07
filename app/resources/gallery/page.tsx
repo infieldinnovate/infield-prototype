@@ -2,9 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader as Loader2 } from "lucide-react";
+import { Loader as Loader2, Play } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { VideoWithFallback } from "@/components/ui/VideoWithFallback";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { GalleryModal } from "@/components/ui/GalleryModal";
@@ -13,6 +12,20 @@ import styles from "./page.module.scss";
 
 const BATCH_SIZE = 12;
 const MAX_ITEMS = 120;
+
+function getYouTubeThumb(url: string): string | null {
+  if (url.includes("youtu.be/")) {
+    const id = url.split("youtu.be/")[1].split("?")[0];
+    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+  }
+  try {
+    const u = new URL(url);
+    const id = u.searchParams.get("v");
+    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+  } catch {
+    return null;
+  }
+}
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -127,16 +140,28 @@ export default function GalleryPage() {
                           loading={index < 6 ? "eager" : "lazy"}
                           priority={index < 3}
                         />
-                      ) : (
-                        <VideoWithFallback
-                          url={item.url}
+                      ) : item.platform === "youtube" &&
+                        getYouTubeThumb(item.url) ? (
+                        <ImageWithFallback
+                          src={getYouTubeThumb(item.url)!}
                           alt={item.caption}
-                          platform={item.platform}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          animation="none"
+                          loading={index < 6 ? "eager" : "lazy"}
+                          priority={index < 3}
                         />
+                      ) : (
+                        <div className={styles.videoPlaceholder}>
+                          <Play size={48} color="white" />
+                        </div>
                       )}
 
                       {item.type === "video" && (
-                        <span className={styles.videoBadge}>Video</span>
+                        <span className={styles.playBadge}>
+                          <Play size={14} />
+                          Play
+                        </span>
                       )}
 
                       <div className={styles.overlay}>

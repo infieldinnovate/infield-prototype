@@ -438,6 +438,103 @@ $border: $color-project-border;
 }
 
 // ============================================
+// Results — main content grid (elevated from sidebar)
+// ============================================
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+
+  @include breakpoint-up("md") {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+.resultCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1rem;
+  background: linear-gradient(135deg, rgba($primary, 0.06), rgba($accent, 0.04));
+  border: 1px solid rgba($primary, 0.12);
+  border-radius: $radius-lg;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.resultIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  background: $primary;
+  border-radius: $radius-full;
+}
+
+.resultText {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: $foreground;
+  line-height: 1.4;
+}
+
+// ============================================
+// Related Services links
+// ============================================
+
+.relatedServices {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid $border;
+}
+
+.relatedServicesLabel {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: $muted-foreground;
+}
+
+.relatedServicesLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.relatedServiceLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $primary;
+  background: rgba($primary, 0.06);
+  border: 1px solid rgba($primary, 0.15);
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $primary;
+    color: #fff;
+    border-color: $primary;
+  }
+
+  @include focus-visible;
+}
+
+// ============================================
 // Results (sidebar)
 // ============================================
 

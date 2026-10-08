@@ -12,9 +12,14 @@ import {
   Wrench,
   Quote,
   Camera,
+  Target,
+  Lightbulb,
+  TrendingUp,
+  ArrowRightCircle,
 } from "lucide-react";
 import type { Project, ProjectVideo } from "@/data/projectStats";
 import { getProjectGroupLabel } from "@/data/projectStats";
+import type { Service } from "@/data/services";
 import { useProjectImages } from "@/hooks/useProjectImages";
 import ImageSwiper from "@/components/ui/ImageSwiper";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
@@ -26,6 +31,7 @@ import styles from "./page.module.scss";
 interface ProjectDetailClientProps {
   project: Project;
   relatedProjects: Project[];
+  relatedServices: Service[];
 }
 
 function getEmbedUrl(video: ProjectVideo): string | null {
@@ -52,9 +58,17 @@ function getEmbedUrl(video: ProjectVideo): string | null {
   }
 }
 
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.4 },
+};
+
 export default function ProjectDetailClient({
   project,
   relatedProjects,
+  relatedServices,
 }: ProjectDetailClientProps) {
   const imageUrls = useMemo(
     () => project.gallery.map((img) => img.url),
@@ -64,6 +78,11 @@ export default function ProjectDetailClient({
   const { images, loading, error } = useProjectImages({
     images: imageUrls,
   });
+
+  const ctaText = useMemo(() => {
+    const groupName = getProjectGroupLabel(project.projectGroup);
+    return `Planning a similar ${groupName.toLowerCase()} project? Our team can assess your requirements and deliver a tailored solution.`;
+  }, [project.projectGroup]);
 
   return (
     <article className={styles.page}>
@@ -113,38 +132,70 @@ export default function ProjectDetailClient({
           <div className={styles.layout}>
             {/* Main Content */}
             <div className={styles.content}>
-              {/* Challenge */}
+              {/* Project Overview */}
+              {project.overview && (
+                <motion.section className={styles.section} {...fadeUp}>
+                  <h2 className={styles.sectionHeading}>Project Overview</h2>
+                  <p className={styles.paragraph}>{project.overview}</p>
+                </motion.section>
+              )}
+
+              {/* The Challenge */}
               <motion.section
                 className={styles.section}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4 }}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: 0.05 }}
               >
-                <h2 className={styles.sectionHeading}>Client Challenge</h2>
+                <h2 className={styles.sectionHeading}>
+                  <Target size={20} />
+                  The Challenge
+                </h2>
                 <p className={styles.paragraph}>{project.challenge}</p>
               </motion.section>
 
-              {/* Solution */}
+              {/* Our Solution */}
               <motion.section
                 className={styles.section}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: 0.05 }}
+                {...fadeUp}
+                transition={{ ...fadeUp.transition, delay: 0.05 }}
               >
-                <h2 className={styles.sectionHeading}>Our Solution</h2>
+                <h2 className={styles.sectionHeading}>
+                  <Lightbulb size={20} />
+                  Our Solution
+                </h2>
                 <p className={styles.paragraph}>{project.solution}</p>
               </motion.section>
+
+              {/* Results — elevated from sidebar to main content */}
+              {project.results.length > 0 && (
+                <motion.section
+                  className={styles.section}
+                  {...fadeUp}
+                  transition={{ ...fadeUp.transition, delay: 0.05 }}
+                >
+                  <h2 className={styles.sectionHeading}>
+                    <TrendingUp size={20} />
+                    Project Results
+                  </h2>
+                  <div className={styles.resultsGrid}>
+                    {project.results.map((result, index) => (
+                      <div key={index} className={styles.resultCard}>
+                        <span className={styles.resultIcon}>
+                          <CheckCircle2 size={18} />
+                        </span>
+                        <span className={styles.resultText}>{result}</span>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
 
               {/* Gallery */}
               {project.gallery.length > 0 && (
                 <motion.section
                   className={styles.section}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
+                  {...fadeUp}
+                  transition={{ ...fadeUp.transition, delay: 0.1 }}
                 >
                   <h2 className={styles.sectionHeading}>
                     <Camera size={20} />
@@ -175,13 +226,11 @@ export default function ProjectDetailClient({
               {project.videos && project.videos.length > 0 && (
                 <motion.section
                   className={styles.section}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
+                  {...fadeUp}
+                  transition={{ ...fadeUp.transition, delay: 0.1 }}
                 >
                   <h2 className={styles.sectionHeading}>
-                    {project.videos.length > 1 ? "Project Videos" : "Project Video"}
+                    Project in Action
                   </h2>
                   <div className={styles.videoStack}>
                     {project.videos.map((video, index) => (
@@ -219,10 +268,8 @@ export default function ProjectDetailClient({
               {project.testimonial && (
                 <motion.section
                   className={styles.section}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
+                  {...fadeUp}
+                  transition={{ ...fadeUp.transition, delay: 0.1 }}
                 >
                   <h2 className={styles.sectionHeading}>
                     <Quote size={20} />
@@ -249,20 +296,37 @@ export default function ProjectDetailClient({
                 </motion.section>
               )}
 
-              {/* CTA */}
+              {/* CTA — project-specific */}
               <div className={styles.cta}>
                 <div className={styles.ctaContent}>
-                  <h3>Want results like this?</h3>
-                  <p>
-                    Our certified engineers are ready to assess your needs and
-                    deliver a tailored solution. Get a free, no-obligation quote
-                    today.
-                  </p>
+                  <h3>Planning a similar project?</h3>
+                  <p>{ctaText}</p>
                 </div>
                 <LinkButton href="/quote" rightIcon={ArrowRight}>
                   Get a Free Quote
                 </LinkButton>
               </div>
+
+              {/* Related Services */}
+              {relatedServices.length > 0 && (
+                <div className={styles.relatedServices}>
+                  <span className={styles.relatedServicesLabel}>
+                    Services used in this project
+                  </span>
+                  <div className={styles.relatedServicesLinks}>
+                    {relatedServices.map((service) => (
+                      <Link
+                        key={service.slug}
+                        href={`/services/${service.slug}`}
+                        className={styles.relatedServiceLink}
+                      >
+                        {service.shortName}
+                        <ArrowRightCircle size={16} />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Back Link */}
               <Link
@@ -276,10 +340,10 @@ export default function ProjectDetailClient({
 
             {/* Sidebar */}
             <aside className={styles.sidebar}>
-              {/* Details Card */}
+              {/* Project Information */}
               {project.details.length > 0 && (
                 <div className={styles.infoCard}>
-                  <h3 className={styles.infoTitle}>Project Details</h3>
+                  <h3 className={styles.infoTitle}>Project Information</h3>
                   <dl className={styles.infoList}>
                     {project.details.map((detail, index) => (
                       <div key={index} className={styles.infoItem}>
@@ -291,10 +355,28 @@ export default function ProjectDetailClient({
                 </div>
               )}
 
-              {/* Results Card */}
+              {/* Our Role */}
+              {project.servicesDelivered.length > 0 && (
+                <div className={styles.infoCard}>
+                  <h3 className={styles.infoTitle}>
+                    <Wrench size={14} />
+                    Our Role
+                  </h3>
+                  <div className={styles.serviceTags}>
+                    {project.servicesDelivered.map((service, index) => (
+                      <span key={index} className={styles.serviceTag}>
+                        <CheckCircle2 size={14} />
+                        {service}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Key Results — compact sidebar summary */}
               {project.results.length > 0 && (
                 <div className={styles.infoCard}>
-                  <h3 className={styles.infoTitle}>Results</h3>
+                  <h3 className={styles.infoTitle}>Key Results</h3>
                   <ul className={styles.resultsList}>
                     {project.results.map((result, index) => (
                       <li key={index} className={styles.resultItem}>
@@ -305,24 +387,6 @@ export default function ProjectDetailClient({
                       </li>
                     ))}
                   </ul>
-                </div>
-              )}
-
-              {/* Services Delivered Card */}
-              {project.servicesDelivered.length > 0 && (
-                <div className={styles.infoCard}>
-                  <h3 className={styles.infoTitle}>
-                    <Wrench size={14} />
-                    Services Delivered
-                  </h3>
-                  <div className={styles.serviceTags}>
-                    {project.servicesDelivered.map((service, index) => (
-                      <span key={index} className={styles.serviceTag}>
-                        <CheckCircle2 size={14} />
-                        {service}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               )}
             </aside>

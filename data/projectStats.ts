@@ -62,11 +62,13 @@ export interface Project {
   completionDate: string;
   featured: boolean;
   approved?: boolean;
+  overview?: string;
   challenge: string;
   solution: string;
   details: ProjectDetail[];
   results: string[];
   servicesDelivered: string[];
+  relatedServiceSlugs?: ServiceSlug[];
   gallery: ProjectGalleryImage[];
   videos?: ProjectVideo[];
   testimonial?: ProjectTestimonial;
@@ -82,10 +84,13 @@ export const projects: Project[] = [
     completionDate: "October 2024",
     featured: true,
     approved: true,
+    overview:
+      "A commercial facility in Meru County engaged us to design and install a hybrid solar power system with battery storage, replacing unreliable grid supply with clean, dependable energy for daily operations and cold storage.",
     challenge:
       "Escalating electricity costs and frequent grid outages were affecting business productivity and cold storage operations.",
     solution:
       "We engineered and installed a 100kW hybrid solar system with battery storage and intelligent monitoring, delivering reliable power while significantly reducing operating costs.",
+    relatedServiceSlugs: ["solar", "electrical"],
     details: [
       { label: "System Size", value: "100kW" },
       { label: "Battery Storage", value: "160kWh" },
@@ -140,10 +145,13 @@ export const projects: Project[] = [
     completionDate: "January 2026",
     featured: false,
     approved: true,
+    overview:
+      "A tea processing facility in Elgeyo Marakwet required a dependable year-round water supply. We drilled a commercial borehole and installed pumping equipment with bulk storage to secure continuous production.",
     challenge:
       "Recurring water shortages disrupted tea processing and reduced production efficiency during dry seasons.",
     solution:
       "We delivered a high-yield borehole complete with pumping equipment and bulk water storage, ensuring dependable production throughout the year.",
+    relatedServiceSlugs: ["boreholes", "water-storage"],
     details: [
       { label: "Depth", value: "300m" },
       { label: "Yield", value: "4,000L/hr" },
@@ -194,10 +202,13 @@ export const projects: Project[] = [
     completionDate: "September 2025",
     featured: true,
     approved: true,
+    overview:
+      "An 80-acre farm in Isiolo commissioned us to replace inefficient flood irrigation with a fully automated drip system, integrating fertigation and multi-zone control to improve water efficiency and crop yields.",
     challenge:
       "Traditional flood irrigation consumed excessive water, increased labour costs, and produced uneven crop performance.",
     solution:
       "We installed a fully automated drip irrigation system with fertigation and multi-zone control, improving efficiency across the entire farm.",
+    relatedServiceSlugs: ["irrigation", "water-storage"],
     details: [
       { label: "Coverage", value: "80 Acres" },
       { label: "System", value: "Drip" },
@@ -247,10 +258,13 @@ export const projects: Project[] = [
     completionDate: "November 2025",
     featured: false,
     approved: true,
+    overview:
+      "A livestock ranch in Garissa needed a cost-effective, off-grid water pumping solution. We designed and installed a fully solar-powered pumping system with elevated storage to replace costly diesel pumps.",
     challenge:
       "The ranch relied on diesel-powered pumping, resulting in high fuel costs, frequent breakdowns, and unreliable water supply for livestock.",
     solution:
       "We deployed a fully solar-powered pumping system with MPPT control and elevated storage, providing dependable daily water without fuel expenses.",
+    relatedServiceSlugs: ["solar", "boreholes", "water-storage"],
     details: [
       { label: "Solar Array", value: "6kW" },
       { label: "Pump", value: "Solar Submersible" },
@@ -295,10 +309,13 @@ export const projects: Project[] = [
     completionDate: "July 2024",
     featured: false,
     approved: true,
+    overview:
+      "A new commercial facility in Nairobi required a complete, code-compliant electrical installation. We delivered three-phase distribution, backup power integration, protection systems, and full EPRA certification.",
     challenge:
       "A new commercial facility required a compliant electrical installation capable of supporting continuous business operations.",
     solution:
       "We completed a full electrical installation with three-phase distribution, backup integration, protection systems, and certified testing.",
+    relatedServiceSlugs: ["electrical"],
     details: [
       { label: "Supply", value: "Three-Phase" },
       { label: "Capacity", value: "200A" },
@@ -348,10 +365,13 @@ export const projects: Project[] = [
     completionDate: "August 2024",
     featured: false,
     approved: true,
+    overview:
+      "An industrial facility in Murang'a needed a complete plumbing overhaul. We replaced aging pipework with industrial-grade materials, added pressure boosting, and integrated multi-stage filtration for reliable plant operations.",
     challenge:
       "Frequent leaks, unstable pressure, and aging pipework were disrupting factory production and increasing maintenance costs.",
     solution:
       "We replaced the entire plumbing network with industrial-grade piping, pressure boosting, and advanced filtration for reliable plant operations.",
+    relatedServiceSlugs: ["plumbing"],
     details: [
       { label: "Pipework", value: "Stainless Steel" },
       { label: "Booster Pump", value: "3HP" },
@@ -396,10 +416,13 @@ export const projects: Project[] = [
     completionDate: "April 2025",
     featured: false,
     approved: true,
+    overview:
+      "A facility in Kisumu experiencing frequent municipal water outages needed a reliable backup supply. We engineered and installed a 200,000L elevated water storage system with automatic source switching for uninterrupted availability.",
     challenge:
       "Frequent municipal water interruptions disrupted daily operations and reduced service reliability.",
     solution:
       "We engineered and installed a 200,000L elevated storage system with automatic source switching to ensure uninterrupted water availability.",
+    relatedServiceSlugs: ["water-storage", "water-harvesting"],
     details: [
       { label: "Capacity", value: "200,000L" },
       { label: "Tower Height", value: "14m" },
@@ -444,10 +467,13 @@ export const projects: Project[] = [
     completionDate: "August 2025",
     featured: false,
     approved: true,
+    overview:
+      "A commercial operation in Kajiado sought to reduce energy costs and improve power stability. We installed a high-performance grid-tied solar system with battery backup, remote monitoring, and full commissioning.",
     challenge:
       "Escalating electricity costs and unreliable grid supply were affecting production efficiency.",
     solution:
       "We installed a high-performance grid-tied solar solution with battery backup to reduce energy costs and improve power stability.",
+    relatedServiceSlugs: ["solar", "electrical"],
     details: [
       { label: "System Size", value: "75kW" },
       { label: "Battery", value: "100kWh" },
@@ -492,10 +518,13 @@ export const projects: Project[] = [
     completionDate: "May 2025",
     featured: false,
     approved: true,
+    overview:
+      "A farm in Kirinyaga needed a reliable year-round water source for irrigation. We drilled a borehole, installed pumping equipment, and integrated bulk storage with gravity-fed distribution to support continuous crop production.",
     challenge:
       "Seasonal water shortages prevented year-round farming and limited crop productivity.",
     solution:
       "We delivered a complete borehole water system with pumping equipment and bulk storage to provide dependable irrigation throughout the year.",
+    relatedServiceSlugs: ["boreholes", "irrigation", "water-storage"],
     details: [
       { label: "Depth", value: "250m" },
       { label: "Yield", value: "3,500L/hr" },
@@ -540,10 +569,13 @@ export const projects: Project[] = [
     completionDate: "December 2025",
     featured: false,
     approved: true,
+    overview:
+      "A multi-greenhouse operation in Embu required precise, automated irrigation and fertigation. We deployed a smart drip system with independent zone control across 15 greenhouses to maximize productivity while minimizing water use.",
     challenge:
       "The client required accurate irrigation and fertigation to maximize greenhouse productivity while minimizing water use.",
     solution:
       "We deployed an automated drip irrigation and fertigation system with independent zone control across multiple greenhouses.",
+    relatedServiceSlugs: ["irrigation"],
     details: [
       { label: "Greenhouses", value: "15" },
       { label: "System", value: "Automated Drip" },

@@ -5,6 +5,7 @@ import {
   getProjectSlugs,
   getProjectsByService,
 } from "@/data/projectStats";
+import { getServiceBySlug } from "@/data/services";
 import { siteConfig } from "@/data/site.config";
 import { buildProjectListSchema } from "@/lib/structured-data";
 import ProjectDetailClient from "./ProjectDetailClient";
@@ -69,6 +70,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     .filter((p) => p.id !== project.id)
     .slice(0, 3);
 
+  const relatedServices = (project.relatedServiceSlugs ?? [project.category])
+    .map((slug) => getServiceBySlug(slug))
+    .filter((s): s is NonNullable<typeof s> => s !== undefined)
+    .filter((s) => s.slug !== project.category || (project.relatedServiceSlugs ?? []).length > 1)
+    .slice(0, 4);
+
   const jsonLd = buildProjectListSchema([project]);
 
   return (
@@ -77,7 +84,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProjectDetailClient project={project} relatedProjects={relatedProjects} />
+      <ProjectDetailClient
+        project={project}
+        relatedProjects={relatedProjects}
+        relatedServices={relatedServices}
+      />
     </>
   );
 }

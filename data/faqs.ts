@@ -287,6 +287,45 @@ export const FAQs: FAQ[] = [
     category: "electrical",
   },
 
+  {
+    id: "electrical-9",
+    question:
+      "Can you connect my solar panels, inverter and batteries to my electrical system?",
+    answer:
+      "Yes. We handle the electrical integration of solar PV systems, including DC and AC cabling, inverter connections, battery storage integration, changeover arrangements and protection. We assess your existing installation first to ensure compatibility, proper capacity and correct protection coordination before connecting the solar system.",
+    category: "electrical",
+    featured: true,
+  },
+
+  {
+    id: "electrical-10",
+    question:
+      "What backup power options can you install and integrate?",
+    answer:
+      "We install and integrate battery-based backup systems, inverters, UPS units and generator changeover systems. The right solution depends on which loads you need to support, the required backup duration, available space and budget. We design the backup system around your critical loads and integrate it with your existing electrical installation for automatic or manual changeover.",
+    category: "electrical",
+    featured: true,
+  },
+
+  {
+    id: "electrical-11",
+    question:
+      "Do you build control panels, starters and motor protection systems?",
+    answer:
+      "Yes. We design and assemble motor control panels, direct-on-line (DOL) starters, star-delta starters, changeover panels and customized control assemblies. We also install and configure protection devices including overcurrent, earth leakage, thermal and motor protection to ensure equipment is protected against electrical and mechanical faults.",
+    category: "electrical",
+    featured: true,
+  },
+
+  {
+    id: "electrical-12",
+    question:
+      "Can you carry out electrical works for water pumps, irrigation systems and other machinery?",
+    answer:
+      "Yes. We handle the electrical installation, connection and control for water pumps, irrigation pumps, borehole pumps, motors and other machinery. This includes cabling, motor protection, control panels, VFDs, and integration with the wider electrical and water systems so the equipment operates safely and reliably.",
+    category: "electrical",
+  },
+
   // ============================================================
   // PLUMBING
   // ============================================================

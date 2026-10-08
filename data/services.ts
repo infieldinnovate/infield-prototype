@@ -153,98 +153,133 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "electrical",
-    name: "Electrical Services",
+    name: "Electrical & Power Solutions",
     shortName: "Electrical",
-    tagline: "Safe, certified electrical work for any property",
+    tagline: "Powering buildings, machines, pumps and energy systems",
     description:
-      "From wiring and panel upgrades to lighting installation and emergency repairs, our licensed electricians deliver safe, code-compliant solutions.",
+      "Professional electrical installation and power solutions for buildings, solar systems, backup systems, pumps, motors, VFDs and specialized equipment.",
     longDescription:
-      "Our certified electricians handle everything from routine maintenance to complex installations. We specialize in residential and commercial electrical systems, ensuring every project meets or exceeds local codes and safety standards. Whether you need a new circuit installed, a panel upgrade, or 24/7 emergency repairs, our team responds quickly and works efficiently.",
+      "We provide complete electrical solutions that connect, control and protect the systems that keep your property and operations running. Our services cover building wiring and electrical distribution, solar and inverter connections, backup power integration, pump and motor installations, VFD systems, control panels and electrical works for water, irrigation and other machinery. From new installations and system upgrades to fault diagnosis, testing and preventive maintenance, we deliver practical and reliable electrical solutions for residential, commercial, agricultural and industrial applications.",
     icon: "Zap",
     color: "#f59e0b",
     image: "/services/electrical_151924_026.jpg",
-    infographicTitle: "Integrated Electrical Power Flow",
+    infographicTitle: "Integrated Power & Control Flow",
     infographicSubtitle:
-      "From grid to appliance — safe, reliable power distribution",
+      "From power source to building, pump and machinery — safe and reliable electrical control",
     infographic: [
       {
         icon: "Zap",
         label: "Power Source",
-        description: "Grid or backup supply",
+        description: "Grid, solar or generator supply",
+      },
+      {
+        icon: "BatteryCharging",
+        label: "Backup & Conversion",
+        description: "Inverters, batteries and backup systems",
       },
       {
         icon: "SquareSlash",
-        label: "Distribution Board",
-        description: "Power routed and protected",
+        label: "Distribution & Protection",
+        description: "DBs, panels and electrical protection",
       },
       {
-        icon: "ShieldCheck",
-        label: "Protection",
-        description: "Surge & RCD safety",
+        icon: "Gauge",
+        label: "Control",
+        description: "Starters, VFDs and motor controls",
       },
       {
-        icon: "Lightbulb",
-        label: "End Use",
-        description: "Lighting, sockets & equipment",
+        icon: "Cog",
+        label: "Equipment",
+        description: "Pumps, motors and other machinery",
       },
     ],
     features: [
       {
-        title: "Electrical Installation",
+        title: "Solar Electrical Connections",
         description:
-          "Residential, commercial and industrial electrical installations.",
+          "Electrical installation and integration of solar panels, inverters, batteries and related power systems.",
       },
       {
-        title: "Wiring and Distribution",
+        title: "Backup Power Systems",
         description:
-          "House wiring, power distribution, distribution boards and electrical panels.",
+          "Installation and integration of batteries, inverters, UPS systems and generators for dependable backup power.",
       },
       {
-        title: "Lighting Systems",
+        title: "Pump & Motor Installation",
         description:
-          "Indoor, outdoor, residential and commercial lighting installations.",
+          "Electrical installation, connection and commissioning of water pumps, irrigation pumps and electric motors.",
       },
       {
-        title: "Electrical Protection",
+        title: "VFD Installation & Motor Control",
         description:
-          "Earthing, lightning protection and surge protection systems.",
+          "Variable frequency drive installation, configuration and commissioning for efficient motor speed and process control.",
       },
       {
-        title: "Backup Power",
-        description: "Generator and UPS integration with electrical systems.",
+        title: "Building Wiring",
+        description:
+          "Complete electrical wiring for residential, commercial and industrial buildings, including lighting and socket circuits.",
       },
       {
-        title: "Electrical Upgrades",
+        title: "Electrical Distribution",
         description:
-          "Rewiring, panel upgrades and electrical capacity improvements.",
+          "Distribution boards, consumer units, power circuits, isolators, breakers and electrical load distribution systems.",
       },
       {
-        title: "Testing and Maintenance",
+        title: "Machine Electrical Works",
         description:
-          "Electrical inspection, testing, servicing and preventive maintenance.",
+          "Electrical installation, connection and control works for pumps, irrigation equipment, water systems and other machinery.",
+      },
+      {
+        title: "Control Panels & Starters",
+        description:
+          "Motor control panels, direct-on-line starters, changeover systems, protection devices and customized control assemblies.",
+      },
+      {
+        title: "Protection & Earthing",
+        description:
+          "Earthing, bonding, surge protection and electrical protection systems for people and equipment.",
+      },
+      {
+        title: "Testing & Commissioning",
+        description:
+          "Electrical inspection, testing, troubleshooting and commissioning of new and existing systems.",
+      },
+      {
+        title: "Electrical Repairs & Maintenance",
+        description:
+          "Fault finding, repairs, preventive maintenance, upgrades and performance improvement for electrical systems.",
       },
     ],
     process: [
       {
         step: 1,
-        title: "Consultation",
+        title: "Site Assessment",
         description:
-          "We assess your electrical needs and provide a detailed plan.",
+          "We assess your power requirements, equipment, existing electrical system and site conditions.",
       },
       {
         step: 2,
-        title: "Quote",
-        description: "Transparent, upfront pricing with no hidden fees.",
+        title: "System Design",
+        description:
+          "We develop the appropriate wiring, power distribution, motor control and protection solution.",
       },
       {
         step: 3,
-        title: "Execution",
-        description: "Licensed electricians complete the work to code.",
+        title: "Installation",
+        description:
+          "Our team installs the electrical equipment, cabling, control systems and protection devices.",
       },
       {
         step: 4,
-        title: "Inspection",
-        description: "Final safety inspection and walkthrough with you.",
+        title: "Testing & Commissioning",
+        description:
+          "We test connections, protection systems, motors, VFDs and equipment before putting the system into service.",
+      },
+      {
+        step: 5,
+        title: "Maintenance & Support",
+        description:
+          "We provide servicing, troubleshooting, upgrades and ongoing technical support to keep your systems operating reliably.",
       },
     ],
   },

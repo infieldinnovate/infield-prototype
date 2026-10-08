@@ -2,167 +2,149 @@ import type { Article } from "@/data/articles";
 
 const article: Article = {
   id: "art05",
-  title: "Borehole Water Quality Testing & Treatment: What You Need to Know",
+  title: "Borehole Water Quality Testing & Treatment in Kenya",
   slug: "borehole-water-quality-testing-treatment",
   excerpt:
-    "Borehole water is not automatically safe to drink. Learn what to test for, how to read a water quality report, and how to choose the right treatment system for your borehole in Kenya.",
+    "Borehole water should be tested before use. Learn what to test, how results guide treatment, and how to maintain a reliable water-treatment system.",
   category: "boreholes",
   image: "/placeholder_image.jpg",
-  readingTime: "10 min read",
+  readingTime: "5 min read",
   publishDate: "2025-02-10",
   authorId: "tm1",
   reviewerId: "tm4",
   featured: false,
-  tags: ["borehole", "water quality", "testing", "treatment", "safe water", "Kenya"],
+  tags: [
+    "borehole",
+    "water quality",
+    "testing",
+    "treatment",
+    "safe water",
+    "Kenya",
+  ],
   relatedServiceSlugs: ["boreholes", "water-storage"],
+
   keyTakeaways: [
-    "Borehole water is not automatically safe to drink — it must be tested after drilling and at least every 6 to 12 months thereafter.",
-    "A complete water quality test covers physical, chemical, and microbiological parameters, including pH, turbidity, fluoride, iron, nitrate, and E. coli.",
-    "Treatment must be chosen based on test results, not guesswork — different contaminants require different removal technologies.",
-    "Fluoride above 1.5 mg/L is common in Kenya's Rift Valley and can cause dental and skeletal fluorosis if left untreated.",
-    "A treatment system is only as reliable as its maintenance — filters, UV lamps, and softener salt must be replaced on schedule.",
+    "Borehole water is not automatically safe for drinking; test it before use and monitor it according to the intended use and risk.",
+    "Testing should cover the physical, chemical and microbiological parameters relevant to the water source and its application.",
+    "Treatment should be selected from laboratory results rather than assumptions about the area or borehole depth.",
+    "Fluoride, iron, hardness, salinity and microbiological contamination are among the issues that may require treatment in groundwater.",
+    "A treatment system needs correct sizing, routine servicing and periodic water-quality checks to remain effective.",
   ],
+
   tableOfContents: [
-    "Why Borehole Water Must Be Tested",
-    "When Should Borehole Water Be Tested?",
-    "What Does a Water Quality Test Include?",
-    "How to Read a Borehole Water Test Report",
-    "Common Borehole Water Problems",
-    "Choosing the Right Water Treatment",
-    "Borehole Water for Different Uses",
-    "Water Treatment Maintenance",
-    "Common Water Treatment Mistakes",
+    "Why Test Borehole Water?",
+    "What Should Be Tested?",
+    "How Results Determine Treatment",
+    "Treatment for Different Uses",
+    "Cost and Maintenance",
+    "What to Expect from a Professional Service",
   ],
+
   faqs: [
     {
-      question: "Is borehole water safe to drink without treatment?",
+      question: "Is borehole water safe to drink?",
       answer:
-        "Not always. Borehole water can be contaminated by bacteria, nitrates from sewage, fluoride, iron, and other minerals. The only way to confirm it is safe is through laboratory testing against WHO and KEBS drinking water standards. Some boreholes are safe untreated, but many require at least filtration and disinfection.",
+        "Not automatically. Groundwater can contain microorganisms or naturally occurring chemicals that are not visible, and the only reliable way to assess suitability is through appropriate laboratory testing against the requirements for the intended use.",
     },
     {
-      question: "How often should I test my borehole water?",
+      question: "How often should borehole water be tested?",
       answer:
-        "Test immediately after drilling, then every 6 to 12 months for routine monitoring. You should also test after flooding, nearby construction, changes in the water's appearance, taste, or odour, or if anyone in the household experiences unexplained illness.",
+        "There is no single interval that suits every borehole. Testing frequency should reflect the intended use, source vulnerability, treatment system and applicable regulatory or institutional requirements. Retesting is also appropriate after changes in water quality, flooding, borehole work or treatment-system problems.",
     },
     {
-      question: "What is the most dangerous contaminant in Kenyan borehole water?",
+      question: "What treatment does borehole water usually need?",
       answer:
-        "Microbiological contamination (E. coli and coliforms) is the most immediate health risk, causing diarrhoeal disease. Fluoride is a serious long-term risk in many areas, particularly the Rift Valley, where levels above the WHO limit of 1.5 mg/L are common and can cause dental and skeletal fluorosis.",
+        "It depends on the test results. Sediment may require filtration, bacteria may require disinfection, hardness may require softening, and elevated fluoride or salinity may require specialised treatment. Some boreholes may require little or no treatment for a particular use.",
     },
     {
-      question: "Can I treat borehole water myself without testing first?",
+      question:
+        "Can the same borehole water be used for drinking and irrigation?",
       answer:
-        "No. Treating water without testing can waste money on the wrong equipment and leave real contaminants untreated. For example, a standard filter will not remove fluoride or bacteria, and a water softener will not remove iron. Always test first, then choose treatment based on the results.",
-    },
-    {
-      question: "How much does borehole water treatment cost in Kenya?",
-      answer:
-        "Costs vary widely depending on the contaminants present. A basic sediment filter and UV sterilisation system may cost KSh 40,000 to 80,000, while a multi-stage system for fluoride, iron, and bacteria removal can range from KSh 150,000 to over KSh 400,000. A water test (typically KSh 5,000 to 15,000) should always come first.",
+        "Possibly, but the quality requirements are different. Drinking water requires a higher level of control, while irrigation is assessed using parameters such as salinity and sodium-related effects on soil. Test the water against the requirements of each intended use.",
     },
   ],
-  caseStudy: {
-    challenge:
-      "A primary school in Nakuru County relied on a borehole for drinking water, but students began showing signs of dental fluorosis — brown mottling on teeth caused by excess fluoride. Initial testing revealed fluoride at 3.2 mg/L, more than double the WHO recommended limit of 1.5 mg/L.",
-    assessment:
-      "Our engineers collected water samples and sent them to an accredited laboratory for full physical, chemical, and microbiological analysis. The results confirmed fluoride as the primary concern, alongside moderate turbidity. All other parameters fell within safe limits.",
-    solution:
-      "We designed a two-stage treatment system: a sediment pre-filter to reduce turbidity, followed by an activated alumina fluoride removal unit sized for the school's daily demand. The system was installed at the main storage tank so all distributed water passed through treatment.",
-    implementation:
-      "Installation was completed within two days during a school holiday to avoid disruption. The system was commissioned with flow rates verified, and school staff were trained on filter replacement and simple monitoring.",
-    result:
-      "Post-installation testing confirmed fluoride levels had dropped below 1.0 mg/L, well within the WHO limit. The system now serves over 400 students with safe drinking water, and the school retests water quality every six months as part of a maintenance schedule.",
-  },
+
   practicalSummary: [
-    "Test borehole water immediately after drilling and at least every 6 to 12 months thereafter.",
-    "Request a full panel test covering physical, chemical, and microbiological parameters, not just a basic check.",
-    "Choose treatment based on test results — match each contaminant to the correct removal technology.",
-    "Factor in all intended uses (drinking, irrigation, livestock) when deciding the treatment level required.",
-    "Budget for ongoing maintenance: filter replacements, UV lamp changes, softener salt, and periodic retesting.",
+    "Test the water after borehole development before commissioning drinking-water use.",
+    "Use a laboratory report to identify contaminants and set treatment requirements.",
+    "Size treatment equipment for both water quality and actual flow demand.",
+    "Maintain filters, dosing or disinfection equipment according to manufacturer requirements.",
+    "Retest when the source, water quality or treatment performance changes.",
   ],
+
   sources: [
-    { name: "WHO Guidelines for Drinking-water Quality (4th edition)" },
-    { name: "Kenya Bureau of Standards (KEBS) — KS 765: Drinking water specification" },
-    { name: "Kenya Water Act 2016" },
-    { name: "NEMA Water Quality Regulations, 2006 (Legal Notice No. 120)" },
+    {
+      name: "Water Resources Authority (WRA), Kenya — groundwater and water-use permitting requirements",
+    },
+    {
+      name: "NEMA — Environmental Management and Co-ordination (Water Quality) Regulations, 2024, Legal Notice 177 of 2024, as amended",
+    },
+    {
+      name: "Kenya Bureau of Standards — KS EAS 12:2018, Potable Water Specification",
+    },
+    {
+      name: "World Health Organization — Guidelines for Drinking-water Quality",
+    },
   ],
+
   cta: {
-    title: "Concerned About Your Borehole Water Quality?",
+    title: "Need Your Borehole Water Tested?",
     description:
-      "Our engineers can collect samples, arrange accredited laboratory testing, and design a treatment system tailored to your water quality report.",
+      "We can arrange water sampling, laboratory analysis and treatment design based on the actual quality of your borehole water and its intended use.",
     buttonText: "Request Water Testing",
     href: "/quote",
   },
+
   content: [
     {
-      heading: "Why Borehole Water Must Be Tested",
+      heading: "Why Test Borehole Water?",
       paragraphs: [
-        "There is a common assumption that water drawn from deep underground is naturally clean and safe to drink. In reality, borehole water is only as safe as the geology and surroundings it passes through. Groundwater can be contaminated by agricultural runoff carrying nitrates and pesticides, by leaking septic tanks and pit latrines introducing bacteria, and by naturally occurring minerals such as fluoride, iron, and arsenic dissolved from the surrounding rock. None of these contaminants are visible to the naked eye, and many have no taste or smell.",
-        "In Kenya, the legal and health implications of ignoring water quality are significant. The Kenya Water Act 2016 and NEMA water quality regulations place responsibility on the borehole owner to ensure water is fit for its intended use. For institutions such as schools, hospitals, and commercial premises, providing unsafe water is a serious liability. Health-wise, long-term exposure to contaminants like fluoride can cause irreversible dental and skeletal fluorosis, while bacterial contamination is a leading cause of waterborne disease. Testing is the only reliable way to know what is in your water.",
-        "Testing also protects your investment. A borehole is a major capital expense, and the treatment system that supports it should be designed around the actual water chemistry, not assumptions. A water quality report allows an engineer to specify the correct filters, softeners, or sterilisation equipment from the outset, avoiding the cost of retrofitting the wrong solution later.",
+        "Borehole water can look clean while containing microorganisms, dissolved minerals or other substances that affect health, taste, plumbing or suitability for irrigation. Testing establishes what is actually present instead of relying on assumptions about groundwater depth or location.",
+        "Testing is also the starting point for treatment design. A treatment system should remove a confirmed problem at the required flow rate and for the intended use. Testing first avoids paying for equipment that does not address the real water-quality issue.",
       ],
     },
+
     {
-      heading: "When Should Borehole Water Be Tested?",
+      heading: "What Should Be Tested?",
       paragraphs: [
-        "The first test should happen immediately after drilling is completed and the borehole has been flushed and developed. This initial analysis establishes a baseline for your water quality and determines what treatment, if any, is required before the water is put into use. Skipping this step means drinking and using water of unknown quality, which is a risk no property owner should accept.",
-        "After the initial test, routine monitoring should follow every 6 to 12 months. Groundwater quality is not static. Seasonal rainfall can shift contaminant levels, nearby land use can change, and the borehole structure itself can degrade over time. Regular testing catches problems early, before they affect health or damage plumbing and appliances. For domestic boreholes, an annual test is a reasonable minimum, while institutions and commercial users should lean towards twice-yearly testing.",
-        "You should also test outside the routine schedule whenever there is a specific reason for concern. Test after flooding or heavy rains that could wash surface contaminants into the aquifer, after nearby construction or excavation that might disturb the borehole casing, and after any noticeable change in the water's appearance, taste, or odour. Cloudy water, a sudden metallic taste, or an unusual smell are all warning signs that warrant an immediate test.",
+        "A professional assessment normally considers three groups of parameters: physical, chemical and microbiological. The exact panel should reflect the borehole, local conditions and intended use rather than using the same test package for every site.",
+        "For drinking-water applications, testing may include parameters such as pH, turbidity, electrical conductivity or TDS, hardness, iron, fluoride, nitrate and microbiological indicators such as E. coli. Additional parameters may be required where local geology, land use or the intended application creates a specific risk.",
+        "Kenya's potable-water standard is KS EAS 12:2018, while current environmental water-quality requirements are contained in the 2024 Water Quality Regulations. WHO guidance also provides internationally recognised drinking-water benchmarks, including a fluoride guideline value of 1.5 mg/L. citeturn213626search0turn569805search1turn213626search29",
       ],
     },
+
     {
-      heading: "What Does a Water Quality Test Include?",
+      heading: "How Results Determine Treatment",
       paragraphs: [
-        "A complete borehole water quality test is divided into three categories: physical, chemical, and microbiological. Physical parameters describe the water's appearance and general characteristics. The World Health Organization recommends a pH between 6.5 and 8.5 for drinking water, as water outside this range can taste unpleasant and accelerate corrosion or scaling in pipes. Turbidity should be below 5 NTU (nephelometric turbidity units), as cloudy water can shield microorganisms from disinfection and carry particles of soil or organic matter. Total dissolved solids (TDS) should be below 1,000 mg/L; higher levels give water an unpleasant taste and can indicate excessive mineral content.",
-        "Chemical parameters measure dissolved substances that can affect health or usability. Fluoride should be below 1.5 mg/L according to WHO guidelines, as higher levels cause dental and skeletal fluorosis, a widespread problem in Kenya's Rift Valley. Iron should be below 0.3 mg/L to avoid metallic taste, staining of fixtures and laundry, and bacterial iron deposits in pipes. Nitrate should be below 10 mg/L, particularly important where septic systems or fertilisers are nearby, as elevated nitrate is dangerous for infants. Other parameters include total hardness, sodium, and in some regions arsenic, which should be below 0.01 mg/L.",
-        "Microbiological parameters are the most critical for immediate health. A drinking water sample should show zero E. coli per 100 ml and zero total coliforms per 100 ml. The presence of E. coli confirms faecal contamination, which means disease-causing organisms may be present. Total coliforms are a broader indicator of contamination and suggest that the water source or distribution system is vulnerable to intrusion. Even if physical and chemical results are acceptable, failing the microbiological test means the water is not safe to drink without disinfection.",
+        "The treatment process should follow the test report. There is no single filter that removes every groundwater contaminant.",
+        "Sediment and turbidity may require filtration. Microbiological contamination may require disinfection such as ultraviolet treatment or chlorination, depending on the system. Hardness can be managed with a water softener, while elevated fluoride may require technologies such as activated alumina or reverse osmosis. Salinity and high dissolved solids may require more advanced treatment.",
+        "The treatment train must also match the required flow and daily demand. Pre-treatment is often important because excessive sediment or other contaminants can reduce the performance and service life of downstream equipment.",
       ],
     },
+
     {
-      heading: "How to Read a Borehole Water Test Report",
+      heading: "Treatment for Different Uses",
       paragraphs: [
-        "A laboratory water quality report lists each tested parameter alongside your sample's result, the recommended limit, and a pass or fail interpretation. Learning to read this report helps you understand your water and have an informed conversation with your engineer about treatment. Below is an illustrative example of how results are typically presented, with sample values drawn from a common borehole profile in Kenya.",
-        "pH: Result 7.2, Recommended Limit 6.5 to 8.5, Interpretation: Within range, no action required. Turbidity: Result 8.3 NTU, Recommended Limit below 5 NTU, Interpretation: Above limit, sediment filtration recommended. Fluoride: Result 2.1 mg/L, Recommended Limit below 1.5 mg/L, Interpretation: Above limit, fluoride removal required for drinking water. Iron: Result 0.1 mg/L, Recommended Limit below 0.3 mg/L, Interpretation: Within range, no action required. E. coli: Result 4 per 100 ml, Recommended Limit 0 per 100 ml, Interpretation: Above limit, disinfection by UV or chlorination required before drinking.",
-        "In this example, the water fails on three counts: turbidity, fluoride, and E. coli. Each failure points to a different treatment step, which is why a single report can result in a multi-stage system. Note that a parameter within range today does not guarantee it will remain so, which is the case for routine retesting. Always ask the laboratory or your engineer to explain any result you do not understand, and keep each report on file so you can track changes in water quality over time.",
+        "Drinking and cooking require the strictest control because the water is consumed directly. Treatment and monitoring should therefore be designed against the applicable potable-water requirements.",
+        "Domestic non-potable uses such as washing or toilet flushing may have different treatment needs. Irrigation water is assessed differently, with attention to factors such as salinity, electrical conductivity and sodium-related effects on soil. Livestock and industrial users may also have application-specific quality requirements.",
+        "The same borehole may therefore need different treatment points depending on how the water is distributed. Treating only the water that needs high-quality purification can sometimes reduce system size and operating cost.",
       ],
     },
+
     {
-      heading: "Common Borehole Water Problems",
+      heading: "Cost and Maintenance",
       paragraphs: [
-        "Iron is one of the most frequent borehole problems in Kenya. At concentrations above 0.3 mg/L, iron causes a metallic taste, reddish-brown staining of sinks, toilets, and laundry, and can support the growth of iron bacteria that create slime inside pipes and filters. While not usually a health hazard at the levels found in most boreholes, iron makes water unpleasant and damages fixtures over time.",
-        "Hardness is another widespread issue, caused by dissolved calcium and magnesium. Hard water leaves scale deposits in kettles, pipes, and water heaters, reduces the effectiveness of soap and detergents, and shortens the lifespan of appliances. Fluoride is a particular concern in the Rift Valley and surrounding highland areas, where geological conditions produce borehole water with fluoride levels well above the 1.5 mg/L WHO limit. Long-term consumption causes dental fluorosis in children and, at higher exposures, skeletal fluorosis in adults.",
-        "Salinity and elevated TDS affect boreholes in coastal and arid regions, where water can taste salty and be unsuitable for drinking or irrigation without treatment. Microbial contamination is a risk wherever a borehole is located near septic tanks, pit latrines, or animal enclosures, or where the wellhead is poorly sealed against surface runoff. Finally, sediment and turbidity appear when the borehole is newly drilled, when the aquifer is disturbed, or when the pump is placed too close to the bottom of the borehole, drawing in sand and silt.",
+        "Water-treatment cost varies with the contaminants present, required flow, daily consumption, treatment technology and installation conditions. A laboratory test is therefore more useful than a generic equipment price when preparing a project budget.",
+        "Maintenance depends on the treatment process. Filters may need cleaning or replacement, softeners need regeneration and salt management, and disinfection equipment requires periodic inspection and replacement of consumable components. Follow the manufacturer's service requirements rather than relying on a fixed universal interval.",
+        "Water quality should also be rechecked when the source changes, treatment performance declines, or there is a reason to suspect contamination. Keeping laboratory reports and maintenance records creates a useful performance history for the system.",
       ],
     },
+
     {
-      heading: "Choosing the Right Water Treatment",
+      heading: "What to Expect from a Professional Service",
       paragraphs: [
-        "Treatment must be matched to the contaminants identified in your water test, because no single device removes everything. For iron, the standard solution is oxidation followed by filtration, where air or a chemical oxidant converts dissolved iron into particles that a filter then captures. For hardness, a water softener using ion exchange replaces calcium and magnesium with sodium, preventing scale and improving soap performance. The softener must be sized to the water hardness level and regenerated regularly with salt.",
-        "Fluoride removal requires a dedicated technology such as activated alumina adsorption or reverse osmosis. Activated alumina media is effective and relatively economical for moderate fluoride levels, while reverse osmosis provides broader purification and is preferred when multiple contaminants are present, though it produces a waste water stream and uses more energy. For bacterial contamination, ultraviolet (UV) sterilisation is the most common choice for whole-house treatment, provided the water is clear enough for UV light to penetrate. Chlorination is an alternative, particularly for stored water or where intermittent dosing is practical.",
-        "Sediment and turbidity are addressed with cartridge or sand filtration as a first stage, which also protects downstream equipment. When a borehole has more than one problem, a multi-stage system combines these technologies in sequence, typically sediment filtration first, then iron or hardness removal, then fluoride removal if needed, and finally UV sterilisation as a last line against bacteria. The order matters, because each stage conditions the water for the next. A qualified engineer designs the system based on your report, flow rate requirements, and daily demand.",
-      ],
-    },
-    {
-      heading: "Borehole Water for Different Uses",
-      paragraphs: [
-        "The level of treatment required depends on how the water will be used. For drinking and cooking, the water must meet WHO drinking water guidelines in full, meaning all physical, chemical, and microbiological parameters must be within safe limits. This typically requires a complete treatment system and regular testing. There is no acceptable shortcut for water that people will consume.",
-        "For general domestic use such as bathing, laundry, and toilet flushing, the treatment threshold is lower. Microbiological safety remains important, but moderate hardness or slightly elevated iron may be tolerated, though iron will still stain fixtures. Irrigation water quality is judged by different criteria, primarily salinity, sodium absorption ratio (SAR), and specific ion toxicity. High sodium relative to calcium and magnesium degrades soil structure over time, while high salinity reduces crop yields. A water test for irrigation should therefore include sodium, calcium, magnesium, and electrical conductivity.",
-        "Livestock water has its own limits. Cattle and other animals are sensitive to fluoride and nitrate, and levels safe for short-term human contact may not be acceptable for daily animal consumption over a lifetime. Commercial and industrial users must match water quality to their process requirements, whether that is food preparation, manufacturing, or cooling. In every case, the starting point is the same: test the water, understand the requirements of the end use, and design treatment accordingly.",
-      ],
-    },
-    {
-      heading: "Water Treatment Maintenance",
-      paragraphs: [
-        "A treatment system is not a fit-and-forget installation. Each component has a service life that depends on water quality and usage. Sediment and cartridge filters typically need replacement every three to six months, or more frequently if the borehole carries heavy sediment. Iron removal filters require backwashing to clear accumulated particles, and the media itself is replaced periodically. Water softeners must be regenerated with salt on a schedule tied to water hardness and consumption, and the resin bed eventually needs replacement.",
-        "UV sterilisation systems require particular attention. The UV lamp must be replaced annually, even if it still appears to be lit, because the ultraviolet output that actually kills bacteria drops below effective levels after roughly 9,000 hours of use. The quartz sleeve that protects the lamp must be cleaned regularly, as any film or scale on the glass blocks the light. Reverse osmosis membranes last two to three years with good pre-treatment but fail quickly if sediment or chlorine is allowed to reach them.",
-        "After any maintenance that opens the system, such as a filter change or media replacement, the system should be sanitised and the water retested to confirm that treatment is still effective. We recommend keeping a simple maintenance log recording the date of each service, the parts replaced, and the next due date. This discipline is what separates a treatment system that delivers safe water for years from one that quietly fails and exposes users to contamination.",
-      ],
-    },
-    {
-      heading: "Common Water Treatment Mistakes",
-      paragraphs: [
-        "The most common mistake is testing the water once at drilling and never testing again. Water quality changes over time, and a system designed for the original report may no longer be adequate. The second mistake is the reverse: installing treatment without testing at all, which often results in equipment that does not address the actual problem. A filter bought on assumption does not remove fluoride, and a softener does not remove bacteria.",
-        "Undersizing the treatment system is another frequent error. A system must be matched not only to the contaminants present but to the peak flow rate and daily volume the household or institution demands. An undersized unit cannot keep up, allowing untreated water to bypass the system or causing filters to clog prematurely. Equally important is neglecting pre-treatment for high-sediment boreholes. Without a sediment filter upstream, iron removal media, softener resin, and UV sleeves all foul rapidly, shortening service life and reducing effectiveness.",
-        "Finally, ignoring maintenance schedules defeats the purpose of having a treatment system at all. A UV lamp past its service life provides no disinfection. A softener out of salt stops softening water. Clogged filters reduce flow and can become a breeding ground for bacteria. The solution is simple: follow the manufacturer's service intervals, keep a maintenance log, and retest the water after any major service to confirm the system is still performing as designed.",
+        "A professional water-quality service should begin with a clear definition of the intended use, proper sampling, laboratory analysis and interpretation of the results. The recommendation should then identify the contaminants of concern, the treatment process required and the expected maintenance requirements.",
+        "For borehole owners, the final deliverables should include the laboratory report, treatment specification, operating guidance and a maintenance schedule. Where treatment is installed, commissioning should confirm that the system operates at the required flow and that the treated water meets the target quality requirements.",
       ],
     },
   ],

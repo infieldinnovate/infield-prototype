@@ -1,6 +1,26 @@
 // data/service-icons.ts
 
-import { ArrowDownToLine, BatteryCharging, Building2, CloudRain, Cog, Database, Drill, Droplets, ListFilter as Filter, GitBranch, Lightbulb, Video as LucideIcon, ShieldCheck, ShowerHead, Sprout, SquareSlash, Sun, Zap } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import {
+  ArrowDownToLine,
+  BatteryCharging,
+  Building2,
+  CloudRain,
+  Cog,
+  Database,
+  Drill,
+  Droplets,
+  ListFilter as Filter,
+  Gauge,
+  GitBranch,
+  Lightbulb,
+  ShieldCheck,
+  ShowerHead,
+  Sprout,
+  SquareSlash,
+  Sun,
+  Zap,
+} from "lucide-react";
 
 export const ServiceIcons: Record<string, LucideIcon> = {
   ArrowDownToLine,
@@ -9,6 +29,7 @@ export const ServiceIcons: Record<string, LucideIcon> = {
   CloudRain,
   Cog,
   Database,
+  Gauge,
   Drill,
   Droplets,
   Filter,

@@ -442,7 +442,7 @@ export default function ServiceDetailClient({
                 <h3>{selectedService.name}</h3>
                 <p>{selectedService.description}</p>
                 <div className={styles.featureGrid}>
-                  {selectedService.features.slice(0, 6).map((feature) => (
+                  {selectedService.features.slice(0, 8).map((feature) => (
                     <div className={styles.feature} key={feature.title}>
                       <CheckCircle2 size={17} />
                       <span>

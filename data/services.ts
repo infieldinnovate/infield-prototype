@@ -215,19 +215,9 @@ export const SERVICES: Service[] = [
           "Variable frequency drive installation, configuration and commissioning for efficient motor speed and process control.",
       },
       {
-        title: "Building Wiring",
-        description:
-          "Complete electrical wiring for residential, commercial and industrial buildings, including lighting and socket circuits.",
-      },
-      {
         title: "Electrical Distribution",
         description:
           "Distribution boards, consumer units, power circuits, isolators, breakers and electrical load distribution systems.",
-      },
-      {
-        title: "Machine Electrical Works",
-        description:
-          "Electrical installation, connection and control works for pumps, irrigation equipment, water systems and other machinery.",
       },
       {
         title: "Control Panels & Starters",
@@ -238,16 +228,6 @@ export const SERVICES: Service[] = [
         title: "Protection & Earthing",
         description:
           "Earthing, bonding, surge protection and electrical protection systems for people and equipment.",
-      },
-      {
-        title: "Testing & Commissioning",
-        description:
-          "Electrical inspection, testing, troubleshooting and commissioning of new and existing systems.",
-      },
-      {
-        title: "Electrical Repairs & Maintenance",
-        description:
-          "Fault finding, repairs, preventive maintenance, upgrades and performance improvement for electrical systems.",
       },
     ],
     process: [

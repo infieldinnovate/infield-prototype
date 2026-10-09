@@ -7,25 +7,15 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { GalleryModal } from "@/components/ui/GalleryModal";
-import { getAllGalleryMedia, GalleryMediaItem } from "@/data/projectStats";
+import {
+  getAllGalleryMedia,
+  getYouTubeThumb,
+  GalleryMediaItem,
+} from "@/data/projectStats";
 import styles from "./page.module.scss";
 
 const BATCH_SIZE = 12;
 const MAX_ITEMS = 120;
-
-function getYouTubeThumb(url: string): string | null {
-  if (url.includes("youtu.be/")) {
-    const id = url.split("youtu.be/")[1].split("?")[0];
-    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
-  }
-  try {
-    const u = new URL(url);
-    const id = u.searchParams.get("v");
-    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
-  } catch {
-    return null;
-  }
-}
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];

@@ -36,21 +36,27 @@ export interface ProjectDetail {
   value: string;
 }
 
-export interface ProjectGalleryImage {
+export type ProjectImagePhase = "before" | "during" | "after" | "drone";
+
+export interface ProjectImage {
   url: string;
   caption: string;
-  phase: "before" | "during" | "after" | "drone";
+  phase: ProjectImagePhase;
+}
+
+export type ProjectVideoPlatform = "youtube" | "tiktok" | "facebook";
+
+export interface ProjectVideo {
+  url: string;
+  caption: string;
+  phase: ProjectImagePhase;
+  platform: ProjectVideoPlatform;
 }
 
 export interface ProjectTestimonial {
   quote: string;
   author: string;
   role: string;
-}
-
-export interface ProjectVideo {
-  platform: "youtube" | "tiktok" | "facebook";
-  url: string;
 }
 
 export interface Project {
@@ -69,8 +75,8 @@ export interface Project {
   results: string[];
   servicesDelivered: string[];
   relatedServiceSlugs?: ServiceSlug[];
-  gallery: ProjectGalleryImage[];
-  videos?: ProjectVideo[];
+  projectImages: ProjectImage[];
+  projectVideos: ProjectVideo[];
   testimonial?: ProjectTestimonial;
 }
 
@@ -95,26 +101,11 @@ export const projects: Project[] = [
       "Retrieved the submersible pump and motor using a PRD pump lifting and lowering lorry. Flushed the borehole with compressed air, applied chemical cleaning and redeveloped the borehole. Cleaned and reinstalled the pump and motor, then conducted post-rehabilitation pump testing.",
 
     details: [
-      {
-        label: "Borehole depth",
-        value: "200 m",
-      },
-      {
-        label: "Initial discharge",
-        value: "3 m³/h",
-      },
-      {
-        label: "Final tested discharge",
-        value: "9 m³/h",
-      },
-      {
-        label: "Discharge improvement",
-        value: "+6 m³/h (200%)",
-      },
-      {
-        label: "Flushing method",
-        value: "Compressed-air flushing",
-      },
+      { label: "Borehole depth", value: "200 m" },
+      { label: "Initial discharge", value: "3 m³/h" },
+      { label: "Final tested discharge", value: "9 m³/h" },
+      { label: "Discharge improvement", value: "+6 m³/h (200%)" },
+      { label: "Flushing method", value: "Compressed-air flushing" },
       {
         label: "Cleaning method",
         value: "Chemical cleaning and borehole redevelopment",
@@ -145,7 +136,7 @@ export const projects: Project[] = [
 
     relatedServiceSlugs: [],
 
-    gallery: [
+    projectImages: [
       {
         url: "/projects/greenwood-flushing-1.jpg",
         caption: "Borehole site before rehabilitation",
@@ -162,15 +153,58 @@ export const projects: Project[] = [
         phase: "during",
       },
     ],
-
-    videos: [
+    projectVideos: [
       {
-        platform: "youtube",
         url: "https://youtu.be/yS_tWjUcZ2Y",
+        caption: "Borehole rehabilitation project video",
+        phase: "after",
+        platform: "youtube",
       },
     ],
   },
 ];
+
+// ── helpers ──────────────────────────────────────────────
+
+export function getVideoEmbedUrl(
+  video: ProjectVideo,
+): string | null {
+  switch (video.platform) {
+    case "youtube": {
+      let id = "";
+      if (video.url.includes("youtu.be/")) {
+        id = video.url.split("youtu.be/")[1].split("?")[0];
+      } else {
+        id = new URL(video.url).searchParams.get("v") ?? "";
+      }
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    }
+    case "tiktok": {
+      const id = video.url.split("/video/")[1]?.split("?")[0];
+      return id ? `https://www.tiktok.com/embed/v2/${id}` : null;
+    }
+    case "facebook":
+      return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
+        video.url,
+      )}&show_text=false`;
+    default:
+      return null;
+  }
+}
+
+export function getYouTubeThumb(url: string): string | null {
+  if (url.includes("youtu.be/")) {
+    const id = url.split("youtu.be/")[1].split("?")[0];
+    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+  }
+  try {
+    const u = new URL(url);
+    const id = u.searchParams.get("v");
+    return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+  } catch {
+    return null;
+  }
+}
 
 export function getApprovedProjects(): Project[] {
   return projects.filter((p) => p.approved === true);
@@ -200,43 +234,45 @@ export function getFeaturedProjects(limit = 3): Project[] {
     .slice(0, limit);
 }
 
+// ── flat gallery media for the gallery page ──────────────
+
+export type GalleryMediaType = "image" | "video";
+
 export interface GalleryMediaItem {
   id: string;
   url: string;
   caption: string;
-  type: "image" | "video";
+  type: GalleryMediaType;
   projectTitle: string;
   projectCounty: string;
-  platform?: "youtube" | "tiktok" | "facebook";
+  platform?: ProjectVideoPlatform;
 }
 
 export function getAllGalleryMedia(): GalleryMediaItem[] {
   const media: GalleryMediaItem[] = [];
 
   for (const project of projects) {
-    for (const galleryImage of project.gallery) {
+    for (const image of project.projectImages) {
       media.push({
-        id: `${project.id}-img-${galleryImage.caption}`,
-        url: galleryImage.url,
-        caption: galleryImage.caption,
+        id: `${project.id}-image-${image.caption}`,
+        url: image.url,
+        caption: image.caption,
         type: "image",
         projectTitle: project.title,
         projectCounty: project.county,
       });
     }
 
-    if (project.videos) {
-      for (const video of project.videos) {
-        media.push({
-          id: `${project.id}-video-${video.platform}-${video.url}`,
-          url: video.url,
-          caption: `${project.title} — Project Video`,
-          type: "video",
-          projectTitle: project.title,
-          projectCounty: project.county,
-          platform: video.platform,
-        });
-      }
+    for (const video of project.projectVideos) {
+      media.push({
+        id: `${project.id}-video-${video.platform}-${video.url}`,
+        url: video.url,
+        caption: video.caption,
+        type: "video",
+        projectTitle: project.title,
+        projectCounty: project.county,
+        platform: video.platform,
+      });
     }
   }
 

@@ -42,7 +42,7 @@ export async function generateMetadata({
       type: "article",
       images: [
         {
-          url: project.gallery[0]?.url ?? "/placeholder_image.jpg",
+          url: project.projectImages[0]?.url ?? "/placeholder_image.jpg",
           alt: project.title,
           width: 1200,
           height: 630,
@@ -53,7 +53,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${project.title} | ${siteConfig.name}`,
       description: project.challenge,
-      images: [project.gallery[0]?.url ?? "/placeholder_image.jpg"],
+      images: [project.projectImages[0]?.url ?? "/placeholder_image.jpg"],
     },
   };
 }

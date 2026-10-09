@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
 import type { Project } from "@/data/projectStats";
+import { getYouTubeThumb } from "@/data/projectStats";
 import styles from "./ProjectCard.module.scss";
 import { useProjectImages } from "@/hooks/useProjectImages";
 import ImageSwiper from "../ui/ImageSwiper";
@@ -14,19 +15,42 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const afterImageUrls = useMemo(
-    () =>
-      project.gallery
-        .filter((img) => img.phase === "after")
-        .map((img) => img.url),
-    [project.gallery],
+  const galleryImages = project.projectImages;
+  const galleryVideos = project.projectVideos;
+
+  const videoThumbs = useMemo(() => {
+    return galleryVideos
+      .map((v) => {
+        const thumb =
+          v.platform === "youtube" ? getYouTubeThumb(v.url) : null;
+        return thumb ? { src: thumb, caption: v.caption } : null;
+      })
+      .filter(
+        (t): t is { src: string; caption: string } => t !== null,
+      );
+  }, [galleryVideos]);
+
+  const carouselUrls = useMemo(
+    () => [
+      ...galleryImages.map((img) => img.url),
+      ...videoThumbs.map((v) => v.src),
+    ],
+    [galleryImages, videoThumbs],
   );
 
+  const heroImageUrl = useMemo(() => {
+    const afterImage = galleryImages.find((g) => g.phase === "after");
+    if (afterImage) return afterImage.url;
+    if (videoThumbs.length > 0) return videoThumbs[0].src;
+    if (galleryImages.length > 0) return galleryImages[0].url;
+    return "/placeholder_image.jpg";
+  }, [galleryImages, videoThumbs]);
+
   const { images, loading, error } = useProjectImages({
-    images: afterImageUrls,
+    images: carouselUrls,
   });
 
-  const hasMultipleAfterImages = afterImageUrls.length > 1;
+  const hasMultiple = carouselUrls.length > 1;
 
   return (
     <Link
@@ -34,7 +58,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       className={project.featured ? styles.projectCard : styles.gridCard}
     >
       <div className={styles.imageContainer}>
-        {hasMultipleAfterImages ? (
+        {hasMultiple ? (
           <ImageSwiper
             images={images}
             loading={loading}
@@ -43,7 +67,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           />
         ) : (
           <ImageWithFallback
-            src={afterImageUrls[0]}
+            src={heroImageUrl}
             alt={project.title}
             fill
             sizes="(max-width:768px)100vw,50vw"

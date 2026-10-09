@@ -17,8 +17,11 @@ import {
   TrendingUp,
   ArrowRightCircle,
 } from "lucide-react";
-import type { Project, ProjectVideo } from "@/data/projectStats";
-import { getProjectGroupLabel } from "@/data/projectStats";
+import type { Project } from "@/data/projectStats";
+import {
+  getProjectGroupLabel,
+  getVideoEmbedUrl,
+} from "@/data/projectStats";
 import type { Service } from "@/data/services";
 import { useProjectImages } from "@/hooks/useProjectImages";
 import ImageSwiper from "@/components/ui/ImageSwiper";
@@ -34,30 +37,6 @@ interface ProjectDetailClientProps {
   relatedServices: Service[];
 }
 
-function getEmbedUrl(video: ProjectVideo): string | null {
-  switch (video.platform) {
-    case "youtube": {
-      let id = "";
-      if (video.url.includes("youtu.be/")) {
-        id = video.url.split("youtu.be/")[1].split("?")[0];
-      } else {
-        id = new URL(video.url).searchParams.get("v") ?? "";
-      }
-      return id ? `https://www.youtube.com/embed/${id}` : null;
-    }
-    case "tiktok": {
-      const id = video.url.split("/video/")[1]?.split("?")[0];
-      return id ? `https://www.tiktok.com/embed/v2/${id}` : null;
-    }
-    case "facebook":
-      return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
-        video.url,
-      )}&show_text=false`;
-    default:
-      return null;
-  }
-}
-
 const fadeUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
@@ -70,13 +49,16 @@ export default function ProjectDetailClient({
   relatedProjects,
   relatedServices,
 }: ProjectDetailClientProps) {
-  const imageUrls = useMemo(
-    () => project.gallery.map((img) => img.url),
-    [project.gallery],
+  const galleryImages = project.projectImages;
+  const galleryVideos = project.projectVideos;
+
+  const heroImageUrls = useMemo(
+    () => galleryImages.map((img) => img.url),
+    [galleryImages],
   );
 
   const { images, loading, error } = useProjectImages({
-    images: imageUrls,
+    images: heroImageUrls,
   });
 
   const ctaText = useMemo(() => {
@@ -166,7 +148,7 @@ export default function ProjectDetailClient({
                 <p className={styles.paragraph}>{project.solution}</p>
               </motion.section>
 
-              {/* Results — elevated from sidebar to main content */}
+              {/* Results */}
               {project.results.length > 0 && (
                 <motion.section
                   className={styles.section}
@@ -190,8 +172,8 @@ export default function ProjectDetailClient({
                 </motion.section>
               )}
 
-              {/* Gallery */}
-              {project.gallery.length > 0 && (
+              {/* Gallery — images */}
+              {galleryImages.length > 0 && (
                 <motion.section
                   className={styles.section}
                   {...fadeUp}
@@ -202,7 +184,7 @@ export default function ProjectDetailClient({
                     Project Gallery
                   </h2>
                   <div className={styles.gallery}>
-                    {project.gallery.map((image, index) => (
+                    {galleryImages.map((image, index) => (
                       <div key={index} className={styles.galleryItem}>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
@@ -222,8 +204,8 @@ export default function ProjectDetailClient({
                 </motion.section>
               )}
 
-              {/* Videos */}
-              {project.videos && project.videos.length > 0 && (
+              {/* Gallery — videos */}
+              {galleryVideos.length > 0 && (
                 <motion.section
                   className={styles.section}
                   {...fadeUp}
@@ -233,12 +215,12 @@ export default function ProjectDetailClient({
                     Project in Action
                   </h2>
                   <div className={styles.videoStack}>
-                    {project.videos.map((video, index) => (
+                    {galleryVideos.map((video, index) => (
                       <div key={index}>
-                        {getEmbedUrl(video) ? (
+                        {getVideoEmbedUrl(video) ? (
                           <div className={styles.videoWrapper}>
                             <iframe
-                              src={getEmbedUrl(video)!}
+                              src={getVideoEmbedUrl(video)!}
                               title={`${project.title} — Video ${index + 1}`}
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                               referrerPolicy="strict-origin-when-cross-origin"
@@ -296,7 +278,7 @@ export default function ProjectDetailClient({
                 </motion.section>
               )}
 
-              {/* CTA — project-specific */}
+              {/* CTA */}
               <div className={styles.cta}>
                 <div className={styles.ctaContent}>
                   <h3>Planning a similar project?</h3>
@@ -340,7 +322,6 @@ export default function ProjectDetailClient({
 
             {/* Sidebar */}
             <aside className={styles.sidebar}>
-              {/* Project Information */}
               {project.details.length > 0 && (
                 <div className={styles.infoCard}>
                   <h3 className={styles.infoTitle}>Project Information</h3>
@@ -355,7 +336,6 @@ export default function ProjectDetailClient({
                 </div>
               )}
 
-              {/* Our Role */}
               {project.servicesDelivered.length > 0 && (
                 <div className={styles.infoCard}>
                   <h3 className={styles.infoTitle}>
@@ -373,7 +353,6 @@ export default function ProjectDetailClient({
                 </div>
               )}
 
-              {/* Key Results — compact sidebar summary */}
               {project.results.length > 0 && (
                 <div className={styles.infoCard}>
                   <h3 className={styles.infoTitle}>Key Results</h3>

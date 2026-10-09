@@ -137,15 +137,20 @@ export default function GalleryPage() {
                         />
                       ) : item.platform === "youtube" &&
                         getYouTubeThumb(item.url) ? (
-                        <ImageWithFallback
-                          src={getYouTubeThumb(item.url)!}
-                          alt={item.caption}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          animation="none"
-                          loading={index < 6 ? "eager" : "lazy"}
-                          priority={index < 3}
-                        />
+                        <>
+                          <ImageWithFallback
+                            src={getYouTubeThumb(item.url)!}
+                            alt={item.caption}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            animation="none"
+                            loading={index < 6 ? "eager" : "lazy"}
+                            priority={index < 3}
+                          />
+                          <div className={styles.playOverlay}>
+                            <Play size={48} color="white" />
+                          </div>
+                        </>
                       ) : (
                         <div className={styles.videoPlaceholder}>
                           <Play size={48} color="white" />

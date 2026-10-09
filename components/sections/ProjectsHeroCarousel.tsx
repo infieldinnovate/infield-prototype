@@ -9,7 +9,6 @@ import {
 import {
   projects,
   getProjectGroupLabel,
-  getYouTubeThumb,
 } from "@/data/projectStats";
 import { ServiceIcons } from "@/data/service-icons";
 
@@ -21,19 +20,13 @@ export default function ProjectsHeroCarousel() {
 
     return pool.slice(0, 6).map((project) => {
       const imgs = project.projectImages;
-      const vids = project.projectVideos;
 
       const afterImage = imgs.find((g) => g.phase === "after");
-      const firstVideoThumb =
-        vids.length > 0 && vids[0].platform === "youtube"
-          ? getYouTubeThumb(vids[0].url)
-          : null;
 
       const image =
         afterImage?.url ||
-        firstVideoThumb ||
         imgs[0]?.url ||
-        "";
+        "/placeholder_image.jpg";
 
       const badgeIcon = ServiceIcons[project.category] || CircleCheck;
 

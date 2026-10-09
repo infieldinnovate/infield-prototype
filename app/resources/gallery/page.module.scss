@@ -97,6 +97,18 @@
   background: linear-gradient(135deg, $color-gray-700, $color-gray-900);
 }
 
+.playOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  @include flex-center;
+  pointer-events: none;
+
+  svg {
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  }
+}
+
 .playBadge {
   position: absolute;
   top: var(--space-3);

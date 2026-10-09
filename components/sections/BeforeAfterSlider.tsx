@@ -7,8 +7,8 @@ import { MoveHorizontal } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import styles from "./BeforeAfterSlider.module.scss";
 
-const beforeImage = "/placeholder_image.jpg";
-const afterImage = "/placeholder_image.jpg";
+const beforeImage = "/before-after/bakery-1.jpg";
+const afterImage = "/before-after/bakery-2.jpg";
 
 export function BeforeAfterSlider() {
   const [position, setPosition] = useState(50);

@@ -8,7 +8,7 @@ const article: Article = {
   excerpt:
     "A practical guide to planning safe electrical installations in Kenya, covering demand assessment, distribution, cable selection, protection, backup power, and testing.",
   category: "electrical",
-  image: "/placeholder_image.jpg",
+  image: "/articles/electrical-53777.jpg",
   readingTime: "5 min read",
   publishDate: "2025-01-20",
   authorId: "tm1",

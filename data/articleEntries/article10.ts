@@ -3,7 +3,8 @@ import type { Article } from "@/data/articles";
 const article: Article = {
   id: "art10",
 
-  title: "Complete Solar-Powered Water System: Borehole, Pump, Storage & Irrigation",
+  title:
+    "Complete Solar-Powered Water System: Borehole, Pump, Storage & Irrigation",
 
   slug: "complete-solar-powered-water-system",
 
@@ -12,7 +13,7 @@ const article: Article = {
 
   category: "solar",
 
-  image: "/placeholder_image.jpg",
+  image: "/articles/borehole-45680.jpg",
 
   readingTime: "4 min read",
 

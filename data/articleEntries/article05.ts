@@ -7,7 +7,7 @@ const article: Article = {
   excerpt:
     "Borehole water should be tested before use. Learn what to test, how results guide treatment, and how to maintain a reliable water-treatment system.",
   category: "boreholes",
-  image: "/placeholder_image.jpg",
+  image: "/articles/borehole-3645837.jpg",
   readingTime: "5 min read",
   publishDate: "2025-02-10",
   authorId: "tm1",

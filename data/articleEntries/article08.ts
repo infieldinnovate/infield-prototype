@@ -12,7 +12,7 @@ const article: Article = {
 
   category: "irrigation",
 
-  image: "/placeholder_image.jpg",
+  image: "/articles/irrigation-98856.jpg",
 
   readingTime: "4 min read",
 

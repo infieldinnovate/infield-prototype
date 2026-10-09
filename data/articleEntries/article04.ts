@@ -7,7 +7,7 @@ const article: Article = {
   excerpt:
     "A practical guide to borehole development in Kenya — from hydrogeological assessment and approvals to drilling, test pumping, water-quality testing, pumping systems, and handover.",
   category: "boreholes",
-  image: "/placeholder_image.jpg",
+  image: "/articles/borehole-105228.jpg",
   readingTime: "5 min read",
   publishDate: "2025-01-25",
   authorId: "tm1",

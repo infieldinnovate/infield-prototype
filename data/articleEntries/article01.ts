@@ -7,7 +7,7 @@ const article: Article = {
   excerpt:
     "A practical guide to planning, sizing and installing solar PV for homes and businesses in Kenya, from site assessment and system selection to testing, handover and maintenance.",
   category: "solar",
-  image: "/placeholder_image.jpg",
+  image: "/articles/solar-sizing-7r8w8e6.jpg",
   readingTime: "6 min read",
   publishDate: "2025-01-15",
   authorId: "tm4",

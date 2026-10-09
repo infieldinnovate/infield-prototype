@@ -12,7 +12,7 @@ const article: Article = {
 
   category: "water-storage",
 
-  image: "/placeholder_image.jpg",
+  image: "/articles/water-tank-154427_507.jpg",
 
   readingTime: "4 min read",
 

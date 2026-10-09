@@ -73,7 +73,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const relatedServices = (project.relatedServiceSlugs ?? [project.category])
     .map((slug) => getServiceBySlug(slug))
     .filter((s): s is NonNullable<typeof s> => s !== undefined)
-    .filter((s) => s.slug !== project.category || (project.relatedServiceSlugs ?? []).length > 1)
+    .filter(
+      (s) =>
+        s.slug !== project.category ||
+        (project.relatedServiceSlugs ?? []).length > 1,
+    )
     .slice(0, 4);
 
   const jsonLd = buildProjectListSchema([project]);

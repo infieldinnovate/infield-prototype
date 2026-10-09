@@ -7,7 +7,7 @@ const article: Article = {
   excerpt:
     "A practical guide to solar battery storage in Kenya—when it is useful, how to size it, what to compare, and when a battery makes more sense than a generator.",
   category: "solar",
-  image: "/placeholder_image.jpg",
+  image: "/articles/lithium-537473423.jpg",
   readingTime: "5 min read",
   publishDate: "2025-02-01",
   authorId: "tm4",

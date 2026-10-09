@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/resources/knowledge-centre', priority: 0.9, changeFrequency: 'weekly' as const, lastModified: STATIC_LAST_MODIFIED },
     { url: '/resources/projects', priority: 0.7, changeFrequency: 'monthly' as const, lastModified: STATIC_LAST_MODIFIED },
     { url: '/resources/downloads', priority: 0.7, changeFrequency: 'weekly' as const, lastModified: STATIC_LAST_MODIFIED },
+    { url: '/resources/gallery', priority: 0.7, changeFrequency: 'monthly' as const, lastModified: STATIC_LAST_MODIFIED },
     { url: '/resources/faq', priority: 0.7, changeFrequency: 'weekly' as const, lastModified: STATIC_LAST_MODIFIED },
     { url: '/quote', priority: 0.8, changeFrequency: 'monthly' as const, lastModified: STATIC_LAST_MODIFIED },
     { url: '/contact', priority: 0.8, changeFrequency: 'monthly' as const, lastModified: STATIC_LAST_MODIFIED },

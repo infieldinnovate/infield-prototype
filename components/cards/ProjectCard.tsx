@@ -59,7 +59,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         <h4>{project.title}</h4>
-        <p>{project.challenge}</p>
+        <p>{project.overview}</p>
 
         <div className={styles.cardResults}>
           <ul className={styles.cardResultList}>

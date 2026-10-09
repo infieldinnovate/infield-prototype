@@ -10,7 +10,6 @@ const STORAGE_KEY = "infield-upgrade-notice-seen";
 const AUTO_DISMISS_MS = 15000;
 
 const features = [
-  { icon: Gauge, label: "Better Performance" },
   { icon: ShieldCheck, label: "Improved Experience" },
 ];
 

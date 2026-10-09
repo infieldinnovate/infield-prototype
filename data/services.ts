@@ -58,7 +58,7 @@ export const SERVICES: Service[] = [
     shortName: "Solar",
     tagline: "Harness the sun for clean, affordable energy",
     description:
-      "Custom solar panel installation, battery storage, and energy system design for residential and commercial properties looking to reduce energy costs.",
+      "Solar panel installation, hybrid and off-grid systems, battery storage, solar water heating and solar pumping for homes, businesses and farms.",
     longDescription:
       "Transition to clean energy with our comprehensive solar solutions. We handle every aspect from initial assessment and system design to installation, permitting, and ongoing maintenance. Our solar systems are designed to maximize energy production and savings, with battery storage options for energy independence.",
     icon: "Sun",

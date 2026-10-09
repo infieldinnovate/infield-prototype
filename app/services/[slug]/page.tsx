@@ -13,7 +13,9 @@ export function generateStaticParams() {
   return getServiceSlugs().map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ServicePageProps): Promise<Metadata> {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
 
@@ -28,16 +30,18 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       canonical: `/services/${service.slug}`,
     },
     openGraph: {
-      title: `${service.name} | ${siteConfig.name}`,
+      title: `${service.name} in Kenya | ${siteConfig.name}`,
       description: service.description,
       url: `${siteConfig.url}/services/${service.slug}`,
       siteName: siteConfig.name,
       type: "website",
-      images: [{ url: service.image, alt: service.name, width: 1200, height: 630 }],
+      images: [
+        { url: service.image, alt: service.name, width: 1200, height: 630 },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${service.name} | ${siteConfig.name}`,
+      title: `${service.name} in Kenya | ${siteConfig.name}`,
       description: service.description,
       images: [service.image],
     },

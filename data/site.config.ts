@@ -6,7 +6,7 @@
 export const siteConfig = {
   name: "Infield Innovations",
   shortName: "Infield",
-  tagline: "Solar, Electrical & Water Solutions in Kenya | Infield Innovations",
+  tagline: "Solar, Electrical & Water Solutions",
   foundedYear: "2018",
   description:
     "Infield Innovations provides solar installations, electrical services, borehole drilling, plumbing, water storage, water harvesting and irrigation solutions across Kenya. Request a quote",

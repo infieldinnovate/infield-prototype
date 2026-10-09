@@ -40,7 +40,7 @@ $border: $color-project-border;
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 50%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
   pointer-events: none;
 }
 
@@ -72,10 +72,13 @@ $border: $color-project-border;
 }
 
 .title {
+  max-width: 600px;
   margin: 0 0 0.5rem;
   font-size: clamp(1.5rem, 1.5rem + 1.5vw, 2.5rem);
   font-weight: 800;
   line-height: 1.2;
+  color: rgb(253, 255, 159);
+  font-style: italic;
 }
 
 .meta {
@@ -115,7 +118,7 @@ $border: $color-project-border;
   gap: var(--space-12);
 
   @include breakpoint-up("lg") {
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 1fr 450px;
     gap: var(--space-16);
     align-items: flex-start;
   }
@@ -458,10 +461,16 @@ $border: $color-project-border;
   align-items: center;
   gap: 0.75rem;
   padding: 1.25rem 1rem;
-  background: linear-gradient(135deg, rgba($primary, 0.06), rgba($accent, 0.04));
+  background: linear-gradient(
+    135deg,
+    rgba($primary, 0.06),
+    rgba($accent, 0.04)
+  );
   border: 1px solid rgba($primary, 0.12);
   border-radius: $radius-lg;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
     transform: translateY(-2px);

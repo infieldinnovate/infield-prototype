@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, MapPin } from "lucide-react";
+import { ArrowRight, CircleCheck as CheckCircle2, MapPin } from "lucide-react";
 import type { Project } from "@/data/projectStats";
-import { getYouTubeThumb } from "@/data/projectStats";
 import styles from "./ProjectCard.module.scss";
 import { useProjectImages } from "@/hooks/useProjectImages";
 import ImageSwiper from "../ui/ImageSwiper";
@@ -16,35 +15,18 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const galleryImages = project.projectImages;
-  const galleryVideos = project.projectVideos;
-
-  const videoThumbs = useMemo(() => {
-    return galleryVideos
-      .map((v) => {
-        const thumb =
-          v.platform === "youtube" ? getYouTubeThumb(v.url) : null;
-        return thumb ? { src: thumb, caption: v.caption } : null;
-      })
-      .filter(
-        (t): t is { src: string; caption: string } => t !== null,
-      );
-  }, [galleryVideos]);
 
   const carouselUrls = useMemo(
-    () => [
-      ...galleryImages.map((img) => img.url),
-      ...videoThumbs.map((v) => v.src),
-    ],
-    [galleryImages, videoThumbs],
+    () => galleryImages.map((img) => img.url),
+    [galleryImages],
   );
 
   const heroImageUrl = useMemo(() => {
     const afterImage = galleryImages.find((g) => g.phase === "after");
     if (afterImage) return afterImage.url;
-    if (videoThumbs.length > 0) return videoThumbs[0].src;
     if (galleryImages.length > 0) return galleryImages[0].url;
     return "/placeholder_image.jpg";
-  }, [galleryImages, videoThumbs]);
+  }, [galleryImages]);
 
   const { images, loading, error } = useProjectImages({
     images: carouselUrls,

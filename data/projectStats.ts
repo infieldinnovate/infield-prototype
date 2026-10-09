@@ -268,19 +268,19 @@ export const projects: Project[] = [
 
     gallery: [
       {
-        url: "/placeholder_image.jpg",
+        url: "/projects/greenwood-flushing-1.jpg",
         caption: "Borehole site before rehabilitation",
         phase: "before",
       },
       {
-        url: "/placeholder_image.jpg",
+        url: "/projects/greenwood-flushing-2.jpg",
         caption: "Borehole flushing and cleaning in progress",
         phase: "during",
       },
       {
-        url: "/placeholder_image.jpg",
-        caption: "Completed rehabilitation and pump reinstallation",
-        phase: "after",
+        url: "/projects/greenwood-flushing-3.jpg",
+        caption: "Borehole flushing and cleaning in progress",
+        phase: "during",
       },
     ],
 
